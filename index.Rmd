@@ -163,13 +163,14 @@ Morphosyntactic outcome:
 
 ## Central Swedish
 
-Low tone + singular: _fisken_ 'fish<sub>[SG]</sub>'
-High tone + plural: _fiskar_ 'fish<sub>[PL]</sub>' 
-<font size="-1">(Roll et al., 2010)</font>
+Low tone + singular: _fisken_ 'fish<sub>[SG]</sub>'     
+High tone + plural: _fiskar_ 'fish<sub>[PL]</sub>' <font size="-1">     
+(Roll et al., 2010)</font>
 
 ## Spanish
-First syllable stressed + present: _canta_ 's/he sings'
-First syllable unstressed + past:  vs. _cantó_ 's/he sang' <font size="-1">(Sagarra & Casillas, 2018)</font>
+First syllable stressed + present: _canta_ 's/he sings'     
+First syllable unstressed + past:  vs. _cantó_ 's/he sang' <font size="-1">     
+(Sagarra & Casillas, 2018)</font>
 
 --
 
@@ -377,7 +378,7 @@ Close tracking of time
 ~ Melody discrimination task
 
 ```{r, include=TRUE, echo=FALSE}
-include_graphics("./00_first_chapter/figs/tone_task.png", dpi = 150)
+include_graphics("./00_first_chapter/figs/tone_task.png", dpi = 130)
 ```
 
 ---
@@ -415,11 +416,11 @@ include_graphics("./00_first_chapter/figs/ospan.png", dpi = 108)
 # Visuospatial working memory
 
 Corsi-blocks task
-
-```{r, include=TRUE, echo=FALSE, fig.cap = "Sample trial of the visuospatial working memory task (Corsi-blocks tapping"}
-include_graphics("./00_first_chapter/figs/corsi.png", dpi = 150)
+.center[
+```{r, include=TRUE, echo=FALSE}
+include_graphics("./00_first_chapter/figs/corsi.png", dpi = 140)
 ```
-
+]
 ---
 
 # Conclusion

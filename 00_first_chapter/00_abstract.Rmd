@@ -1,0 +1,55 @@
+---
+title             : "abstract"
+
+abstract: |
+ Some scholars claim that language is associated with larger domain-general cognitive functions, but the extent of this association is yet unknown. This study explores whether linguistic and non-linguistic prediction abilities are associated. In particular, this study explores the effects of three factors on prediction of word endings in native speakers and adult L2 learners: (1) a person’s ability to predict non-linguistic information (pitch, rhythm, space), (2) a learner’s linguistic experience bias due to their native language (L1 transfer) (English vs. Chinese learners of Spanish), and their second language (L2 proficiency) (intermediate vs. advanced), and (3) cognitive individual differences (working memory). Previous studies show that rhythmic abilities are associated with prosodic abilities [@cason2019rhythmic], linguistic tonal experience with musical pitch discrimination performance [@deutsch2009absolute], and general language abilities with visuospatial processing [@bochynska2020spatial]. However, no study has investigated whether these associations between linguistic and non-linguistic perception abilities also apply to the realm of prediction, and, if they do, whether language experience and individual differences in working memory play a role. This dissertation fills this gap to understand how different cognitive functions are related and how capacities in each of them influence the rest.     
+ To investigate the role of these three factors on linguistic anticipation, Spanish monolinguals, intermediate and advanced English learners of Spanish, and intermediate and advanced Chinese learners of Spanish completed three non-linguistic anticipation tasks (two musical—pitch melodic variations and rhythm imperative tone— and one visuospatial—moving object—), one linguistic anticipation task (visual-world paradigm), and two working memory tasks [Operation Span, @unsworth2005automated; Corsi-block Tapping, @milner1971interhemispheric]. In the pitch task, participants had to anticipate the direction of a pitch change. In the rhythm task, participants had to anticipate the start of a beat in a rhythmic pattern. In the moving object task, participants had to anticipate when a car was going to reappear from behind a mountain. Finally, in the linguistic task, participants had to select what word they heard as soon as possible while their eye-movements were recorded. The target words were disyllable verbal tenses in Spanish that differed in whether the first syllable was stressed or unstressed (e.g., _busca_ ‘(s)he searches’ vs. _buscó_ ‘(s)he searched’). Spanish lexical stress is marked predominantly through pitch. English lexical stress uses vowel quality and duration. Chinese has tones instead of lexical stress, but tones are also marked through pitch. In the Corsi-block tapping visuospatial memory task participants had to remember sequences of increasing squares changing colors and repeat the sequence by tapping on them. In the Operational Span verbal working memory task, participants heard a word followed by a simple mathematical sum or subtraction; after the set, participants needed to remember all the word of the set in the order heard. The Operational Span task was administered in the participants’ L1. The findings of my dissertation will determine how different cognitive functions are interrelated and affect each other.
+	
+  
+  <!-- https://tinyurl.com/ybremelq -->
+  
+keywords          : "language, music, visual-spatial, anticipation, eye-tracking"
+wordcount         : "X"
+
+bibliography      : ["references.bib"]
+
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : yes
+mask              : no
+draft             : no
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_word
+---
+
+
+	Design
+	Anticipation: language
+	              others: rhythm
+	                      melody
+	                      space
+	Language experience: L1
+	                     L2: intermediate
+	                         advanced
+	Working memory: verbal
+	                visualspatial
+
+
+
+\newpage
+
+# References
+```{r create_r-references}
+r_refs(file = "r-references.bib")
+```
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+<div id="refs" custom-style="Bibliography"></div>
+\endgroup

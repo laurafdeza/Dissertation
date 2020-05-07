@@ -48,6 +48,12 @@ Rhythm
 
 ## Visuospatial anticipation
 
+--
+
+# Linguistic prediction
+
+Lexical stress > verbal tense
+
 ---
 
 # Pitch
@@ -84,9 +90,9 @@ Pitch is the frequency associated to a sound wave; this frequency places the sou
 --
 
 .content-box-green[
-Rhythmic production scores reliable predictor of L2 stress placement <font size="-1">(Cason et al., 2019)</font>. 
+Rhythmic production scores reliable predictor of L2 lexical stress placement <font size="-1">(Cason et al., 2019)</font>. 
 
-Rhythm perception was actually positively associated with L2 learning experience. <font size="-1">(Bhatara et al., 2015)</font> 
+Rhythm perception was actually positively associated with L2 learning experience <font size="-1">(Bhatara et al., 2015)</font>. 
 ]
 
 .content-box-red[
@@ -112,15 +118,17 @@ Rhythm is defined as a pattern of recurrent time intervals that usually occur pe
 
 - Egocentric vs geocentric linguistic representation of space
 
-- Williams Syndrome, autism: slower, poorer and noisier processing of spatial concepts <font size="-1">(Bochynska et al., 2020; Landau & Hoffman, 2005)</font>
-
-- Dyslexia: perform worse on visuospatial tasks (children, <font size="-1">Giovagnoli et al., 2016</font>, older teens and adults, <font size="-1">von Károlyi & Winner, 2004</font>)
-
 ???
 
 Visuospatial abilities refer to the ability to process, work with and remember information in space perceived visually.
 
+- Williams Syndrome, autism: slower, poorer and noisier processing of spatial concepts <font size="-1">(Bochynska et al., 2020; Landau & Hoffman, 2005)</font>
+
+- Dyslexia: perform worse on visuospatial tasks (children, <font size="-1">Giovagnoli et al., 2016</font>, older teens and adults, <font size="-1">von Károlyi & Winner, 2004</font>)
+
 ---
+
+exclude: true
 
 # Linguistic anticipation
 </br>
@@ -152,9 +160,10 @@ Phonological cues:
 .pull-right[
 Morphosyntactic outcome:
 
-- number <font size="-1">(Marull, 2017)</font>
+- noun number <font size="-1">(Marull, 2017)</font>
 - gender <font size="-1">(Dahan et al., 2000)</font>
-- case (German, <font size="-1">Hopp, 2015</font>, Japanese, <font size="-1">Mitsugi & MacWhinney, 2016</font>)     
+- case (German, <font size="-1">Hopp, 2015</font>, Japanese, <font size="-1">Mitsugi & MacWhinney, 2016</font>)  
+- tense <font size="-1">(Lozano et al., 2019; Sagarra & Casillas, 2018)</font>
 ]
 
 ---
@@ -169,33 +178,29 @@ High tone + plural: _fiskar_ 'fish<sub>[PL]</sub>' <font size="-1">
 
 ## Spanish
 First syllable stressed + present: _canta_ 's/he sings'     
-First syllable unstressed + past:  vs. _cantó_ 's/he sang' <font size="-1">     
+First syllable unstressed + past: _cantó_ 's/he sang' <font size="-1">     
 (Sagarra & Casillas, 2018)</font>
-
---
-
-## Role of working memory?
 
 ---
 
 # L2 speakers
-
-</br>
 
 - L1 transfer and L2 proficiency <font size="-1">(Dupoux et al., 2008; Dussias et al., 2013; Sagarra & Casillas, 2018)</font>
 
 </br>
 --
 
-- Phonological transfer:
+- Phonological acquisition:
     - Speech Learning Model <font size="-1">(Flege, 1995)</font>
     - Perceptual Assimilation Model for L2 <font size="-1">(Best, 1995)</font>
     - Second Language Linguistic Perception <font size="-1">(Escudero, 2005)</font>
 
-</br>
 --
+</br>
 
 - Working memory
+
+</br>
 
 ---
 
@@ -203,15 +208,7 @@ First syllable unstressed + past:  vs. _cantó_ 's/he sang' <font size="-1">
 
   - Domain-specific single-resource model <font size="-1">(Just & Carpenter, 1992)</font>
   - Domain-specific multiple-resource model <font size="-1">(Baddeley, 2007)</font>
-  - Domain-free connectionist mdels <font size="-1">(e.g., Cowan, 2005)</font>
-
---
-
-### Music training
-
---
-
-### Alphabet vs. logosyllables
+  - Domain-free connectionist models <font size="-1">(e.g., Cowan, 2005)</font>
 
 --
 
@@ -223,7 +220,11 @@ First syllable unstressed + past:  vs. _cantó_ 's/he sang' <font size="-1">
 
 --
 
-### Anticipation?
+### Music training
+
+--
+
+### Alphabet vs. logosyllables
 
 ---
 
@@ -246,7 +247,7 @@ First syllable unstressed + past:  vs. _cantó_ 's/he sang' <font size="-1">
 
 --
 
-## Study 1  
+## Study 1: Linguistic
 	
 **RQ1. Do Spanish monolinguals, and intermediate and advanced Mandarin and English learners of Spanish use lexical stress to anticipate verbal suffixes in Spanish?**      
 **If so, are prediction abilities mediated by verbal WM?**
@@ -260,7 +261,7 @@ WM will only affect performance in the L2 groups <font size="-1">(Huettig & Mani
 
 # Research Questions
 
-## Study 2   
+## Study 2: Auditory anticipation  
 	
 **RQ2. Is linguistic prediction of word morphology associated with auditory prediction in Spanish monolinguals, and intermediate and advanced Chinese and English learners of Spanish?**      
 **If so, how do WM, L1 transfer and L2 proficiency mediate this relationship?**
@@ -268,35 +269,36 @@ WM will only affect performance in the L2 groups <font size="-1">(Huettig & Mani
 --
 
 **H2.** _Pitch_     
-No association between pitch and speech abilities in L1 speakers. WM is only expected to have an effect on non-linguistic auditory prediction abilities <font size="-1">(Roden et al., 2014)</font>.
-Mandarin L1 speakers are expected to anticipate melodic information faster than any of the other populations. Their performance in anticipating melodic information will not be correlated with their L2 anticipation performance. No association between pitch and speech prediction abilities in the English learners. All auditory anticipation scores will be positively correlated with verbal WM scores in the L2 speakers <font size="-1">(Yang, 2017)</font>.
+No association between pitch and speech prediction abilities in L1 speakers and English learners. Mandarin speakers are expected to anticipate melodic information faster than any of the other populations. Performance in pitch anticipation will not be correlated with L2 anticipation performance. 
+All auditory anticipation scores will be positively correlated with verbal WM scores in the L2 speakers <font size="-1">(Yang, 2017)</font>. WM is only expected to have an effect on non-linguistic auditory prediction abilities in non-Mandarin speakers <font size="-1">(Roden et al., 2014)</font>. 
 
 ---
 
 # Research Questions
 
-## Study 2   
+## Study 2: Auditory anticipation   
 	
 **RQ2. Is linguistic prediction of word morphology associated with auditory prediction in Spanish monolinguals, and intermediate and advanced Chinese and English learners of Spanish?**      
 **If so, how do WM, L1 transfer and L2 proficiency mediate this relationship?**
 
-**H2.** _Rhythm_     
-Better rhythm anticipation abilities are expected to be associatd with individual variability of speech anticipation in all participants <font size="-1">(Cason & Schön, 2012)</font>. For L2 speakers, this rhythmic influence on speech anticipation will be visible at all levels of proficiency and regardless of the L1.
-WM is only expected to have an effect on non-linguistic auditory prediction abilities for all speakers <font size="-1">(Colley et al., 2018)</font>.     
+**H2.** _Rhythm_ 
+No relationship in monolinguals.
+Better rhythm anticipation abilities are expected to be associatd with individual variability of speech anticipation in L2 participants <font size="-1">(Cason & Schön, 2012)</font>. For L2 speakers, this rhythmic influence on speech anticipation will be visible at all levels of proficiency and regardless of the L1.
+WM is only expected to have an effect on rhythm prediction abilities for all speakers <font size="-1">(Colley et al., 2018)</font>.     
 
 ---
 
 # Research Questions
 
-## Study 3   
+## Study 3: Visuospatial anticipation   
 	
 **RQ3. Is linguistic prediction of word morphology associated with visuospatial prediction in Spanish monolinguals, and intermediate and advanced Chinese and English learners of Spanish?**      
 **If so, how do WM, L1 transfer and L2 proficiency mediate this relationship?**
 
 --
 
-**H3.** Language prediction abilities in the L1 and the L2 are not expected to be associated with the visuospatial domain. Verbal WM will not be associated with speech anticipation performance, but it might be associated with visuospatial WM due to cross-domain influence <font size="-1">(Colley et al., 2018)</font>.
-Visuospatial WM performance will in return be associated with visuospatial anticipation <font size="-1">(Pan et al., 2014; Woodman & Luck, 2004)</font>. 
+**H3.** Language prediction abilities in the L1 and the L2 are not expected to be associated with the visuospatial domain. 
+Verbal WM will only be associated with speech L2 anticipation performance, and it might be associated with visuospatial WM due to cross-domain influence <font size="-1">(Colley et al., 2018)</font>. Visuospatial WM performance will in return be associated with visuospatial anticipation <font size="-1">(Pan et al., 2014; Woodman & Luck, 2004)</font>. 
 
 ---
 
@@ -425,7 +427,7 @@ include_graphics("./00_first_chapter/figs/corsi.png", dpi = 140)
 
 # Conclusion
 
-**Goal:** to examine the role of language experience (L1 transfer, L2 proficiency) (Study 1), non-linguistic auditory prediction (Study 2), and visuospatial prediction (Study 3), on L1 and L2 linguistic prediction of word endings based on prosodic cues, and the mediation of verbal and visuospatial WM morphosyntactic anticipation based on lexical stress in the L1 and the L2.
+**Goal:** to examine the role of language experience (L1 transfer, L2 proficiency) (Study 1), non-linguistic auditory prediction (Study 2), and visuospatial prediction (Study 3), on L1 and L2 linguistic prediction of word endings based on prosodic cues, and the mediation of verbal and visuospatial WM.
 
 --
 

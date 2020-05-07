@@ -20,7 +20,7 @@ class: center
 
 ```{r knitr, include=TRUE, echo=FALSE}
 library(knitr)
-include_graphics("./avoid.gif", dpi = 80)
+include_graphics("./avoid.gif")
 ```
 
 ???
@@ -430,8 +430,15 @@ include_graphics("./00_first_chapter/figs/corsi.png", dpi = 140)
 **Relevance:** Results would confirm whether different cognitive domains in the auditory modality can influence speech anticipation, and thus if anticipation relies at least partially on domain-general cognitive mechanisms that may be shared within and across modalities, and, therefore, whether better anticipatory abilities in other modalities do not affect linguistic prediction.
 
 ---
-
-
+class: center
+</br>
+</br>
+</br>
+</br>
+</br>
+```{r, include=TRUE, echo=FALSE}
+include_graphics("./mind.gif")
+```
 
 ---
 class: title-slide-section-red, center, middle

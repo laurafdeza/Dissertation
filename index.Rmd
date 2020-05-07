@@ -92,7 +92,7 @@ Pitch is the frequency associated to a sound wave; this frequency places the sou
 .content-box-green[
 Rhythmic production scores reliable predictor of L2 lexical stress placement <font size="-1">(Cason et al., 2019)</font>. 
 
-Rhythm perception was actually positively associated with length of L2 learning  <font size="-1">(Bhatara et al., 2015)</font>. 
+Rhythm perception was actually positively associated with length of L2 experience  <font size="-1">(Bhatara et al., 2015)</font>. 
 ]
 
 .content-box-red[

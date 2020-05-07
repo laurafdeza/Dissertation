@@ -13,19 +13,15 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+class: center
+
 # .center[Prediction]
+
+
+```{r knitr, include=TRUE, echo=FALSE}
+library(knitr)
+include_graphics("./avoid.gif", dpi = 80)
+```
 
 ???
 
@@ -52,7 +48,7 @@ Rhythm
 
 # Linguistic prediction
 
-Lexical stress > verbal tense
+Lexical stress > verb tense, aspect, person, and number
 
 ---
 
@@ -365,8 +361,7 @@ L2 use/week
 
 Visual-world paradigm
 
-```{r knitr, include=TRUE, echo=FALSE}
-library(knitr)
+```{r, include=TRUE, echo=FALSE}
 include_graphics("./00_first_chapter/figs/vwp.png", dpi = 100) # the larger the number, the smaller the image
 ```
 
@@ -433,6 +428,10 @@ include_graphics("./00_first_chapter/figs/corsi.png", dpi = 140)
 --
 </br>
 **Relevance:** Results would confirm whether different cognitive domains in the auditory modality can influence speech anticipation, and thus if anticipation relies at least partially on domain-general cognitive mechanisms that may be shared within and across modalities, and, therefore, whether better anticipatory abilities in other modalities do not affect linguistic prediction.
+
+---
+
+
 
 ---
 class: title-slide-section-red, center, middle

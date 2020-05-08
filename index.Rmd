@@ -196,12 +196,6 @@ First syllable unstressed + past: _cantó_ 's/he sang' <font size="-1">
 - L1 transfer and L2 proficiency <font size="-1">(Dupoux et al., 2008; Dussias et al., 2013; Sagarra & Casillas, 2018)</font>
 
 </br>
---
-
-- Phonological acquisition:
-    - Speech Learning Model <font size="-1">(Flege, 1995)</font>
-    - Perceptual Assimilation Model for L2 <font size="-1">(Best, 1995)</font>
-    - Second Language Linguistic Perception <font size="-1">(Escudero, 2005)</font>
 
 --
 </br>
@@ -238,16 +232,20 @@ First syllable unstressed + past: _cantó_ 's/he sang' <font size="-1">
 
 # Linguistic phenomena
 </br>
-
 ## Lexical stress
 
  _TÉRmino_ 'term'     
  _terMIno_ 'I finish'     
  _termiNÓ_ 's/he finished'
  
- </br>
- 
 ## Tone
+
+--
+
+Phonological acquisition:
+ - Speech Learning Model <font size="-1">(Flege, 1995)</font>
+ - Perceptual Assimilation Model for L2 <font size="-1">(Best, 1995)</font>
+ - Second Language Linguistic Perception <font size="-1">(Escudero, 2005)</font>
 
 ---
 
@@ -277,7 +275,7 @@ WM will only affect performance in the L2 groups <font size="-1">(Huettig & Mani
 --
 
 **H2.** _Pitch_     
-No association between pitch and speech prediction abilities in L1 speakers and English learners. Mandarin speakers are expected to anticipate melodic information faster than any of the other populations. Performance in pitch anticipation will not be correlated with L2 anticipation performance. 
+No association between pitch and speech prediction abilities in any group, so L2 proficiency will not be associated either. Mandarin speakers are expected to anticipate melodic information faster than any of the other populations.      
 Pitch anticipation scores will be positively correlated with verbal WM scores in non-Mandarin speakers <font size="-1">(Roden et al., 2014)</font>. 
 
 ---
@@ -306,7 +304,7 @@ WM is only expected to have an effect on rhythm prediction abilities for all spe
 --
 
 **H3.** Language prediction abilities in the L1 and the L2 are not expected to be associated with the visuospatial domain. 
-Verbal WM will only be associated with speech L2 anticipation performance, and it might be associated with visuospatial WM due to cross-domain influence <font size="-1">(Colley et al., 2018)</font>. Visuospatial WM performance will in return be associated with visuospatial anticipation <font size="-1">(Pan et al., 2014; Woodman & Luck, 2004)</font>. 
+WM will only be associated with speech L2 anticipation performance, and it might be associated with visuospatial WM due to cross-domain influence <font size="-1">(Colley et al., 2018)</font>. Visuospatial WM performance will in return be associated with visuospatial anticipation <font size="-1">(Pan et al., 2014; Woodman & Luck, 2004)</font>. 
 
 ---
 

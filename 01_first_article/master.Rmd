@@ -1,0 +1,102 @@
+---
+title             : |
+  Anticipation of verbal suffixed based on lexical stress in Spanish by L1 Mandarin and L1 English speakers
+shorttitle        : "Lexical stress-based anticipation in L1 and L2 speakers"
+
+author: 
+  - name          : "Laura Fernández Arroyo"
+    affiliation   : "1"
+    corresponding : yes
+    address       : |
+      Rutgers University - Department of Spanish and Portuguese, 15 Seminary Place, New Brunswick, NJ 08904, USA
+    email         : "laura.fdeza@rutgers.edu"
+
+affiliation:
+  - id            : "1"
+    institution   : "Rutgers University"
+    
+authornote: | 
+Correspondence concerning this article should be addressed to Laura Fernandez Arroyo, 15 Seminary Place, New Brusnwick, NJ. E-mail: laura.fdeza@rutgers.edu
+
+abstract: |
+
+
+keywords          : |
+  language, lexical stress, anticipation, eye-tracking, L2 
+
+bibliography      : 
+  - "../references.bib" 
+
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : yes
+mask              : no
+draft             : yes
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : 
+  papaja::apa6_word:
+    toc: true
+    toc_depth: 4
+---
+
+```{r setup, include = FALSE}
+library("papaja")
+library("knitr")
+# source(here::here("scripts", "08_small_data.R"))
+```
+
+```{r analysis-preferences}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+
+<!-- INTRODUCTION -->
+```{r, 'include-intro', child='./01_introduction.Rmd'}
+```
+
+<!-- BACKGROUNG -->
+```{r, 'include-background', child='./02_background.Rmd'}
+```
+
+<!-- THIS STUDY -->
+```{r, 'include-rq', child='./03_study.Rmd'}
+```
+
+<!-- METHODS -->
+```{r, 'include-methods', child='./04_methods.Rmd'}
+```
+
+<!-- RESULTS -->
+<!--```{r, 'include-disc', child='./05_results.Rmd'}
+```-->
+
+<!-- DISCUSSION -->
+<!--```{r, 'include-disc', child='./06_discussion.Rmd'}
+```-->
+
+<!-- CONCLUSION -->
+<!--```{r, 'include-disc', child='./07_conclusion.Rmd'}
+```-->
+
+<!-- Pagebreak for refs -->
+```{=openxml}
+<w:p>
+  <w:r>
+    <w:br w:type="page"/>
+  </w:r>
+</w:p>
+```
+
+# References
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+<div id = "refere"></div>
+\endgroup

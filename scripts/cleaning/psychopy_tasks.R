@@ -100,21 +100,27 @@ corsi_df$subject_id <- as.factor(corsi_df$subject_id)
 corsi_df$level <- as.factor(as.character(corsi_df$level))
 
 
-corsi_df %>%
+## mean time for all accurate responses
+# corsi_time <- corsi_df %>%
+#   filter(., correct == 1) %>%
+#   select(., -date, -X1, -lang, -correct, -sequence, -response) %>%
+#   group_by(subject_id) %>%
+#   summarise(mean_time_corr = mean(time)) %>%
+#   view()
+
+# mean time for max level 3 completed
+corsi_score <- corsi_df %>%
   filter(., correct == 1) %>%
-  select(., -date, -X1, -lang, -correct) %>%
-  view()
+  select(., -date, -X1, -lang, -correct, -sequence, -response) %>%
+  group_by(subject_id, level) %>%
+  summarise(n_corr = n(),
+            mean_time_corr = mean(time)) %>%
+  filter(., n_corr == 3)
 
+corsi_score$level <- as.numeric(as.character(corsi_score$level))
 
+corsi_score <- corsi_score %>%
+  filter(., level == max(level)) %>%
+  rename(., corsi_pt = level)
 
-  unite(., condition, direction, speed, sep = "_", remove = TRUE) %>%
-  group_by(subject_id, condition) %>%
-  summarise(mean_dev_sc = mean(deviation_sec)) %>%
-  spread(., condition, mean_dev_sc) %>%
-  view()
-
-write.csv(car_sec,'./data/clean/car_sec.csv')
-
-
-
-
+write.csv(corsi_score,'./data/clean/corsi.csv')

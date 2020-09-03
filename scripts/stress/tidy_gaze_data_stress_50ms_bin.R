@@ -14,49 +14,83 @@
 source(here::here("scripts", "00_load_libs.R"))
 
 # -----------------------------------------------------------------------------
-# Merge bilingual and monlingual datasets
+# load data
+stress_50 <- read.delim("./data/stress_50bin.txt")
 
-data <- read_csv(here("data", "clean", "stress50clean.csv"))
+# Check gaze fixation columns have different values
+unique(stress_50$AVERAGE_IA_1_SAMPLE_COUNT)  # looking at target according to IA_#_ID
+unique(stress_50$AVERAGE_IA_2_SAMPLE_COUNT)  # looking at distractor
+unique(stress_50$AVERAGE_IA_0_SAMPLE_COUNT)  # elsewhere
 
 # Tidy data -------------------------------------------------------------------
 
 # Read data
-stress50 <- data %>%
-
-  # Remove unnecessary columns
-  select(., -X1) %>%
-
+stress50 <- stress_50 %>%
+  
+  # create variable group
+  separate(., col = RECORDING_SESSION_LABEL,
+           into = c("group", "group_member"),
+           sep = 3,
+           remove = FALSE) %>%
+  
+  #select and rename variables of interest
+  select(., RECORDING_SESSION_LABEL, TRIAL_INDEX, BIN_INDEX,
+         AVERAGE_IA_0_SAMPLE_COUNT, AVERAGE_IA_0_SAMPLE_COUNT_.,
+         AVERAGE_IA_1_SAMPLE_COUNT, AVERAGE_IA_1_SAMPLE_COUNT_.,
+         AVERAGE_IA_2_SAMPLE_COUNT, AVERAGE_IA_2_SAMPLE_COUNT_.,
+         ACCURACY, RT, block, cond, 
+         id, lex_freq, phonot_freq, 
+         t01, t02, t03, t04, t05, t06, t07, target, version, group) %>%
+  dplyr::rename(., participant = RECORDING_SESSION_LABEL,
+                trial = TRIAL_INDEX, 
+                bin = BIN_INDEX,
+                target_count = AVERAGE_IA_1_SAMPLE_COUNT, 
+                target_prop = AVERAGE_IA_1_SAMPLE_COUNT_.,
+                offset_prev_word = t01,
+                onset_v1 = t02,
+                onset_c2 = t03,
+                onset_c3 = t04,
+                onset_v2 = t05,
+                offset_target = t06,
+                endSentence = t07,
+                sentence_id = id) %>%
+  
+  # remove incorrect
+  filter(., ACCURACY == 1) %>%
+  
+  # drop unused levels of factors
+  droplevels(.) %>%
 
   # Create eLog variable and respective wts
   mutate(.,eLog = log((target_count + 0.5) / (50 - target_count + 0.5)),
          wts = 1 / (target_count + 0.5) + 1 / (50 - target_count + 0.5)) %>%
-
-  # Create 'group' column and new 'id'
-  # in order to match participant ids with WM df
-  # separate(., col = participant, into = c("group", "id"), sep = -2, remove = FALSE) %>%
-  # 
-  # 
-  # # Filter out incorrect responses
-  # filter(ACCURACY == 1) %>%
-
+    
   # Select necessary columns
   # Gather data to prepare for bin adjustment
   # Get suffix onset label and center at 0 for each
   # participant for each item
-  dplyr::select(participant, group, target, cond, target, bin_adj,
+  dplyr::select(participant, group, target, cond, target, bin,
                 target_count, target_prop, eLog, wts, onset_c3) %>%
   gather(., landmark, lm_bin, -c(participant:wts)) %>%
   mutate(., lm_bin = (lm_bin / 50) %>% ceiling(.),
-         t_onset = if_else(bin_adj == lm_bin, TRUE, FALSE)) %>%
-  # Must remove word3_c2 for coda words (its the start of the coda, unnecessary)
-  # and remove word3_c3 for non coda words (they dont have c3, lm_bin = 0)
-# filter(coda == 1 & landmark == "s_c2_sonset" | coda == 0 & lm_bin != 0) %>%
+         t_onset = if_else(bin == lm_bin, TRUE, FALSE)) %>%
   
-
   group_by(., participant, target) %>%
-  mutate(., time_zero = onset_pupil(bin_adj, t_onset, event = c("TRUE"))) %>%
-  ungroup(.) %>%
-  write_csv(here("data", "clean", "stress_50ms_final.csv"))
+  mutate(., time_zero = onset_pupil(bin, t_onset, event = c("TRUE"))) %>%
+  ungroup(.)
+  
+# Load verbal WM
+dem <- read_csv(here("data", "pupurri_analysis.csv"))
+dem <- dem %>%
+  select(., participant, WM_set)
+  
+dem$participant <- tolower(dem$participant)
+  
+  
+# Add verbal wm score to eyetracking data frame
+stress50 <- merge(x = stress50, y = dem, by = "participant", all.x=TRUE)
+
+write_csv(stress50, here("data", "clean", "stress_50ms_final.csv"))
 
 # -----------------------------------------------------------------------------
 stress50$cond <- factor(stress50$cond, levels = c("1", "2"), 
@@ -71,11 +105,9 @@ stress50 %>%
   geom_hline(yintercept = 0.5, color = "white", size = 3) +
   stat_summary(fun.y = mean, geom = "line") +
   ggtitle("Time course per verbal tense") +
-  xlab("Time in 50 ms bins (0 = ???)") +
+  xlab("Time in 50 ms bins (0 = marker time before accounting for 200 ms processing)") +
   ylab("Proportion of fixations on target") +
   scale_color_discrete(name="Group",
                      breaks = c("aes", 'ams', 'ies', 'ims', 'mon'),
                      labels = c("Adv EN", 'Adv MA', "Int EN", 'Int MA', 'ES Sp'))
-
-
 

@@ -1,5 +1,5 @@
 ---
-title: "The Influence of L1 Transfer and L2 Proficiency on Morphosyntactic Anticipation in Monolinguals and Bilinguals"
+title: "The Influence of L1 Phonological Transfer and L2 Proficiency on Morphosyntactic Anticipation in Monolinguals and Bilinguals"
 subtitle: "Rutgers University"
 author: "Laura Fernandez Arroyo"
 date: "September 3, 2020"
@@ -67,6 +67,7 @@ Monolingual speakers of Spanish and advanced L2 Spanish speakers whose L1 is Eng
 Factors: 
 - L1 transfer and L2 proficiency <font size="-1">(Dupoux et al., 2008; Dussias et al., 2013; Sagarra & Casillas, 2018)</font>
 - WM <font size="-1">(Sagarra & Casillas, 2018; Lozano et al., 2020)</font>
+- Context <font size="-1">(Beatty-Martínez et al., 2019)</font>
 
 ---
 
@@ -104,8 +105,9 @@ include_graphics("./00_intro/figs/thoughtco.png", dpi = 100) # the larger the nu
 # Models
 
 Phoneme acquisition:
- - Speech Learning Model <font size="-1">(Flege, 1995)</font>
- - Second Language Linguistic Perception <font size="-1">(Escudero, 2005)</font>
+ - Speech Learning Model <font size="-1">(SLM, Flege, 1995)</font>
+ - Second Language Linguistic Perception <font size="-1">(L2LP, Escudero, 2005)</font>
+ - Perceptual Assimilation Model for Suprasegmentals <font size="-1">(PAM-S, So & Best, 2014)</font>
 
 ---
 
@@ -194,12 +196,6 @@ Operation Span
 ```{r, include=TRUE, echo=FALSE}
 include_graphics("./00_intro/figs/ospan.png", dpi = 108)
 ```
-
----
-
-# Pilot results + Discussion
-
-
 
 ---
 

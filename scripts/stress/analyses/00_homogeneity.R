@@ -4,26 +4,9 @@ library(tidyverse); library("TOSTER")
 dem_all <- read_csv("./data/pupurri_analysis.csv")
 
 
-# Remove participants to make the groups homogenous in L2
-# proficiency (DELE)
+# Remove participants to make the groups homogenous in L2 proficiency (DELE)
 
 dem_all <- dem_all %>%
-  filter(., participant != "MON04" & participant != "MON05" & participant != "MON06" &
-           participant != "MON11" & participant != "MON16" & participant != "MON18" &
-           participant != "MON20" & participant != "MON21" & participant != "MON23" &
-           participant != "MON24" & participant != "MON27") %>%
-  filter(., participant != "IES05" & participant != "IES09" & participant != "IES16" &
-           participant != "IES21" & participant != "IES23" & participant != "IES30" &
-           participant != "IES33") %>%
-  filter(., participant != "AES01" & participant != "AES03" & participant != "AES04" &
-           participant != "AES05" & participant != "AES07" & participant != "AES11" &
-           participant != "AES14" & participant != "AES16" & participant != "AES23") %>%
-  filter(., participant != "IMS02" & participant != "IMS14" & participant != "IMS17" &
-           participant != "AMS02" &
-           participant != "AMS05" & participant != "AMS07" & participant != "AMS09" & 
-           participant != "AMS12" & participant != "AMS13" & participant != "AMS14" &
-           participant != "AMS16" & participant != "AMS21" & participant != "AMS24" &
-           participant != "AMS28" & participant != "AMS30") %>%
   separate(., col = group,
            into = c("proficiency", "l1"), # es = EN speaker, ms = MA speaker, on = ES speaker
            sep = 1,
@@ -31,20 +14,16 @@ dem_all <- dem_all %>%
 
 unique(dem_all$participant)
 
-# dem_all %>%
-#   group_by(l1) %>%
-#   summarize(n = n_distinct(id))
+dem_all %>%
+  group_by(l1) %>%
+  summarize(n = n()) # es = EN speaker, ms = MA speaker, on = ES speaker
 
 
 
 # Check info: id, group, dele, pstm, wm, age, aoa_l2, months_abroad,
 # l1_use_week, l2_use_week, years_word_int
 
-glimpse(dem_all)
-
-# We're missing wm for LA07 (after computer crashed and we lost data)
-
-# Set wm as numeric
+# Set DELE as numeric
 
 dem_all$DELE <- as.numeric(dem_all$DELE)
 
@@ -58,20 +37,13 @@ dem_all %>%
                dele_sd = round(sd(DELE),2),
             n = length(unique(participant))) %>%
   knitr::kable()
-#                wm = round(mean(wm, na.rm=TRUE),2),
-#                wm_sd = round(sd(wm, na.rm=TRUE),2),
-#                pstm = round(mean(pstm),2),
-#                pstm_sd = round(sd(pstm),2),
-#                ,
-#                ) 
-
 
 # |group |  dele| dele_sd|  n|
 # |:-----|-----:|-------:|--:|
-# |aes   | 45.48|    4.09| 23|
+# |aes   | 45.44|    4.26| 32|
 # |ams   | 45.50|    3.97| 32|
-# |ies   | 31.19|    4.78| 26|
-# |ims   | 32.47|    4.09| 30|
+# |ies   | 31.73|    4.58| 33|
+# |ims   | 32.84|    4.23| 32|
 
 
 
@@ -87,24 +59,14 @@ dem_all %>%
             l2_use = round(mean(percent_l2_week),2),
             l2_use_sd = round(sd(percent_l2_week),2),
             n = length(unique(participant))
-           # ,
-           # n = n_distinct(id)
             ) %>% knitr::kable()
 # |group | aoa_l2| aoa_l2_sd| abroad| abroad_sd| l1_use| l1_use_sd| l2_use| l2_use_sd|  n|
 # |:-----|------:|---------:|------:|---------:|------:|---------:|------:|---------:|--:|
-# |aes   |  15.57|      3.49|  55.00|     37.43|  59.57|     16.09|  40.43|     16.09| 23|
+# |aes   |  15.06|      4.35|  51.28|     38.83|  61.25|     16.16|  38.59|     16.23| 32|
 # |ams   |  17.88|      2.83|  45.12|     55.68|  52.81|     22.57|  46.56|     21.76| 32|
-# |ies   |  18.04|      6.65|  26.69|     21.03|  71.73|     17.83|  28.27|     17.83| 26|
-# |ims   |  19.93|      4.14|  37.30|     33.42|  65.17|     19.63|  34.83|     19.63| 30|
-# |mon   |   5.32|      2.26|   0.47|      2.06|  11.95|      9.48|  87.53|      9.64| 19|
-
-
-
-# Some SD values don't work (not sure why), but they work with this function
-# aggregate(wm ~ group, data = dem_all, FUN = sd, na.rm=TRUE)
-# aggregate(pstm ~ group, data = dem_all, FUN = sd)
-# aggregate(dele ~ group, data = dem_all, FUN = sd)
-# aggregate(aoa_l2 ~ group, data = dem_all, FUN = sd)
+# |ies   |  17.48|      6.35|  25.29|     20.94|  71.82|     17.27|  28.18|     17.27| 33|
+# |ims   |  19.88|      4.01|  36.53|     32.58|  63.28|     20.74|  36.72|     20.74| 32|
+# |mon   |   7.03|      6.82|   0.30|      1.64|  10.73|      9.28|  88.93|      9.43| 30|
 
 
 
@@ -113,24 +75,26 @@ dem_all <- dem_all %>%
   filter(., group != "mon")
 ## All seem ok
 bartlett.test(DELE ~ l1, data = dem_all)
-bartlett.test(AoA_L2 ~ l1, data = dem_all) # p-value = 0.002705
-bartlett.test(mo_ES_country ~ l1, data = dem_all) # p-value = 0.01553
+bartlett.test(AoA_L2 ~ l1, data = dem_all) # p-value = 0.0006495
+bartlett.test(mo_ES_country ~ l1, data = dem_all) # p-value = 0.01594
 bartlett.test(percent_l1_week ~ l1, data = dem_all)
 bartlett.test(percent_l2_week ~ l1, data = dem_all)
 
 
 
+
+
 # dele tost intermediate groups
 # all good
-TOSTtwo(m1 = 31.19, sd1 = 4.78, n1 = 26, # EN
-        m2 = 32.47, sd2 = 4.09, n2 = 30, # MA
+TOSTtwo(m1 = 31.73, sd1 = 4.58, n1 = 33, # EN
+        m2 = 32.84, sd2 = 4.23, n2 = 32, # MA
         low_eqbound_d = -0.3,
         high_eqbound_d = 0.3,
         alpha = 0.05)
 
 # dele tost advanced groups
 # all good
-TOSTtwo(m1 = 45.48, sd1 = 4.09, n1 = 23, # EN
+TOSTtwo(m1 = 45.44, sd1 = 4.26, n1 = 32, # EN
         m2 = 45.50, sd2 = 3.97, n2 = 32, # MA
         low_eqbound_d = -0.3,
         high_eqbound_d = 0.3,
@@ -138,18 +102,19 @@ TOSTtwo(m1 = 45.48, sd1 = 4.09, n1 = 23, # EN
 
 
 
+
 # age of acquistion tost intermediate
-# all good
-TOSTtwo(m1 = 18.04, sd1 = 6.65, n1 = 26, # EN
-        m2 = 19.59, sd2 = 3.75, n2 = 29, # MA
+# not significant but outside the area between dotted lines 
+TOSTtwo(m1 = 17.48, sd1 = 6.35, n1 = 33, # EN
+        m2 = 19.88, sd2 = 4.01, n2 = 32, # MA
         low_eqbound_d = -0.3,
         high_eqbound_d = 0.3,
         alpha = 0.05)
 
 # age of acquistion tost advanced
-# all good
-TOSTtwo(m1 = 15.57, sd1 = 3.49, n1 = 23, # EN
-        m2 = 16.45, sd2 = 2.37, n2 = 20, # MA
+# signicant and outside area between dotted lines
+TOSTtwo(m1 = 15.06, sd1 = 4.35, n1 = 32, # EN
+        m2 = 17.88, sd2 = 2.83, n2 = 32, # MA
         low_eqbound_d = -0.3,
         high_eqbound_d = 0.3,
         alpha = 0.05)
@@ -158,27 +123,41 @@ TOSTtwo(m1 = 15.57, sd1 = 3.49, n1 = 23, # EN
 
 
 
-# time abroad toast la vs in
-# all good, but Barlett is not ok, there's a lot of variance in the int group, what do we do here?
-TOSTtwo(m1 = 34.14, sd1 = 86.99, n1 = 22, # in
-        m2 = 12.68, sd2 = 15.13, n2 = 25, # la
+# time abroad tost intermediate
+# not significant but outside the area between dotted lines 
+TOSTtwo(m1 = 25.29, sd1 = 20.94, n1 = 33, # en
+        m2 = 36.53, sd2 = 32.58, n2 = 32, # ma
         low_eqbound_d = -0.3,
         high_eqbound_d = 0.3,
         alpha = 0.05)
 
-# # l1 use in a normal week toast la vs in
-# # They are different, Interpreters use less their L1
-# TOSTtwo(m1 = 64.09, sd1 = 11.51, n1 = 22, # in
-#         m2 = 72.76, sd2 = 12.91, n2 = 25, # la
-#         low_eqbound_d = -0.3,
-#         high_eqbound_d = 0.3,
-#         alpha = 0.05)
+# time abroad tost advanced
+# good
+TOSTtwo(m1 = 51.28, sd1 = 38.83, n1 = 32, # en
+        m2 = 45.12, sd2 = 55.68, n2 = 32, # ma
+        low_eqbound_d = -0.3,
+        high_eqbound_d = 0.3,
+        alpha = 0.05)
 
-# l2 use in a normal week toast 
-# all good, this might be because some interpreters also use other L2s
-# for example, the United Nations interpreters speak French and use it more often than Spanish
-TOSTtwo(m1 = 31.59, sd1 = 14.59, n1 = 22, # in
-        m2 = 27.24, sd2 = 12.91, n2 = 25, # la
+# |group | | l1_use| l1_use_sd| l2_use| l2_use_sd|  n|
+# |:-----|-|------:|---------:|------:|---------:|--:|
+# |aes   | |  61.25|     16.16|  38.59|     16.23| 32|
+# |ams   | |  52.81|     22.57|  46.56|     21.76| 32|
+# |ies   | |  71.82|     17.27|  28.18|     17.27| 33|
+# |ims   | |  63.28|     20.74|  36.72|     20.74| 32|
+
+# l2 use in a normal week tost intermediate 
+# not significant but outside the area between dotted lines 
+TOSTtwo(m1 = 28.18, sd1 = 17.27, n1 = 33, # en
+        m2 = 36.72, sd2 = 20.74, n2 = 32, # ma
+        low_eqbound_d = -0.3,
+        high_eqbound_d = 0.3,
+        alpha = 0.05)
+
+# l2 use in a normal week tost advanced 
+# not significant but outside the area between dotted lines 
+TOSTtwo(m1 = 38.59, sd1 = 16.23, n1 = 32, # en
+        m2 = 46.56, sd2 = 21.76, n2 = 32, # ma
         low_eqbound_d = -0.3,
         high_eqbound_d = 0.3,
         alpha = 0.05)

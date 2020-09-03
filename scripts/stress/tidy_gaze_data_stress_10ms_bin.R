@@ -14,72 +14,86 @@
 
 source(here::here("scripts", "00_load_libs.R"))
 
+
+
 # -----------------------------------------------------------------------------
 
-data <- read_csv(here("data", "clean", "stress10clean.csv"))
+# load data
+stress10 <- read.delim(here("data", "stress_10bin.txt"))
+
+
+# Check gaze fixation columns have different values
+unique(stress_10$AVERAGE_IA_1_SAMPLE_COUNT)  # looking at target according to IA_#_ID
+unique(stress_10$AVERAGE_IA_2_SAMPLE_COUNT)  # looking at distractor
+unique(stress_10$AVERAGE_IA_0_SAMPLE_COUNT)  # elsewhere
+
 
 # Tidy data -------------------------------------------------------------------
 
 # Read data
-stress10 <- data %>%
+stress10 <- stress10 %>%
   
-  # Select necessary columns
- select(., -X1) %>%
-  #        RECORDING_SESSION_LABEL, TRIAL_INDEX, BIN_INDEX,
-  #        AVERAGE_IA_0_SAMPLE_COUNT, `AVERAGE_IA_0_SAMPLE_COUNT_%`,
-  #        AVERAGE_IA_1_SAMPLE_COUNT, `AVERAGE_IA_1_SAMPLE_COUNT_%`,
-  #        AVERAGE_IA_2_SAMPLE_COUNT, `AVERAGE_IA_2_SAMPLE_COUNT_%`,
-  #        IA_1_ID, IA_2_ID, IA_0_ID, ACCURACY, RT, cond, 
-  #        distractor, id, lex_freq, phonot_freq, sentence, 
-  #        t01, t02, t03, t04, t05, t06, t07, target, version) %>%
+  # create variable group
+  separate(., col = RECORDING_SESSION_LABEL,
+           into = c("group", "group_member"),
+           sep = 3,
+           remove = FALSE) %>%
   
-  # Rename some columns
-  # rename(., participant = RECORDING_SESSION_LABEL,
-  #        trial = TRIAL_INDEX, 
-  #        bin = BIN_INDEX,
-  #        target_count = AVERAGE_IA_1_SAMPLE_COUNT, 
-  #        target_prop = `AVERAGE_IA_1_SAMPLE_COUNT_%`,
-  #        offset_prev_word = t01,
-  #        onset_v1 = t02,
-  #        onset_c2 = t03,
-  #        onset_c3 = t04,
-  #        onset_v2 = t05,
-  #        offset_target = t06,
-  #        endSentence = t07) %>%
+  #select and rename variables of interest
+  select(., RECORDING_SESSION_LABEL, TRIAL_INDEX, BIN_INDEX,
+         AVERAGE_IA_0_SAMPLE_COUNT, AVERAGE_IA_0_SAMPLE_COUNT_.,
+         AVERAGE_IA_1_SAMPLE_COUNT, AVERAGE_IA_1_SAMPLE_COUNT_.,
+         AVERAGE_IA_2_SAMPLE_COUNT, AVERAGE_IA_2_SAMPLE_COUNT_.,
+         ACCURACY, RT, block, cond, 
+         id, lex_freq, phonot_freq, 
+         t01, t02, t03, t04, t05, t06, t07, target, version, group) %>%
+  dplyr::rename(., participant = RECORDING_SESSION_LABEL,
+                trial = TRIAL_INDEX, 
+                bin = BIN_INDEX,
+                target_count = AVERAGE_IA_1_SAMPLE_COUNT, 
+                target_prop = AVERAGE_IA_1_SAMPLE_COUNT_.,
+                offset_prev_word = t01,
+                onset_v1 = t02,
+                onset_c2 = t03,
+                onset_c3 = t04,
+                onset_v2 = t05,
+                offset_target = t06,
+                endSentence = t07,
+                sentence_id = id) %>%
   
+  # remove incorrect
+  filter(., ACCURACY == 1) %>%
+  
+  # drop unused levels of factors
+  droplevels(.) %>%
   
   # Create eLog variable and respective wts
   mutate(.,eLog = log((target_count + 0.5) / (10 - target_count + 0.5)),
          wts = 1 / (target_count + 0.5) + 1 / (10 - target_count + 0.5)) %>%
   
-  # Create 'group' column and new 'id'
-  # in order to match participant ids with WM df
-  # separate(., col = participant,
-  #          into = c("group", "id"),
-  #          sep = 3,
-  #          remove = FALSE) %>%
-  
-  # Filter out incorrect responses
-  # filter(ACCURACY == 1) %>%
-  
-  # Select necessary columns
-  # Gather data to prepare for bin adjustment
-  # Get suffix onset label and center at 0 for each
-  # participant for each item
-  dplyr::select(participant, group, target, cond, target, bin_adj,
+  dplyr::select(participant, group, target, cond, target, bin,
                 target_count, target_prop, eLog, wts, onset_c3) %>%
   gather(., landmark, lm_bin, -c(participant:wts)) %>%
   mutate(., lm_bin = (lm_bin / 10) %>% ceiling(.),
-         t_onset = if_else(bin_adj == lm_bin, TRUE, FALSE)) %>%
-  # Must remove word3_c2 for coda words (its the start of the coda, unnecessary)
-  # and remove word3_c3 for non coda words (they dont have c3, lm_bin = 0)
-  # filter(coda == 1 & landmark == "s_c2_sonset" | coda == 0 & lm_bin != 0) %>%
-  
-  
+         t_onset = if_else(bin == lm_bin, TRUE, FALSE)) %>%
+
   group_by(., participant, target) %>%
-  mutate(., time_zero = onset_pupil(bin_adj, t_onset, event = c("TRUE"))) %>%
-  ungroup(.) %>%
-  write_csv(here("data", "clean", "stress_10ms_final.csv"))
+  mutate(., time_zero = onset_pupil(bin, t_onset, event = c("TRUE"))) %>%
+  ungroup(.)
+
+# Load verbal WM
+dem <- read_csv(here("data", "pupurri_analysis.csv"))
+dem <- dem %>%
+  select(., participant, WM_set)
+
+dem$participant <- tolower(dem$participant)
+
+
+# Add verbal wm score to eyetracking data frame
+stress10 <- merge(x = stress10, y = dem, by = "participant", all.x=TRUE)
+
+
+write_csv(stress10, here("data", "clean", "stress_10ms_final.csv"))
 
 
 # -----------------------------------------------------------------------------
@@ -89,14 +103,14 @@ stress10$cond <- factor(stress10$cond, levels = c("1", "2"),
                   labels = c("Present", "Past"))
 
 stress10 %>%
-  filter(time_zero > -50, time_zero < 100) %>% 
+  filter(time_zero > -20, time_zero < 80) %>% 
   ggplot(., aes(x = time_zero, y = target_prop, color = group)) +
   facet_grid(. ~ cond) +
   geom_vline(xintercept = 20, lty = 3) +
   geom_hline(yintercept = 0.5, color = "white", size = 3) +
   stat_summary(fun.y = mean, geom = "line") +
   ggtitle("Time course per verbal tense") +
-  xlab("Time in 10 ms bins (0 = ???)") +
+  xlab("Time in 10 ms bins (0 = marker w/o 200 ms processing accounted)") +
   ylab("Proportion of fixations on target") +
   scale_color_discrete(name="Group",
                       breaks = c("aes", 'ams', 'ies', 'ims', 'mon'),

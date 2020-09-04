@@ -90,9 +90,13 @@ dem$participant <- tolower(dem$participant)
 # Add verbal wm score to eyetracking data frame
 stress50 <- merge(x = stress50, y = dem, by = "participant", all.x=TRUE)
 
+
 write_csv(stress50, here("data", "clean", "stress_50ms_final.csv"))
 
 # -----------------------------------------------------------------------------
+
+# # stress50 <- read_csv(here("data", "clean", "stress_50ms_final.csv"))
+
 stress50$cond <- factor(stress50$cond, levels = c("1", "2"), 
                         labels = c("Present", "Past"))
 

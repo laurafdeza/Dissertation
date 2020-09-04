@@ -55,6 +55,19 @@ df_short %>%
   na.omit(.) %>%
   group_by(., group, cond) %>%
   summarise(., meanFix = mean(target_prop))
+#   group  cond meanFix
+# 1 aes       1   0.686
+# 2 aes       2   0.772
+# 3 ams       1   0.674
+# 4 ams       2   0.697
+# 5 ies       1   0.657
+# 6 ies       2   0.658
+# 7 ims       1   0.585
+# 8 ims       2   0.652
+# 9 mon       1   0.842
+#10 mon       2   0.851
+
+
 
 # We will test this for each group in each condition (stressed, untressed)
 # using a one-sided t-test. Specifically, we are testing the
@@ -79,7 +92,7 @@ stress_unrel_ttest[stress_unrel_ttest$p.value <= 0.05/6, 'sig'] <- "*"
 # Print results
 print(as.data.frame(stress_unrel_ttest[, c(1:7, 11)]))
 
-saveRDS(stress_unrel_ttest, "./mods/stress/stress_ttest.rds", compress = "xz")
+saveRDS(stress_unrel_ttest, "./mods/stress/ttest/stress_ttest.rds", compress = "xz")
  
 # -----------------------------------------------------------------------------
 
@@ -103,5 +116,5 @@ stress_unrel_TargetFix <- stress_unrel_ttest %>%
 
 
 # Looks good, save as .png file. 
-ggsave('stress_unrel_TargetFix.png', plot = stress_unrel_TargetFix, dpi = 600, device = "png", path = "./mods/figs")
+ggsave('stress_unrel_TargetFix.png', plot = stress_unrel_TargetFix, dpi = 600, device = "png", path = "./figs/stress/ttest/")
 

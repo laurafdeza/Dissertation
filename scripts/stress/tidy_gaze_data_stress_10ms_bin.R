@@ -3,7 +3,7 @@
 # This script will load and tidy the raw eye tracking data
 # with 10 ms bins and save the output to data/clean
 #
-# Last update: 05/16/2019
+# Last update: 09/03/2020
 #
 # -----------------------------------------------------------------------------
 
@@ -21,11 +21,10 @@ source(here::here("scripts", "00_load_libs.R"))
 # load data
 stress10 <- read.delim(here("data", "stress_10bin.txt"))
 
-
 # Check gaze fixation columns have different values
-unique(stress_10$AVERAGE_IA_1_SAMPLE_COUNT)  # looking at target according to IA_#_ID
-unique(stress_10$AVERAGE_IA_2_SAMPLE_COUNT)  # looking at distractor
-unique(stress_10$AVERAGE_IA_0_SAMPLE_COUNT)  # elsewhere
+unique(stress10$AVERAGE_IA_1_SAMPLE_COUNT)  # looking at target according to IA_#_ID
+unique(stress10$AVERAGE_IA_2_SAMPLE_COUNT)  # looking at distractor
+unique(stress10$AVERAGE_IA_0_SAMPLE_COUNT)  # elsewhere
 
 
 # Tidy data -------------------------------------------------------------------
@@ -92,17 +91,18 @@ dem$participant <- tolower(dem$participant)
 # Add verbal wm score to eyetracking data frame
 stress10 <- merge(x = stress10, y = dem, by = "participant", all.x=TRUE)
 
-
 write_csv(stress10, here("data", "clean", "stress_10ms_final.csv"))
 
 
 # -----------------------------------------------------------------------------
 
+stress10 <- read_csv(here("data", "clean", "stress_10ms_final.csv"))
+
 # Test plot for stress_unrelated
 stress10$cond <- factor(stress10$cond, levels = c("1", "2"), 
-                  labels = c("Present", "Past"))
+                  labels = c("Present", "Preterit"))
 
-stress10 %>%
+timecourse10 <- stress10 %>%
   filter(time_zero > -20, time_zero < 80) %>% 
   ggplot(., aes(x = time_zero, y = target_prop, color = group)) +
   facet_grid(. ~ cond) +
@@ -110,10 +110,13 @@ stress10 %>%
   geom_hline(yintercept = 0.5, color = "white", size = 3) +
   stat_summary(fun.y = mean, geom = "line") +
   ggtitle("Time course per verbal tense") +
-  xlab("Time in 10 ms bins (0 = marker w/o 200 ms processing accounted)") +
+  xlab("Time in 10 ms bins (0 = 1st syllable offset; 200 ms processing not accounted)") +
   ylab("Proportion of fixations on target") +
   scale_color_discrete(name="Group",
                       breaks = c("aes", 'ams', 'ies', 'ims', 'mon'),
                       labels = c("Adv EN", 'Adv MA', "Int EN", 'Int MA', 'ES Sp'))
 
-
+ggsave('timecourse10.png',
+       plot = timecourse10, dpi = 600, device = "png",
+       path = './figs/stress/',
+       height = 3.5, width = 8.5, units = 'in')

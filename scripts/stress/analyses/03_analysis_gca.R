@@ -26,6 +26,8 @@
 
 # Load data and models --------------------------------------------------------
 
+# source(here::here("scripts", "00_load_libs.R"))
+
 # Load data
 source(here::here("scripts", "02_load_data.R"))
 
@@ -80,7 +82,7 @@ list2env(model_preds, globalenv())
 stress_gc_subset <- stress50 %>%
   filter(., time_zero >= -4 & time_zero <= 12) %>%
   mutate(., group = fct_relevel(group, "mon", "aes", "ams", "ies", "ims"),
-            condition_sum = if_else(cond == "1", 1, -1)) %>%       # 1 = present, 2 = past
+            condition_sum = if_else(cond == "Present", 1, -1)) %>%       # 1 = present, 2 = past
   poly_add_columns(., time_zero, degree = 3, prefix = "ot")
 
 
@@ -101,7 +103,7 @@ if(F){
   mod_ot1 <-
     lmer(eLog ~ 1 + ot1 +
            (1 + condition_sum + ot1 | participant),
-         control = lmerControl(optimizer = 'bobyqa'),
+         control = lmerControl(optimizer = 'bobyqa'),   # , optCtrl=list(maxfun=2e5)
          data = stress_gc_subset, weights = 1/wts, REML = F)
   
   mod_ot2 <-
@@ -118,10 +120,10 @@ if(F){
   
 # We retain the most complex model: mod_ot4
   #         Df    AIC    BIC  logLik deviance   Chisq Chi Df Pr(>Chisq)    
-  # mod_ot1  9 235270 235348 -117626   235252                             
-  # mod_ot2 14 234469 234590 -117220   234441 810.75      5  < 2.2e-16 ***
-  # mod_ot3 20 233688 233861 -116824   233648 792.81      6  < 2.2e-16 ***
-  # mod_ot4 21 232813 232995 -116385   232771 877.46      1  < 2.2e-16 ***
+  # mod_ot1  9 235958 236036 -117970   235940                             
+  # mod_ot2 14 235784 235905 -117878   235756 184.42      5  < 2.2e-16 ***
+  # mod_ot3 20 235260 235434 -117610   235220 535.35      6  < 2.2e-16 ***
+  # mod_ot4 21 234752 234934 -117355   234710 510.32      1  < 2.2e-16 ***
   # ---
   # Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
   
@@ -148,6 +150,9 @@ gca_mod_mon_base <-
        REML = F,
        data = filter(stress_gc_subset, group == "mon")) # singular
 
+# save(gca_mod_mon_base,
+#      file = here("mods", "stress", "gca", "gca_mod_mon_base.Rdata"))
+
 # add condition (paroxytone, oxytone) effect to intercept, linear slope, quadratic, and cubic time terms
 gca_mod_mon_cond_0 <- update(gca_mod_mon_base,   . ~ . + condition_sum) # singular
 gca_mod_mon_cond_1 <- update(gca_mod_mon_cond_0,   . ~ . + ot1:condition_sum) # singular
@@ -158,44 +163,84 @@ mon_cond_anova <-
   anova(gca_mod_mon_base, gca_mod_mon_cond_0, gca_mod_mon_cond_1,
         gca_mod_mon_cond_2, gca_mod_mon_cond_3)
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_mon_base   30 41993 42203 -20967    41933                         
-# gca_mod_mon_cond_0 31 41995 42212 -20966    41933 0.5922      1     0.4416
-# gca_mod_mon_cond_1 32 41997 42221 -20966    41933 0.0193      1     0.8895
-# gca_mod_mon_cond_2 33 41999 42230 -20966    41933 0.0047      1     0.9456
-# gca_mod_mon_cond_3 34 42001 42238 -20966    41933 0.1931      1     0.6603
+# gca_mod_mon_base   30 42753 42963 -21346    42693                         
+# gca_mod_mon_cond_0 31 42755 42972 -21346    42693 0.4824      1     0.4873
+# gca_mod_mon_cond_1 32 42756 42980 -21346    42692 0.1857      1     0.6665
+# gca_mod_mon_cond_2 33 42758 42989 -21346    42692 0.0000      1     0.9998
+# gca_mod_mon_cond_3 34 42760 42998 -21346    42692 0.0628      1     0.8021
+
+
+# mod_type <- "gca_mod_"
+# mod_spec <- c('_base', "_cond_0", "_cond_1", "_cond_2", "_cond_3")
+# 
+# # Store ind models in list
+# mon_cond_mods <- mget(c(paste0(mod_type, "mon", mod_spec)))
+# 
+# save(mon_cond_mods,
+#      file = here("mods", "stress", "gca",
+#                  "mon_cond_mods.Rdata"))
+
+
+
+
 
 # add WM effect to intercept, linear slope, quadratic, and cubic time terms
-gca_mod_mon_wm_0 <- update(gca_mod_mon_cond_3, . ~ . + WM_set) # singular
-gca_mod_mon_wm_1 <- update(gca_mod_mon_wm_0,   . ~ . + ot1:condition_sum) # singular
-gca_mod_mon_wm_2 <- update(gca_mod_mon_wm_1,   . ~ . + ot2:condition_sum) # singular
-gca_mod_mon_wm_3 <- update(gca_mod_mon_wm_2,   . ~ . + ot3:condition_sum) # singular
+gca_mod_mon_wm_0 <- update(gca_mod_mon_base, . ~ . + WM_set) # singular
+gca_mod_mon_wm_1 <- update(gca_mod_mon_wm_0,   . ~ . + ot1:WM_set) # singular
+gca_mod_mon_wm_2 <- update(gca_mod_mon_wm_1,   . ~ . + ot2:WM_set) # singular
+gca_mod_mon_wm_3 <- update(gca_mod_mon_wm_2,   . ~ . + ot3:WM_set) # singular
 
 mon_wm_anova <-
-  anova(gca_mod_mon_cond_3, gca_mod_mon_wm_0, gca_mod_mon_wm_1,
+  anova(gca_mod_mon_base, gca_mod_mon_wm_0, gca_mod_mon_wm_1,
         gca_mod_mon_wm_2, gca_mod_mon_wm_3)
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_mon_cond_3 34 42001 42238 -20966    41933                         
-# gca_mod_mon_wm_0   35 42002 42247 -20966    41932 0.6328      1     0.4263
-# gca_mod_mon_wm_1   35 42002 42247 -20966    41932 0.0000      0     1.0000
-# gca_mod_mon_wm_2   35 42002 42247 -20966    41932 0.0000      0     1.0000
-# gca_mod_mon_wm_3   35 42002 42247 -20966    41932 0.0000      0     1.0000
+# gca_mod_mon_base   30 42753 42963 -21346    42693                         
+# gca_mod_mon_wm_0   31 42755 42972 -21346    42693 0.4829      1     0.4871
+# gca_mod_mon_wm_1   32 42756 42980 -21346    42692 0.4634      1     0.4960
+# gca_mod_mon_wm_2   33 42758 42989 -21346    42692 0.3297      1     0.5658
+# gca_mod_mon_wm_3   34 42759 42997 -21346    42691 0.4147      1     0.5196
+
+
+# mod_type <- "gca_mod_"
+# mod_spec <- c("_wm_0", "_wm_1", "_wm_2", "_wm_3")
+# 
+# # Store ind models in list
+# mon_wm_mods <- mget(c(paste0(mod_type, "mon", mod_spec)))
+# 
+# save(mon_wm_mods,
+#      file = here("mods", "stress", "gca",
+#                  "mon_wm_mods.Rdata"))
+
+
+
+
 
 # add condition x WM int to intercept, linear slope, quadratic, and cubic time terms
-gca_mod_mon_int_0 <- update(gca_mod_mon_wm_3, . ~ . + condition_sum:WM_set) # singular
+gca_mod_mon_int_0 <- update(gca_mod_mon_base, . ~ . + condition_sum:WM_set) # singular
 gca_mod_mon_int_1 <- update(gca_mod_mon_int_0,   . ~ . + ot1:condition_sum:WM_set) # singular
 gca_mod_mon_int_2 <- update(gca_mod_mon_int_1,   . ~ . + ot2:condition_sum:WM_set) # singular
 gca_mod_mon_int_3 <- update(gca_mod_mon_int_2,   . ~ . + ot3:condition_sum:WM_set) # singular
 
 mon_int_anova <-
-  anova(gca_mod_mon_wm_3, gca_mod_mon_int_0, gca_mod_mon_int_1,
+  anova(gca_mod_mon_base, gca_mod_mon_int_0, gca_mod_mon_int_1,
         gca_mod_mon_int_2, gca_mod_mon_int_3)
 #                   Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
-# gca_mod_mon_wm_3  35 42002 42247 -20966    41932                           
-# gca_mod_mon_int_0 36 41998 42250 -20963    41926 6.1973      1    0.01279 *
-# gca_mod_mon_int_1 37 42000 42259 -20963    41926 0.0158      1    0.89982  
-# gca_mod_mon_int_2 38 42000 42266 -20962    41924 2.0180      1    0.15545  
-# gca_mod_mon_int_3 39 42001 42274 -20962    41923 0.2935      1    0.58797  
+# gca_mod_mon_base  30 42753 42963 -21346    42693                         
+# gca_mod_mon_int_0 31 42755 42972 -21346    42693 0.5023      1     0.4785
+# gca_mod_mon_int_1 32 42756 42980 -21346    42692 0.1085      1     0.7418
+# gca_mod_mon_int_2 33 42757 42988 -21346    42691 1.3188      1     0.2508
+# gca_mod_mon_int_3 34 42759 42997 -21346    42691 0.1465      1     0.7019
 
+
+# mod_type <- "gca_mod_"
+# mod_spec <- c("_int_0", "_int_1", "_int_2", "_int_3")
+# 
+# # Store ind models in list
+# mon_int_mods <- mget(c(paste0(mod_type, "mon", mod_spec)))
+# 
+# save(mon_int_mods,
+#      file = here("mods", "stress", "gca",
+#                  "mon_int_mods.Rdata"))
 
 
 
@@ -222,43 +267,82 @@ aes_cond_anova <-
   anova(gca_mod_aes_base, gca_mod_aes_cond_0, gca_mod_aes_cond_1,
         gca_mod_aes_cond_2, gca_mod_aes_cond_3) 
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
-# gca_mod_aes_base   30 44963 45175 -22451    44903                           
-# gca_mod_aes_cond_0 31 44964 45183 -22451    44902 0.7533      1    0.38545  
-# gca_mod_aes_cond_1 32 44965 45191 -22450    44901 1.3402      1    0.24700  
-# gca_mod_aes_cond_2 33 44967 45200 -22450    44901 0.0784      1    0.77948  
-# gca_mod_aes_cond_3 34 44965 45205 -22448    44897 3.9651      1    0.04645 *
+# gca_mod_aes_base   30 45808 46020 -22874    45748                           
+# gca_mod_aes_cond_0 31 45809 46028 -22873    45747 0.9178      1    0.33805  
+# gca_mod_aes_cond_1 32 45810 46037 -22873    45746 0.1099      1    0.74027  
+# gca_mod_aes_cond_2 33 45812 46045 -22873    45746 0.5609      1    0.45389  
+# gca_mod_aes_cond_3 34 45809 46049 -22870    45741 4.8460      1    0.02771 *
+
+
+# mod_type <- "gca_mod_"
+# mod_spec <- c('_base', "_cond_0", "_cond_1", "_cond_2", "_cond_3")
+# 
+# # Store ind models in list
+# aes_cond_mods <- mget(c(paste0(mod_type, "aes", mod_spec)))
+# 
+# save(aes_cond_mods,
+#      file = here("mods", "stress", "gca",
+#                  "aes_cond_mods.Rdata"))
+
 
 # add WM effect to intercept, linear slope, quadratic, and cubic time terms
 gca_mod_aes_wm_0 <- update(gca_mod_aes_cond_3, . ~ . + WM_set) # singular
-gca_mod_aes_wm_1 <- update(gca_mod_aes_wm_0,   . ~ . + ot1:condition_sum) # singular
-gca_mod_aes_wm_2 <- update(gca_mod_aes_wm_1,   . ~ . + ot2:condition_sum) # singular
-gca_mod_aes_wm_3 <- update(gca_mod_aes_wm_2,   . ~ . + ot3:condition_sum) # singular
+gca_mod_aes_wm_1 <- update(gca_mod_aes_wm_0,   . ~ . + ot1:WM_set) # singular
+gca_mod_aes_wm_2 <- update(gca_mod_aes_wm_1,   . ~ . + ot2:WM_set) # singular
+gca_mod_aes_wm_3 <- update(gca_mod_aes_wm_2,   . ~ . + ot3:WM_set) # singular
 
 aes_wm_anova <-
   anova(gca_mod_aes_cond_3, gca_mod_aes_wm_0, gca_mod_aes_wm_1,
         gca_mod_aes_wm_2, gca_mod_aes_wm_3)
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_aes_cond_3 34 44965 45205 -22448    44897                         
-# gca_mod_aes_wm_0   35 44966 45214 -22448    44896 0.0825      1      0.774
-# gca_mod_aes_wm_1   35 44966 45214 -22448    44896 0.0000      0      1.000
-# gca_mod_aes_wm_2   35 44966 45214 -22448    44896 0.0000      0      1.000
-# gca_mod_aes_wm_3   35 44966 45214 -22448    44896 0.0000      0      1.000
+# gca_mod_aes_cond_3 34 45809 46049 -22870    45741                         
+# gca_mod_aes_wm_0   35 45811 46058 -22870    45741 0.0132      1     0.9086
+# gca_mod_aes_wm_1   36 45813 46068 -22870    45741 0.0013      1     0.9707
+# gca_mod_aes_wm_2   37 45815 46076 -22870    45741 0.5454      1     0.4602
+# gca_mod_aes_wm_3   38 45814 46083 -22869    45738 2.4517      1     0.1174   
+
+
+# mod_type <- "gca_mod_"
+# mod_spec <- c("_wm_0", "_wm_1", "_wm_2", "_wm_3")
+# 
+# # Store ind models in list
+# aes_wm_mods <- mget(c(paste0(mod_type, "aes", mod_spec)))
+# 
+# save(aes_wm_mods,
+#      file = here("mods", "stress", "gca",
+#                  "aes_wm_mods.Rdata"))
+
+
+
+
 
 # add condition x WM int to intercept, linear slope, quadratic, and cubic time terms
-gca_mod_aes_int_0 <- update(gca_mod_aes_wm_3, . ~ . + condition_sum:WM_set) # singular
+gca_mod_aes_int_0 <- update(gca_mod_aes_cond_3, . ~ . + condition_sum:WM_set) # singular
 gca_mod_aes_int_1 <- update(gca_mod_aes_int_0,   . ~ . + ot1:condition_sum:WM_set) # singular
 gca_mod_aes_int_2 <- update(gca_mod_aes_int_1,   . ~ . + ot2:condition_sum:WM_set) # singular
 gca_mod_aes_int_3 <- update(gca_mod_aes_int_2,   . ~ . + ot3:condition_sum:WM_set) # singular
 
 aes_int_anova <-
-  anova(gca_mod_aes_wm_3, gca_mod_aes_int_0, gca_mod_aes_int_1,
+  anova(gca_mod_aes_cond_3, gca_mod_aes_int_0, gca_mod_aes_int_1,
         gca_mod_aes_int_2, gca_mod_aes_int_3)
-#                   Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
-# gca_mod_aes_wm_3  35 44966 45214 -22448    44896                           
-# gca_mod_aes_int_0 36 44966 45221 -22447    44894 2.0135      1    0.15590  
-# gca_mod_aes_int_1 37 44966 45227 -22446    44892 2.7414      1    0.09778 .
-# gca_mod_aes_int_2 38 44968 45236 -22446    44892 0.0001      1    0.99313  
-# gca_mod_aes_int_3 39 44969 45245 -22446    44891 0.6389      1    0.42411 
+#                     Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
+# gca_mod_aes_cond_3  34 45809 46049 -22870    45741                         
+# gca_mod_aes_int_0   35 45809 46056 -22870    45739 2.0545      1     0.1518
+# gca_mod_aes_int_1   36 45809 46064 -22869    45737 1.5953      1     0.2066
+# gca_mod_aes_int_2   37 45811 46073 -22869    45737 0.0204      1     0.8863
+# gca_mod_aes_int_3   38 45812 46081 -22868    45736 0.9360      1     0.3333
+
+
+# mod_type <- "gca_mod_"
+# mod_spec <- c("_int_0", "_int_1", "_int_2", "_int_3")
+# 
+# # Store ind models in list
+# aes_int_mods <- mget(c(paste0(mod_type, "aes", mod_spec)))
+# 
+# save(aes_int_mods,
+#      file = here("mods", "stress", "gca",
+#                  "aes_int_mods.Rdata"))
+
 
 
 
@@ -284,44 +368,82 @@ ies_cond_anova <-
   anova(gca_mod_ies_base, gca_mod_ies_cond_0, gca_mod_ies_cond_1,    
         gca_mod_ies_cond_2, gca_mod_ies_cond_3)
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_ies_base   30 47472 47685 -23706    47412                         
-# gca_mod_ies_cond_0 31 47474 47694 -23706    47412 0.1599      1     0.6892
-# gca_mod_ies_cond_1 32 47476 47703 -23706    47412 0.0297      1     0.8632
-# gca_mod_ies_cond_2 33 47476 47710 -23705    47410 2.2726      1     0.1317
-# gca_mod_ies_cond_3 34 47478 47719 -23705    47410 0.0117      1     0.9140
+# gca_mod_ies_base   30 48125 48338 -24033    48065                         
+# gca_mod_ies_cond_0 31 48127 48347 -24033    48065 0.1617      1     0.6876
+# gca_mod_ies_cond_1 32 48129 48356 -24033    48065 0.0155      1     0.9010
+# gca_mod_ies_cond_2 33 48129 48363 -24032    48063 2.0231      1     0.1549
+# gca_mod_ies_cond_3 34 48131 48372 -24031    48063 0.5790      1     0.4467
+
+
+# mod_type <- "gca_mod_"
+# mod_spec <- c('_base', "_cond_0", "_cond_1", "_cond_2", "_cond_3")
+# 
+# # Store ind models in list
+# ies_cond_mods <- mget(c(paste0(mod_type, "ies", mod_spec)))
+# 
+# save(ies_cond_mods,
+#      file = here("mods", "stress", "gca",
+#                  "ies_cond_mods.Rdata"))
+
+
 
 
 # add WM effect to intercept, linear slope, quadratic, and cubic time terms
-gca_mod_ies_wm_0 <- update(gca_mod_ies_cond_3, . ~ . + WM_set) # singular
-gca_mod_ies_wm_1 <- update(gca_mod_ies_wm_0,   . ~ . + ot1:condition_sum) # singular
-gca_mod_ies_wm_2 <- update(gca_mod_ies_wm_1,   . ~ . + ot2:condition_sum) # singular
-gca_mod_ies_wm_3 <- update(gca_mod_ies_wm_2,   . ~ . + ot3:condition_sum) # singular
+gca_mod_ies_wm_0 <- update(gca_mod_ies_base, . ~ . + WM_set) # singular
+gca_mod_ies_wm_1 <- update(gca_mod_ies_wm_0,   . ~ . + ot1:WM_set) # singular
+gca_mod_ies_wm_2 <- update(gca_mod_ies_wm_1,   . ~ . + ot2:WM_set) # singular
+gca_mod_ies_wm_3 <- update(gca_mod_ies_wm_2,   . ~ . + ot3:WM_set) # singular
 
 ies_wm_anova <-
-  anova(gca_mod_ies_cond_3, gca_mod_ies_wm_0, gca_mod_ies_wm_1,
+  anova(gca_mod_ies_base, gca_mod_ies_wm_0, gca_mod_ies_wm_1,
         gca_mod_ies_wm_2, gca_mod_ies_wm_3)
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_ies_cond_3 34 47478 47719 -23705    47410                        
-# gca_mod_ies_wm_0   35 47479 47727 -23705    47409 0.586      1      0.444
-# gca_mod_ies_wm_1   35 47479 47727 -23705    47409 0.000      0      1.000
-# gca_mod_ies_wm_2   35 47479 47727 -23705    47409 0.000      0      1.000
-# gca_mod_ies_wm_3   35 47479 47727 -23705    47409 0.000      0      1.000
+# gca_mod_ies_base   30 48125 48338 -24033    48065                           
+# gca_mod_ies_wm_0   31 48127 48346 -24032    48065 0.7025      1    0.40196  
+# gca_mod_ies_wm_1   32 48125 48352 -24031    48061 3.2136      1    0.07303 .
+# gca_mod_ies_wm_2   33 48126 48360 -24030    48060 1.3777      1    0.24049  
+# gca_mod_ies_wm_3   34 48128 48369 -24030    48060 0.1095      1    0.74066
+
+
+# mod_type <- "gca_mod_"
+# mod_spec <- c("_wm_0", "_wm_1", "_wm_2", "_wm_3")
+# 
+# # Store ind models in list
+# ies_wm_mods <- mget(c(paste0(mod_type, "ies", mod_spec)))
+# 
+# save(ies_wm_mods,
+#      file = here("mods", "stress", "gca",
+#                  "ies_wm_mods.Rdata"))
+
+
+
 
 # add condition x WM int to intercept, linear slope, quadratic, and cubic time terms
-gca_mod_ies_int_0 <- update(gca_mod_ies_wm_3, . ~ . + condition_sum:WM_set) # singular
+gca_mod_ies_int_0 <- update(gca_mod_ies_base, . ~ . + condition_sum:WM_set) # singular
 gca_mod_ies_int_1 <- update(gca_mod_ies_int_0,   . ~ . + ot1:condition_sum:WM_set) # singular
 gca_mod_ies_int_2 <- update(gca_mod_ies_int_1,   . ~ . + ot2:condition_sum:WM_set) # singular
 gca_mod_ies_int_3 <- update(gca_mod_ies_int_2,   . ~ . + ot3:condition_sum:WM_set) # singular
 
 ies_int_anova <-
-  anova(gca_mod_ies_wm_3, gca_mod_ies_int_0, gca_mod_ies_int_1,
+  anova(gca_mod_ies_base, gca_mod_ies_int_0, gca_mod_ies_int_1,
         gca_mod_ies_int_2, gca_mod_ies_int_3)
 #                   Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
-# gca_mod_ies_wm_3  35 47479 47727 -23705    47409                              
-# gca_mod_ies_int_0 36 47478 47733 -23703    47406  3.2702      1    0.07055 .  
-# gca_mod_ies_int_1 37 47478 47740 -23702    47404  2.4199      1    0.11981    
-# gca_mod_ies_int_2 38 47463 47732 -23693    47387 17.0424      1  3.655e-05 ***
-# gca_mod_ies_int_3 39 47458 47735 -23690    47380  6.2786      1    0.01222 *  
+# gca_mod_ies_base  30 48125 48338 -24033    48065                         
+# gca_mod_ies_int_0 31 48127 48346 -24032    48065 0.5965      1     0.4399
+# gca_mod_ies_int_1 32 48128 48354 -24032    48064 1.1650      1     0.2804
+# gca_mod_ies_int_2 33 48129 48363 -24031    48063 0.7127      1     0.3985
+# gca_mod_ies_int_3 34 48131 48372 -24031    48063 0.2568      1     0.6124
+
+
+# mod_type <- "gca_mod_"
+# mod_spec <- c("_int_0", "_int_1", "_int_2", "_int_3")
+# 
+# # Store ind models in list
+# ies_int_mods <- mget(c(paste0(mod_type, "ies", mod_spec)))
+# 
+# save(ies_int_mods,
+#      file = here("mods", "stress", "gca",
+#                  "ies_int_mods.Rdata"))
 
 
 
@@ -347,48 +469,83 @@ ams_cond_anova <-
   anova(gca_mod_ams_base, gca_mod_ams_cond_0, gca_mod_ams_cond_1,
         gca_mod_ams_cond_2, gca_mod_ams_cond_3) 
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_ams_base   30 46196 46408 -23068    46136                         
-# gca_mod_ams_cond_0 31 46198 46416 -23068    46136 0.3503      1     0.5539
-# gca_mod_ams_cond_1 32 46198 46424 -23067    46134 1.4069      1     0.2356
-# gca_mod_ams_cond_2 33 46200 46433 -23067    46134 0.0002      1     0.9900
-# gca_mod_ams_cond_3 34 46200 46440 -23066    46132 1.8740      1     0.1710
+# gca_mod_ams_base   30 46872 47084 -23406    46812                           
+# gca_mod_ams_cond_0 31 46874 47093 -23406    46812 0.2855      1    0.59313  
+# gca_mod_ams_cond_1 32 46876 47102 -23406    46812 0.1743      1    0.67634  
+# gca_mod_ams_cond_2 33 46877 47110 -23406    46811 0.4518      1    0.50148  
+# gca_mod_ams_cond_3 34 46875 47115 -23404    46807 4.1374      1    0.04195 *
+
+
+# mod_type <- "gca_mod_"
+# mod_spec <- c("_base", "_cond_0", "_cond_1", "_cond_2", "_cond_3")
+# 
+# # Store ind models in list
+# ams_cond_mods <- mget(c(paste0(mod_type, "ams", mod_spec)))
+# 
+# save(ams_cond_mods,
+#      file = here("mods", "stress", "gca",
+#                  "ams_cond_mods.Rdata"))
+
+
+
 
 
 # add WM effect to intercept, linear slope, quadratic, and cubic time terms
 gca_mod_ams_wm_0 <- update(gca_mod_ams_cond_3, . ~ . + WM_set) # singular
-gca_mod_ams_wm_1 <- update(gca_mod_ams_wm_0,   . ~ . + ot1:condition_sum) # singular
-gca_mod_ams_wm_2 <- update(gca_mod_ams_wm_1,   . ~ . + ot2:condition_sum) # singular
-gca_mod_ams_wm_3 <- update(gca_mod_ams_wm_2,   . ~ . + ot3:condition_sum) # singular
+gca_mod_ams_wm_1 <- update(gca_mod_ams_wm_0,   . ~ . + ot1:WM_set) # singular
+gca_mod_ams_wm_2 <- update(gca_mod_ams_wm_1,   . ~ . + ot2:WM_set) # singular
+gca_mod_ams_wm_3 <- update(gca_mod_ams_wm_2,   . ~ . + ot3:WM_set) # singular
 
 ams_wm_anova <-
   anova(gca_mod_ams_cond_3, gca_mod_ams_wm_0, gca_mod_ams_wm_1,
         gca_mod_ams_wm_2, gca_mod_ams_wm_3)
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_ams_cond_3 34 46200 46440 -23066    46132                        
-# gca_mod_ams_wm_0   35 46202 46449 -23066    46132 0.645      1     0.4219
-# gca_mod_ams_wm_1   35 46202 46449 -23066    46132 0.000      0     1.0000
-# gca_mod_ams_wm_2   35 46202 46449 -23066    46132 0.000      0     1.0000
-# gca_mod_ams_wm_3   35 46202 46449 -23066    46132 0.000      0     1.0000
+# gca_mod_ams_cond_3 34 46875 47115 -23404    46807                         
+# gca_mod_ams_wm_0   35 46876 47123 -23403    46806 0.9389      1     0.3326
+# gca_mod_ams_wm_1   36 46876 47130 -23402    46804 2.1466      1     0.1429
+# gca_mod_ams_wm_2   37 46877 47139 -23402    46803 0.7272      1     0.3938
+# gca_mod_ams_wm_3   38 46878 47146 -23401    46802 1.5855      1     0.2080
+
+
+# mod_type <- "gca_mod_"
+# mod_spec <- c("_wm_0", "_wm_1", "_wm_2", "_wm_3")
+# 
+# # Store ind models in list
+# ams_wm_mods <- mget(c(paste0(mod_type, "ams", mod_spec)))
+# 
+# save(ams_wm_mods,
+#      file = here("mods", "stress", "gca",
+#                  "ams_wm_mods.Rdata"))
+
+
 
 
 # add condition x WM int to intercept, linear slope, quadratic, and cubic time terms
-gca_mod_ams_int_0 <- update(gca_mod_ams_wm_3, . ~ . + condition_sum:WM_set) # singular
+gca_mod_ams_int_0 <- update(gca_mod_ams_cond_3, . ~ . + condition_sum:WM_set) # singular
 gca_mod_ams_int_1 <- update(gca_mod_ams_int_0,   . ~ . + ot1:condition_sum:WM_set) # singular
 gca_mod_ams_int_2 <- update(gca_mod_ams_int_1,   . ~ . + ot2:condition_sum:WM_set) # singular
 gca_mod_ams_int_3 <- update(gca_mod_ams_int_2,   . ~ . + ot3:condition_sum:WM_set) # singular
 
 ams_int_anova <-
-  anova(gca_mod_ams_wm_3, gca_mod_ams_int_0, gca_mod_ams_int_1,
+  anova(gca_mod_ams_cond_3, gca_mod_ams_int_0, gca_mod_ams_int_1,
         gca_mod_ams_int_2, gca_mod_ams_int_3)
-#                   Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
-# gca_mod_ams_wm_3  35 46202 46449 -23066    46132                            
-# gca_mod_ams_int_0 36 46203 46457 -23065    46131 0.8302      1   0.362209   
-# gca_mod_ams_int_1 37 46204 46465 -23065    46130 1.0670      1   0.301626   
-# gca_mod_ams_int_2 38 46198 46467 -23061    46122 7.5275      1   0.006076 **
-# gca_mod_ams_int_3 39 46200 46476 -23061    46122 0.1096      1   0.740616   
+#                     Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
+# gca_mod_ams_cond_3  34 46875 47115 -23404    46807                            
+# gca_mod_ams_int_0   35 46876 47123 -23403    46806 1.2657      1   0.260582   
+# gca_mod_ams_int_1   36 46875 47130 -23402    46803 2.4152      1   0.120166   
+# gca_mod_ams_int_2   37 46870 47132 -23398    46796 7.1744      1   0.007395 **
+# gca_mod_ams_int_3   38 46869 47138 -23397    46793 2.7948      1   0.094571 . 
 
 
+mod_type <- "gca_mod_"
+mod_spec <- c("_int_0", "_int_1", "_int_2", "_int_3")
 
+# Store ind models in list
+ams_int_mods <- mget(c(paste0(mod_type, "ams", mod_spec)))
+
+save(ams_int_mods,
+     file = here("mods", "stress", "gca",
+                 "ams_int_mods.Rdata"))
 
 
 
@@ -414,28 +571,51 @@ ims_cond_anova <-
   anova(gca_mod_ims_base, gca_mod_ims_cond_0, gca_mod_ims_cond_1, 
         gca_mod_ims_cond_2, gca_mod_ims_cond_3) 
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_ims_base   30 47123 47334 -23531    47063                         
-# gca_mod_ims_cond_0 31 47124 47343 -23531    47062 0.8159      1     0.3664
-# gca_mod_ims_cond_1 32 47126 47352 -23531    47062 0.0511      1     0.8212
-# gca_mod_ims_cond_2 33 47127 47360 -23530    47061 1.1927      1     0.2748
-# gca_mod_ims_cond_3 34 47129 47369 -23530    47061 0.0045      1     0.9464
+# gca_mod_ims_base   30 47683 47895 -23812    47623                         
+# gca_mod_ims_cond_0 31 47685 47904 -23811    47623 0.6415      1     0.4232
+# gca_mod_ims_cond_1 32 47686 47912 -23811    47622 0.1620      1     0.6873
+# gca_mod_ims_cond_2 33 47687 47920 -23810    47621 1.4141      1     0.2344
+# gca_mod_ims_cond_3 34 47689 47929 -23810    47621 0.0662      1     0.7969
+
+
+# mod_type <- "gca_mod_"
+# mod_spec <- c("_base", "_cond_0", "_cond_1", "_cond_2", "_cond_3")
+# 
+# # Store ind models in list
+# ims_cond_mods <- mget(c(paste0(mod_type, "ims", mod_spec)))
+# 
+# save(ims_cond_mods,
+#      file = here("mods", "stress", "gca",
+#                  "ims_cond_mods.Rdata"))
+
 
 
 # add WM effect to intercept, linear slope, quadratic, and cubic time terms
-gca_mod_ims_wm_0 <- update(gca_mod_ims_cond_3, . ~ . + WM_set) # singular
-gca_mod_ims_wm_1 <- update(gca_mod_ims_wm_0,   . ~ . + ot1:condition_sum) # singular
-gca_mod_ims_wm_2 <- update(gca_mod_ims_wm_1,   . ~ . + ot2:condition_sum) # singular
-gca_mod_ims_wm_3 <- update(gca_mod_ims_wm_2,   . ~ . + ot3:condition_sum) # singular
+gca_mod_ims_wm_0 <- update(gca_mod_ims_base, . ~ . + WM_set) # singular
+gca_mod_ims_wm_1 <- update(gca_mod_ims_wm_0,   . ~ . + ot1:WM_set) # singular
+gca_mod_ims_wm_2 <- update(gca_mod_ims_wm_1,   . ~ . + ot2:WM_set) # singular
+gca_mod_ims_wm_3 <- update(gca_mod_ims_wm_2,   . ~ . + ot3:WM_set) # singular
 
 ims_wm_anova <-
-  anova(gca_mod_ims_cond_3, gca_mod_ims_wm_0, gca_mod_ims_wm_1,
+  anova(gca_mod_ims_base, gca_mod_ims_wm_0, gca_mod_ims_wm_1,
         gca_mod_ims_wm_2, gca_mod_ims_wm_3)
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_ims_cond_3 34 47129 47369 -23530    47061                         
-# gca_mod_ims_wm_0   35 47129 47377 -23530    47059 1.0615      1     0.3029
-# gca_mod_ims_wm_1   35 47129 47377 -23530    47059 0.0000      0     1.0000
-# gca_mod_ims_wm_2   35 47129 47377 -23530    47059 0.0000      0     1.0000
-# gca_mod_ims_wm_3   35 47129 47377 -23530    47059 0.0000      0     1.0000
+# gca_mod_ims_base   30 47683 47895 -23812    47623                            
+# gca_mod_ims_wm_0   31 47685 47904 -23811    47623 0.6301      1   0.427336   
+# gca_mod_ims_wm_1   32 47685 47911 -23811    47621 1.3248      1   0.249738   
+# gca_mod_ims_wm_2   33 47686 47919 -23810    47620 1.1515      1   0.283230   
+# gca_mod_ims_wm_3   34 47681 47921 -23807    47613 6.8058      1   0.009086 **
+
+
+mod_type <- "gca_mod_"
+mod_spec <- c("_wm_0", "_wm_1", "_wm_2", "_wm_3")
+
+# Store ind models in list
+ims_wm_mods <- mget(c(paste0(mod_type, "ims", mod_spec)))
+
+save(ims_wm_mods,
+     file = here("mods", "stress", "gca",
+                 "ims_wm_mods.Rdata"))
 
 
 # add condition x WM int to intercept, linear slope, quadratic, and cubic time terms
@@ -448,12 +628,23 @@ ims_int_anova <-
   anova(gca_mod_ims_wm_3, gca_mod_ims_int_0, gca_mod_ims_int_1,
         gca_mod_ims_int_2, gca_mod_ims_int_3)
 #                   Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
-# gca_mod_ims_wm_3  35 47129 47377 -23530    47059                         
-# gca_mod_ims_int_0 36 47131 47385 -23530    47059 0.3421      1     0.5586
-# gca_mod_ims_int_1 37 47133 47394 -23530    47059 0.0193      1     0.8897
-# gca_mod_ims_int_2 38 47133 47401 -23529    47057 1.9838      1     0.1590
-# gca_mod_ims_int_3 39 47134 47410 -23528    47056 0.6766      1     0.4108
+# gca_mod_ims_wm_3  34 47681 47921 -23807    47613                           
+# gca_mod_ims_int_0 35 47683 47930 -23806    47613 0.4897      1    0.48405  
+# gca_mod_ims_int_1 36 47685 47939 -23806    47613 0.2054      1    0.65043  
+# gca_mod_ims_int_2 37 47684 47945 -23805    47610 2.9785      1    0.08438 .
+# gca_mod_ims_int_3 38 47686 47954 -23805    47610 0.0155      1    0.90097  
 
+
+
+# mod_type <- "gca_mod_"
+# mod_spec <- c("_int_0", "_int_1", "_int_2", "_int_3")
+# 
+# # Store ind models in list
+# ims_int_mods <- mget(c(paste0(mod_type, "ims", mod_spec)))
+# 
+# save(ims_int_mods,
+#      file = here("mods", "stress", "gca",
+#                  "ims_int_mods.Rdata"))
 
 
 # -----------------------------------------------------------------------------
@@ -473,39 +664,57 @@ gca_full_mod_base <-
          (1 + ot1 + ot2 + ot3 | target),
        control = lmerControl(optimizer = 'bobyqa',
                              optCtrl = list(maxfun = 2e4)),
-       data = stress_gc_subset, REML = F) # singular
-
-gca_full_mod_base1 <- update(gca_full_mod_base,   . ~ . + condition_sum:WM_set) # singular
-gca_full_mod_base2 <- update(gca_full_mod_base1,  . ~ . + ot3:condition_sum) # singular
-gca_full_mod_base3 <- update(gca_full_mod_base2,  . ~ . + ot2:condition_sum:WM_set) # singular
-gca_full_mod_base4 <- update(gca_full_mod_base3,  . ~ . + ot3:condition_sum:WM_set) # singular
-
-anova(gca_full_mod_base, gca_full_mod_base1, gca_full_mod_base2,
-      gca_full_mod_base3, gca_full_mod_base4)
-#                    Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(>Chisq)   
-# gca_full_mod_base  30 228578 228838 -114259   228518                            
-# gca_full_mod_base1 31 228578 228846 -114258   228516 2.0142      1   0.155837   
-# gca_full_mod_base2 32 228577 228854 -114257   228513 2.5509      1   0.110233   
-# gca_full_mod_base3 33 228579 228865 -114257   228513 0.0832      1   0.772959   
-# gca_full_mod_base4 34 228572 228866 -114252   228504 9.2979      1   0.002294 **
-
+       data = stress_gc_subset, REML = F)
 
 # add group effect to intercept, linear slope, quadratic, and cubic time terms
-gca_full_mod_group_0 <- update(gca_full_mod_base4,    . ~ . + group) # singular
-gca_full_mod_group_1 <- update(gca_full_mod_group_0, . ~ . + ot1:group) # singular
-gca_full_mod_group_2 <- update(gca_full_mod_group_1, . ~ . + ot2:group) # singular
+gca_full_mod_group_0 <- update(gca_full_mod_base,   . ~ . + group) 
+gca_full_mod_group_1 <- update(gca_full_mod_group_0, . ~ . + ot1:group) 
+gca_full_mod_group_2 <- update(gca_full_mod_group_1, . ~ . + ot2:group) 
 gca_full_mod_group_3 <- update(gca_full_mod_group_2, . ~ . + ot3:group) # singular
 
 full_group_anova <-
-  anova(gca_full_mod_base4, gca_full_mod_group_0, gca_full_mod_group_1,
+  anova(gca_full_mod_base, gca_full_mod_group_0, gca_full_mod_group_1,
         gca_full_mod_group_2, gca_full_mod_group_3)
 #                      Df    AIC    BIC  logLik deviance   Chisq Chi Df Pr(>Chisq)    
-# gca_full_mod_base4   34 228572 228866 -114252   228504                              
-# gca_full_mod_group_0 38 228552 228881 -114238   228476 28.1017      4  1.189e-05 ***
-# gca_full_mod_group_1 42 228552 228916 -114234   228468  7.3807      4     0.1171    
-# gca_full_mod_group_2 46 228554 228953 -114231   228462  5.9537      4     0.2026    
-# gca_full_mod_group_3 50 228515 228949 -114208   228415 46.8047      4  1.675e-09 ***
+# gca_full_mod_base    30 232115 232375 -116027   232055                              
+# gca_full_mod_group_0 34 232096 232391 -116014   232028 26.2952      4  2.759e-05 ***
+# gca_full_mod_group_1 38 232097 232426 -116010   232021  7.5099      4    0.11127    
+# gca_full_mod_group_2 42 232093 232457 -116005   232009 11.3265      4    0.02313 *  
+# gca_full_mod_group_3 46 232060 232459 -115984   231968 41.4723      4  2.146e-08 ***
 
+
+mod_type <- "gca_full_mod"
+mod_spec <- c("_base", "_group_0", "_group_1", "_group_2", "_group_3")
+
+# Store ind models in list
+full_mods_group <- mget(c(paste0(mod_type, mod_spec)))
+
+save(full_mods_group,
+     file = here("mods", "stress", "gca",
+                 "full_mods_group.Rdata"))
+
+
+# add significant effects from analyses by group
+gca_full_mod_cond <- update(gca_full_mod_group_3, . ~ . + ot3:condition_sum) # singular
+gca_full_mod_wm   <- update(gca_full_mod_cond,    . ~ . + ot3:WM_set) # singular
+gca_full_mod_int  <- update(gca_full_mod_wm,      . ~ . + ot2:condition_sum:WM_set) #singular
+
+full_vars_anova <- anova(gca_full_mod_group_3, gca_full_mod_cond, gca_full_mod_wm, gca_full_mod_int)
+#                      Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(>Chisq)  
+# gca_full_mod_group_3 46 232060 232459 -115984   231968                           
+# gca_full_mod_cond    47 232059 232466 -115982   231965 3.0208      1     0.0822 .
+# gca_full_mod_wm      48 232061 232477 -115982   231965 0.1883      1     0.6643  
+# gca_full_mod_int     49 232061 232486 -115982   231963 1.2980      1     0.2546  
+
+
+mod_spec <- c("_cond", "_wm", "_int")
+
+# Store ind models in list
+full_mods_othervars <- mget(c(paste0(mod_type, mod_spec)))
+
+save(full_mods_othervars,
+     file = here("mods", "stress", "gca",
+                 "full_mods_othervars.Rdata"))
 
 ################################
 
@@ -519,190 +728,66 @@ full_int_anova <-
   anova(gca_full_mod_group_3, gca_full_mod_int_0, gca_full_mod_int_1,
         gca_full_mod_int_2, gca_full_mod_int_3)
 #                      Df    AIC    BIC  logLik deviance   Chisq Chi Df Pr(>Chisq)    
-# gca_full_mod_group_3 50 228515 228949 -114208   228415                             
-# gca_full_mod_int_0   54 228521 228988 -114206   228413  2.9440      4   0.567247   
-# gca_full_mod_int_1   59 228514 229025 -114198   228396 16.8671      5   0.004759 **
-# gca_full_mod_int_2   63 228516 229061 -114195   228390  5.9976      4   0.199325   
-# gca_full_mod_int_3   67 228518 229098 -114192   228384  5.9228      4   0.204985   
+# gca_full_mod_group_3 46 232060 232459 -115984   231968                             
+# gca_full_mod_int_0   51 232066 232508 -115982   231964  4.1248      5   0.531588   
+# gca_full_mod_int_1   56 232062 232547 -115975   231950 14.0203      5   0.015481 * 
+# gca_full_mod_int_2   61 232064 232593 -115971   231942  7.9019      5   0.161728   
+# gca_full_mod_int_3   66 232058 232630 -115963   231926 15.7085      5   0.007727 **
+
+
+mod_spec <- c("_int_0", "_int_1", "_int_2", "_int_3")
+
+# Store ind models in list
+full_mods_int <- mget(c(paste0(mod_type, mod_spec)))
+
+save(full_mods_int,
+     file = here("mods", "stress", "gca",
+                 "full_mods_int.Rdata"))
 
 # ---
 
-summary(gca_full_mod_int_0) # mon reference   -    FINAL MODEL
-# Fixed effects:
-#                                 Estimate Std. Error t value
-# (Intercept)                    2.5907306  0.1591699  16.277
-# ot1                            4.2883790  0.4918307   8.719
-# ot2                           -2.7427766  0.4120458  -6.656
-# ot3                            0.2595204  0.2658637   0.976
-# groupaes                      -0.4734012  0.1938739  -2.442
-# groupams                      -0.6687256  0.1938830  -3.449
-# groupies                      -0.7231428  0.1924898  -3.757
-# groupims                      -1.1617195  0.1938813  -5.992
-# condition_sum:WM_set          -0.0007732  0.0141744  -0.055
-# ot3:condition_sum              0.4956811  0.2555710   1.940
-# ot1:groupaes                   2.7396911  0.5450331   5.027
-# ot1:groupams                   1.2414774  0.5451114   2.277
-# ot1:groupies                   1.6122155  0.5412879   2.978
-# ot1:groupims                   1.6363756  0.5451111   3.002
-# ot2:groupaes                   0.1686496  0.4063359   0.415
-# ot2:groupams                   0.8416685  0.4064497   2.071
-# ot2:groupies                   0.7713272  0.4037018   1.911
-# ot2:groupims                   0.9564437  0.4064500   2.353
-# ot3:groupaes                  -1.8122507  0.2987619  -6.066
-# ot3:groupams                  -1.6702070  0.2989170  -5.588
-# ot3:groupies                  -1.8091552  0.2970251  -6.091
-# ot3:groupims                  -1.5288318  0.2989155  -5.115
-# ot2:condition_sum:WM_set       0.0055887  0.0194531   0.287
-# ot3:condition_sum:WM_set      -0.0861903  0.0282826  -3.047
-# groupaes:condition_sum:WM_set -0.0224302  0.0150556  -1.490
-# groupams:condition_sum:WM_set -0.0136383  0.0157737  -0.865
-# groupies:condition_sum:WM_set -0.0060240  0.0154352  -0.390
-# groupims:condition_sum:WM_set -0.0089286  0.0160987  -0.555
-
-#save(gca_full_mod_int_0, file = here("mods", "stress", "gca", "full_model_mon.Rdata"))  
-
+summary(gca_full_mod_int_3) # mon reference
 
 # Relevel for pairwise comparisons
 stress_gc_subset %<>% mutate(., group = fct_relevel(group, "ams"))
-gca_full_mod_int_0_ams <- update(gca_full_mod_int_0)
+gca_full_mod_int_3_ams <- update(gca_full_mod_int_3) # singular
 
-summary(gca_full_mod_int_0_ams)
-# Fixed effects:
-#                                Estimate Std. Error t value
-# (Intercept)                    1.922006   0.155354  12.372
-# ot1                            5.529861   0.482085  11.471
-# ot2                           -1.901104   0.405616  -4.687
-# ot3                           -1.410683   0.260507  -5.415
-# groupmon                       0.668726   0.193883   3.449
-# groupaes                       0.195324   0.190749   1.024
-# groupies                      -0.054417   0.189343  -0.287
-# groupims                      -0.492994   0.190757  -2.584
-# condition_sum:WM_set          -0.014411   0.011423  -1.262
-# ot3:condition_sum              0.495683   0.255571   1.940
-# ot1:groupmon                  -1.241482   0.545112  -2.277
-# ot1:groupaes                   1.498213   0.536251   2.794
-# ot1:groupies                   0.370738   0.532441   0.696
-# ot1:groupims                   0.394896   0.536331   0.736
-# ot2:groupmon                  -0.841669   0.406449  -2.071
-# ot2:groupaes                  -0.673019   0.399804  -1.683
-# ot2:groupies                  -0.070341   0.397123  -0.177
-# ot2:groupims                   0.114775   0.399919   0.287
-# ot3:groupmon                   1.670209   0.298917   5.588
-# ot3:groupaes                  -0.142043   0.293997  -0.483
-# ot3:groupies                  -0.138948   0.292227  -0.475
-# ot3:groupims                   0.141376   0.294151   0.481
-# ot2:condition_sum:WM_set       0.005589   0.019453   0.287
-# ot3:condition_sum:WM_set      -0.086190   0.028283  -3.047
-# groupmon:condition_sum:WM_set  0.013638   0.015774   0.865
-# groupaes:condition_sum:WM_set -0.008792   0.012915  -0.681
-# groupies:condition_sum:WM_set  0.007614   0.013393   0.569
-# groupims:condition_sum:WM_set  0.004710   0.014193   0.332
+summary(gca_full_mod_int_3_ams)
 
 
 stress_gc_subset %<>% mutate(., group = fct_relevel(group, "ims"))
-gca_full_mod_int_0_ims <- update(gca_full_mod_int_0)
+gca_full_mod_int_3_ims <- update(gca_full_mod_int_3) # singular
 
-summary(gca_full_mod_int_0_ims)
-# Fixed effects:
-#                                Estimate Std. Error t value
-# (Intercept)                    1.429012   0.155351   9.199
-# ot1                            5.924759   0.482084  12.290
-# ot2                           -1.786328   0.405613  -4.404
-# ot3                           -1.269307   0.260504  -4.872
-# groupams                       0.492994   0.190758   2.584
-# groupmon                       1.161720   0.193881   5.992
-# groupaes                       0.688318   0.190748   3.609
-# groupies                       0.438577   0.189342   2.316
-# condition_sum:WM_set          -0.009702   0.012056  -0.805
-# ot3:condition_sum              0.495683   0.255571   1.940
-# ot1:groupams                  -0.394897   0.536330  -0.736
-# ot1:groupmon                  -1.636377   0.545111  -3.002
-# ot1:groupaes                   1.103316   0.536251   2.057
-# ot1:groupies                  -0.024159   0.532440  -0.045
-# ot2:groupams                  -0.114776   0.399920  -0.287
-# ot2:groupmon                  -0.956443   0.406450  -2.353
-# ot2:groupaes                  -0.787794   0.399805  -1.970
-# ot2:groupies                  -0.185117   0.397123  -0.466
-# ot3:groupams                  -0.141375   0.294151  -0.481
-# ot3:groupmon                   1.528832   0.298915   5.115
-# ot3:groupaes                  -0.283419   0.293995  -0.964
-# ot3:groupies                  -0.280323   0.292225  -0.959
-# ot2:condition_sum:WM_set       0.005589   0.019453   0.287
-# ot3:condition_sum:WM_set      -0.086190   0.028283  -3.047
-# groupams:condition_sum:WM_set -0.004710   0.014193  -0.332
-# groupmon:condition_sum:WM_set  0.008929   0.016099   0.555
-# groupaes:condition_sum:WM_set -0.013502   0.013354  -1.011
-# groupies:condition_sum:WM_set  0.002905   0.013806   0.210
+summary(gca_full_mod_int_3_ims)
+
 
 stress_gc_subset %<>% mutate(., group = fct_relevel(group, "aes"))
-gca_full_mod_int_0_aes <- update(gca_full_mod_int_0)
+gca_full_mod_int_3_aes <- update(gca_full_mod_int_3) # singular
 
-summary(gca_full_mod_int_0_aes)
-# Fixed effects:
-#   Estimate Std. Error t value
-# (Intercept)                    2.117330   0.155342  13.630
-# ot1                            7.028073   0.481998  14.581
-# ot2                           -2.574124   0.405503  -6.348
-# ot3                           -1.552728   0.260329  -5.964
-# groupims                      -0.688318   0.190748  -3.609
-# groupams                      -0.195324   0.190749  -1.024
-# groupmon                       0.473401   0.193874   2.442
-# groupies                      -0.249742   0.189334  -1.319
-# condition_sum:WM_set          -0.023203   0.009913  -2.341
-# ot3:condition_sum              0.495683   0.255571   1.940
-# ot1:groupims                  -1.103316   0.536251  -2.057
-# ot1:groupams                  -1.498213   0.536250  -2.794
-# ot1:groupmon                  -2.739694   0.545032  -5.027
-# ot1:groupies                  -1.127475   0.532361  -2.118
-# ot2:groupims                   0.787794   0.399804   1.970
-# ot2:groupams                   0.673019   0.399804   1.683
-# ot2:groupmon                  -0.168651   0.406335  -0.415
-# ot2:groupies                   0.602678   0.397008   1.518
-# ot3:groupims                   0.283419   0.293995   0.964
-# ot3:groupams                   0.142043   0.293996   0.483
-# ot3:groupmon                   1.812252   0.298762   6.066
-# ot3:groupies                   0.003095   0.292071   0.011
-# ot2:condition_sum:WM_set       0.005589   0.019453   0.287
-# ot3:condition_sum:WM_set      -0.086190   0.028283  -3.047
-# groupims:condition_sum:WM_set  0.013502   0.013354   1.011
-# groupams:condition_sum:WM_set  0.008792   0.012915   0.681
-# groupmon:condition_sum:WM_set  0.022430   0.015056   1.490
-# groupies:condition_sum:WM_set  0.016406   0.012468   1.316
+summary(gca_full_mod_int_3_aes)
+
 
 stress_gc_subset %<>% mutate(., group = fct_relevel(group, "ies"))
-gca_full_mod_int_0_ies <- update(gca_full_mod_int_0)
+gca_full_mod_int_3_ies <- update(gca_full_mod_int_3) # singular
 
-summary(gca_full_mod_int_0_ies)
-# Fixed effects:
-#   Estimate Std. Error t value
-# (Intercept)                    1.867588   0.153617  12.157
-# ot1                            5.900599   0.477769  12.350
-# ot2                           -1.971447   0.402866  -4.894
-# ot3                           -1.549633   0.258332  -5.999
-# groupaes                       0.249742   0.189334   1.319
-# groupims                      -0.438577   0.189342  -2.316
-# groupams                       0.054417   0.189344   0.287
-# groupmon                       0.723143   0.192490   3.757
-# condition_sum:WM_set          -0.006797   0.010800  -0.629
-# ot3:condition_sum              0.495682   0.255571   1.940
-# ot1:groupaes                   1.127474   0.532362   2.118
-# ot1:groupims                   0.024157   0.532440   0.045
-# ot1:groupams                  -0.370738   0.532441  -0.696
-# ot1:groupmon                  -1.612222   0.541288  -2.978
-# ot2:groupaes                  -0.602678   0.397009  -1.518
-# ot2:groupims                   0.185116   0.397123   0.466
-# ot2:groupams                   0.070341   0.397123   0.177
-# ot2:groupmon                  -0.771328   0.403702  -1.911
-# ot3:groupaes                  -0.003095   0.292071  -0.011
-# ot3:groupims                   0.280324   0.292225   0.959
-# ot3:groupams                   0.138948   0.292227   0.475
-# ot3:groupmon                   1.809158   0.297025   6.091
-# ot2:condition_sum:WM_set       0.005589   0.019453   0.287
-# ot3:condition_sum:WM_set      -0.086190   0.028283  -3.047
-# groupaes:condition_sum:WM_set -0.016406   0.012468  -1.316
-# groupims:condition_sum:WM_set -0.002905   0.013806  -0.210
-# groupams:condition_sum:WM_set -0.007614   0.013393  -0.569
-# groupmon:condition_sum:WM_set  0.006024   0.015435   0.390
+summary(gca_full_mod_int_3_ies)
+
+
+
+mod_spec <- c("_int_3_ams", "_int_3_ims", "_int_3_aes", "_int_3_ies")
+
+# Store ind models in list
+full_mods_refactor <- mget(c(paste0(mod_type, mod_spec)))
+
+save(full_mods_refactor,
+     file = here("mods", "stress", "gca",
+                 "full_mods_refactor.Rdata"))
+
+full_mod_group_relevel_anova <- anova(gca_full_mod_int_3, gca_full_mod_int_3_ams, gca_full_mod_int_3_ims,
+      gca_full_mod_int_3_aes, gca_full_mod_int_3_ies)
+
+
+# We keep gca_full_mod_int_3 (mon reference) as final full model
 
 }
 
@@ -720,7 +805,7 @@ new_dat_all <- stress_gc_subset %>%
   distinct
 
 # Get model predictions and SE
-fits_all <- predictSE(gca_full_mod_int_0, new_dat_all) %>%  
+fits_all <- predictSE(gca_full_mod_int_3, new_dat_all) %>%  
   as_tibble %>%
   bind_cols(new_dat_all) %>%
   rename(se = se.fit) %>%
@@ -749,52 +834,53 @@ target_offset_preds <- filter(fits_all, time_zero == 4) %>%
 # Save models -----------------------------------------------------------------
 
 if(F) {
-# Build model names programatically
-mod_type <- "gca_mod_"
-mod_spec <- c("_base", "_cond_0",
-              "_cond_1", "_cond_2", "_cond_3", 
-              "_wm_0", "_wm_1", "_wm_2", "_wm_3",
-              "_int_0", "_int_1", "_int_2",
-              "_int_3")
-
-# Store ind models in list
-ind_mods <- mget(c(#paste0(mod_type, "mon", mod_spec),
-                   #paste0(mod_type, "aes", mod_spec),
-                   #paste0(mod_type, "ies", mod_spec),
-                   #paste0(mod_type, "ams", mod_spec),
-                   paste0(mod_type, "ims", mod_spec)
-                   ))
-
-save(ind_mods,
-     file = here("mods", "stress", "gca",
-                 "ind_mods.Rdata"))
-
-# Store full (ot1, ot2, ot3, group, coda, cond) models in list
-full_mods <- mget(c(
-  "gca_full_mod_base", "gca_full_mod_base1", "gca_full_mod_base2",
-  "gca_full_mod_base3", "gca_full_mod_base4", "gca_full_mod_group_0",
-  "gca_full_mod_group_1", "gca_full_mod_group_2", "gca_full_mod_group_3",
-  "gca_full_mod_int_0", "gca_full_mod_int_1", "gca_full_mod_int_2",
-  "gca_full_mod_int_3", "gca_full_mod_int_0_ams", "gca_full_mod_int_0_ims",
-  "gca_full_mod_int_0_aes", "gca_full_mod_int_0_ies"))
-  
- 
-
-save(full_mods,
-     file = here("mods", "stress", "gca",
-                 "full_mods.Rdata"))
-
-# final model
-save(gca_full_mod_int_0, file = here("mods", "stress", "gca", "final_model.Rdata"))
+# # Build model names programatically
+# mod_type <- "gca_mod_"
+# mod_spec <- c("_base", "_cond_0",
+#               "_cond_1", "_cond_2", "_cond_3", 
+#               "_wm_0", "_wm_1", "_wm_2", "_wm_3",
+#               "_int_0", "_int_1", "_int_2",
+#               "_int_3")
+# 
+# # Store ind models in list
+# ind_mods <- mget(c(paste0(mod_type, "mon", mod_spec),
+#                    paste0(mod_type, "aes", mod_spec),
+#                    paste0(mod_type, "ies", mod_spec),
+#                    paste0(mod_type, "ams", mod_spec),
+#                    paste0(mod_type, "ims", mod_spec)
+#                    ))
+# 
+# save(ind_mods,
+#      file = here("mods", "stress", "gca",
+#                  "ind_mods.Rdata"))
+# 
+# # Store full (ot1, ot2, ot3, group, coda, cond) models in list
+# full_mods <- mget(c(
+#   "gca_full_mod_base", "gca_full_mod_base1", "gca_full_mod_base2",
+#   "gca_full_mod_base3", "gca_full_mod_base4", "gca_full_mod_group_0",
+#   "gca_full_mod_group_1", "gca_full_mod_group_2", "gca_full_mod_group_3",
+#   "gca_full_mod_int_0", "gca_full_mod_int_1", "gca_full_mod_int_2",
+#   "gca_full_mod_int_3", "gca_full_mod_int_0_ams", "gca_full_mod_int_0_ims",
+#   "gca_full_mod_int_0_aes", "gca_full_mod_int_0_ies"))
+#   
+#  
+# 
+# save(full_mods,
+#      file = here("mods", "stress", "gca",
+#                  "full_mods.Rdata"))
+# 
+# # final model
+# save(gca_full_mod_int_0, file = here("mods", "stress", "gca", "final_model.Rdata"))
 
 # Save anova model comparisons
 nested_model_comparisons <-
-  mget(c(#"mon_cond_anova", "mon_wm_anova", "mon_int_anova",
-         #"aes_cond_anova", "aes_wm_anova", "aes_int_anova",
-         #"ies_cond_anova", "ies_wm_anova", "ies_int_anova",
-         #"ams_cond_anova", "ams_wm_anova", "ams_int_anova",
+  mget(c("mon_cond_anova", "mon_wm_anova", "mon_int_anova",
+         "aes_cond_anova", "aes_wm_anova", "aes_int_anova",
+         "ies_cond_anova", "ies_wm_anova", "ies_int_anova",
+         "ams_cond_anova", "ams_wm_anova", "ams_int_anova",
          "ims_cond_anova", "ims_wm_anova", "ims_int_anova",
-         "full_group_anova", "full_int_anova"))
+         "full_group_anova", "full_vars_anova", "full_int_anova",
+         'full_mod_group_relevel_anova'))
 
 save(nested_model_comparisons,
      file = here("mods", "stress", "gca",

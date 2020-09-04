@@ -84,6 +84,7 @@ stress_gc_subset <- stress50 %>%
   poly_add_columns(., time_zero, degree = 3, prefix = "ot")
 
 
+
 # -----------------------------------------------------------------------------
 
 

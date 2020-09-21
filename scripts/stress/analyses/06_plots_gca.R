@@ -9,19 +9,20 @@
 
 # Source scripts and load models ----------------------------------------------
 
+source(here::here("scripts", "00_load_libs.R"))
 source(here::here("scripts", "02_load_data.R"))
 
 # Get path to saved models 
-gca_mods_path  <- here("reports", "mods", "gca")      # a level might be missing
+gca_mods_path <- here("mods", "stress", "gca") 
 
 # Load models as list and store full mod to global env
-load(paste0(gca_mods_path, "/full_mods.Rdata"))
+load(paste0(gca_mods_path, "/full_mods_refactor.Rdata"))
 load(paste0(gca_mods_path, "/model_preds.Rdata"))
-
-gca_full_mod_int_3 <- full_mods$gca_full_mod_int_3
+list2env(full_mods_refactor, globalenv())     # and then select gca_full_mod_group_3 as final model
+list2env(model_preds, globalenv())
 
 # Set path for saving figs
-figs_path <- here("figs", "stress", "eye_track")
+figs_path <- here("figs", "stress", "gca")
 
 # -----------------------------------------------------------------------------
 
@@ -32,23 +33,15 @@ figs_path <- here("figs", "stress", "eye_track")
 
 # Plot raw data ---------------------------------------------------------------
 
-df_stress_50 <- stress50 %>%
-  filter(.,  group %in% c('mon', 'aes', 'ies', 'ams', 'ims'),
-            !participant %in% c("", "", "", "", ""))
+# cond.labs <- c("Present", "Preterit")
+# names(cond.labs) <- c("Present", "Past")
 
-condition_names <- c(
-  `stressed` = 'Paroxytone',
-  `unstressed` = 'Oxytone',
-#  `0` = 'CV',
-#  `1` = 'CVC'
-)
-
-stress_p1 <- df_stress_50 %>%        # settings were coda so some more things might need changing
+stress_p1 <- stress50 %>%        
     na.omit(.) %>%
     filter(., time_zero >= -10, time_zero <= 20) %>%
     mutate(., group = fct_relevel(group, "mon", "aes", "ies", "ams", "ims")) %>%
-    ggplot(., aes(x = time_zero, y = targetProp, fill = group, shape = group)) +
-#    facet_grid(condition ~ coda, labeller = as_labeller(condition_names)) +
+    ggplot(., aes(x = time_zero, y = target_prop, fill = group, shape = group)) +
+    facet_grid(. ~ cond) +
     geom_hline(yintercept = 0.5, color = 'white', size = 3) +
     geom_vline(xintercept = 0, color = 'grey40', lty = 3) +
     geom_vline(xintercept = 4, color = 'grey40', lty = 3) +
@@ -65,8 +58,16 @@ stress_p1 <- df_stress_50 %>%        # settings were coda so some more things mi
              angle = 90, size = 3, hjust = 0) +
     theme_grey(base_size = 12, base_family = "Times")
 
-ggsave_cols(paste0(figs_path, "/stress_p1.png"), stress_p1, cols = 1)
-ggsave_cols(paste0(figs_path, "/stress_p1.eps"), stress_p1, cols = 1, device = cairo_ps)
+## not working
+# ggsave_cols(paste0(figs_path, "/stress_p1.png"), stress_p1, cols = 1)
+# ggsave_cols(paste0(figs_path, "/stress_p1.eps"), stress_p1, cols = 1, device = cairo_ps)
+
+ggsave('stress_p1.png',
+       plot = stress_p1, dpi = 600, device = "png",
+       path = figs_path,
+       height = 3.5, width = 8.5, units = 'in')
+
+
 
 # -----------------------------------------------------------------------------
 
@@ -80,16 +81,17 @@ stress_p2 <- model_preds$fits_all %>%
   mutate(condition = if_else(condition_sum == 1, "Present", "Preterit"),
          condition = fct_relevel(condition, "Present")) %>%
   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
-                fill = cond, color = cond)) +
+                fill = condition_sum, color = condition_sum)) +
+  facet_grid(group ~ .) +
   geom_hline(yintercept = 0, lty = 3, size = 0.4) +
   geom_vline(xintercept = 4, lty = 3, size = 0.4) +
-  geom_ribbon(alpha = 0.2, color = NA, show.legend = F) +
+#  geom_ribbon(alpha = 0.2, color = NA, show.legend = F) +
   geom_line(size = 0.75) +
-  geom_point(aes(shape = cond), color = "black", size = 1.3, show.legend = F) +
-  geom_point(aes(shape = cond), size = 0.85, show.legend = F) +
+  geom_point(aes(color = condition_sum), size = 1.3, show.legend = F) +
+  geom_point(aes(color = condition_sum), size = 0.85, show.legend = F) +
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
                      labels = c("-200", "0", "200", "400", "600")) +
-  scale_color_brewer(palette = "Set1", name = "Syllable structure") +
+  # scale_color_brewer(palette = "Set1", name = "Syllable structure") +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
   theme_big + legend_adj
@@ -100,6 +102,7 @@ stress_p3 <- model_preds$fits_all %>%
          condition = fct_relevel(condition, "Present")) %>%
   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
                 fill = group, color = group)) +
+  facet_grid(. ~ condition) +
   geom_hline(yintercept = 0, lty = 3, size = 0.4) +
   geom_vline(xintercept = 4, lty = 3, size = 0.4) +
   geom_ribbon(alpha = 0.2, color = NA, show.legend = F) +
@@ -115,12 +118,12 @@ stress_p3 <- model_preds$fits_all %>%
 
 ggsave(paste0(figs_path, "/stress_p2.png"), stress_p2, width = 150,
        height = 120, units = "mm", dpi = 600)
-ggsave(paste0(figs_path, "/stress_p2.eps"), stress_p2, width = 150,
-       height = 120, units = "mm", dpi = 600, device = cairo_ps)
+#ggsave(paste0(figs_path, "/stress_p2.eps"), stress_p2, width = 150,
+#       height = 120, units = "mm", dpi = 600, device = cairo_ps)
 ggsave(paste0(figs_path, "/stress_p3.png"), stress_p3, width = 150,
        height = 120, units = "mm", dpi = 600)
-ggsave(paste0(figs_path, "/stress_p3.eps"), stress_p3, width = 150,
-       height = 120, units = "mm", dpi = 600, device = cairo_ps)
+#ggsave(paste0(figs_path, "/stress_p3.eps"), stress_p3, width = 150,
+#       height = 120, units = "mm", dpi = 600, device = cairo_ps)
 
 # -----------------------------------------------------------------------------
 
@@ -133,9 +136,12 @@ ggsave(paste0(figs_path, "/stress_p3.eps"), stress_p3, width = 150,
 
 # Effect size plot ------------------------------------------------------------
 
+
+## En este plot no sé de dónde sale nada
+
 bind_rows(
   data.comp %>%
-    group_by(participant, group, time_zero, condition) %>%
+    group_by(participant, group, time_zero, condition_sum) %>%
     summarize(competition = mean(eLog)) %>%
     spread(condition, competition) %>%
     mutate(Effect = unstressed - stressed,

@@ -1,17 +1,21 @@
 #
 # Original script by Joseph
 # Modified by Cristina to adapt to CrisLau Project
-# Last updat: 06/12/2019
+# Last update: 06/12/2019
 # Modified by Laura to adapt to Pupurri project
 #
 # Growth curve analyisis ------------------------------------------------------
 #
-# - Question 1: 
-#     - 
-#     - 
-# - Question 2: 
-#     - 
-#     - 
+# - Question 1: Does pitch prediction abilities (continuous) influence 
+#   SS, IE, AE, IM, and AM (categorical) speakers' abilities to predict verbal tense
+#   based on the presence or absence (categorical) of lexical stress?
+#     - Pitch and stress are associated in Mandarin speakers
+#     - Pitch and stress are not associated in English or Spanish speakers
+# - Question 2: Does rhythm prediction abilities (continuous) influence 
+#   SS, IE, AE, IM, and AM (categorical) speakers' abilities to predict verbal tense
+#   based on the presence or absence (categorical) of lexical stress?
+#     - Rhythm and stress are not associated in monolingual speakers (SS)
+#     - Rhythm and stress are associated in L2 speakers (the)
 #
 # -----------------------------------------------------------------------------
 
@@ -24,39 +28,7 @@
 # Load data
 source(here::here("scripts", "02_load_data.R"))
 
-# Load pitch and rhythm data
-pitch <- read_csv(here("data", 'clean', "pitch.csv"))
-pitch <- pitch %>%
-  select(., -X1) %>%
-  rename(., participant = subject_id)
-
-pitch$participant <- str_replace(pitch$participant, "ae", "aes")
-pitch$participant <- str_replace(pitch$participant, "ie", "ies")
-pitch$participant <- str_replace(pitch$participant, "am", "ams")
-pitch$participant <- str_replace(pitch$participant, "im", "ims")
-pitch$participant <- str_replace(pitch$participant, "mo", "mon")
-
-rhythm <- read_csv(here("data", 'clean', "rhythm.csv"))
-rhythm <- rhythm %>%
-  select(., -X1) %>%
-  rename(., participant = subject_id)
-
-rhythm$participant <- str_replace(rhythm$participant, "ae", "aes")
-rhythm$participant <- str_replace(rhythm$participant, "ie", "ies")
-rhythm$participant <- str_replace(rhythm$participant, "am", "ams")
-rhythm$participant <- str_replace(rhythm$participant, "im", "ims")
-rhythm$participant <- str_replace(rhythm$participant, "mo", "mon")
-
-# Add pitch and rhythm score to eyetracking data frame
-stress50_pi <- merge(x = stress50, y = pitch, by = "participant", all.x=TRUE)
-stress50_mu <- merge(x = stress50_pi, y = rhythm, by = "participant", all.x=TRUE)
-
-stress50_mu <- na.omit(stress50_mu)
-
-
-
-
-
+music50 <- read_csv("./data/clean/music_50.csv")
 
 
 # # Get path to saved models
@@ -107,10 +79,14 @@ stress50_mu <- na.omit(stress50_mu)
 # Number of bins:     1  2  3  4 5 6 7 8 9 10 11 12 13 14 15 16 17
 # Actual bin number: -4 -3 -2 -1 0 1 2 3 4  5  6  7  8  9 10 11 12
 
-stress_gc_subset <- stress50_mu %>%
+stress_gc_subset <- music50 %>%
   filter(., time_zero >= -4 & time_zero <= 12) %>%
   mutate(., group = fct_relevel(group, "mon", "aes", "ams", "ies", "ims"),
-            condition_sum = if_else(cond == "Present", 1, -1)) %>%       # 1 = present, 2 = past
+            stress_sum = if_else(linx_stress == "1", 1, -1),            # 1 = present, 2 = preterit
+            base_note = fct_relevel(base_note, "DO", "MI", "SOL"),
+            dir_sum = if_else(direction == "up", 1, -1),
+            rhy_pattern = fct_relevel(rhythm_cond, "unpredictable", "spondee", 
+                                      "stressed_spondee", "trochee")) %>%       
   poly_add_columns(., time_zero, degree = 3, prefix = "ot")
 
 # -----------------------------------------------------------------------------
@@ -125,6 +101,68 @@ stress_gc_subset <- stress50_mu %>%
 
 # Build up random effects to test time terms
 if(F){
+  mod_pitch_re0 <-
+    lmer(pitch_rt ~ 1 + 
+           (1 | participant) ,
+         control = lmerControl(optimizer = 'bobyqa'),
+         data = stress_gc_subset, REML = F)
+  
+  mod_pitch_re1 <- update(mod_pitch_re0, . ~ . + (1 | base_note))
+  
+  mod_pitch_re2 <- update(mod_pitch_re1, . ~ . + (1 | dir_sum))
+  
+  
+  anova(mod_pitch_re0, mod_pitch_re1, mod_pitch_re2)
+  
+  #                 Df     AIC     BIC logLik deviance Chisq Df Pr(>Chisq)    
+  # mod_pitch_re0    3 -871261 -871225 435633  -871267                        
+  # mod_pitch_re1    4 -906947 -906900 453478  -906955 35689  1  < 2.2e-16 ***
+  # mod_pitch_re2    5 -971616 -971557 485813  -971626 64671  1  < 2.2e-16 ***
+    
+    
+  mod_rhythm_re0 <-
+    lmer(rhythm_time_dev ~ 1 + 
+           (1 | participant) ,
+         control = lmerControl(optimizer = 'bobyqa'),
+         data = stress_gc_subset, REML = F)
+  
+  mod_rhythm_re1 <- update(mod_rhythm_re0, . ~ . + (1 | rhy_pattern))
+  
+  anova(mod_rhythm_re0, mod_rhythm_re1)
+  #               Df      AIC      BIC  logLik deviance  Chisq Df Pr(>Chisq)    
+  # mod_rhythm_re0 3 -2010225 -2010190 1005116 -2010231                         
+  # mod_rhythm_re1 4 -2253737 -2253689 1126872 -2253745 243513  1  < 2.2e-16 ***
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   mod_ot1 <-
     lmer(eLog ~ 1 + ot1 +

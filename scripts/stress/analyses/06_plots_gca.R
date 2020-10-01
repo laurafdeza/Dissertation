@@ -18,7 +18,7 @@ gca_mods_path <- here("mods", "stress", "gca")
 # Load models as list and store full mod to global env
 load(paste0(gca_mods_path, "/full_mods_refactor.Rdata"))
 load(paste0(gca_mods_path, "/model_preds.Rdata"))
-list2env(full_mods_refactor, globalenv())     # and then select gca_full_mod_group_3 as final model
+list2env(full_mods_refactor, globalenv())     # gca_full_mod_int_2 final model
 list2env(model_preds, globalenv())
 
 # Set path for saving figs
@@ -33,22 +33,28 @@ figs_path <- here("figs", "stress", "gca")
 
 # Plot raw data ---------------------------------------------------------------
 
-# cond.labs <- c("Present", "Preterit")
-# names(cond.labs) <- c("Present", "Past")
+stress50$cond <- as.factor(as.character(stress50$cond))
+
+condition_names <- c(
+  `1` = 'Present',
+  `2` = 'Preterit'
+)
+
 
 stress_p1 <- stress50 %>%        
     na.omit(.) %>%
     filter(., time_zero >= -10, time_zero <= 20) %>%
     mutate(., group = fct_relevel(group, "mon", "aes", "ies", "ams", "ims")) %>%
     ggplot(., aes(x = time_zero, y = target_prop, fill = group, shape = group)) +
-    facet_grid(. ~ cond) +
+    facet_grid(. ~ cond, labeller = as_labeller(condition_names)) +
     geom_hline(yintercept = 0.5, color = 'white', size = 3) +
     geom_vline(xintercept = 0, color = 'grey40', lty = 3) +
     geom_vline(xintercept = 4, color = 'grey40', lty = 3) +
+    stat_summary(fun.y = "mean", geom = "line", size = 1) +  
     stat_summary(fun.data = mean_cl_boot, geom = 'pointrange', size = 0.5,
                  stroke = 0.5, pch = 21) +
     scale_fill_brewer(palette = 'Set1', name = "",
-                       labels = c("mon", "aes", "ies", "ams", "ims")) +
+                       labels = c("SS", "AE", "IE", "AM", "IM")) +
     scale_x_continuous(breaks = c(-10, 0, 10, 20),
                        labels = c("-500", "0", "500", "1000")) +
     labs(y = 'Proportion of target fixations',
@@ -58,9 +64,6 @@ stress_p1 <- stress50 %>%
              angle = 90, size = 3, hjust = 0) +
     theme_grey(base_size = 12, base_family = "Times")
 
-## not working
-# ggsave_cols(paste0(figs_path, "/stress_p1.png"), stress_p1, cols = 1)
-# ggsave_cols(paste0(figs_path, "/stress_p1.eps"), stress_p1, cols = 1, device = cairo_ps)
 
 ggsave('stress_p1.png',
        plot = stress_p1, dpi = 600, device = "png",
@@ -81,22 +84,22 @@ stress_p2 <- model_preds$fits_all %>%
   mutate(condition = if_else(condition_sum == 1, "Present", "Preterit"),
          condition = fct_relevel(condition, "Present")) %>%
   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
-                fill = condition_sum, color = condition_sum)) +
-  facet_grid(group ~ .) +
+                fill = condition, color = condition)) +
+  facet_wrap(group ~ .) +
   geom_hline(yintercept = 0, lty = 3, size = 0.4) +
   geom_vline(xintercept = 4, lty = 3, size = 0.4) +
-#  geom_ribbon(alpha = 0.2, color = NA, show.legend = F) +
-  geom_line(size = 0.75) +
-  geom_point(aes(color = condition_sum), size = 1.3, show.legend = F) +
-  geom_point(aes(color = condition_sum), size = 0.85, show.legend = F) +
+  stat_summary(fun.y = "mean", geom = "line", size = 1) + # you did not denote the asthetic (line, bar) you wanted. This function will computer the mean for Prob Fix
+  # stat_summary(fun.data = mean_cl_boot, geom = 'ribbon',fun.args=list(conf.int=0.95),
+  #              alpha = 0.5) +
+  geom_point(aes(color = condition), size = 1.3, show.legend = F) +
+  geom_point(aes(color = condition), size = 0.85, show.legend = F) +
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
                      labels = c("-200", "0", "200", "400", "600")) +
-  # scale_color_brewer(palette = "Set1", name = "Syllable structure") +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
   theme_big + legend_adj
 
-# Comparisons with natives
+# Comparisons by condition
 stress_p3 <- model_preds$fits_all %>%
   mutate(condition = if_else(condition_sum == 1, "Present", "Preterit"),
          condition = fct_relevel(condition, "Present")) %>%
@@ -118,12 +121,8 @@ stress_p3 <- model_preds$fits_all %>%
 
 ggsave(paste0(figs_path, "/stress_p2.png"), stress_p2, width = 150,
        height = 120, units = "mm", dpi = 600)
-#ggsave(paste0(figs_path, "/stress_p2.eps"), stress_p2, width = 150,
-#       height = 120, units = "mm", dpi = 600, device = cairo_ps)
 ggsave(paste0(figs_path, "/stress_p3.png"), stress_p3, width = 150,
        height = 120, units = "mm", dpi = 600)
-#ggsave(paste0(figs_path, "/stress_p3.eps"), stress_p3, width = 150,
-#       height = 120, units = "mm", dpi = 600, device = cairo_ps)
 
 # -----------------------------------------------------------------------------
 

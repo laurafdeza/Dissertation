@@ -199,15 +199,56 @@ include_graphics("./00_intro/figs/ospan.png", dpi = 108)
 
 ---
 
-# Conclusion
+# Results
+
+```{r, include=TRUE, echo=FALSE}
+include_graphics("./figs/stress/gca/stress_p1.png", dpi = 108)
+```
 
 </br>
-**Goal:** to examine the role of language experience (L1 transfer, L2 proficiency) (Study 1), on L1 and L2 linguistic prediction of word endings based on prosodic cues, and the mediation of verbal WM.
+.center[SAL -ta v. sal -TÓ]
+
+---
+
+```{r, include=TRUE, echo=FALSE}
+include_graphics("./figs/stress/gca/stress_p2.png", dpi = 160)
+```
+
+---
+
+```{r, include=TRUE, echo=FALSE}
+include_graphics("./figs/stress/gca/stress_p3.png", dpi = 160)
+```
+
+
+---
+
+# Discussion
+
+**Do Spanish monolinguals, and intermediate and advanced Mandarin and English learners of Spanish use lexical stress to anticipate verbal suffixes in Spanish (living in L2 context)?**      
+**If so, are prediction abilities mediated by verbal WM?**
+
+- Context matters <font size="-1">(Beatty Martínez et al., 2019)</font>: Intermediate speakers can predict to a certain extent too <font size="-1">(Hed et al., 2019; Schremm et al., 2016 v. Lozano, 2020; Sagarra & Casillas, 2018)</font>
 
 --
-</br>
-</br>
-**Relevance:** Results would inform what kind of information is transferred from an L1 (functional vs. acoustic), how L2 speakers learn to reuse it for anticipation in a new language, and which one entails larger processing costs.
+
+- Individual cognitive differences in terms of WM play no role <font size="-1">(e.g., Otten & Van Berkum, 2009; Tanner & Van Hell, 2014)</font>
+
+--
+
+- Function knowledge transfer is more effective than acoustic knowledge transfer
+
+--
+
+- SLM: L1 tone category prevents creation of L2 lexical stress category
+- L2LP: perception is different from recognition
+
+---
+
+# Conclusion
+
+- Previous as well as current context matter when learning how to use L2 prosody structures for easier processing of linguistic information and for prediction.
+- L2 proficiency and immersion can aid in overcoming L2 acquisition hurdles related to suprasegmentals.
 
 ---
 

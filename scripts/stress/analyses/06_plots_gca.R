@@ -16,7 +16,7 @@ source(here::here("scripts", "02_load_data.R"))
 gca_mods_path <- here("mods", "stress", "gca") 
 
 # Load models as list and store full mod to global env
-load(paste0(gca_mods_path, "/full_mods_refactor.Rdata"))
+load(paste0(gca_mods_path, "/full_mods_int.Rdata"))
 load(paste0(gca_mods_path, "/model_preds.Rdata"))
 list2env(full_mods_refactor, globalenv())     # gca_full_mod_int_2 final model
 list2env(model_preds, globalenv())
@@ -88,7 +88,8 @@ stress_p2 <- model_preds$fits_all %>%
   facet_wrap(group ~ .) +
   geom_hline(yintercept = 0, lty = 3, size = 0.4) +
   geom_vline(xintercept = 4, lty = 3, size = 0.4) +
-  stat_summary(fun.y = "mean", geom = "line", size = 1) + # you did not denote the asthetic (line, bar) you wanted. This function will computer the mean for Prob Fix
+  stat_summary(fun.y = "mean", geom = "line", size = 1) + 
+  geom_ribbon(alpha = 0.2, color = "grey", show.legend = F) +
   # stat_summary(fun.data = mean_cl_boot, geom = 'ribbon',fun.args=list(conf.int=0.95),
   #              alpha = 0.5) +
   geom_point(aes(color = condition), size = 1.3, show.legend = F) +

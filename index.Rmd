@@ -2,7 +2,7 @@
 title: "The Influence of L1 Phonological Transfer and L2 Proficiency on Morphosyntactic Anticipation in Monolinguals and Bilinguals"
 subtitle: "Rutgers University"
 author: "Laura Fernandez Arroyo"
-date: "September 3, 2020"
+date: "October 5, 2020"
 output: 
   xaringan::moon_reader:
     lib_dir: libs
@@ -17,7 +17,7 @@ class: center
 
 # .center[Prediction]
 
-```{r knitr, include=TRUE, echo=FALSE}
+```{r knitr, include=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 library(knitr)
 include_graphics("./avoid.gif")
 ```
@@ -96,10 +96,35 @@ proDUCE (verb) </br>
 ## Tone
 
 Mandarin: Pitch <br/>
+.pull-left[
 ```{r, include=TRUE, echo=FALSE}
 include_graphics("./00_intro/figs/thoughtco.png", dpi = 100) # the larger the number, the smaller the image
 ```
+]
 
+.pull-right[
+</br>
+</br>
+<audio controls>
+  <source src="ma1.mp3" type="audio/mp3">
+</audio>
+<audio controls>
+  <source src="ma2.mp3" type="audio/mp3">
+</audio>
+</br>
+<audio controls>
+  <source src="ma3.mp3" type="audio/mp3">
+</audio>
+<audio controls>
+  <source src="ma4.mp3" type="audio/mp3">
+</audio>
+]
+
+</br>
+</br>
+</br>
+
+<font size="-2">Source: ThoughtCo </font>
 ---
 
 # Models
@@ -176,10 +201,14 @@ L2 use/week
 
 ---
 
-# Linguistic anticipation task
+# Linguistic anticipation task 
 
-Visual-world paradigm
-
+.pull-left[Visual-world paradigm]
+.pull-right[
+<audio controls>
+  <source src="S15_C2.wav" type="audio/wav">
+</audio>
+]
 ```{r, include=TRUE, echo=FALSE}
 include_graphics("./00_intro/figs/vwp.png", dpi = 100) # the larger the number, the smaller the image
 ```

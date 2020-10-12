@@ -70,12 +70,13 @@ tidy_lme4 <- . %>%
 
 # Rename variables from the main model using markdown (COME BACK TO THIS)
 fix_param_names <- . %>%
-  str_replace("coda_sum", "Syllable structure") %>%
   str_replace("condition_sum", "Lexical stress") %>%
   str_replace("group", "Group") %>%
-  str_replace("Groupint", "Group IN") %>%
-  str_replace("Groupla", "Group NIN") %>%
-  str_replace("Syllable structure:", "Syllable structure &times; ") %>%
+  str_replace("aes", "AE") %>%
+  str_replace("ies", "IE") %>%
+  str_replace("ams", "AM") %>%
+  str_replace("ims", "IM") %>%
+  str_replace("mon", "SS") %>%
   str_replace("Lexical stress:", "Lexical stress &times; ") %>%
   str_replace("ot(\\d)", "Time^\\1^")  %>%
   str_replace(".Intercept.", "Intercept") %>%
@@ -257,9 +258,9 @@ inv_logit <- gtools::inv.logit
 
 
 # Printing function for reporting models estimates at target offset
-target_offset_prob <- function(group, coda, cond) {
+target_offset_prob <- function(group, cond) {
   frame <- model_preds$target_offset_preds
-  vals <- frame[frame$group == group & frame$coda == coda & frame$cond == cond,
+  vals <- frame[frame$group == group & frame$cond == cond,
                 c("prob", "prob_lb", "prob_ub")]
   vals <- mutate_all(vals, round, digits = 3)
   output <- paste0("Probability = ", vals$prob, "; LB = ",

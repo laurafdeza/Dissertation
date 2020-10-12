@@ -35,7 +35,6 @@ source(here::here("scripts", "02_load_data.R"))
 gca_mods_path  <- here("mods", "stress", "gca")
 
 # Load models as lists
-#load(paste0(gca_mods_path, "/ind_mods.Rdata"))
 load(paste0(gca_mods_path, "/full_mods.Rdata"))
 load(paste0(gca_mods_path, "/nested_model_comparisons.Rdata"))
 #load(paste0(gca_mods_path, "/model_preds.Rdata"))
@@ -161,12 +160,12 @@ gca_mod_mon_cond_3 <- update(gca_mod_mon_cond_2,   . ~ . + ot3:condition_sum) # 
 mon_cond_anova <-
   anova(gca_mod_mon_base, gca_mod_mon_cond_0, gca_mod_mon_cond_1,
         gca_mod_mon_cond_2, gca_mod_mon_cond_3)
-#                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_mon_base   30 42753 42963 -21346    42693                         
-# gca_mod_mon_cond_0 31 42755 42972 -21346    42693 0.4824      1     0.4873
-# gca_mod_mon_cond_1 32 42756 42980 -21346    42692 0.1857      1     0.6665
-# gca_mod_mon_cond_2 33 42758 42989 -21346    42692 0.0000      1     0.9998
-# gca_mod_mon_cond_3 34 42760 42998 -21346    42692 0.0628      1     0.8021
+#                      Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
+# gca_mod_mon_base     30 44237 44447 -22088    44177                     
+# gca_mod_mon_cond_0   31 44239 44456 -22088    44177 0.2026  1     0.6526
+# gca_mod_mon_cond_1   32 44240 44464 -22088    44176 0.5423  1     0.4615
+# gca_mod_mon_cond_2   33 44242 44473 -22088    44176 0.0079  1     0.9290
+# gca_mod_mon_cond_3   34 44244 44482 -22088    44176 0.0194  1     0.8894
 
 
 # mod_type <- "gca_mod_"
@@ -193,11 +192,7 @@ mon_wm_anova <-
   anova(gca_mod_mon_base, gca_mod_mon_wm_0, gca_mod_mon_wm_1,
         gca_mod_mon_wm_2, gca_mod_mon_wm_3)
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_mon_base   30 42753 42963 -21346    42693                         
-# gca_mod_mon_wm_0   31 42755 42972 -21346    42693 0.4829      1     0.4871
-# gca_mod_mon_wm_1   32 42756 42980 -21346    42692 0.4634      1     0.4960
-# gca_mod_mon_wm_2   33 42758 42989 -21346    42692 0.3297      1     0.5658
-# gca_mod_mon_wm_3   34 42759 42997 -21346    42691 0.4147      1     0.5196
+# gca_mod_mon_base   
 
 
 # mod_type <- "gca_mod_"
@@ -224,11 +219,7 @@ mon_int_anova <-
   anova(gca_mod_mon_base, gca_mod_mon_int_0, gca_mod_mon_int_1,
         gca_mod_mon_int_2, gca_mod_mon_int_3)
 #                   Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
-# gca_mod_mon_base  30 42753 42963 -21346    42693                         
-# gca_mod_mon_int_0 31 42755 42972 -21346    42693 0.5023      1     0.4785
-# gca_mod_mon_int_1 32 42756 42980 -21346    42692 0.1085      1     0.7418
-# gca_mod_mon_int_2 33 42757 42988 -21346    42691 1.3188      1     0.2508
-# gca_mod_mon_int_3 34 42759 42997 -21346    42691 0.1465      1     0.7019
+# gca_mod_mon_base  30 
 
 
 # mod_type <- "gca_mod_"
@@ -265,12 +256,12 @@ gca_mod_aes_cond_3 <- update(gca_mod_aes_cond_2,   . ~ . + ot3:condition_sum) # 
 aes_cond_anova <-
   anova(gca_mod_aes_base, gca_mod_aes_cond_0, gca_mod_aes_cond_1,
         gca_mod_aes_cond_2, gca_mod_aes_cond_3) 
-#                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
-# gca_mod_aes_base   30 45808 46020 -22874    45748                           
-# gca_mod_aes_cond_0 31 45809 46028 -22873    45747 0.9178      1    0.33805  
-# gca_mod_aes_cond_1 32 45810 46037 -22873    45746 0.1099      1    0.74027  
-# gca_mod_aes_cond_2 33 45812 46045 -22873    45746 0.5609      1    0.45389  
-# gca_mod_aes_cond_3 34 45809 46049 -22870    45741 4.8460      1    0.02771 *
+#                      Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
+# gca_mod_aes_base     30 30 47567 47779 -23753    47507                       
+# gca_mod_aes_cond_0   31 47568 47787 -23753    47506 0.9101  1    0.34008  
+# gca_mod_aes_cond_1   32 47570 47796 -23753    47506 0.0271  1    0.86917  
+# gca_mod_aes_cond_2   33 47565 47799 -23750    47499 6.2033  1    0.01275 *
+# gca_mod_aes_cond_3   34 47567 47808 -23750    47499 0.1145  1    0.73506  
 
 
 # mod_type <- "gca_mod_"
@@ -294,11 +285,7 @@ aes_wm_anova <-
   anova(gca_mod_aes_cond_3, gca_mod_aes_wm_0, gca_mod_aes_wm_1,
         gca_mod_aes_wm_2, gca_mod_aes_wm_3)
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_aes_cond_3 34 45809 46049 -22870    45741                         
-# gca_mod_aes_wm_0   35 45811 46058 -22870    45741 0.0132      1     0.9086
-# gca_mod_aes_wm_1   36 45813 46068 -22870    45741 0.0013      1     0.9707
-# gca_mod_aes_wm_2   37 45815 46076 -22870    45741 0.5454      1     0.4602
-# gca_mod_aes_wm_3   38 45814 46083 -22869    45738 2.4517      1     0.1174   
+# gca_mod_aes_cond_3 34    
 
 
 # mod_type <- "gca_mod_"
@@ -325,11 +312,7 @@ aes_int_anova <-
   anova(gca_mod_aes_cond_3, gca_mod_aes_int_0, gca_mod_aes_int_1,
         gca_mod_aes_int_2, gca_mod_aes_int_3)
 #                     Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
-# gca_mod_aes_cond_3  34 45809 46049 -22870    45741                         
-# gca_mod_aes_int_0   35 45809 46056 -22870    45739 2.0545      1     0.1518
-# gca_mod_aes_int_1   36 45809 46064 -22869    45737 1.5953      1     0.2066
-# gca_mod_aes_int_2   37 45811 46073 -22869    45737 0.0204      1     0.8863
-# gca_mod_aes_int_3   38 45812 46081 -22868    45736 0.9360      1     0.3333
+# gca_mod_aes_cond_3  34 
 
 
 # mod_type <- "gca_mod_"
@@ -367,18 +350,11 @@ ies_cond_anova <-
   anova(gca_mod_ies_base, gca_mod_ies_cond_0, gca_mod_ies_cond_1,    
         gca_mod_ies_cond_2, gca_mod_ies_cond_3)
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_ies_base   30 48125 48338 -24033    48065                         
-# gca_mod_ies_cond_0 31 48127 48347 -24033    48065 0.1617      1     0.6876
-# gca_mod_ies_cond_1 32 48129 48356 -24033    48065 0.0155      1     0.9010
-# gca_mod_ies_cond_2 33 48129 48363 -24032    48063 2.0231      1     0.1549
-# gca_mod_ies_cond_3 34 48131 48372 -24031    48063 0.5790      1     0.4467
-
-
-# mod_type <- "gca_mod_"
-# mod_spec <- c('_base', "_cond_0", "_cond_1", "_cond_2", "_cond_3")
-# 
-# # Store ind models in list
-# ies_cond_mods <- mget(c(paste0(mod_type, "ies", mod_spec)))
+# gca_mod_ies_base   30 49428 49641 -24684    49368                       
+# gca_mod_ies_cond_0   31 49430 49650 -24684    49368 0.1038  1    0.74729  
+# gca_mod_ies_cond_1   32 49432 49659 -24684    49368 0.3824  1    0.53632  
+# gca_mod_ies_cond_2   33 49434 49668 -24684    49368 0.0885  1    0.76606  
+# gca_mod_ies_cond_3   34 49432 49673 -24682    49364 3.4647  1    0.06269 .
 # 
 # save(ies_cond_mods,
 #      file = here("mods", "stress", "gca",
@@ -397,11 +373,7 @@ ies_wm_anova <-
   anova(gca_mod_ies_base, gca_mod_ies_wm_0, gca_mod_ies_wm_1,
         gca_mod_ies_wm_2, gca_mod_ies_wm_3)
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_ies_base   30 48125 48338 -24033    48065                           
-# gca_mod_ies_wm_0   31 48127 48346 -24032    48065 0.7025      1    0.40196  
-# gca_mod_ies_wm_1   32 48125 48352 -24031    48061 3.2136      1    0.07303 .
-# gca_mod_ies_wm_2   33 48126 48360 -24030    48060 1.3777      1    0.24049  
-# gca_mod_ies_wm_3   34 48128 48369 -24030    48060 0.1095      1    0.74066
+# gca_mod_ies_base   30 
 
 
 # mod_type <- "gca_mod_"
@@ -427,12 +399,7 @@ ies_int_anova <-
   anova(gca_mod_ies_base, gca_mod_ies_int_0, gca_mod_ies_int_1,
         gca_mod_ies_int_2, gca_mod_ies_int_3)
 #                   Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
-# gca_mod_ies_base  30 48125 48338 -24033    48065                         
-# gca_mod_ies_int_0 31 48127 48346 -24032    48065 0.5965      1     0.4399
-# gca_mod_ies_int_1 32 48128 48354 -24032    48064 1.1650      1     0.2804
-# gca_mod_ies_int_2 33 48129 48363 -24031    48063 0.7127      1     0.3985
-# gca_mod_ies_int_3 34 48131 48372 -24031    48063 0.2568      1     0.6124
-
+# gca_mod_ies_base  30 
 
 # mod_type <- "gca_mod_"
 # mod_spec <- c("_int_0", "_int_1", "_int_2", "_int_3")
@@ -456,24 +423,23 @@ gca_mod_ams_base <-
          (1 + condition_sum + (ot1 + ot2 + ot3) | participant) +
          (1 + ot1 + ot2 + ot3 | target),
        control = lmerControl(optimizer = 'bobyqa'), REML = F,
-       data = filter(stress_gc_subset, group == "ams")) # singular
+       data = filter(stress_gc_subset, group == "ams"))
 
 # add cond effect to amsercept, linear slope, quadratic, and cubic time terms
-gca_mod_ams_cond_0 <- update(gca_mod_ams_base,   . ~ . + condition_sum) # singular
-gca_mod_ams_cond_1 <- update(gca_mod_ams_cond_0,   . ~ . + ot1:condition_sum) # singular
+gca_mod_ams_cond_0 <- update(gca_mod_ams_base,   . ~ . + condition_sum)
+gca_mod_ams_cond_1 <- update(gca_mod_ams_cond_0,   . ~ . + ot1:condition_sum)
 gca_mod_ams_cond_2 <- update(gca_mod_ams_cond_1,   . ~ . + ot2:condition_sum) # singular
 gca_mod_ams_cond_3 <- update(gca_mod_ams_cond_2,   . ~ . + ot3:condition_sum) # singular
 
 ams_cond_anova <-
   anova(gca_mod_ams_base, gca_mod_ams_cond_0, gca_mod_ams_cond_1,
         gca_mod_ams_cond_2, gca_mod_ams_cond_3) 
-#                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_ams_base   30 46872 47084 -23406    46812                           
-# gca_mod_ams_cond_0 31 46874 47093 -23406    46812 0.2855      1    0.59313  
-# gca_mod_ams_cond_1 32 46876 47102 -23406    46812 0.1743      1    0.67634  
-# gca_mod_ams_cond_2 33 46877 47110 -23406    46811 0.4518      1    0.50148  
-# gca_mod_ams_cond_3 34 46875 47115 -23404    46807 4.1374      1    0.04195 *
-
+#                      Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
+# gca_mod_ams_base     30 48201 48413 -24070    48141                       
+# gca_mod_ams_cond_0   31 48203 48422 -24070    48141 0.0002  1    0.99002  
+# gca_mod_ams_cond_1   32 48205 48431 -24070    48141 0.0573  1    0.81080  
+# gca_mod_ams_cond_2   33 48201 48434 -24068    48135 5.7881  1    0.01613 *
+# gca_mod_ams_cond_3   34 48203 48443 -24068    48135 0.0116  1    0.91414
 
 # mod_type <- "gca_mod_"
 # mod_spec <- c("_base", "_cond_0", "_cond_1", "_cond_2", "_cond_3")
@@ -499,11 +465,7 @@ ams_wm_anova <-
   anova(gca_mod_ams_cond_3, gca_mod_ams_wm_0, gca_mod_ams_wm_1,
         gca_mod_ams_wm_2, gca_mod_ams_wm_3)
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_ams_cond_3 34 46875 47115 -23404    46807                         
-# gca_mod_ams_wm_0   35 46876 47123 -23403    46806 0.9389      1     0.3326
-# gca_mod_ams_wm_1   36 46876 47130 -23402    46804 2.1466      1     0.1429
-# gca_mod_ams_wm_2   37 46877 47139 -23402    46803 0.7272      1     0.3938
-# gca_mod_ams_wm_3   38 46878 47146 -23401    46802 1.5855      1     0.2080
+# gca_mod_ams_cond_3 34 
 
 
 # mod_type <- "gca_mod_"
@@ -529,22 +491,17 @@ ams_int_anova <-
   anova(gca_mod_ams_cond_3, gca_mod_ams_int_0, gca_mod_ams_int_1,
         gca_mod_ams_int_2, gca_mod_ams_int_3)
 #                     Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
-# gca_mod_ams_cond_3  34 46875 47115 -23404    46807                            
-# gca_mod_ams_int_0   35 46876 47123 -23403    46806 1.2657      1   0.260582   
-# gca_mod_ams_int_1   36 46875 47130 -23402    46803 2.4152      1   0.120166   
-# gca_mod_ams_int_2   37 46870 47132 -23398    46796 7.1744      1   0.007395 **
-# gca_mod_ams_int_3   38 46869 47138 -23397    46793 2.7948      1   0.094571 . 
+# gca_mod_ams_cond_3  34 
 
-
-mod_type <- "gca_mod_"
-mod_spec <- c("_int_0", "_int_1", "_int_2", "_int_3")
-
-# Store ind models in list
-ams_int_mods <- mget(c(paste0(mod_type, "ams", mod_spec)))
-
-save(ams_int_mods,
-     file = here("mods", "stress", "gca",
-                 "ams_int_mods.Rdata"))
+# mod_type <- "gca_mod_"
+# mod_spec <- c("_int_0", "_int_1", "_int_2", "_int_3")
+# 
+# # Store ind models in list
+# ams_int_mods <- mget(c(paste0(mod_type, "ams", mod_spec)))
+# 
+# save(ams_int_mods,
+#      file = here("mods", "stress", "gca",
+#                  "ams_int_mods.Rdata"))
 
 
 
@@ -558,23 +515,23 @@ gca_mod_ims_base <-
          (1 + condition_sum + (ot1 + ot2 + ot3) | participant) +
          (1 + ot1 + ot2 + ot3 | target),
        control = lmerControl(optimizer = 'bobyqa'), REML = F,
-       data = filter(stress_gc_subset, group == "ims")) # singular
+       data = filter(stress_gc_subset, group == "ims")) 
 
 # add cond effect to imsercept, linear slope, quadratic, and cubic time terms
-gca_mod_ims_cond_0 <- update(gca_mod_ims_base,   . ~ . + condition_sum) # singular
-gca_mod_ims_cond_1 <- update(gca_mod_ims_cond_0,   . ~ . + ot1:condition_sum) # singular
-gca_mod_ims_cond_2 <- update(gca_mod_ims_cond_1,   . ~ . + ot2:condition_sum) # singular
-gca_mod_ims_cond_3 <- update(gca_mod_ims_cond_2,   . ~ . + ot3:condition_sum) # singular
+gca_mod_ims_cond_0 <- update(gca_mod_ims_base,   . ~ . + condition_sum) 
+gca_mod_ims_cond_1 <- update(gca_mod_ims_cond_0,   . ~ . + ot1:condition_sum)
+gca_mod_ims_cond_2 <- update(gca_mod_ims_cond_1,   . ~ . + ot2:condition_sum)
+gca_mod_ims_cond_3 <- update(gca_mod_ims_cond_2,   . ~ . + ot3:condition_sum)
 
 ims_cond_anova <-
   anova(gca_mod_ims_base, gca_mod_ims_cond_0, gca_mod_ims_cond_1, 
         gca_mod_ims_cond_2, gca_mod_ims_cond_3) 
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_ims_base   30 47683 47895 -23812    47623                         
-# gca_mod_ims_cond_0 31 47685 47904 -23811    47623 0.6415      1     0.4232
-# gca_mod_ims_cond_1 32 47686 47912 -23811    47622 0.1620      1     0.6873
-# gca_mod_ims_cond_2 33 47687 47920 -23810    47621 1.4141      1     0.2344
-# gca_mod_ims_cond_3 34 47689 47929 -23810    47621 0.0662      1     0.7969
+# gca_mod_ims_base   30 48559 48771 -24250    48499                     
+# gca_mod_ims_cond_0   31 48561 48780 -24250    48499 0.1040  1     0.7471
+# gca_mod_ims_cond_1   32 48562 48788 -24249    48498 1.5108  1     0.2190
+# gca_mod_ims_cond_2   33 48562 48796 -24248    48496 1.4883  1     0.2225
+# gca_mod_ims_cond_3   34 48563 48803 -24247    48495 1.6916  1     0.1934
 
 
 # mod_type <- "gca_mod_"
@@ -599,22 +556,17 @@ ims_wm_anova <-
   anova(gca_mod_ims_base, gca_mod_ims_wm_0, gca_mod_ims_wm_1,
         gca_mod_ims_wm_2, gca_mod_ims_wm_3)
 #                    Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_ims_base   30 47683 47895 -23812    47623                            
-# gca_mod_ims_wm_0   31 47685 47904 -23811    47623 0.6301      1   0.427336   
-# gca_mod_ims_wm_1   32 47685 47911 -23811    47621 1.3248      1   0.249738   
-# gca_mod_ims_wm_2   33 47686 47919 -23810    47620 1.1515      1   0.283230   
-# gca_mod_ims_wm_3   34 47681 47921 -23807    47613 6.8058      1   0.009086 **
+# gca_mod_ims_base   30 
 
+# mod_type <- "gca_mod_"
+# mod_spec <- c("_wm_0", "_wm_1", "_wm_2", "_wm_3")
 
-mod_type <- "gca_mod_"
-mod_spec <- c("_wm_0", "_wm_1", "_wm_2", "_wm_3")
-
-# Store ind models in list
-ims_wm_mods <- mget(c(paste0(mod_type, "ims", mod_spec)))
-
-save(ims_wm_mods,
-     file = here("mods", "stress", "gca",
-                 "ims_wm_mods.Rdata"))
+# # Store ind models in list
+# ims_wm_mods <- mget(c(paste0(mod_type, "ims", mod_spec)))
+# 
+# save(ims_wm_mods,
+#      file = here("mods", "stress", "gca",
+#                  "ims_wm_mods.Rdata"))
 
 
 # add condition x WM int to intercept, linear slope, quadratic, and cubic time terms
@@ -627,23 +579,26 @@ ims_int_anova <-
   anova(gca_mod_ims_wm_3, gca_mod_ims_int_0, gca_mod_ims_int_1,
         gca_mod_ims_int_2, gca_mod_ims_int_3)
 #                   Df   AIC   BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
-# gca_mod_ims_wm_3  34 47681 47921 -23807    47613                           
-# gca_mod_ims_int_0 35 47683 47930 -23806    47613 0.4897      1    0.48405  
-# gca_mod_ims_int_1 36 47685 47939 -23806    47613 0.2054      1    0.65043  
-# gca_mod_ims_int_2 37 47684 47945 -23805    47610 2.9785      1    0.08438 .
-# gca_mod_ims_int_3 38 47686 47954 -23805    47610 0.0155      1    0.90097  
+# gca_mod_ims_wm_3  34
 
 
+mod_type <- "gca_mod_"
+mod_group <- c("mon", "aes", "ies", "ams", "ims")
+mod_spec <- c("_base", "_cond_0", "_cond_1", "_cond_2", "_cond_3")
 
-# mod_type <- "gca_mod_"
-# mod_spec <- c("_int_0", "_int_1", "_int_2", "_int_3")
-# 
-# # Store ind models in list
-# ims_int_mods <- mget(c(paste0(mod_type, "ims", mod_spec)))
-# 
-# save(ims_int_mods,
-#      file = here("mods", "stress", "gca",
-#                  "ims_int_mods.Rdata"))
+# Store ind models in list
+group_mods <- mget(c(paste0(mod_type, mod_group, mod_spec)))
+
+save(group_mods,
+     file = here("mods", "stress", "gca",
+                 "group_mods.Rdata"))
+
+
+group_anovas <- mget(c(paste0(mod_group, "_cond_anova")))
+
+save(group_anovas,
+     file = here("mods", "stress", "gca",
+                 "group_mod_anovas.Rdata"))
 
 
 # -----------------------------------------------------------------------------

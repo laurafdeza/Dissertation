@@ -28,9 +28,6 @@
 # Load data
 source(here::here("scripts", "02_load_data.R"))
 
-music50 <- read_csv("./data/clean/music_50.csv")
-
-
 # # Get path to saved models
 # gca_mods_path  <- here("reports", "mods", "gca")
 # 
@@ -79,14 +76,24 @@ music50 <- read_csv("./data/clean/music_50.csv")
 # Number of bins:     1  2  3  4 5 6 7 8 9 10 11 12 13 14 15 16 17
 # Actual bin number: -4 -3 -2 -1 0 1 2 3 4  5  6  7  8  9 10 11 12
 
+stress50 <- stress50 %>% 
+  rename(., linx_stress = cond)
+
+auditory <- read_csv("./data/clean/auditory_scores.csv")
+
+auditory <- auditory %>%
+  select(., -X1)
+
+music50 <- merge(x = stress50, y = auditory, by = "participant", all.x=TRUE)
+stress50 <- na.omit(stress50)
+
+
+
+
 stress_gc_subset <- music50 %>%
   filter(., time_zero >= -4 & time_zero <= 12) %>%
   mutate(., group = fct_relevel(group, "mon", "aes", "ams", "ies", "ims"),
-            stress_sum = if_else(linx_stress == "1", 1, -1),            # 1 = present, 2 = preterit
-            base_note = fct_relevel(base_note, "DO", "MI", "SOL"),
-            dir_sum = if_else(direction == "up", 1, -1),
-            rhy_pattern = fct_relevel(rhythm_cond, "unpredictable", "spondee", 
-                                      "stressed_spondee", "trochee")) %>%       
+            stress_sum = if_else(linx_stress == "1", 1, -1)) %>%           # 1 = present, 2 = preterit        
   poly_add_columns(., time_zero, degree = 3, prefix = "ot")
 
 # -----------------------------------------------------------------------------
@@ -101,82 +108,19 @@ stress_gc_subset <- music50 %>%
 
 # Build up random effects to test time terms
 if(F){
-  mod_pitch_re0 <-
-    lmer(pitch_rt ~ 1 + 
-           (1 | participant) ,
-         control = lmerControl(optimizer = 'bobyqa'),
-         data = stress_gc_subset, REML = F)
-  
-  mod_pitch_re1 <- update(mod_pitch_re0, . ~ . + (1 | base_note))
-  
-  mod_pitch_re2 <- update(mod_pitch_re1, . ~ . + (1 | dir_sum))
-  
-  
-  anova(mod_pitch_re0, mod_pitch_re1, mod_pitch_re2)
-  
-  #                 Df     AIC     BIC logLik deviance Chisq Df Pr(>Chisq)    
-  # mod_pitch_re0    3 -871261 -871225 435633  -871267                        
-  # mod_pitch_re1    4 -906947 -906900 453478  -906955 35689  1  < 2.2e-16 ***
-  # mod_pitch_re2    5 -971616 -971557 485813  -971626 64671  1  < 2.2e-16 ***
-    
-    
-  mod_rhythm_re0 <-
-    lmer(rhythm_time_dev ~ 1 + 
-           (1 | participant) ,
-         control = lmerControl(optimizer = 'bobyqa'),
-         data = stress_gc_subset, REML = F)
-  
-  mod_rhythm_re1 <- update(mod_rhythm_re0, . ~ . + (1 | rhy_pattern))
-  
-  anova(mod_rhythm_re0, mod_rhythm_re1)
-  #               Df      AIC      BIC  logLik deviance  Chisq Df Pr(>Chisq)    
-  # mod_rhythm_re0 3 -2010225 -2010190 1005116 -2010231                         
-  # mod_rhythm_re1 4 -2253737 -2253689 1126872 -2253745 243513  1  < 2.2e-16 ***
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
   mod_ot1 <-
     lmer(eLog ~ 1 + ot1 +
-           (1 + condition_sum + ot1 | participant),
+           (1 + stress_sum + ot1 | participant),
          control = lmerControl(optimizer = 'bobyqa'),
          data = stress_gc_subset, weights = 1/wts, REML = F)
   
   mod_ot2 <-
-    update(mod_ot1, . ~ . -(1 + condition_sum + ot1 | participant) +
-             ot2 + (1 + condition_sum + ot1 + ot2 | participant))
+    update(mod_ot1, . ~ . -(1 + stress_sum + ot1 | participant) +
+             ot2 + (1 + stress_sum + ot1 + ot2 | participant))
   
   mod_ot3 <-
-    update(mod_ot2, . ~ . -(1 + condition_sum + ot1 + ot2 | participant) +
-             ot3 + (1 + condition_sum + ot1 + ot2 + ot3 | participant))
+    update(mod_ot2, . ~ . -(1 + stress_sum + ot1 + ot2 | participant) +
+             ot3 + (1 + stress_sum + ot1 + ot2 + ot3 | participant))
   
   mod_ot4 <- update(mod_ot3, . ~ . + (1 | target))
   
@@ -184,11 +128,11 @@ if(F){
   
 # We retain the most complex model: mod_ot4
   ## All participants
-  #         Df    AIC    BIC  logLik deviance   Chisq Chi Df Pr(>Chisq)    
- #  mod_ot1  9 115660 115732 -57821   115642                             
-  # mod_ot2 14 115589 115701 -57781   115561  80.68      5  6.048e-16 ***
-  # mod_ot3 20 115308 115467 -57634   115268 293.13      6  < 2.2e-16 ***
-  # mod_ot4 21 115013 115180 -57485   114971 297.56      1  < 2.2e-16 ***
+  #           Df    AIC    BIC  logLik deviance   Chisq Chi Df Pr(>Chisq)    
+ #  mod_ot1    9 240042 240120 -120012   240024                          
+  # mod_ot2   14 239367 239489 -119670   239339 684.486  5  < 2.2e-16 ***
+  # mod_ot3   20 239311 239484 -119635   239271  68.534  6  8.167e-13 ***
+  # mod_ot4   21 239043 239225 -119501   239001 269.485  1  < 2.2e-16 ***
   
   
 }
@@ -1222,11 +1166,14 @@ if(F){
 # Base model
 gca_full_mod_base <-
   lmer(eLog ~ 1 + (ot1 + ot2 + ot3) +          
-         (1 + condition_sum + (ot1 + ot2 + ot3) | participant) +
+         (1 + stress_sum * (ot1 + ot2 + ot3) | participant) +
          (1 + ot1 + ot2 + ot3 | target),
        control = lmerControl(optimizer = 'bobyqa',
-                             optCtrl = list(maxfun = 2e4)),
-       data = stress_gc_subset, REML = F)
+                             optCtrl = list(maxfun = 2e4)), 
+       data = stress_gc_subset, REML = F, na.action = na.exclude)
+# Warning message:
+#   In commonArgs(par, fn, control, environment()) :
+#   maxfun < 10 * length(par)^2 is not recommended.
 
 # add group effect to intercept, linear slope, quadratic, and cubic time terms
 gca_full_mod_group_0 <- update(gca_full_mod_base,    . ~ . + group)
@@ -1237,78 +1184,56 @@ gca_full_mod_group_3 <- update(gca_full_mod_group_2, . ~ . + ot3:group)
 full_group_anova <-
   anova(gca_full_mod_base, gca_full_mod_group_0, gca_full_mod_group_1,
         gca_full_mod_group_2, gca_full_mod_group_3)
-#                      Df    AIC    BIC  logLik deviance   Chisq Chi Df Pr(>Chisq)    
-# gca_full_mod_base    30 113589 113828  -56765   113529                              
-# gca_full_mod_group_0 34 113583 113854  -56758   113515 13.8995      4  0.0076229 ** 
-# gca_full_mod_group_1 38 113581 113883  -56752   113505 10.5559      4  0.0320360 *  
-# gca_full_mod_group_2 42 113582 113916  -56749   113498  6.7621      4  0.1490073    
-# gca_full_mod_group_3 46 113571 113937  -56739   113479 19.2170      4  0.0007124 ***
+#                        Df    AIC    BIC  logLik deviance   Chisq Chi Df Pr(>Chisq)    
+# gca_full_mod_base      51 238356 238799 -119127   238254                          
+# gca_full_mod_group_0   55 238335 238812 -119113   238225 29.3362  4  6.680e-06 ***
+# gca_full_mod_group_1   59 238333 238845 -119108   238215  9.7470  4    0.04491 *  
+# gca_full_mod_group_2   63 238307 238853 -119090   238181 34.5150  4  5.843e-07 ***
+# gca_full_mod_group_3   67 238306 238887 -119086   238172  9.2752  4    0.05458 .
+
+mod_type <- "gca_full_mod"
+mod_spec <- c("_base", "_group_0", "_group_1", "_group_2", "_group_3")
+
+group_mods <- mget(c(paste0(mod_type, mod_spec)))
+
+save(group_mods,
+     file = here("mods", "music", "gca",
+                 "group_mods.Rdata"))
+
+gca_full_mod_pitch <- update(gca_full_mod_group_2, . ~ . + pitch_dev)
+gca_full_mod_pitch_1 <- update(gca_full_mod_pitch, . ~ . + ot1:pitch_dev)
+gca_full_mod_pitch_2 <- update(gca_full_mod_pitch_1, . ~ . + ot2:pitch_dev)
+gca_full_mod_pitch_3 <- update(gca_full_mod_pitch_2, . ~ . + ot3:pitch_dev)
+
+full_pitch_anova <-
+  anova(gca_full_mod_group_2, gca_full_mod_pitch, gca_full_mod_pitch_1, 
+        gca_full_mod_pitch_2, gca_full_mod_pitch_3)
 
 
 
-################################
 
-# add effects from single groups
-gca_full_mod_unpr <- update(gca_full_mod_group_3,   . ~ . + unpredictable) 
-gca_full_mod_cup_0 <- update(gca_full_mod_unpr,     . ~ . + DO_up)
-gca_full_mod_wm_1 <- update(gca_full_mod_cup_0,     . ~ . + ot1:WM_set)
-gca_full_mod_edo_1 <- update(gca_full_mod_wm_1,     . ~ . + ot1:MI_down)
-gca_full_mod_cup_1 <- update(gca_full_mod_edo_1,    . ~ . + ot1:DO_up)
 
-full_sineff_1_anova <-
-  anova(gca_full_mod_group_3, gca_full_mod_unpr, gca_full_mod_cup_0,
-        gca_full_mod_wm_1, gca_full_mod_edo_1, gca_full_mod_cup_1)
-#                      Df    AIC    BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
-# gca_full_mod_group_3 46 113571 113937 -56739   113479                           
-# gca_full_mod_unpr    47 113572 113946 -56739   113478 0.9696      1    0.32479  
-# gca_full_mod_cup_0   48 113573 113955 -56738   113477 0.9401      1    0.33226  
-# gca_full_mod_wm_1    49 113575 113965 -56738   113477 0.0592      1    0.80769  
-# gca_full_mod_edo_1   50 113577 113974 -56738   113477 0.2964      1    0.58617  
-# gca_full_mod_cup_1   51 113573 113979 -56736   113471 5.5055      1    0.01896 *
-
-gca_full_mod_cdo_2 <- update(gca_full_mod_cup_1,    . ~ . + ot2:DO_down)
-gca_full_mod_spon_2 <- update(gca_full_mod_cdo_2,   . ~ . + ot2:spondee)
-gca_full_mod_wm_3 <- update(gca_full_mod_spon_2,    . ~ . + ot3:WM_set)
-gca_full_mod_cdo_3 <- update(gca_full_mod_wm_3,     . ~ . + ot3:DO_down)
-
-full_sineff_2_anova <-
-  anova(gca_full_mod_cup_1, gca_full_mod_cdo_2, gca_full_mod_spon_2,  gca_full_mod_wm_3,
-        gca_full_mod_cdo_3)
-#                     Df    AIC    BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
-# gca_full_mod_cup_1  51 113573 113979 -56736   113471                           
-# gca_full_mod_cdo_2  52 113574 113988 -56735   113470 0.8330      1    0.36140  
-# gca_full_mod_spon_2 53 113573 113994 -56733   113467 3.4690      1    0.06253 .
-# gca_full_mod_wm_3   54 113575 114004 -56733   113467 0.0418      1    0.83806  
-# gca_full_mod_cdo_3  55 113576 114013 -56733   113466 0.7826      1    0.37634  
+ * rhythm_dev * WM_set * 
 
 
 
-################################
 
-# add 2-way int to intercept, linear slope, quadratic, and cubic time terms
-gca_full_mod_int_0 <- update(gca_full_mod_group_3, . ~ . + condition_sum:group) # singular        
-gca_full_mod_int_1 <- update(gca_full_mod_int_0,   . ~ . + ot1:condition_sum:group) # singular
-gca_full_mod_int_2 <- update(gca_full_mod_int_1,   . ~ . + ot2:condition_sum:group) # singular
-gca_full_mod_int_3 <- update(gca_full_mod_int_2,   . ~ . + ot3:condition_sum:group) # singular
+# add 3-way int to intercept, linear slope, quadratic, and cubic time terms
+gca_full_mod_int_0 <- update(gca_full_mod_group_3, . ~ . + stress_sum:pitch_dev:rhythm_dev:WM_set:group)
+gca_full_mod_int_1 <- update(gca_full_mod_int_0,   . ~ . + ot1:coda_sum:stress_sum:pitch_dev:rhythm_dev:WM_set:group)
+gca_full_mod_int_2 <- update(gca_full_mod_int_1,   . ~ . + ot2:coda_sum:stress_sum:pitch_dev:rhythm_dev:WM_set:group)
+gca_full_mod_int_3 <- update(gca_full_mod_int_2,   . ~ . + ot3:coda_sum:stress_sum:pitch_dev:rhythm_dev:WM_set:group)
 
 full_int_anova <-
   anova(gca_full_mod_group_3, gca_full_mod_int_0, gca_full_mod_int_1,
         gca_full_mod_int_2, gca_full_mod_int_3)
-## All
-#                      Df    AIC    BIC  logLik deviance   Chisq Chi Df Pr(>Chisq)    
-
-## WM homg
-#                      Df    AIC    BIC logLik deviance   Chisq Chi Df Pr(>Chisq)    
-# gca_full_mod_group_3 46 191661 192051 -95784   191569                             
-# gca_full_mod_int_0   51 191668 192101 -95783   191566  2.4344      5    0.78635  
-# gca_full_mod_int_1   56 191669 192144 -95779   191557  9.1347      5    0.10381  
-# gca_full_mod_int_2   61 191674 192192 -95776   191552  4.9361      5    0.42372  
-# gca_full_mod_int_3   66 191673 192233 -95771   191541 10.9550      5    0.05228 .
----
 
 # Relevel for pairwise comparisons
-stress_gc_subset %<>% mutate(., group = fct_relevel(group, "ams"))
-gca_full_mod_gr3_relevel <- update(gca_full_mod_group_3)
+stress_gc_subset %<>% mutate(., group = fct_relevel(group, "int"))
+gca_full_mod_int_relevel <- update(gca_full_mod_int_3)
+
+
+
 
 }
 

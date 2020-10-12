@@ -98,7 +98,7 @@ stress_p2 <- model_preds$fits_all %>%
                      labels = c("-200", "0", "200", "400", "600")) +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
-  theme_big + legend_adj
+  theme_big + legend_adj + labs(color = "Condition")
 
 # Comparisons by condition
 stress_p3 <- model_preds$fits_all %>%

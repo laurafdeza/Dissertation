@@ -68,7 +68,7 @@ load(paste0(gca_mods_path, "/nested_model_comparisons.Rdata"))
 
 
 
-# BLC article (stress, natives, late advanced learners and interpreters)
+# Second Language Research article (stress, natives and late advanced and intermediate EN y Ma Ch
 
 ## Overview
 
@@ -97,13 +97,13 @@ The tables can also be copy and pasted where appropriate.
 
 # Plots
 
-```{r, 'plot-ind-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of lexical stress and syllable structure for each group during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+```{r, 'plot-ind-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of lexical stress for each group during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
 knitr::include_graphics(
   here("figs", "stress", "gca", "stress_p2.png")
 )
 ```
 
-```{r, 'plot-group-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of lexical stress and syllable structure for each group during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+```{r, 'plot-group-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of lexical stress for each group during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
 knitr::include_graphics(
   here("figs", "stress", "gca", "stress_p3.png")
 )
@@ -303,7 +303,7 @@ available in Appendices 1 and 2.
 We report the results for the M group and then provide comparisons with and 
 between the learner groups. 
 The model intercept estimates the log odds of M fixating on the target, 
-averaging over the time course, lexical stress and syllable structure. 
+averaging over the time course and lexical stress. 
 The log odds were _&gamma;_~00~&nbsp;=&nbsp;`r fixed_digits(b0, 2)` 
 (proportion:&nbsp;`r b0_prop`). 
 The linear, quadratic, and cubic polynomial time terms captured the sigmoid 

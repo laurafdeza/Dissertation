@@ -1,22 +1,80 @@
-library(tidyverse); library("TOSTER")
+library(tidyverse); library(TOSTER)
 
 # Load data
-dem_all <- read_csv("./data/pupurri_analysis.csv")
+dem_all <- read_csv(here::here("data", "clean", "ospan_set_z_scores.csv"))
 
 
-# Remove participants to make the groups homogenous in L2 proficiency (DELE)
+# Remove participants to make the groups homogeneous in L2 proficiency (DELE)
+
+unique(dem_all$participant)
 
 dem_all <- dem_all %>%
+  separate(., col = participant,
+           into = c('group', 'id'),
+           sep = 3,
+           remove = FALSE) %>%
   separate(., col = group,
            into = c("proficiency", "l1"), # es = EN speaker, ms = MA speaker, on = ES speaker
            sep = 1,
            remove = FALSE)
 
-unique(dem_all$participant)
+dem_all$l1 <- str_replace(dem_all$l1, "es", "en")
+dem_all$l1 <- str_replace(dem_all$l1, "ms", "ma")
+dem_all$l1 <- str_replace(dem_all$l1, "on", "es")
+
 
 dem_all %>%
   group_by(l1) %>%
-  summarize(n = n()) # es = EN speaker, ms = MA speaker, on = ES speaker
+  summarize(n = n()) # en = Eglish speakers, ma = Mandarin Chinese speakers, es = Spanish speakers
+#   l1        n
+# 1 en       65
+# 2 es       30
+# 3 ma       64
+
+
+dem_all %>%
+  group_by(., l1) %>%
+  summarise(., ospan_mean = round(mean(ospan),2),
+            ospan_sd = round(sd(ospan),2),
+            n = length(unique(participant))) %>%
+  knitr::kable()
+#   |l1 | ospan_mean| ospan_sd|  n|
+#   |:--|----------:|--------:|--:|
+#   |en |          0|     2.11| 65|
+#   |es |          0|     2.72| 30|
+#   |ma |          0|     2.14| 64|
+
+bartlett.test(ospan ~ l1, data = dem_all)
+# Bartlett's K-squared = 3.1316, df = 2, p-value = 0.2089
+
+TOSTtwo(m1 = 0, sd1 = 2.11, n1 = 65, # EN
+        m2 = 0, sd2 = 2.14, n2 = 64, # MA
+        low_eqbound_d = -0.3,
+        high_eqbound_d = 0.3,
+        alpha = 0.05)
+# The null hypothesis test was non-significant, t(126.89) = 0.000, p = 1.000, given an alpha of 0.05.
+
+TOSTtwo(m1 = 0, sd1 = 2.11, n1 = 65, # EN
+        m2 = 0, sd2 = 2.72, n2 = 30, # ES
+        low_eqbound_d = -0.3,
+        high_eqbound_d = 0.3,
+        alpha = 0.05)
+# The null hypothesis test was non-significant, t(45.75) = 0.000, p = 1.000, given an alpha of 0.05.
+
+TOSTtwo(m1 = 0, sd1 = 2.14, n1 = 64, # MA
+        m2 = 0, sd2 = 2.72, n2 = 30, # ES
+        low_eqbound_d = -0.3,
+        high_eqbound_d = 0.3,
+        alpha = 0.05)
+# The null hypothesis test was non-significant, t(46.47) = 0.000, p = 1.000, given an alpha of 0.05.
+
+
+
+
+
+
+
+
 
 
 

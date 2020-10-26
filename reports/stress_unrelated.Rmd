@@ -220,7 +220,56 @@ Appendix 2: Growth curve model random effects
 pairwise_comp <- full_mods_refactor$gca_full_mod_int_2_ams %>% 
   tidy_lme4 %>% 
   rename(B = Estimate) %>% 
-  filter(str_detect(Parameter, "mon") == TRUE) 
+  filter(str_detect(Parameter, "aes") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
+pairwise_comp <- tibble::column_to_rownames(pairwise_comp, 'subscript')
+pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise <- function(row_name) report_fixef_row(pairwise_comp, row_name)
+
+```
+
+
+```{r, pairwise-comp-table, results='asis', eval=T}
+
+########  AMS and AES 
+
+# Make table for appendix
+pretty_pairwise_table <- full_mods_refactor$gca_full_mod_int_2_ams %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "AE") == TRUE) 
+
+pretty_pairwise_table$Parameter %<>% str_replace("Group AM", "AM - AE")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:3, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+Appendix 3: Pairwise comparisons between learner groups. 
+
+
+```{r, 'learner-comparison'}
+########### AMS and IMS
+
+# make table for printing
+pairwise_comp <- full_mods_refactor$gca_full_mod_int_2_ams %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ims") == TRUE) 
 
 # Add subscript column, convert to rownames, and then add it again
 pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
@@ -237,15 +286,15 @@ report_pairwise <- function(row_name) report_fixef_row(pairwise_comp, row_name)
 ```{r, pairwise-comp-table, results='asis', eval=T}
 
 # Make table for appendix
-pretty_pairwise_table <- full_mods$gca_full_mod_int_relevel %>% 
+pretty_pairwise_table <- full_mods_refactor$gca_full_mod_int_2_ams %>% 
   tidy_lme4 %>% 
   mutate(p = format_pval(p), 
          Parameter = fix_param_names(Parameter)) %>% 
   mutate_each(funs(format_fixef_num), Estimate:t) %>% 
   rename(`_t_` = t, `_p_` = p) %>% 
-  filter(str_detect(Parameter, "NIN") == TRUE) 
+  filter(str_detect(Parameter, "IM") == TRUE) 
 
-pretty_pairwise_table$Parameter %<>% str_replace("Group NIN", "IN - NIN")
+pretty_pairwise_table$Parameter %<>% str_replace("Group AM", "AM - IM")
 
 # Include gammas after each parameter name
 pw_subs <- c(paste0(0:3, 8), paste0(0:1, 9))
@@ -257,7 +306,93 @@ pretty_pairwise_table %>%
 
 ```
 
-Appendix 3: Pairwise comparisons between learner groups. 
+```{r, 'learner-comparison'}
+########### AES and IES
+
+# make table for printing
+pairwise_comp <- full_mods_refactor$gca_full_mod_int_2_aes %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ies") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
+pairwise_comp <- tibble::column_to_rownames(pairwise_comp, 'subscript')
+pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise <- function(row_name) report_fixef_row(pairwise_comp, row_name)
+
+```
+
+
+```{r, pairwise-comp-table, results='asis', eval=T}
+# Make table for appendix
+pretty_pairwise_table <- full_mods_refactor$gca_full_mod_int_2_aes %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "IE") == TRUE) 
+
+pretty_pairwise_table$Parameter %<>% str_replace("Group AE", "AE - IE")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:3, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+```{r, 'learner-comparison'}
+########### IMS and IES
+
+# make table for printing
+pairwise_comp <- full_mods_refactor$gca_full_mod_int_2_ies %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ims") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
+pairwise_comp <- tibble::column_to_rownames(pairwise_comp, 'subscript')
+pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise <- function(row_name) report_fixef_row(pairwise_comp, row_name)
+
+```
+
+
+```{r, pairwise-comp-table, results='asis', eval=T}
+# Make table for appendix
+pretty_pairwise_table <- full_mods_refactor$gca_full_mod_int_2_ies %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "IM") == TRUE) 
+
+pretty_pairwise_table$Parameter %<>% str_replace("Group IE", "IE - IM")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:3, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+
 
 
 

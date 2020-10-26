@@ -21,9 +21,9 @@ source(here::here("scripts", "00_load_libs.R"))
 
 allinfo <- read.csv(here::here("data", "pupurri_analysis.csv"))
 
-glimpse(allinfo)
+#glimpse(allinfo)
 
-unique(allinfo$participant)
+#unique(allinfo$participant)
 
 allinfo$participant <- tolower(allinfo$participant)
 allinfo$DELE <- as.numeric(as.character(allinfo$DELE))
@@ -39,18 +39,32 @@ agg <- separate(data = allinfo,
                        sep = 1,
                        remove = FALSE) 
 
+agg$l1 <- str_replace(agg$l1, "es", "en")
+agg$l1 <- str_replace(agg$l1, "ms", "ma")
+agg$l1 <- str_replace(agg$l1, "on", "es")
+
+# No. participants
+agg %>%
+  group_by(., l1) %>%
+  tally()
+#   l1        n
+# <chr> <int>
+# 1 en       65
+# 2 ma       64
+# 3 es       30
+
 # Females per group
 agg %>%
   group_by(., l1, gender) %>%
   tally()
 # l1    gender     n
 # <chr> <fct>  <int>
-# 1 es  female    48  - EN natives
-# 2 es  male      17
-# 3 ms  female    52  - MA natives
-# 4 ms  male      12
-# 5 on  female    20  - ES natives
-# 6 on  male      10
+# 1 en  female    48  - EN natives
+# 2 en  male      17
+# 3 ma  female    52  - MA natives
+# 4 ma  male      12
+# 5 es  female    20  - ES natives
+# 6 es  male      10
 
 # Get mean AGE as a function of group + SD
 agg %>%
@@ -60,9 +74,9 @@ agg %>%
             mean_age = mean(age),
             sd_age = sd(age))
 # l1    min_age max_age mean_age sd_age
-# 1 es       20      38     26.8   4.54
-# 2 ms       18      41     24.7   4.13
-# 3 on       18      45     26.2   8.82
+# 1 en       20      38     26.8   4.54
+# 2 ma       18      41     24.7   4.13
+# 3 es       18      45     26.2   8.82
 
 
 # Get mean TIME ABROAD in months as a function of group + SD
@@ -74,8 +88,8 @@ agg %>%
             mean_abroad = mean(mo_ES_country),
             sd_abroad = sd(mo_ES_country))
 # l1    max_abroad min_abroad mean_abroad sd_abroad
-# 1 es         168        2.5        38.1      33.5
-# 2 ms         228        1          40.8      45.5
+# 1 en         168        2.5        38.1      33.5
+# 2 ma         228        1          40.8      45.5
 
 
 # Get mean DELE as a function of group + SD
@@ -85,8 +99,8 @@ agg %>%
   summarise(mean_DELE = mean(DELE),
             sd_DELE = sd(DELE))
 # l1    mean_DELE sd_DELE
-# 1 es       38.5    8.19
-# 2 ms       39.2    7.56
+# 1 en       38.5    8.19
+# 2 ma       39.2    7.56
 
 
 # When participants started learning the L2
@@ -98,8 +112,8 @@ agg %>%
             mean_fluentL2 = mean(AoA_L2),
             sd_fluentL2 = sd(AoA_L2))
 # l1    mean_AoA sd_AoA mean_fluentL2 sd_fluentL2 
-# 1 es      16.3   5.55          16.3        5.55
-# 2 ms      18.9   3.59          18.9        3.59
+# 1 en      16.3   5.55          16.3        5.55
+# 2 ma      18.9   3.59          18.9        3.59
 
 
 # L2 use per week in %
@@ -109,24 +123,24 @@ agg %>%
   summarise(mean_l2use_week = mean(percent_l2_week),
             sd_l2use_week = sd(percent_l2_week))
 # l1    mean_l2use_week sd_l2use_week
-# 1 es             33.3          17.4
-# 2 ms             41.6          21.7
+# 1 en             33.3          17.4
+# 2 ma             41.6          21.7
 
 
 # country of origin
 agg <- agg[!is.na(agg$country),]
-agg <- filter(agg, group != 'mon')
-table(agg$country)
+
+english <- filter(agg, l1 == 'en')
+table(english$country)
 # count
 # au bh ca ch es ir nz tw uk us 
 #  3  1  2 63  0  1  2  1 25 31
 
-prop.table(table(agg$country))
-# prop
-#          au          bh          ca          ch          es          ir          nz          tw          uk          us 
-# 0.023255814 0.007751938 0.015503876 0.488372093 0.000000000 0.007751938 0.015503876 0.007751938 0.193798450 0.240310078 
-
-
+prop.table(table(english$country))
+# au         bh         ca         ch         es 
+# 0.04615385 0.01538462 0.03076923 0.00000000 0.00000000 
+# ir         nz         tw         uk         us 
+# 0.01538462 0.03076923 0.00000000 0.38461538 0.47692308
 
 
 #############################################################################################################
@@ -136,6 +150,16 @@ prop.table(table(agg$country))
 
 #####
 # Females per group
+
+allinfo %>%
+  group_by(., group) %>%
+  tally()
+#   group     n
+# 1 aes      32
+# 2 ams      32
+# 3 ies      33
+# 4 ims      32
+# 5 mon      30
 
 allinfo %>%
   filter(., gender == "female") %>%

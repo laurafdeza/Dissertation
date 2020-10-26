@@ -49,12 +49,12 @@ source(here::here("scripts", "02_load_data.R"))
 source(here::here("scripts", "01_helpers.R"))
 
 # Get path to saved models
-gca_mods_path  <- here("mods", "vision", "gca")
+gca_mods_path  <- here("mods", "music", "gca")
 
 # Load models as list and store full mod to global env
-load(paste0(gca_mods_path, "/relevel_final_mods.Rdata"))
+load(paste0(gca_mods_path, "/pitch_mods.Rdata"))
 load(paste0(gca_mods_path, "/model_preds.Rdata"))
-load(paste0(gca_mods_path, "/group_mods.Rdata"))
+load(paste0(gca_mods_path, "/rhythm_mods.Rdata"))
 load(paste0(gca_mods_path, "/nested_model_comparisons.Rdata"))
 
 ```
@@ -64,8 +64,8 @@ load(paste0(gca_mods_path, "/nested_model_comparisons.Rdata"))
 
 
 
-# Cognition article (stress, natives and late advanced and intermediate EN y Ma Ch,
-# movement anticipation through vision and verbal and visuospatial WM
+# Applied Psycholinguisitcs article (stress, natives and late advanced and intermediate EN y Ma Ch,
+# auditory anticipation of pitch and rhythm
 
 ## Overview
 
@@ -93,15 +93,15 @@ The tables can also be copy and pasted where appropriate.
 
 # Plots
 
-```{r, 'plot-ind-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of lexical stress for each group during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+```{r, 'plot-ind-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of pitch anticipatory abilities for each group and lexical stress pattern during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
 knitr::include_graphics(
-  here("figs", "stress", "gca", "stress_p2.png")
+  here("figs", "music", "gca", "gca_pitch_plot.png")
 )
 ```
 
-```{r, 'plot-group-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of lexical stress for each group during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+```{r, 'plot-group-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of rhythm synchronization abilities for each group and lexical stress patternn during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
 knitr::include_graphics(
-  here("figs", "stress", "gca", "stress_p3.png")
+  here("figs", "music", "gca", "gca_rhythm_plot.png")
 )
 ```
 
@@ -117,7 +117,7 @@ knitr::include_graphics(
 
 
 
-# Tables 
+# Tables             PITCH
 
 ## Model estimates at target syllable offset  
 
@@ -127,12 +127,12 @@ knitr::include_graphics(
 border_1 <- fp_border(width = 1.5)
 border_2 <- fp_border(width = 0.75)
 
-model_preds$target_offset_preds %>% 
-  mutate(cond = if_else(stress == 1, "paroxytone", "oxytone")) %>% 
-  arrange(group, desc(cond)) %>% 
+model_preds$target_offset_preds_pitch %>% 
+  mutate(stress = if_else(stress == 1, "paroxytone", "oxytone")) %>% 
+  arrange(group, desc(stress)) %>% 
   mutate(group = blank_same_as_last(as.character(group))) %>% 
-  select(Group = group, `Lexical stress` = cond, Probability = prob, LB = prob_lb, 
-         UB = prob_ub) %>% 
+  select(Group = group, `Lexical stress` = stress, Pitch = pitch_dev, 
+         Probability = prob, LB = prob_lb, UB = prob_ub) %>% 
   flextable() %>% 
   width(., j = c(2, 3, 4), width = c(1.1, 1.3, 1.1)) %>% 
   font(., fontname = "Times", part = "all") %>%
@@ -145,7 +145,7 @@ model_preds$target_offset_preds %>%
 ```
 
 *Table 1*: Model estimates for probability of target fixations ±SE at 200 ms 
-after the target syllable offset.
+after the target syllable offset when pitch anticipation abilities taken into account.
 
 
 
@@ -155,7 +155,7 @@ after the target syllable offset.
 ```{r, warning=F}
 
 # Get full mod and make it pretty for the table
-pretty_fixed_effects <- group_mods$gca_full_mod_group_2 %>% 
+pretty_fixed_effects <- pitch_mods$gca_full_mod_pitch_int_2 %>% 
   tidy_lme4() %>% 
   mutate(p = format_pval(p), 
          Parameter = fix_param_names(Parameter)) %>% 
@@ -185,7 +185,7 @@ Appendix 1: Growth curve model fixed effects
 ## Random effects
 
 ```{r, 'ranef-table', results = "asis"}
-ranef_table <- group_mods$gca_full_mod_group_2 %>% 
+ranef_table <- pitch_mods$gca_full_mod_pitch_int_2 %>% 
   tidy_ranef_summary %>% 
   # Format the numbers
   mutate_each(funs(format_fixef_num), vcov, sdcor) %>%
@@ -215,15 +215,15 @@ Appendix 2: Growth curve model random effects
 # AES vs. IES
 
 # make table for printing
-pairwise_comp <- relevel_final_mods$gca_full_mod_aes_relevel %>% 
+pairwise_comp <- pitch_mods$gca_full_mod_pitch_int_2_aes %>% 
   tidy_lme4 %>% 
   rename(B = Estimate) %>% 
   filter(str_detect(Parameter, "ies") == TRUE) 
 
 # Add subscript column, convert to rownames, and then add it again
-pairwise_comp$subscript <- c(paste0(0:0, 8), paste0(0:1, 9))
+pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
 pairwise_comp <- tibble::column_to_rownames(pairwise_comp, 'subscript')
-pairwise_comp$subscript <- c(paste0(0:0, 8), paste0(0:1, 9))
+pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
 
 
 # Shortcut for inline reporting from the above table
@@ -235,7 +235,7 @@ report_pairwise <- function(row_name) report_fixef_row(pairwise_comp, row_name)
 ```{r, pairwise-comp-table, results='asis', eval=T}
 
 # Make table for appendix
-pretty_pairwise_table <- relevel_final_mods$gca_full_mod_aes_relevel %>% 
+pretty_pairwise_table <- pitch_mods$gca_full_mod_pitch_int_2_aes %>% 
   tidy_lme4 %>% 
   mutate(p = format_pval(p), 
          Parameter = fix_param_names(Parameter)) %>% 
@@ -246,7 +246,7 @@ pretty_pairwise_table <- relevel_final_mods$gca_full_mod_aes_relevel %>%
 pretty_pairwise_table$Parameter %<>% str_replace("Group AA", "AE - IE")
 
 # Include gammas after each parameter name
-pw_subs <- c(paste0(0:0, 8), paste0(0:1, 9))
+pw_subs <- c(paste0(0:3, 8), paste0(0:1, 9))
 pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
 pretty_pairwise_table$Parameter %<>% paste(., pw_var_labels)
 
@@ -262,15 +262,15 @@ Appendix 3: Pairwise comparisons between learner groups.
 ########### AMS and IMS
 
 # make table for printing
-pairwise_comp <- relevel_final_mods$gca_full_mod_ams_relevel %>% 
+pairwise_comp <- pitch_mods$gca_full_mod_pitch_int_2_ams %>% 
   tidy_lme4 %>% 
   rename(B = Estimate) %>% 
   filter(str_detect(Parameter, "ims") == TRUE) 
 
 # Add subscript column, convert to rownames, and then add it again
-pairwise_comp$subscript <- c(paste0(0:0, 8), paste0(0:1, 9))
+pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
 pairwise_comp <- tibble::column_to_rownames(pairwise_comp, 'subscript')
-pairwise_comp$subscript <- c(paste0(0:0, 8), paste0(0:1, 9))
+pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
 
 
 # Shortcut for inline reporting from the above table
@@ -282,7 +282,7 @@ report_pairwise <- function(row_name) report_fixef_row(pairwise_comp, row_name)
 ```{r, pairwise-comp-table, results='asis', eval=T}
 
 # Make table for appendix
-pretty_pairwise_table <- relevel_final_mods$gca_full_mod_ams_relevel %>% 
+pretty_pairwise_table <- pitch_mods$gca_full_mod_pitch_int_2_ams %>% 
   tidy_lme4 %>% 
   mutate(p = format_pval(p), 
          Parameter = fix_param_names(Parameter)) %>% 
@@ -293,7 +293,7 @@ pretty_pairwise_table <- relevel_final_mods$gca_full_mod_ams_relevel %>%
 pretty_pairwise_table$Parameter %<>% str_replace("Group AM", "AM - IM")
 
 # Include gammas after each parameter name
-pw_subs <- c(paste0(0:0, 8), paste0(0:1, 9))
+pw_subs <- c(paste0(0:3, 8), paste0(0:1, 9))
 pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
 pretty_pairwise_table$Parameter %<>% paste(., pw_var_labels)
 
@@ -306,15 +306,15 @@ pretty_pairwise_table %>%
 ########### AES and AMS
 
 # make table for printing
-pairwise_comp <- relevel_final_mods$gca_full_mod_aes_relevel %>% 
+pairwise_comp <- pitch_mods$gca_full_mod_pitch_int_2_aes %>% 
   tidy_lme4 %>% 
   rename(B = Estimate) %>% 
   filter(str_detect(Parameter, "ams") == TRUE) 
 
 # Add subscript column, convert to rownames, and then add it again
-pairwise_comp$subscript <- c(paste0(0:0, 8), paste0(0:1, 9))
+pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
 pairwise_comp <- tibble::column_to_rownames(pairwise_comp, 'subscript')
-pairwise_comp$subscript <- c(paste0(0:0, 8), paste0(0:1, 9))
+pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
 
 
 # Shortcut for inline reporting from the above table
@@ -325,7 +325,7 @@ report_pairwise <- function(row_name) report_fixef_row(pairwise_comp, row_name)
 
 ```{r, pairwise-comp-table, results='asis', eval=T}
 # Make table for appendix
-pretty_pairwise_table <- relevel_final_mods$gca_full_mod_aes_relevel %>% 
+pretty_pairwise_table <- pitch_mods$gca_full_mod_pitch_int_2_aes %>% 
   tidy_lme4 %>% 
   mutate(p = format_pval(p), 
          Parameter = fix_param_names(Parameter)) %>% 
@@ -336,7 +336,7 @@ pretty_pairwise_table <- relevel_final_mods$gca_full_mod_aes_relevel %>%
 pretty_pairwise_table$Parameter %<>% str_replace("Group AE", "AE - AM")
 
 # Include gammas after each parameter name
-pw_subs <- c(paste0(0:0, 8), paste0(0:1, 9))
+pw_subs <- c(paste0(0:3, 8), paste0(0:1, 9))
 pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
 pretty_pairwise_table$Parameter %<>% paste(., pw_var_labels)
 
@@ -349,15 +349,15 @@ pretty_pairwise_table %>%
 ########### IMS and IES
 
 # make table for printing
-pairwise_comp <- relevel_final_mods$gca_full_mod_ies_relevel %>% 
+pairwise_comp <- pitch_mods$gca_full_mod_pitch_int_2_ies %>% 
   tidy_lme4 %>% 
   rename(B = Estimate) %>% 
   filter(str_detect(Parameter, "ims") == TRUE) 
 
 # Add subscript column, convert to rownames, and then add it again
-pairwise_comp$subscript <- c(paste0(0:0, 8), paste0(0:1, 9))
+pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
 pairwise_comp <- tibble::column_to_rownames(pairwise_comp, 'subscript')
-pairwise_comp$subscript <- c(paste0(0:0, 8), paste0(0:1, 9))
+pairwise_comp$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
 
 
 # Shortcut for inline reporting from the above table
@@ -368,7 +368,7 @@ report_pairwise <- function(row_name) report_fixef_row(pairwise_comp, row_name)
 
 ```{r, pairwise-comp-table, results='asis', eval=T}
 # Make table for appendix
-pretty_pairwise_table <- relevel_final_mods$gca_full_mod_ies_relevel %>% 
+pretty_pairwise_table <- pitch_mods$gca_full_mod_pitch_int_2_ies %>% 
   tidy_lme4 %>% 
   mutate(p = format_pval(p), 
          Parameter = fix_param_names(Parameter)) %>% 
@@ -379,7 +379,7 @@ pretty_pairwise_table <- relevel_final_mods$gca_full_mod_ies_relevel %>%
 pretty_pairwise_table$Parameter %<>% str_replace("Group IE", "IE - IM")
 
 # Include gammas after each parameter name
-pw_subs <- c(paste0(0:0, 8), paste0(0:1, 9))
+pw_subs <- c(paste0(0:3, 8), paste0(0:1, 9))
 pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
 pretty_pairwise_table$Parameter %<>% paste(., pw_var_labels)
 
@@ -400,23 +400,23 @@ pretty_pairwise_table %>%
 # params <- pretty_fixed_effects %>% 
 #  rename(B = Estimate)
 
-params <- relevel_final_mods$gca_full_mod_ams_relevel %>% 
+params <- pitch_mods$gca_full_mod_pitch_int_2 %>% 
   tidy_lme4() %>% 
   rename(B = Estimate)
 
 params$subscript <- 
-  c(paste0(0:10, 0), paste0(0:10, 1), 
-    paste0(0:10, 2), paste0(0:10, 3), 
-    paste0(0:10, 4), paste0(0:10, 5), 
-    paste0(0:9, 6))
+  c(paste0(0:5, 0), paste0(0:5, 1), 
+    paste0(0:5, 2), paste0(0:5, 3), 
+    paste0(0:5, 4), paste0(0:4, 5), 
+    paste0(0:4, 6))
 
 params <- tibble::column_to_rownames(params, 'subscript')
 
 params$subscript <- 
-  c(paste0(0:10, 0), paste0(0:10, 1), 
-    paste0(0:10, 2), paste0(0:10, 3), 
-    paste0(0:10, 4), paste0(0:10, 5), 
-    paste0(0:9, 6))
+  c(paste0(0:5, 0), paste0(0:5, 1), 
+    paste0(0:5, 2), paste0(0:5, 3), 
+    paste0(0:5, 4), paste0(0:4, 5), 
+    paste0(0:4, 6))
 
 # Shortcut for inline reporting from the above table
 report_row <- function(row_name) report_fixef_row(params, row_name)
@@ -441,3 +441,341 @@ The linear, quadratic, and cubic polynomial time terms captured the sigmoid
 shape of the time course and were retained in the model 
 (`r report_row("10")`; `r report_row("20")`; `r report_row("30")`). 
 
+
+
+
+
+
+
+
+
+
+
+
+
+# Tables          RHYTHM
+
+## Model estimates at target syllable offset  
+
+
+```{r, table-target-offset-props, eval=T, echo=F}
+
+border_1 <- fp_border(width = 1.5)
+border_2 <- fp_border(width = 0.75)
+
+model_preds$target_offset_preds_rhythm %>% 
+  mutate(stress = if_else(stress == 1, "paroxytone", "oxytone")) %>% 
+  arrange(group, desc(stress)) %>% 
+  mutate(group = blank_same_as_last(as.character(group))) %>% 
+  select(Group = group, `Lexical stress` = stress, Rhythm = rhythm_dev, 
+         Probability = prob, LB = prob_lb, UB = prob_ub) %>% 
+  flextable() %>% 
+  width(., j = c(2, 3, 4), width = c(1.1, 1.3, 1.1)) %>% 
+  font(., fontname = "Times", part = "all") %>%
+  fontsize(., size = 11) %>% 
+  border_remove(.) %>%  
+  border(., part = "header", 
+            border.top = border_1,
+            border.bottom = border_2) %>% 
+  hline_bottom(., part = "body", border = border_1)
+```
+
+
+*Table 1*: Model estimates for probability of target fixations ±SE at 200 ms 
+after the target syllable offset when rhythm anticipation abilities taken into account.
+
+
+
+
+## Fixed effects
+
+```{r, warning=F}
+
+# Get full mod and make it pretty for the table
+pretty_fixed_effects <- rhythm_mods$gca_full_mod_rhythm_int_3 %>% 
+  tidy_lme4() %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) 
+
+# Include gammas (Gij) after each parameter name
+subs <- c(paste0(0:3, 0), paste0(0:3, 1), 
+          paste0(0:3, 2), paste0(0:3, 3), 
+          paste0(0:3, 4), paste0(0:3, 5), 
+          paste0(0:3, 6))
+var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+pretty_fixed_effects$Parameter %<>% paste(., var_labels)
+
+pretty_fixed_effects %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+
+
+Appendix 1: Growth curve model fixed effects
+
+
+
+
+
+
+## Random effects
+
+```{r, 'ranef-table', results = "asis"}
+ranef_table <- rhythm_mods$gca_full_mod_rhythm_int_3 %>% 
+  tidy_ranef_summary %>% 
+  # Format the numbers
+  mutate_each(funs(format_fixef_num), vcov, sdcor) %>%
+  mutate_each(funs(format_cor), -var1, -grp, -vcov, -sdcor) %>%
+  sort_ranef_grps %>%
+  # Format variable names and group names
+  mutate(var1 = fix_param_names(var1) %>% blank_nas,
+         grp =  blank_same_as_last(grp) %>% fix_param_names) %>% 
+  rename(Group = grp, Parameter = var1, Variance = vcov, SD = sdcor)
+
+# Correlation columns need names with characters so that pandoc can align them
+names(ranef_table)[5:9] <- 
+  c("Correlations", "&nbsp;", " &nbsp;", "  &nbsp;", "  &nbsp;")
+
+ranef_table %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("llrrrrrr"))
+```
+
+
+Appendix 2: Growth curve model random effects
+
+
+
+
+## Pairwise comparisons
+
+```{r, 'learner-comparison'}
+# AES vs. IES
+
+# make table for printing
+pairwise_comp <- rhythm_mods$gca_full_mod_rhythm_int_3_aes %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ies") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+pairwise_comp <- tibble::column_to_rownames(pairwise_comp, 'subscript')
+pairwise_comp$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise <- function(row_name) report_fixef_row(pairwise_comp, row_name)
+
+```
+
+
+```{r, pairwise-comp-table, results='asis', eval=T}
+
+# Make table for appendix
+pretty_pairwise_table <- rhythm_mods$gca_full_mod_rhythm_int_3_aes %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "IE") == TRUE) 
+
+pretty_pairwise_table$Parameter %<>% str_replace("Group AA", "AE - IE")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:4, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+
+Appendix 3: Pairwise comparisons between learner groups. 
+
+
+```{r, 'learner-comparison'}
+########### AMS and IMS
+
+# make table for printing
+pairwise_comp <- rhythm_mods$gca_full_mod_rhythm_int_3_ams %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ims") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+pairwise_comp <- tibble::column_to_rownames(pairwise_comp, 'subscript')
+pairwise_comp$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise <- function(row_name) report_fixef_row(pairwise_comp, row_name)
+
+```
+
+
+```{r, pairwise-comp-table, results='asis', eval=T}
+
+# Make table for appendix
+pretty_pairwise_table <- rhythm_mods$gca_full_mod_rhythm_int_3_ams %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "IM") == TRUE) 
+
+pretty_pairwise_table$Parameter %<>% str_replace("Group AM", "AM - IM")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:4, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+
+```{r, 'learner-comparison'}
+########### AES and AMS
+
+# make table for printing
+pairwise_comp <- rhythm_mods$gca_full_mod_rhythm_int_3_aes %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ams") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+pairwise_comp <- tibble::column_to_rownames(pairwise_comp, 'subscript')
+pairwise_comp$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise <- function(row_name) report_fixef_row(pairwise_comp, row_name)
+
+```
+
+
+```{r, pairwise-comp-table, results='asis', eval=T}
+# Make table for appendix
+pretty_pairwise_table <- rhythm_mods$gca_full_mod_rhythm_int_3_aes %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "AM") == TRUE) 
+
+pretty_pairwise_table$Parameter %<>% str_replace("Group AE", "AE - AM")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:4, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+
+```{r, 'learner-comparison'}
+########### IMS and IES
+
+# make table for printing
+pairwise_comp <- rhythm_mods$gca_full_mod_rhythm_int_3_ies %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ims") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+pairwise_comp <- tibble::column_to_rownames(pairwise_comp, 'subscript')
+pairwise_comp$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise <- function(row_name) report_fixef_row(pairwise_comp, row_name)
+
+```
+
+
+```{r, pairwise-comp-table, results='asis', eval=T}
+# Make table for appendix
+pretty_pairwise_table <- rhythm_mods$gca_full_mod_rhythm_int_3_ies %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "IM") == TRUE) 
+
+pretty_pairwise_table$Parameter %<>% str_replace("Group IE", "IE - IM")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:4, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+
+# Results
+
+```{r, 'write-up-prep', warning=F, eval=T}
+# Prepare table to support easy in-line printing of equations
+# params <- pretty_fixed_effects %>% 
+#  rename(B = Estimate)
+
+params <- rhythm_mods$gca_full_mod_rhythm_int_3 %>% 
+  tidy_lme4() %>% 
+  rename(B = Estimate)
+
+params$subscript <- 
+  c(paste0(0:6, 0), paste0(0:6, 1), 
+    paste0(0:5, 2), paste0(0:5, 3), 
+    paste0(0:5, 4), paste0(0:5, 5), 
+    paste0(0:5, 6))
+
+params <- tibble::column_to_rownames(params, 'subscript')
+
+params$subscript <- 
+  c(paste0(0:6, 0), paste0(0:6, 1), 
+    paste0(0:5, 2), paste0(0:5, 3), 
+    paste0(0:5, 4), paste0(0:5, 5), 
+    paste0(0:5, 6))
+
+# Shortcut for inline reporting from the above table
+report_row <- function(row_name) report_fixef_row(params, row_name)
+
+# Pre-calculate intercept as proportion
+b0 <- params$B[params$subscript == "00"] %>% as.numeric
+b0_prop <- b0 %>% inv_logit %>% round(2) %>% remove_leading_zero
+
+```
+
+
+
+Figure 1 plots the model estimates from the GCA and the full model summary is 
+available in Appendices 1 and 2. 
+We report the results for the M group and then provide comparisons with and 
+between the learner groups. 
+The model intercept estimates the log odds of M fixating on the target, 
+averaging over the time course and lexical stress. 
+The log odds were _&gamma;_~00~&nbsp;=&nbsp;`r fixed_digits(b0, 2)` 
+(proportion:&nbsp;`r b0_prop`). 
+The linear, quadratic, and cubic polynomial time terms captured the sigmoid 
+shape of the time course and were retained in the model 
+(`r report_row("10")`; `r report_row("20")`; `r report_row("30")`). 

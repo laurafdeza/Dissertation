@@ -1,7 +1,8 @@
 library(tidyverse); library(TOSTER)
 
 # Load data
-dem_all <- read_csv(here::here("data", "clean", "ospan_set_z_scores.csv"))
+#dem_all <- read_csv(here::here("data", "clean", "ospan_set_z_scores.csv"))
+dem_all <- read_csv(here::here("data", "pupurri_analysis.csv"))
 
 
 # Remove participants to make the groups homogeneous in L2 proficiency (DELE)
@@ -9,10 +10,10 @@ dem_all <- read_csv(here::here("data", "clean", "ospan_set_z_scores.csv"))
 unique(dem_all$participant)
 
 dem_all <- dem_all %>%
-  separate(., col = participant,
-           into = c('group', 'id'),
-           sep = 3,
-           remove = FALSE) %>%
+  # separate(., col = participant,
+  #          into = c('group', 'id'),
+  #          sep = 3,
+  #          remove = FALSE) %>%
   separate(., col = group,
            into = c("proficiency", "l1"), # es = EN speaker, ms = MA speaker, on = ES speaker
            sep = 1,
@@ -34,8 +35,8 @@ dem_all %>%
 
 dem_all %>%
   group_by(., l1) %>%
-  summarise(., ospan_mean = round(mean(ospan),2),
-            ospan_sd = round(sd(ospan),2),
+  summarise(., ospan_mean = round(mean(WM_set),2),   # ospan instead of WM_set if using z scores
+            ospan_sd = round(sd(WM_set),2),          # ospan instead of WM_set if using z scores
             n = length(unique(participant))) %>%
   knitr::kable()
 #   |l1 | ospan_mean| ospan_sd|  n|
@@ -44,8 +45,28 @@ dem_all %>%
 #   |es |          0|     2.72| 30|
 #   |ma |          0|     2.14| 64|
 
-bartlett.test(ospan ~ l1, data = dem_all)
-# Bartlett's K-squared = 3.1316, df = 2, p-value = 0.2089
+#   |l1 | ospan_mean| ospan_sd|  n|
+#   |:--|----------:|--------:|--:|
+#   |en |       8.89|     2.11| 65|
+#   |es |       6.20|     2.72| 30|
+#   |ma |       7.78|     2.14| 64|
+
+
+
+zsc <- dem_all %>% 
+  group_by(., l1) %>%
+  mutate(zscoreWM = (WM_set - mean(WM_set))/sd(WM_set)) 
+
+
+
+
+bartlett.test(zscoreWM ~ l1, data = zsc)
+# Bartlett's K-squared = 6.376e-15, df = 2, p-value = 1
+
+
+
+
+### with sd
 
 TOSTtwo(m1 = 0, sd1 = 2.11, n1 = 65, # EN
         m2 = 0, sd2 = 2.14, n2 = 64, # MA

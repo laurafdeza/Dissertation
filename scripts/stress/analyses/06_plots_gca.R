@@ -16,9 +16,9 @@ source(here::here("scripts", "02_load_data.R"))
 gca_mods_path <- here("mods", "stress", "gca") 
 
 # Load models as list and store full mod to global env
-load(paste0(gca_mods_path, "/full_mods_int.Rdata"))
+load(paste0(gca_mods_path, "/gca_full_mods.Rdata"))
 load(paste0(gca_mods_path, "/model_preds.Rdata"))
-list2env(full_mods_refactor, globalenv())     # gca_full_mod_int_2 final model
+list2env(gca_full_mods, globalenv())  # final model is int_2 
 list2env(model_preds, globalenv())
 
 # Set path for saving figs
@@ -82,7 +82,8 @@ ggsave('stress_p1.png',
 # Within group differences
 stress_p2 <- model_preds$fits_all %>%
   mutate(condition = if_else(condition_sum == 1, "Present", "Preterit"),
-         condition = fct_relevel(condition, "Present")) %>%
+         condition = fct_relevel(condition, "Present"),
+         group = fct_relevel(group, "SS", "AE", "AM", "IE", "IM"))%>%
   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
                 fill = condition, color = condition)) +
   facet_wrap(group ~ .) +
@@ -103,7 +104,8 @@ stress_p2 <- model_preds$fits_all %>%
 # Comparisons by condition
 stress_p3 <- model_preds$fits_all %>%
   mutate(condition = if_else(condition_sum == 1, "Present", "Preterit"),
-         condition = fct_relevel(condition, "Present")) %>%
+         condition = fct_relevel(condition, "Present"),
+         group = fct_relevel(group, "SS", "AE", "AM", "IE", "IM")) %>%
   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
                 fill = group, color = group)) +
   facet_grid(. ~ condition) +
@@ -118,11 +120,15 @@ stress_p3 <- model_preds$fits_all %>%
   scale_color_brewer(palette = "Set1", name = "Group") +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
-  theme_big + legend_adj_2
+  theme_big + legend_adj_2 + theme(legend.position = c(0.1, 0.8),
+                                   legend.title=element_text(size=11),
+                                   legend.text=element_text(size=9),
+                                   text = element_text(size=14))
+
 
 ggsave(paste0(figs_path, "/stress_p2.png"), stress_p2, width = 150,
        height = 120, units = "mm", dpi = 600)
-ggsave(paste0(figs_path, "/stress_p3.png"), stress_p3, width = 150,
+ggsave(paste0(figs_path, "/stress_p3.png"), stress_p3, width = 200,
        height = 120, units = "mm", dpi = 600)
 
 # -----------------------------------------------------------------------------

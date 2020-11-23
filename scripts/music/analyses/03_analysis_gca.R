@@ -32,13 +32,13 @@ source(here::here("scripts", "02_load_data.R"))
 gca_mods_path  <- here("mods", "music", "gca")
  
 # Load models as lists
-# load(paste0(gca_mods_path, "/ind_mods.Rdata"))
+load(paste0(gca_mods_path, "/ind_mods.Rdata"))
 load(paste0(gca_mods_path, "/pitch_mods.Rdata"))
 # load(paste0(gca_mods_path, "/nested_model_comparisons.Rdata"))
 # load(paste0(gca_mods_path, "/model_preds.Rdata"))
 # 
 # # Store objects in global env
-# list2env(ind_mods, globalenv())
+list2env(ind_mods, globalenv())
 list2env(pitch_mods, globalenv())
 # list2env(nested_model_comparisons, globalenv())
 # list2env(model_preds, globalenv())
@@ -254,22 +254,25 @@ aes_rhythm_anova <-
 # gca_mod_aes_rhythm_2   36 47561 47816 -23745    47489 2.4205  1   0.119755   
 # gca_mod_aes_rhythm_3   37 47563 47825 -23745    47489 0.0412  1   0.839115   
 
+summary(gca_mod_aes_cond_2)
+
+
 
 # add pitch synchronization effect to intercept, linear slope, quadratic, and cubic time terms
-gca_mod_aes_pitch_0 <- update(gca_mod_aes_rhythm_0,    . ~ . + pitch_dev) # singular
+gca_mod_aes_pitch_0 <- update(gca_mod_aes_cond_2,    . ~ . + pitch_dev) # singular
 gca_mod_aes_pitch_1 <- update(gca_mod_aes_pitch_0, . ~ . + ot1:pitch_dev) # singular
 gca_mod_aes_pitch_2 <- update(gca_mod_aes_pitch_1, . ~ . + ot2:pitch_dev) # singular
 gca_mod_aes_pitch_3 <- update(gca_mod_aes_pitch_2, . ~ . + ot3:pitch_dev) # singular
 
 aes_pitch_anova <-
-  anova(gca_mod_aes_rhythm_0, gca_mod_aes_pitch_0, gca_mod_aes_pitch_1,
+  anova(gca_mod_aes_cond_2, gca_mod_aes_pitch_0, gca_mod_aes_pitch_1,
         gca_mod_aes_pitch_2, gca_mod_aes_pitch_3)
-#                        Df   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)
-# gca_mod_aes_rhythm_0   34 47560 47800 -23746    47492                     
-# gca_mod_aes_pitch_0    35 47562 47809 -23746    47492 0.0000  1     0.9979
-# gca_mod_aes_pitch_1    36 47563 47817 -23745    47491 1.3002  1     0.2542
-# gca_mod_aes_pitch_2    37 47564 47826 -23745    47490 0.1668  1     0.6830
-# gca_mod_aes_pitch_3    38 47566 47835 -23745    47490 0.1129  1     0.7369
+#                        Df   AIC   BIC logLik deviance  Chisq Df Pr(>Chisq)
+# gca_mod_aes_cond_2     33 47565 47799 -23750    47499                     
+# gca_mod_aes_pitch_0   34 47567 47808 -23750    47499 0.0547  1     0.8150
+# gca_mod_aes_pitch_1   35 47568 47816 -23749    47498 1.3055  1     0.2532
+# gca_mod_aes_pitch_2   36 47570 47824 -23749    47498 0.1704  1     0.6798
+# gca_mod_aes_pitch_3   37 47572 47833 -23749    47498 0.1132  1     0.7365
 
 
 
@@ -321,20 +324,20 @@ ies_rhythm_anova <-
 # gca_mod_ies_rhythm_3   34 49428 49669  -24680    49360 0.0653  1   0.798256
 
 # add pitch anticipation effect to intercept, linear slope, quadratic, and cubic time terms
-gca_mod_ies_pitch_0 <- update(gca_mod_ies_rhythm_2,    . ~ . + pitch_dev) # singular
+gca_mod_ies_pitch_0 <- update(gca_mod_ies_base,    . ~ . + pitch_dev) # singular
 gca_mod_ies_pitch_1 <- update(gca_mod_ies_pitch_0, . ~ . + ot1:pitch_dev) # singular
 gca_mod_ies_pitch_2 <- update(gca_mod_ies_pitch_1, . ~ . + ot2:pitch_dev) # singular
 gca_mod_ies_pitch_3 <- update(gca_mod_ies_pitch_2, . ~ . + ot3:pitch_dev) # singular
 
 ies_pitch_anova <-
-  anova(gca_mod_ies_rhythm_2, gca_mod_ies_pitch_0, gca_mod_ies_pitch_1,
+  anova(gca_mod_ies_base, gca_mod_ies_pitch_0, gca_mod_ies_pitch_1,
         gca_mod_ies_pitch_2, gca_mod_ies_pitch_3)
 #                        Df   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)
-# gca_mod_ies_rhythm_2   33 49426 49660  -24680    49360                     
-# gca_mod_ies_pitch_0    34 49428 49669  -24680    49360 0.0745  1     0.7848
-# gca_mod_ies_pitch_1    35 49428 49676  -24679    49358 1.3457  1     0.2460
-# gca_mod_ies_pitch_2    36 49430 49685  -24679    49358 0.0009  1     0.9761
-# gca_mod_ies_pitch_3    37 49432 49694  -24679    49358 0.1428  1     0.7055
+# gca_mod_ies_base      30 49428 49641 -24684    49368                     
+# gca_mod_ies_pitch_0   31 49430 49650 -24684    49368 0.2430  1     0.6220
+# gca_mod_ies_pitch_1   32 49431 49657 -24683    49367 1.4541  1     0.2279
+# gca_mod_ies_pitch_2   33 49432 49666 -24683    49366 0.5828  1     0.4452
+# gca_mod_ies_pitch_3   34 49434 49675 -24683    49366 0.1720  1     0.6784
 
 
 
@@ -434,42 +437,40 @@ ims_cond_anova <-
 # gca_mod_ims_cond_3   34 48563 48803 -24247    48495 1.6916  1     0.1934
 
 
-############## RUN THE NEXT IMS MODELS AGAIN WITH _base AS BASE ########################
-
 
 # add rhythm synchronization effect to intercept, linear slope, quadratic, and cubic time terms
-gca_mod_ims_rhythm_0 <- update(gca_mod_ims_wm_2,   . ~ . + rhythm_dev) # singular
+gca_mod_ims_rhythm_0 <- update(gca_mod_ims_base,   . ~ . + rhythm_dev) # singular
 gca_mod_ims_rhythm_1 <- update(gca_mod_ims_rhythm_0, . ~ . + ot1:rhythm_dev) # singular
 gca_mod_ims_rhythm_2 <- update(gca_mod_ims_rhythm_1, . ~ . + ot2:rhythm_dev) # singular
 gca_mod_ims_rhythm_3 <- update(gca_mod_ims_rhythm_2, . ~ . + ot3:rhythm_dev) # singular
 
 ims_rhythm_anova <-
-  anova(gca_mod_ims_wm_2, gca_mod_ims_rhythm_0, gca_mod_ims_rhythm_1,
+  anova(gca_mod_ims_base, gca_mod_ims_rhythm_0, gca_mod_ims_rhythm_1,
         gca_mod_ims_rhythm_2, gca_mod_ims_rhythm_3)
 #                        Df   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)
-# gca_mod_ims_wm_2       33 48555 48788  -24244    48489                       
-# gca_mod_ims_rhythm_0   34 48557 48797  -24244    48489 0.2341  1    0.62847  
-# gca_mod_ims_rhythm_1   35 48554 48802  -24242    48484 4.4538  1    0.03482 *
-# gca_mod_ims_rhythm_2   36 48555 48810  -24242    48483 1.3104  1    0.25233  
-# gca_mod_ims_rhythm_3   37 48557 48818  -24241    48483 0.3800  1    0.53761  
+# gca_mod_ims_base       30 48559 48771 -24250    48499                       
+# gca_mod_ims_rhythm_0   31 48561 48780 -24250    48499 0.2164  1    0.64177  
+# gca_mod_ims_rhythm_1   32 48559 48786 -24248    48495 3.7923  1    0.05149 .
+# gca_mod_ims_rhythm_2   33 48560 48794 -24247    48494 0.9745  1    0.32357  
+# gca_mod_ims_rhythm_3   34 48562 48802 -24247    48494 0.3800  1    0.53762  
 
 
 
 # add pitch anticipation effect to intercept, linear slope, quadratic, and cubic time terms
-gca_mod_ims_pitch_0 <- update(gca_mod_ims_rhythm_1,    . ~ . + pitch_dev) # singular
+gca_mod_ims_pitch_0 <- update(gca_mod_ims_base,    . ~ . + pitch_dev) # singular
 gca_mod_ims_pitch_1 <- update(gca_mod_ims_pitch_0, . ~ . + ot1:pitch_dev) # singular
 gca_mod_ims_pitch_2 <- update(gca_mod_ims_pitch_1, . ~ . + ot2:pitch_dev) # singular
 gca_mod_ims_pitch_3 <- update(gca_mod_ims_pitch_2, . ~ . + ot3:pitch_dev) # singular
 
 ims_pitch_anova <-
-  anova(gca_mod_ims_rhythm_1, gca_mod_ims_pitch_0, gca_mod_ims_pitch_1,
+  anova(gca_mod_ims_base, gca_mod_ims_pitch_0, gca_mod_ims_pitch_1,
         gca_mod_ims_pitch_2, gca_mod_ims_pitch_3)
-#                    Df   AIC   BIC  logLik deviance  Chisq Chi Df Pr(>Chisq)
-# gca_mod_ims_rhythm_1   35 48554 48802 -24242    48484                        
-# gca_mod_ims_pitch_0    36 48554 48809 -24241    48482 2.0275  1   0.154471   
-# gca_mod_ims_pitch_1    37 48556 48818 -24241    48482 0.0605  1   0.805631   
-# gca_mod_ims_pitch_2    38 48550 48819 -24237    48474 8.3610  1   0.003834 **
-# gca_mod_ims_pitch_3    39 48550 48825 -24236    48472 2.1906  1   0.138853   
+#                       Df   AIC   BIC logLik deviance  Chisq Df Pr(>Chisq)
+# gca_mod_ims_base      30 48559 48771 -24250    48499                       
+# gca_mod_ims_pitch_0   31 48560 48779 -24249    48498 1.1422  1    0.28518  
+# gca_mod_ims_pitch_1   32 48561 48787 -24248    48497 1.6859  1    0.19414  
+# gca_mod_ims_pitch_2   33 48556 48790 -24245    48490 6.3301  1    0.01187 *
+# gca_mod_ims_pitch_3   34 48556 48796 -24244    48488 2.1617  1    0.14149   
 
 
 # -----------------------------------------------------------------------------
@@ -713,25 +714,24 @@ target_offset_preds_rhythm <- filter(fits_all_rhythm, time_zero == 4) %>%
 # Save models -----------------------------------------------------------------
 
 if(F) {
-# # Build model names programatically
-# mod_type <- "gca_mod_"
-# mod_spec <- c("_base", "_cond_0", "_cond_1", "_cond_2", "_cond_3", 
-#               "_wm_0", "_wm_1", "_wm_2", "_wm_3",
-#               "_rhythm_0", "_rhythm_1", "_rhythm_2", "_rhythm_3",
-#               "_pitch_0", "_pitch_1", "_pitch_2", "_pitch_3")
-# 
-# # Store ind models in list
-# ind_mods <- mget(c(#paste0(mod_type, "mon", mod_spec),
-#                    paste0(mod_type, "aes", mod_spec),
-#                    paste0(mod_type, "ies", mod_spec),
-#                    paste0(mod_type, "ams", mod_spec),
-#                    paste0(mod_type, "ims", mod_spec)
-#                    ))
-# 
-# save(ind_mods,
-#      file = here("mods", "music", "gca",
-#                  "ind_mods.Rdata"))
-# 
+# Build model names programatically
+mod_type <- "gca_mod_"
+mod_spec <- c("_base", "_cond_0", "_cond_1", "_cond_2", "_cond_3",
+              "_rhythm_0", "_rhythm_1", "_rhythm_2", "_rhythm_3",
+              "_pitch_0", "_pitch_1", "_pitch_2", "_pitch_3")
+
+# Store ind models in list
+ind_mods <- mget(c(paste0(mod_type, "mon", mod_spec),
+                   paste0(mod_type, "aes", mod_spec),
+                   paste0(mod_type, "ies", mod_spec),
+                   paste0(mod_type, "ams", mod_spec),
+                   paste0(mod_type, "ims", mod_spec)
+                   ))
+
+save(ind_mods,
+     file = here("mods", "music", "gca",
+                 "ind_mods.Rdata"))
+
 # # Store full (ot1, ot2, ot3, group, single effects) models in list
 # full_mods <- mget(c(
 #   "gca_full_mod_base",

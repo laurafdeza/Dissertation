@@ -78,7 +78,16 @@ list2env(model_preds, globalenv())
 # Number of bins:     1  2  3  4 5 6 7 8 9 10 11 12 13 14 15 16 17
 # Actual bin number: -4 -3 -2 -1 0 1 2 3 4  5  6  7  8  9 10 11 12
 
-stress_gc_subset <- stress50 %>%
+wm <- read_csv("./data/clean/ospan_set_z_scores.csv")
+
+stress_50 <- merge(x = stress50, y = wm, by = "participant", all.x=TRUE)
+
+stress_50 <- na.omit(stress_50)
+
+
+
+stress_gc_subset <- stress_50 %>%
+  select(., -WM_set) %>%
   filter(., time_zero >= -4 & time_zero <= 12) %>%
   mutate(., group = fct_relevel(group, "mon", "aes", "ams", "ies", "ims"),
             condition_sum = if_else(cond == "1", 1, -1)) %>%       # 1 = present, 2 = past
@@ -113,17 +122,32 @@ if(F){
     update(mod_ot2, . ~ . -(1 + condition_sum + ot1 + ot2 | participant) +
              ot3 + (1 + condition_sum + ot1 + ot2 + ot3 | participant))
   
-  mod_tar <- update(mod_ot3, . ~ . + (1 | target))
-  
-  anova(mod_ot1, mod_ot2, mod_ot3, mod_tar)
+  anova(mod_ot1, mod_ot2, mod_ot3)
   
 # We retain the most complex model: mod_ot4
   #   npar (Df?)    AIC    BIC  logLik deviance   Chisq Df Pr(>Chisq)    
   # mod_ot1    9 240042 240120 -120012   240024                          
   # mod_ot2   14 239367 239489 -119670   239339 684.486  5  < 2.2e-16 ***
   # mod_ot3   20 239311 239484 -119635   239271  68.534  6  8.167e-13 ***
-  # mod_tar   21 239043 239225 -119501   239001 269.485  1  < 2.2e-16 ***
   # Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+  
+  mod_ot0 <- update(mod_ot3, . ~ . + (1 | target))
+  
+  mod_ot1a <- update(mod_ot0, . ~ . -(1 | target) + (1 + ot1 | target))
+  
+  mod_ot2a <- update(mod_ot1a, . ~ . -(1 + ot1 | target) +
+                       + (1 + ot1 + ot2 | target))
+  
+  mod_ot3a <- update(mod_ot2a, . ~ . -(1 + ot1 + ot2 | target) +
+                       + (1 + ot1 + ot2 + ot3 | target))
+  
+  anova(mod_ot3, mod_ot0, mod_ot1a, mod_ot2a, mod_ot3a)
+  #          npar    AIC    BIC  logLik deviance   Chisq Df Pr(>Chisq)    
+  # mod_ot3    20 239311 239484 -119635   239271                          
+  # mod_ot0    21 239043 239225 -119501   239001 269.485  1  < 2.2e-16 ***
+  # mod_ot1a   23 238962 239162 -119458   238916  84.849  2  < 2.2e-16 ***
+  # mod_ot2a   26 238958 239183 -119453   238906  10.359  3    0.01575 *  
+  # mod_ot3a   30 238932 239192 -119436   238872  34.373  4  6.248e-07 ***
   
   
 }
@@ -141,7 +165,7 @@ if(F){
 gca_full_mod_base <-
   lmer(eLog ~ 1 + (ot1 + ot2 + ot3) +         
          (1 + condition_sum + (ot1 + ot2 + ot3) | participant) +
-         (1 | target), 
+         (1 + ot1 + ot2 + ot3 | target), 
        control = lmerControl(optimizer = 'bobyqa',
                              optCtrl = list(maxfun = 2e4)),
        data = stress_gc_subset, REML = F)
@@ -156,54 +180,75 @@ full_group_anova <-
   anova(gca_full_mod_base, gca_full_mod_group_0, gca_full_mod_group_1,
         gca_full_mod_group_2, gca_full_mod_group_3)
 #                        Df    AIC    BIC  logLik deviance   Chisq Df Pr(>Chisq)    
-# gca_full_mod_base      21 239144 239326 -119551   239102                          
-# gca_full_mod_group_0   25 239123 239340 -119537   239073 28.7972  4  8.595e-06 ***
-# gca_full_mod_group_1   29 239120 239371 -119531   239062 11.3691  4    0.02271 *  
-# gca_full_mod_group_2   33 239098 239384 -119516   239032 30.2212  4  4.412e-06 ***
-# gca_full_mod_group_3   37 239096 239417 -119511   239022  9.1464  4    0.05754 .   
+# gca_full_mod_base      30 238877 239137 -119408   238817                          
+# gca_full_mod_group_0   34 238856 239151 -119394   238788 28.8172  4  8.515e-06 ***
+# gca_full_mod_group_1   38 238852 239182 -119388   238776 11.5783  4    0.02078 *  
+# gca_full_mod_group_2   42 238830 239194 -119373   238746 30.0158  4  4.858e-06 ***
+# gca_full_mod_group_3   46 238829 239228 -119368   238737  9.2664  4    0.05478 .   
 
 
 # add stress effect to intercept, linear slope, quadratic, and cubic time terms
 gca_full_mod_stress_0 <- update(gca_full_mod_group_2,   . ~ . + condition_sum) 
 gca_full_mod_stress_1 <- update(gca_full_mod_stress_0, . ~ . + ot1:condition_sum) 
-gca_full_mod_stress_2 <- update(gca_full_mod_stress_1, . ~ . + ot2:condition_sum) 
-gca_full_mod_stress_3 <- update(gca_full_mod_stress_2, . ~ . + ot3:condition_sum) # singular
+gca_full_mod_stress_2 <- update(gca_full_mod_stress_1, . ~ . + ot2:condition_sum) # singular
+gca_full_mod_stress_3 <- update(gca_full_mod_stress_2, . ~ . + ot3:condition_sum)
 
 full_stress_anova <-
   anova(gca_full_mod_group_2, gca_full_mod_stress_0, gca_full_mod_stress_1,
         gca_full_mod_stress_2, gca_full_mod_stress_3)
 #                       npar    AIC    BIC  logLik deviance   Chisq Df Pr(>Chisq)    
-# gca_full_mod_group_2    33 239098 239384 -119516   239032                          
-# gca_full_mod_stress_0   34 239099 239394 -119515   239031  0.5071  1     0.4764    
-# gca_full_mod_stress_1   35 239101 239404 -119515   239031  0.0489  1     0.8249    
-# gca_full_mod_stress_2   36 239087 239399 -119508   239015 15.9134  1  6.631e-05 ***
-# gca_full_mod_stress_3   37 239086 239407 -119506   239012  2.5440  1     0.1107 
+# gca_full_mod_group_2    42 238830 239194 -119373   238746                       
+# gca_full_mod_stress_0   43 238832 239205 -119373   238746 0.2368  1    0.62650  
+# gca_full_mod_stress_1   44 238832 239214 -119372   238744 1.6426  1    0.19997  
+# gca_full_mod_stress_2   45 238830 239220 -119370   238740 4.7536  1    0.02924 *
+# gca_full_mod_stress_3   46 238830 239229 -119369   238738 1.5118  1    0.21887  
 
-# 
-# mod_spec <- c()
-# 
-# # Store ind models in list
-# full_mods_group <- mget(c(paste0(mod_type, mod_spec)))
-# 
-# save(full_mods_group,
-#      file = here("mods", "stress", "gca",
-#                  "full_mods_group.Rdata"))
+gca_full_mod_wm_0 <- update(gca_full_mod_stress_2, . ~ . + ospan) 
+gca_full_mod_wm_1 <- update(gca_full_mod_wm_0, . ~ . + ot1:ospan) 
+gca_full_mod_wm_2 <- update(gca_full_mod_wm_1, . ~ . + ot2:ospan) 
+gca_full_mod_wm_3 <- update(gca_full_mod_wm_2, . ~ . + ot3:ospan)
+
+full_wm_anova <-
+  anova(gca_full_mod_stress_2, gca_full_mod_wm_0, gca_full_mod_wm_1,
+        gca_full_mod_wm_2, gca_full_mod_wm_3)
+#                       npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)
+# gca_full_mod_stress_2   45 238830 239220 -119370   238740                     
+# gca_full_mod_wm_0       46 238830 239229 -119369   238738 1.5110  1     0.2190
+# gca_full_mod_wm_1       47 238832 239240 -119369   238738 0.0182  1     0.8925
+# gca_full_mod_wm_2       48 238833 239249 -119368   238737 1.3959  1     0.2374
+# gca_full_mod_wm_3       49 238834 239259 -119368   238736 0.1762  1     0.6747
 
 
 # add 2-way int to intercept, linear slope, quadratic, and cubic time terms
-gca_full_mod_int_0 <- update(gca_full_mod_stress_2, . ~ . + group:condition_sum) # singular
+gca_full_mod_int_0 <- update(gca_full_mod_stress_2, . ~ . + group:condition_sum)  
 gca_full_mod_int_1 <- update(gca_full_mod_int_0, . ~ . + ot1:group:condition_sum) # singular
-gca_full_mod_int_2 <- update(gca_full_mod_int_1, . ~ . + ot2:group:condition_sum) # singular
+gca_full_mod_int_2 <- update(gca_full_mod_int_1, . ~ . + ot2:group:condition_sum) 
 gca_full_mod_int_3 <- update(gca_full_mod_int_2, . ~ . + ot3:group:condition_sum) #singular
 
 full_int_anova <- anova(gca_full_mod_stress_2, gca_full_mod_int_0, gca_full_mod_int_1, 
                          gca_full_mod_int_2, gca_full_mod_int_3)
 #                       npar    AIC    BIC  logLik deviance   Chisq Df Pr(>Chisq)   
-# gca_full_mod_stress_2   36 239087 239399 -119508   239015                         
-# gca_full_mod_int_0      40 239093 239440 -119506   239013  2.2608  4   0.687906   
-# gca_full_mod_int_1      44 239095 239476 -119503   239007  6.2156  4   0.183612   
-# gca_full_mod_int_2      48 239087 239503 -119496   238991 15.2406  4   0.004227 **
-# gca_full_mod_int_3      53 239093 239553 -119494   238987  3.9814  5   0.552091 
+# gca_full_mod_stress_2   45 238830 239220 -119370   238740                         
+# gca_full_mod_int_0      49 238834 239259 -119368   238736  3.7668  4   0.438483   
+# gca_full_mod_int_1      53 238837 239297 -119366   238731  4.6380  4   0.326497   
+# gca_full_mod_int_2      57 238828 239322 -119357   238714 16.9387  4   0.001987 **
+# gca_full_mod_int_3      62 238837 239374 -119356   238713  1.4529  5   0.918437 
+
+
+
+
+# when WM included for interaction, not converging, bc of that and lack of main interaction, WM removed
+gca_full_mod_int_a <- update(gca_full_mod_stress_2, . ~ . + group:condition_sum:ospan)      
+gca_full_mod_int_b <- update(gca_full_mod_int_a, . ~ . + ot1:group:condition_sum:ospan) # singular
+gca_full_mod_int_c <- update(gca_full_mod_int_b, . ~ . + ot2:group:condition_sum:ospan, 
+                             control = lmerControl(optimizer = 'bobyqa', optCtrl = list(maxfun = 4e5))) 
+gca_full_mod_int_d <- update(gca_full_mod_int_c, . ~ . + ot3:group:condition_sum:ospan) #singular
+
+full_int_anova <- anova(gca_full_mod_stress_2, gca_full_mod_int_a, gca_full_mod_int_b, 
+                        gca_full_mod_int_c, gca_full_mod_int_d)
+
+
+
 
 
 # ---

@@ -82,6 +82,9 @@ music50 <- merge(x = stress50, y = auditory, by = "participant", all.x=TRUE)
 
 music50 <- na.omit(music50)
 
+# _dev = condval
+# _sd = condsd
+
 
 stress_gc_subset <- music50 %>%
   filter(., time_zero >= -4 & time_zero <= 12) %>%
@@ -115,17 +118,32 @@ if(F){
     update(mod_ot2, . ~ . -(1 + stress_sum + ot1 + ot2 | participant) +
              ot3 + (1 + stress_sum + ot1 + ot2 + ot3 | participant))
   
-  mod_ot4 <- update(mod_ot3, . ~ . + (1 | target))
-  
-  anova(mod_ot1, mod_ot2, mod_ot3, mod_ot4)
-  
-# We retain the most complex model: mod_ot4
+  anova(mod_ot1, mod_ot2, mod_ot3)
+  # We retain the most complex model: mod_ot4
   ## All participants
   #           Df    AIC    BIC  logLik deviance   Chisq Df Pr(>Chisq)    
- #  mod_ot1    9 238591 238669 -119286   238573                          
+  # mod_ot1    9 238591 238669 -119286   238573                          
   # mod_ot2   14 237918 238039 -118945   237890 682.712  5  < 2.2e-16 ***
-  # mod_ot3   20 237862 238035 -118911   237822  68.444  6  8.524e-13 ***
-  # mod_ot4   21 237593 237775 -118775   237551 271.031  1  < 2.2e-16 ***
+  # mod_ot3   20 237862 238035 -118911   237822  68.444  6  8.524e-13 *** 
+  
+  mod_ot0 <- update(mod_ot3, . ~ . + (1 | target))
+  
+  mod_ot1a <- update(mod_ot0, . ~ . -(1 | target) + (1 + ot1 | target))
+  
+  mod_ot2a <- update(mod_ot1a, . ~ . -(1 + ot1 | target) +
+                         + (1 + ot1 + ot2 | target))
+  
+  mod_ot3a <- update(mod_ot2a, . ~ . -(1 + ot1 + ot2 | target) +
+                         + (1 + ot1 + ot2 + ot3 | target))
+  
+  anova(mod_ot3, mod_ot0, mod_ot1a, mod_ot2a, mod_ot3a)
+  #          npar    AIC    BIC  logLik deviance   Chisq Df Pr(>Chisq)    
+  # mod_ot3    20 237862 238035 -118911   237822                          
+  # mod_ot0    21 237593 237775 -118775   237551 271.031  1  < 2.2e-16 ***
+  # mod_ot1a   23 237516 237715 -118735   237470  80.776  2  < 2.2e-16 ***
+  # mod_ot2a   26 237513 237738 -118730   237461   9.030  3    0.02889 *  
+  # mod_ot3a   30 237486 237746 -118713   237426  34.627  4  5.541e-07 ***
+
   
   
 }
@@ -669,14 +687,14 @@ new_dat_all <- stress_gc_subset %>%
   distinct
 
 # Get model predictions and SE
-fits_all_pitch <- predictSE(gca_full_mod_pitch_int_2, new_dat_all) %>%        #change depending on significance
+fits_all_pitch <- predictSE(gca_full_mod_pitch_int_2, new_dat_all) %>%        
   as_tibble %>%
   bind_cols(new_dat_all) %>%
   rename(se = se.fit) %>%
   mutate(ymin = fit - se, ymax = fit + se,
          group = fct_recode(group, SS = "mon", AE = "aes", IE = "ies", AM = "ams", IM = "ims"))
 
-fits_all_rhythm <- predictSE(gca_full_mod_rhythm_int_3, new_dat_all) %>%        #change depending on significance
+fits_all_rhythm <- predictSE(gca_full_mod_rhythm_int_3, new_dat_all) %>%        
   as_tibble %>%
   bind_cols(new_dat_all) %>%
   rename(se = se.fit) %>%

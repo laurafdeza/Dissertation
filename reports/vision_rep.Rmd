@@ -1,4 +1,7 @@
 ---
+title             : "The title"
+shorttitle        : "Title"
+
 author: 
   - name          : "Laura Fernandez Arroyo"
     affiliation   : "1"
@@ -17,7 +20,6 @@ affiliation:
 keywords          : ""
 wordcount         : ""
 
-bibliography      : ["r-references.bib"]
 
 floatsintext      : yes
 figurelist        : yes
@@ -92,7 +94,7 @@ The tables can also be copy and pasted where appropriate.
 
 # Plots
 
-```{r, 'plot-ind-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of visuospatial WM for each group and lexical stress pattern during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+```{r, 'plot-corsi-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of visuospatial WM for each group and lexical stress pattern during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
 knitr::include_graphics(
   here("figs", "vision", "gca", "corsi_gca.png")
 )
@@ -100,7 +102,7 @@ knitr::include_graphics(
 
 
 
-```{r, 'plot-group-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of visuospatial anticipatory abilities for each group and lexical stress pattern during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+```{r, 'plot-car-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of visuospatial anticipatory abilities for each group and lexical stress pattern during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
 knitr::include_graphics(
   here("figs", "vision", "gca", "car_gca.png")
 )
@@ -130,7 +132,7 @@ border_2 <- fp_border(width = 0.75)
 
 model_preds$target_offset_preds %>% 
   mutate(stress = if_else(stress == 1, "paroxytone", "oxytone")) %>% 
-  arrange(group, desc(stress)) %>% 
+  arrange(group, desc(stress), corsi) %>% 
   mutate(group = blank_same_as_last(as.character(group))) %>% 
   select(Group = group, `Lexical stress` = stress, `Visual pred.` = motion,
          `Visuospatial WM` = corsi, Probability = prob, LB = prob_lb, 
@@ -213,7 +215,7 @@ Appendix 2: Growth curve model random effects
 
 ## Pairwise comparisons
 
-```{r, 'learner-comparison'}
+```{r, 'learner-comparison-en'}
 # AES vs. IES
 
 # make table for printing
@@ -234,7 +236,7 @@ report_pairwise_en <- function(row_name) report_fixef_row(pairwise_comp_en, row_
 ```
 
 
-```{r, pairwise-comp-table, results='asis', eval=T}
+```{r, pairwise-comp-table-en, results='asis', eval=T}
 
 # Make table for appendix
 pretty_pairwise_table_en <- full_mods$gca_full_mod_int_1_aes %>% 
@@ -260,7 +262,7 @@ pretty_pairwise_table_en %>%
 Appendix 3: Pairwise comparisons between EN learner groups. 
 
 
-```{r, 'learner-comparison'}
+```{r, 'learner-comparison-ma'}
 ########### AMS and IMS
 
 # make table for printing
@@ -281,7 +283,7 @@ report_pairwise_ma <- function(row_name) report_fixef_row(pairwise_comp_ma, row_
 ```
 
 
-```{r, pairwise-comp-table, results='asis', eval=T}
+```{r, pairwise-comp-table-ma, results='asis', eval=T}
 
 # Make table for appendix
 pretty_pairwise_table_ma <- full_mods$gca_full_mod_int_1_ams %>% 
@@ -307,7 +309,7 @@ pretty_pairwise_table_ma %>%
 Appendix 4: Pairwise comparisons between MA learner groups. 
 
 
-```{r, 'learner-comparison'}
+```{r, 'learner-comparison-adv'}
 ########### AES and AMS
 
 # make table for printing
@@ -328,7 +330,7 @@ report_pairwise_adv <- function(row_name) report_fixef_row(pairwise_comp_adv, ro
 ```
 
 
-```{r, pairwise-comp-table, results='asis', eval=T}
+```{r, pairwise-comp-table-adv, results='asis', eval=T}
 # Make table for appendix
 pretty_pairwise_table_adv <- full_mods$gca_full_mod_int_1_aes %>% 
   tidy_lme4 %>% 
@@ -353,7 +355,7 @@ pretty_pairwise_table_adv %>%
 Appendix 5: Pairwise comparisons between advanced learner groups. 
 
 
-```{r, 'learner-comparison'}
+```{r, 'learner-comparison-int'}
 ########### IMS and IES
 
 # make table for printing
@@ -374,7 +376,7 @@ report_pairwise_int <- function(row_name) report_fixef_row(pairwise_comp_int, ro
 ```
 
 
-```{r, pairwise-comp-table, results='asis', eval=T}
+```{r, pairwise-comp-table-int, results='asis', eval=T}
 # Make table for appendix
 pretty_pairwise_table_int <- full_mods$gca_full_mod_int_1_ies %>% 
   tidy_lme4 %>% 
@@ -436,9 +438,46 @@ b0_prop <- b0 %>% inv_logit %>% round(2) %>% remove_leading_zero
 ```
 
 
+The full model summary is available in Appendices X (fixed effects) and Y (random effects).
+Pairwise comparisons are available in Appendices Z-J.
+Only the linear term was kept for the mulitple-factor interactions.
+There was a main effect at the intercept (*&gamma;*~00~&nbsp;=&nbsp;`r pretty_fixed_effects[1,3]`, SE =&nbsp;`r pretty_fixed_effects[1,4]`, *t* = `r pretty_fixed_effects[1,5]`, *p* = `r pretty_fixed_effects[1,6]`), which suggests the SS were fixating on the target comparably more to on the distractor or elsewhere in both conditions at target syllable offset.
+There was a main effect of the linear (*&gamma;*~01~&nbsp;=&nbsp;`r pretty_fixed_effects[5,3]`, SE =&nbsp;`r pretty_fixed_effects[5,4]`, *t* = `r pretty_fixed_effects[5,5]`, *p* = `r pretty_fixed_effects[5,6]`) and cubic time terms too (*&gamma;*~21~&nbsp;=&nbsp;`r pretty_fixed_effects[7,3]`, SE =&nbsp;`r pretty_fixed_effects[7,4]`, *t* = `r pretty_fixed_effects[7,5]`, *p* = `r pretty_fixed_effects[7,6]`).
+The effect on the linear term indicate that the slope for the L2 speakers is steeper, meaning they tend to increase their gaze fixations on the target faster than SS once they know what they are going to hear.
+The effect on the cubic term indicates that the curves are more bowed in the L2 groups, and the two curves form an inverse N shape.
+There was also a main effect of each group (AE: *&gamma;*~31~&nbsp;=&nbsp;`r pretty_fixed_effects[8,3]`, SE =&nbsp;`r pretty_fixed_effects[8,4]`, *t* = `r pretty_fixed_effects[8,5]`, *p* = `r pretty_fixed_effects[8,6]`; AM: *&gamma;*~02~&nbsp;=&nbsp;`r pretty_fixed_effects[9,3]`, SE =&nbsp;`r pretty_fixed_effects[9,4]`, *t* = `r pretty_fixed_effects[9,5]`, *p* = `r pretty_fixed_effects[9,6]`; IE: *&gamma;*~12~&nbsp;=&nbsp;`r pretty_fixed_effects[10,3]`, SE =&nbsp;`r pretty_fixed_effects[10,4]`, *t* = `r pretty_fixed_effects[10,5]`, *p* = `r pretty_fixed_effects[10,6]`; IM: *&gamma;*~22~&nbsp;=&nbsp;`r pretty_fixed_effects[11,3]`, SE =&nbsp;`r pretty_fixed_effects[11,4]`, *t* = `r pretty_fixed_effects[11,5]`, *p* = `r pretty_fixed_effects[11,6]`).
+The negative trend of these effects suggest that all L2 groups anticipated less than SS across conditions.
 
-Figure 1 plots the model estimates from the GCA and the full model summary is 
-available in Appendices 1 and 2. 
+The model also estimates some interactions.
+The first one is of stress in the quadratic term (*&gamma;*~33~&nbsp;=&nbsp;`r pretty_fixed_effects[16,3]`, SE =&nbsp;`r pretty_fixed_effects[16,4]`, *t* = `r pretty_fixed_effects[16,5]`, *p* = `r pretty_fixed_effects[16,6]`).
+This estimate points that the number of fixations on the target verb in the preterit conditions was higher than in the present tense.
+The increased number of fixations thus suggests preterit was slightly easier to anticipate.
+There was an effect on the interaction between visuospatial WM and the cubic term (*&gamma;*~25~&nbsp;=&nbsp;`r pretty_fixed_effects[23,3]`, SE =&nbsp;`r pretty_fixed_effects[23,4]`, *t* = `r pretty_fixed_effects[23,5]`, *p* = `r pretty_fixed_effects[23,6]`).
+This estimate indicates the curves in the cubic term were more bowed in the present tense than in the preterit tense.
+There was also an interaction between AE and the linear (*&gamma;*~35~&nbsp;=&nbsp;`r pretty_fixed_effects[24,3]`, SE =&nbsp;`r pretty_fixed_effects[24,4]`, *t* = `r pretty_fixed_effects[24,5]`, *p* = `r pretty_fixed_effects[24,6]`) and quadratic time terms (*&gamma;*~36~&nbsp;=&nbsp;`r pretty_fixed_effects[28,3]`, SE =&nbsp;`r pretty_fixed_effects[28,4]`, *t* = `r pretty_fixed_effects[28,5]`, *p* = `r pretty_fixed_effects[28,6]`).
+The linear interaction suggests the fit slope was steeper for AE, as they tend to increase their gaze on the target faster than the other groups.
+The quadratic interaction means the curve in AE is more closed than the one for SS.
+Therefore, AE appear to be anticipating later than SS. 
+There is also an interaction with the quadratic term in the other L2 groups (AM: *&gamma;*~00~&nbsp;=&nbsp;`r pretty_fixed_effects[29,3]`, SE =&nbsp;`r pretty_fixed_effects[29,4]`, *t* = `r pretty_fixed_effects[29,5]`, *p* = `r pretty_fixed_effects[29,6]`; IE: *&gamma;*~10~&nbsp;=&nbsp;`r pretty_fixed_effects[30,3]`, SE =&nbsp;`r pretty_fixed_effects[30,4]`, *t* = `r pretty_fixed_effects[30,5]`, *p* = `r pretty_fixed_effects[30,6]`; IM: *&gamma;*~20~&nbsp;=&nbsp;`r pretty_fixed_effects[31,3]`, SE =&nbsp;`r pretty_fixed_effects[31,4]`, *t* = `r pretty_fixed_effects[31,5]`, *p* = `r pretty_fixed_effects[31,6]`).
+As in the interaction with AE, these effects reflect a more bowed curved for all L2 groups, who start anticipating later than SS.
+Lastly, there were two multiple interactions.
+There first one is between stress x corsi x quadratic term (*&gamma;*~02~&nbsp;=&nbsp;`r pretty_fixed_effects[37,3]`, SE =&nbsp;`r pretty_fixed_effects[37,4]`, *t* = `r pretty_fixed_effects[37,5]`, *p* = `r pretty_fixed_effects[37,6]`).
+This interaction suggests that visuospatial WM influenced differently the ability to anticipate depending on the tense condition.
+Specifically, variability in visuospatial WM capacity determined more strongly ability to anticipate the preterit, such that individuals with higher WM started to anticipate earlier.
+In the present tense, in contrast, visuospatial WM did not exert such a great impact.
+Figure X represents visually this difference.
+The second multiple interaction is between visuospatial anticipation x visuospatial WM x cubic time term (*&gamma;*~03~&nbsp;=&nbsp;`r pretty_fixed_effects[41,3]`, SE =&nbsp;`r pretty_fixed_effects[41,4]`, *t* = `r pretty_fixed_effects[41,5]`, *p* = `r pretty_fixed_effects[41,6]`).
+This interaction suggests that individuals with higher visuospatial WM were those who also tended to wait longer to signal the car in the visuospatial anticipation task would appear, and these individuals tended to anticipate better.
+
+Pairwise comparisons for proficiency and L1 provided more insights.
+_English speakers_ 
+For Mandarin speakers, those at the intermediate level anticipated less than those at the advanced level (*&gamma;*~08~&nbsp;=&nbsp;`r pretty_pairwise_table_ma[1,3]`, SE =&nbsp;`r pretty_pairwise_table_ma[1,4]`, *t* = `r pretty_pairwise_table_ma[1,5]`, *p* = `r pretty_pairwise_table_ma[1,6]`).
+_In addition, _
+Across L1s, the slope for AE was steeper than the slope of AM (*&gamma;*~18~&nbsp;=&nbsp;`r pretty_pairwise_table_adv[2,3]`, SE =&nbsp;`r pretty_pairwise_table_adv[2,4]`, *t* = `r pretty_pairwise_table_adv[2,5]`, *p* = `r pretty_pairwise_table_adv[2,6]`).
+
+
+
+Figure 1 plots the model estimates from the GCA and 
 We report the results for the M group and then provide comparisons with and 
 between the learner groups. 
 The model intercept estimates the log odds of M fixating on the target, 

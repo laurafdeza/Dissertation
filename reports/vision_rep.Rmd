@@ -470,10 +470,22 @@ The second multiple interaction is between visuospatial anticipation x visuospat
 This interaction suggests that individuals with higher visuospatial WM were those who also tended to wait longer to signal the car in the visuospatial anticipation task would appear, and these individuals tended to anticipate better.
 
 Pairwise comparisons for proficiency and L1 provided more insights.
-_English speakers_ 
+Within the English speakers' groups, there was an interaction effect between stress x visuospatial anticipation x visuospatial WM in the linear time term (*&gamma;*~19~&nbsp;=&nbsp;`r pretty_pairwise_table_ma[5,3]`, SE =&nbsp;`r pretty_pairwise_table_ma[5,4]`, *t* = `r pretty_pairwise_table_ma[5,5]`, *p* = `r pretty_pairwise_table_ma[5,6]`).
+This interaction indicates that the slope for IE in the present tense was steeper, while for AE was steeper in the preterit tense.
+Moreover, the higher the visuospatial WM and the better the visuospatial anticipation score, the faster participants focused on the predicted target in the preterit tense.
 For Mandarin speakers, those at the intermediate level anticipated less than those at the advanced level (*&gamma;*~08~&nbsp;=&nbsp;`r pretty_pairwise_table_ma[1,3]`, SE =&nbsp;`r pretty_pairwise_table_ma[1,4]`, *t* = `r pretty_pairwise_table_ma[1,5]`, *p* = `r pretty_pairwise_table_ma[1,6]`).
-_In addition, _
+In addition, Mandarin speakers with better visuospatial prediction and WM scores increased fixations on the target faster in the preterit tense.
+This effect is particularly clear for AM, although IM also shows a trend, such that anticipation performance was significantly faster in the advanced group when compared to the intermediate one.
 Across L1s, the slope for AE was steeper than the slope of AM (*&gamma;*~18~&nbsp;=&nbsp;`r pretty_pairwise_table_adv[2,3]`, SE =&nbsp;`r pretty_pairwise_table_adv[2,4]`, *t* = `r pretty_pairwise_table_adv[2,5]`, *p* = `r pretty_pairwise_table_adv[2,6]`).
+This effect indicates AM increased their fixations on the target slower than AE once they started predicting.
+Also in the linear time term, there was an interaction between stress x visuospatial anticipation abilities x visuospatial WM (*&gamma;*~19~&nbsp;=&nbsp;`r pretty_pairwise_table_adv[5,3]`, SE =&nbsp;`r pretty_pairwise_table_adv[5,4]`, *t* = `r pretty_pairwise_table_adv[5,5]`, *p* = `r pretty_pairwise_table_adv[5,6]`).
+This result stems from participants in both groups diverting their gaze more rapidly to the target in the preterit tense, especially AM, when their visuospatial WM score was higher and they anticipated the reappearance of the car closer to the specific ms but tended to wait longer.
+Estimates for all participants in each group are the same in the present tense regardless of their visuospatial abilities.
+At intermediate proficiency, there was an effect at the intercept (*&gamma;*~08~&nbsp;=&nbsp;`r pretty_pairwise_table_int[2,3]`, SE =&nbsp;`r pretty_pairwise_table_int[2,4]`, *t* = `r pretty_pairwise_table_int[2,5]`, *p* = `r pretty_pairwise_table_int[2,6]`), such that IM anticipated slower than IE.
+Finally, there was an effect of stress x visuospatial anticipation abilities x visuospatial WM in the linear term (*&gamma;*~19~&nbsp;=&nbsp;`r pretty_pairwise_table_adv[5,3]`, SE =&nbsp;`r pretty_pairwise_table_adv[5,4]`, *t* = `r pretty_pairwise_table_adv[5,5]`, *p* = `r pretty_pairwise_table_adv[5,6]`).
+Participants in both groups with higher visuospatial WM and who were closer to anticipating the reappearance of the car but tended to wait longer increased fixations on the target more quickly in the preterit tense, although in the Mandarin group this pattern is not as stable and still predict more slowly.
+In the present tense there was no variability depending on visuospatial abilities.
+
 
 
 

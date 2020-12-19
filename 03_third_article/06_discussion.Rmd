@@ -29,15 +29,15 @@ Again, this hypothesis is supported by the lack of a clear direction in the asso
 
 The reasoning that speakers were transferring domain-general mechanisms to domain-specific tasks but not skills across specific domains support domain-specific learning models but does not support domain-general learning mechanisms.
 In domain-specific learning models, brain domains are independent and unrelated to each other.
-Each domain can develop skills that become increasingly specific, reducing the possibility that transfer takes place [@ericsson1994; @gobet2015].
+Each domain can develop skills that become increasingly specific, reducing the possibility that transfer takes place [@ericsson1994expert; @gobet2015understanding].
 The lack of an effect of visuospatial anticipation skills along with the lack of a pattern in the relationship when visuospatial WM is included between anticipation skills further demonstrates that the effect obeys an association simply through the general mechanisms, but not direct associations between specific domains.
 
-In domain-general models, transfer takes place because the domain-specific domains depend on common features [@thorndike1901] or because they share perceptual and conceptual information [@singley1989].
+In domain-general models, transfer takes place because the domain-specific domains depend on common features [@thorndike1901influence] or because they share perceptual and conceptual information [@singley1989transfer].
 Visuospatial anticipation and speech anticipation do not share any of those.
-A possible venue where language and vision/space may be more related is in reading, as both types of information would be perceived visually.
+A possible venue where language and vision/space may be more related is in reading, as both types of information would be perceived visually. 
 Future investigations may want to exploit that venue.
 
-In conclusion, the results in this study confirm that transfer is only possible when the specific domains share perceptual and conceptual information [@singley1989] or, maybe, when they rely on the same physiological structures.
+In conclusion, the results in this study confirm that transfer is only possible when the specific domains share perceptual and conceptual information [@singley1989transfer] or, maybe, when they rely on the same physiological structures.
 These results go against previous findings in atypical populations indicating the existence of a relationship between language and visuospatial abilities [@chamberlain2018meta].
 The association found in previous studies may be due to differences in domain-general mechanisms that underlie domain-specific tasks, or to processing deficits [@laing2007comprehension] that would extend to other semantic fields as well as the visuospatial one.
 

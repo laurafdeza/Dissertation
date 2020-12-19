@@ -1,28 +1,28 @@
 Learning of a language is a lengthy and costly process. 
 Two types of models have been proposed with mechanisms that account for acquisition and learning of a (second) language. 
 Models that prioritize domain-general learning mechanisms posit that different brain domains are connected to each other, such that the acquisition of a skill in one of them may influence learning of unrelated skills.
-This influence, or transfer, takes place because and to the extent that the skills depend on domains that share common features [@thorndike1901] and cognitive elements [@anderson1990], in the form of perceptual and conceptual information [@singley1989].
-In learning settings, transfer that occurs between two closely related domains is called near-transfer; when transfer occurs between distant domains, it is far-transfer [@mestre2005].
+This influence, or transfer, takes place because and to the extent that the skills depend on domains that share common features [@thorndike1901influence] and cognitive elements [@anderson1990cognitive], in the form of perceptual and conceptual information [@singley1989transfer].
+In learning settings, transfer that occurs between two closely related domains is called near-transfer; when transfer occurs between distant domains, it is far-transfer [@mestre2006transfer].
 In models in which domain-specific learning mechanisms are more relevant, brain domains are independent and unrelated to each other.
-In addition, the more developed a skill is, the more domain-specific the features will be, reducing the likelihood of transfer [@ericsson1994; @gobet2015].
+In addition, the more developed a skill is, the more domain-specific the features will be, reducing the likelihood of transfer [@ericsson1994expert; @gobet2015understanding].
 In consequence, improvement of skills in a brain domain will have little to no influence in other domains.
 Learning of a language is likely to be determined by domain-general and domain-specific mechanism.
 The question is, where the transition lies.
 
 Most research has traditionally focus on language-specific mechanisms.
 However, some scholars have recently started to highlight the need for a more holistic view of language in research [@ellis2019essentials; @ryskin2020domain].
-For these scholars, language learning investigation should include the usages, the contents, the participants, and the contexts [@ellis2019essential].
+For these scholars, language learning investigation should include the usages, the contents, the participants, and the contexts [@ellis2019essentials].
 When we consider the participants, we are not only considering social factors such as socioeconomic status or when they started to learn a new language. 
 We should also consider the characteristics of that individual that extend beyond language, the cognitive capacities and the cognitive abilities.
 
-Some cognitive investigations have included executive control as factors for language acquisition and processing, in the form of attention [@darcy2014attention], inhibitory control [@giezen2015parallel; @mercier2014individual], and especially, working memory [e.g., @huettig2016individual; @linck2014can; @smith2007working].
-A large body of research has also focused on the enhancement of these domain-general mechanisms through training of domain-specific skills (e.g., chess, music, for reviews, see Sala & Gobet, 2017a; Simons et al., 2016; Strobach & Karbach, 2016).
-The idea behind this training is that training domain-specific skills may result in positive far-transfer to domain-general mechanisms, such as working memory [@taatgen2016].
+Some cognitive investigations have included executive control as factors for language acquisition and processing, in the form of attention [@darcy2014attention], inhibitory control [@giezen2015parallel; @mercier2014individual], and especially, working memory [e.g., @huettig2015individual; @linck2015can; @smith2007working].
+A large body of research has also focused on the enhancement of these domain-general mechanisms through training of domain-specific skills (e.g., chess, music, for reviews, see @sala2017far; @simons2016brain; @strobach2016cognitive).
+The idea behind this training is that training domain-specific skills may result in positive far-transfer to domain-general mechanisms, such as working memory [@taatgen2016theoretical].
 A question that arises is whether transfer could be even farther-reaching, such that enhancement of domain-general mechanisms in turn affects skills in other domains.
 
 Apart from the executive control, each speaker is born with varying capacities for processing information.
 Crucially, individual differences manifest in auditory processing of speech [@zheng2020successful].
-Individual differences condition the strength of the connection between auditory and speech motor cortices [@assaneo2020] and a speaker’s ability to perceive lexical stress in an L2 [@dupoux2008].
+Individual differences condition the strength of the connection between auditory and speech motor cortices [@assaneo2020speaking] and a speaker’s ability to perceive lexical stress in an L2 [@dupoux2008persistent].
 One source of individual differences may be that some people are innately more gifted in a domain, for example sounds, while others in a different one, for instance visuospatial organization.
 In this case, innate factors would potentially be causing transfer from one domain to another rather than expertise in a domain.
 
@@ -30,23 +30,23 @@ The influence of innate cognitive abilities in domains other than language on se
 And yet, language interacts with other domains on a regular basis.
 One of these domains is the visuospatial domain.
 Language interacts with the visuospatial domain to create and update our representation of space and the way we refer to it.
-Thus, languages can talk about space in egocentric or in geocentric terms [@levinson1997language; @levinson2001linguistic; @levinson2003spatial].
+Thus, languages can talk about space in egocentric or in geocentric terms [@levinson1997language], affecting our spatial reasoning [@levinson2002returning].
 Depending on whether a language allows a speaker to create phrases like "to the left of the tree" or "north of the tree," a speaker will conceptualize space differently.
 This organization of space in a language results in linguistic and non-linguistic spatial representations relying on a common axis-structure, at least in English [@crawford2000linguistic; @huttenlocher1991categories].
 Speakers use these representations to gauge space and distance in relation to themselves, other speakers and other referents to use spatial deixis and to make other spatial references.
 In addition to space cognition being influenced by the language we speak, speaking more than one language that codes space differently affect, which makes bilinguals speakers' space categories more flexible across languages than monolingual speakers' are [@holmes2017revisiting].
 
 Studies on atypical populations and on reading abilities suggest that these two domains may be closely interconnected in processing of language and of visuospatial information.
-Studies on reading in children demonstrate that visuospatial skills are a reliable indicator of reading abilities in the L1 at the initial stages of reading development [@helland2015neurocognitive], and reading skills are a predictor of visuospatial abilities in the next literacy level [@lin2016bidirectional].
+Studies on reading in children demonstrate that visuospatial skills are a reliable indicator of reading abilities in the L1 at the initial stages of reading development [@helland2016neurocognitive], and reading skills are a predictor of visuospatial abilities in the next literacy level [@lin2016bidirectional].
 Studies on reading in adults indicate that visuospatial interference in language is larger in deep languages, that is, languages where a letter or string of letters may correspond to more than one sound, like in English, than it is in shallow languages, like Italian or Spanish [@estes2018comprehensive]
 
 Atypical populations that have been researched in regard to this association are populations with Williams Syndrome, with autism, with dyslexia, and blind individuals.
 Individuals with Williams Syndrome have issues comprehending visuospatial language and locating objects, especially in the horizontal axis [@landau2005parallels; @phillips2004comprehension].
 Individuals with autism show a smaller repertoire of spatial terms in comparison to non-autistic controls [@bochynska2020spatial].
-A large body of literature has produced controversial results about developmental dyslexia, where children with dyslexia have better (Swanson, 1984; von Károlyi, 2001), worse (Benton, 1984; Menghini, Finzi, Carlesimo & Vicari, 2011; Morris et al., 1998; Winner et al., 2001) and similar visuospatial abilities as control age-matched children (Jeffries and Everatt, 2004; Siegel & Ryan, 1989; Sinatra, 1988; Winner et al., 2001).
+A large body of literature has produced controversial results about developmental dyslexia, where children with dyslexia have better (e.g., @swanson1984semantic; karolyi2004dyslexia), worse (e.g., @benton1984dyslexia; @winner2001dyslexia) and similar visuospatial abilities as control age-matched children (e.g., @siegel1989development; @sinatra1988styles; @winner2001dyslexia).
 A meta-analysis of the findings in this field reveals that dyslexic samples yield lower means of performance in visuospatial tasks, although within-group variability is higher than in control groups [@chamberlain2018meta].
-Over time, individuals with dyslexia tend to perform similarly to typical individuals in many visuospatial tasks [@von2004dyslexia].
-Research on blind individuals has also shown that traditionally visual brain regions are recruited during verbal tasks such as Braille reading (Amedi, Floel, Knecht, Zohary, & Cohen, 2004; Amedi, Raz, Pianka, Malach, & Zohary, 2003; Kupers, Pappens, de Noordhout, Schoenen, Ptito & Fumal, 2007; Sadato et al., 1996; Uhl, Franzen, Lindinger, Lang, & Deecke, 1991), verb generation in response to nouns (Amedi, Raz, Pianka, Malach, & Zohary, 2003; Burton, Diamond, & McDermott, 2003; Burton, Snyder, Diamond, & Raichle, 2002) and sentence comprehension (Bedny, Pascual-Leone, Dodell-Feder, Fedorenko, & Saxe, 2011; Burton et al., 2003; Roder, Rosler, & Neville, 2000; Roder, Stock, Bien, Neville, & Rosler, 2002), although only when the individual was already blind as a child (@bedny2012sensitive).
+Over time, individuals with dyslexia tend to perform similarly to typical individuals in many visuospatial tasks [@karolyi2004dyslexia].
+Research on blind individuals has also shown that traditionally visual brain regions are recruited during verbal tasks such as Braille reading (e.g., @kupers2007rtms; @uhl1991functionality), verb generation in response to nouns (e.g., @amedi2003early; @burton2002adaptive) and sentence comprehension (e.g., @bedny2011language; @roder2000event), although only when the individual was already blind as a child (@bedny2012sensitive).
 
 In sum, there is enough evidence to believe that far-transfer of abilities from the visuospatial domain to language is possible.
 Much of the research so far on the association between the two domains has been done with static tasks or with tasks that do not measure processing, but offline outcomes.
@@ -54,10 +54,10 @@ In this study, we adopted another approach.
 We aimed to examine transfer from the visuospatial domain to language in real time processing of speech.
 Specifically, we aimed to examine transfer of visuospatial anticipation abilities to language anticipation, and if there was transfer, the type of transfer it was.
 Language anticipation is essential for language processing [e.g., @federmeier2007thinking; @wicha2003potato], and thus comprehension.
-While monolingual speakers generate predictions constantly, it requires time to develop the ability to generate them in an L2 [@lew2010; @sagarra2018suprasegmental].
+While monolingual speakers generate predictions constantly, it requires time to develop the ability to generate them in an L2 [@lew2010real; @sagarra2018suprasegmental].
 
 To measure real time processing of speech in L1 and L2 speakers at different levels of proficiency we used eye-tracking.
 We measured the ability to use already available information in the speech stream, lexical stress, to predict verb tense suffixes.
-Eye-tracking has been widely used as a tool to collect data about processing and language anticipation [e.g., @altmann1999; @kamide2003; @sagarra2018suprasegmental].
+Eye-tracking has been widely used as a tool to collect data about processing and language anticipation [e.g., @altmann1999incremental; @kamide2003time; @sagarra2018suprasegmental].
 To measure visuospatial prediction abilities, we implemented a task in which stimuli are not static but moving.
 We aimed to analyze transfer at different levels of proficiency because transfer from one domain to another has been shown to vary along with command [@bel2016transfer; PRIMER EXP; @hopp2017processing], and anticipation abilities in speech using stress-suffix associations also improve over time [@sagarra2018suprasegmental; PRIMER EXP].

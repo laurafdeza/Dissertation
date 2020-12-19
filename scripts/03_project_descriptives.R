@@ -130,7 +130,7 @@ agg %>%
 # country of origin
 agg <- agg[!is.na(agg$country),]
 
-english <- filter(agg, l1 == 'en')
+english <- filter(agg, l1 == 'en') # descriptives show all, not only EN speakers
 table(english$country)
 # count
 # au bh ca ch es ir nz tw uk us 

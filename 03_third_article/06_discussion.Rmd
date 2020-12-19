@@ -1,0 +1,51 @@
+# 6. Discussion
+We set out to examine transfer effects from the visuospatial domain to language in terms of anticipation skills.
+Monolingual Spanish speakers and Mandarin and English learners of Spanish completed a linguistic and a visuospatial linguistic task and a visuospatial WM task.
+The results show that visuospatial WM influences anticipation abilities by tense, and it also interacts with visuospatial anticipation abilities in determining linguistic anticipation abilities.
+These results suggest that executive control skills may be transferring to domain-specific tasks in both the visuospatial and linguistic domains.
+
+The model indicates that all speakers except for IM were anticipating.
+We can therefore proceed to discuss how visuospatial skills may be affecting anticipation in SS, both advanced groups and IE.
+Differences in visuospatial skills did not manifest across L1s.
+The lack of interaction of visuospatial skills with any group suggests that whichever interaction there may be takes place with the language capacity in general, regardless of the specific L1 or L2 of the speaker.
+
+The effect of visuospatial WM in the cubic term and the interaction in stress in the quadratic term suggest that visuospatial WM mediates linguistic anticipation.
+The mediation is particularly strong in the preterit tense, where variability dependent on visuospatial WM was higher.
+The relationship found in the preterit tense is a positive one, where higher visuospatial WM score is associated with earlier and more certain prediction.
+In the present tense, however, individuals with higher working memory started anticipating later, although they were also more certain once they started predicting.
+This difference may stem from an uncertainty as to whether stress is being used as a lexical contrast or with an intonational or pragmatic use.
+If this hypothesis were true, a stressed syllable may cause uncertainty because it might be signalling, for instance, that the word containing is emphasized for pragmatic purposes.
+A listener would compare the stress heard with the associations of stress in their mind, and more information about this stress is needed to disambiguate and to discard unapliccable associations.
+
+Visuospatial WM interacted with visuospatial anticipation skills in the cubic term.
+The patterns for the relationship between visuospatial anticipation and linguistic anticipation were not as clear cut.
+The lack of a pattern suggests that anticipation abilities in each domain may not have been connected to each other, but they might be due to visuospatial WM.
+In this case, transfer would not happen between specific domains, but between the general domain onto specific ones.
+
+There was an interaction proficiency, stress, and visuospatial WM and anticipation skills in the linear term.
+In all groups, higher visuospatial WM was associated with earlier prediction of the preterit tense.
+If our hypothesis that there was only transfer from domain-general to domain-specific mechanism is true, the interaction with visuospatial anticipation is just a consequence of the transfer to other domains, not necessarily a result of an interaction between the two specific domains.
+Again, this hypothesis is supported by the lack of a clear direction in the association between visuospatial and linguistic prediction.
+
+The reasoning that speakers were transferring domain-general mechanisms to domain-specific tasks but not skills across specific domains support domain-specific learning models but does not support domain-general learning mechanisms.
+In domain-specific learning models, brain domains are independent and unrelated to each other.
+Each domain can develop skills that become increasingly specific, reducing the possibility that transfer takes place [@ericsson1994; @gobet2015].
+The lack of an effect of visuospatial anticipation skills along with the lack of a pattern in the relationship when visuospatial WM is included between anticipation skills further demonstrates that the effect obeys an association simply through the general mechanisms, but not direct associations between specific domains.
+
+In domain-general models, transfer takes place because the domain-specific domains depend on common features [@thorndike1901] or because they share perceptual and conceptual information [@singley1989].
+Visuospatial anticipation and speech anticipation do not share any of those.
+A possible venue where language and vision/space may be more related is in reading, as both types of information would be perceived visually.
+Future investigations may want to exploit that venue.
+
+In conclusion, the results in this study confirm that transfer is only possible when the specific domains share perceptual and conceptual information [@singley1989] or, maybe, when they rely on the same physiological structures.
+These results go against previous findings in atypical populations indicating the existence of a relationship between language and visuospatial abilities [@chamberlain2018meta].
+The association found in previous studies may be due to differences in domain-general mechanisms that underlie domain-specific tasks, or to processing deficits [@laing2007comprehension] that would extend to other semantic fields as well as the visuospatial one.
+
+# 7. Conclusion
+In this study we asked whether there would be transfer from the visuospatial domain to speech to facilitate prediction of suffixes associated to lexical stress cues in L1 and L2 English and Mandarin speakers of Spanish.
+The results demonstrate that the possibility of direct transfer is dim.
+Instead, transfer from domain-general abilities is plausible.
+Visuospatial WM was associated with linguistic prediction abilities in monolinguals, advanced speakers, and in English intermediate speakers.
+These results support domain-specific learning models in terms of unlikelihood of transfer of domain-specific skills.
+The results do support, nonetheless, transfer of domain-general mechanisms that may underpin processing performance in various specific domains.
+These results highlight the need to enhance domain-general skills to facilitate language processing.

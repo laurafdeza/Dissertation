@@ -31,7 +31,7 @@ dem_all %>%
 
 
 bartlett.test(DELE ~ group, data = dem_all) # all good
-# Bartlett's K-squared = 0.84963, df = 4, p-value = 0.9317
+# Bartlett's K-squared = 0.64069, df = 3, p-value = 0.8871
 
 # DELE tost aes vs ams (OK, not significant and between dotted lines so they are not different)
 TOSTER::TOSTtwo(m1 = 45.4, sd1 = 4.26, n1 = 32, # aes
@@ -39,7 +39,7 @@ TOSTER::TOSTtwo(m1 = 45.4, sd1 = 4.26, n1 = 32, # aes
         low_eqbound_d = -0.3, 
         high_eqbound_d = 0.3, 
         alpha = 0.05)
-
+# t(61.69) = -0.0971, p = 0.923
 
 # DELE tost ies vs ims (idem)
 TOSTER::TOSTtwo(m1 = 31.7, sd1 = 4.58, n1 = 33, # ies
@@ -47,3 +47,4 @@ TOSTER::TOSTtwo(m1 = 31.7, sd1 = 4.58, n1 = 33, # ies
                 low_eqbound_d = -0.3, 
                 high_eqbound_d = 0.3, 
                 alpha = 0.05)
+# t(62.85) = -1.006, p = 0.318

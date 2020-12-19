@@ -454,12 +454,15 @@ This estimate points that the number of fixations on the target verb in the pret
 The increased number of fixations thus suggests preterit was slightly easier to anticipate.
 There was an effect on the interaction between visuospatial WM and the cubic term (*&gamma;*~25~&nbsp;=&nbsp;`r pretty_fixed_effects[23,3]`, SE =&nbsp;`r pretty_fixed_effects[23,4]`, *t* = `r pretty_fixed_effects[23,5]`, *p* = `r pretty_fixed_effects[23,6]`).
 This estimate indicates the curves in the cubic term were more bowed in the present tense than in the preterit tense.
-There was also an interaction between AE and the linear (*&gamma;*~35~&nbsp;=&nbsp;`r pretty_fixed_effects[24,3]`, SE =&nbsp;`r pretty_fixed_effects[24,4]`, *t* = `r pretty_fixed_effects[24,5]`, *p* = `r pretty_fixed_effects[24,6]`) and quadratic time terms (*&gamma;*~36~&nbsp;=&nbsp;`r pretty_fixed_effects[28,3]`, SE =&nbsp;`r pretty_fixed_effects[28,4]`, *t* = `r pretty_fixed_effects[28,5]`, *p* = `r pretty_fixed_effects[28,6]`).
+
+Simple interactions with the linear, quadratic and cubic time terms and multiple interactions at the linear time term were kept because they improved the model (*&beta;*(78) = 219483, *p* = .006).
+There was an interaction between AE and the linear (*&gamma;*~35~&nbsp;=&nbsp;`r pretty_fixed_effects[24,3]`, SE =&nbsp;`r pretty_fixed_effects[24,4]`, *t* = `r pretty_fixed_effects[24,5]`, *p* = `r pretty_fixed_effects[24,6]`) and quadratic time terms (*&gamma;*~36~&nbsp;=&nbsp;`r pretty_fixed_effects[28,3]`, SE =&nbsp;`r pretty_fixed_effects[28,4]`, *t* = `r pretty_fixed_effects[28,5]`, *p* = `r pretty_fixed_effects[28,6]`).
 The linear interaction suggests the fit slope was steeper for AE, as they tend to increase their gaze on the target faster than the other groups.
 The quadratic interaction means the curve in AE is more closed than the one for SS.
 Therefore, AE appear to be anticipating later than SS. 
 There is also an interaction with the quadratic term in the other L2 groups (AM: *&gamma;*~00~&nbsp;=&nbsp;`r pretty_fixed_effects[29,3]`, SE =&nbsp;`r pretty_fixed_effects[29,4]`, *t* = `r pretty_fixed_effects[29,5]`, *p* = `r pretty_fixed_effects[29,6]`; IE: *&gamma;*~10~&nbsp;=&nbsp;`r pretty_fixed_effects[30,3]`, SE =&nbsp;`r pretty_fixed_effects[30,4]`, *t* = `r pretty_fixed_effects[30,5]`, *p* = `r pretty_fixed_effects[30,6]`; IM: *&gamma;*~20~&nbsp;=&nbsp;`r pretty_fixed_effects[31,3]`, SE =&nbsp;`r pretty_fixed_effects[31,4]`, *t* = `r pretty_fixed_effects[31,5]`, *p* = `r pretty_fixed_effects[31,6]`).
 As in the interaction with AE, these effects reflect a more bowed curved for all L2 groups, who start anticipating later than SS.
+
 Lastly, there were two multiple interactions.
 There first one is between stress x corsi x quadratic term (*&gamma;*~02~&nbsp;=&nbsp;`r pretty_fixed_effects[37,3]`, SE =&nbsp;`r pretty_fixed_effects[37,4]`, *t* = `r pretty_fixed_effects[37,5]`, *p* = `r pretty_fixed_effects[37,6]`).
 This interaction suggests that visuospatial WM influenced differently the ability to anticipate depending on the tense condition.

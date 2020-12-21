@@ -94,7 +94,7 @@ The tables can also be copy and pasted where appropriate.
 
 # Plots
 
-```{r, 'plot-corsi-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of visuospatial WM for each group and lexical stress pattern during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+```{r, 'plot-corsi-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of visuospatial WM for each group and lexical stress pattern during the analysis window. The higher the score, the better the performance in the visuospatial WM task. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
 knitr::include_graphics(
   here("figs", "vision", "gca", "corsi_gca.png")
 )
@@ -102,7 +102,7 @@ knitr::include_graphics(
 
 
 
-```{r, 'plot-car-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of visuospatial anticipatory abilities for each group and lexical stress pattern during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+```{r, 'plot-car-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations as a function of visuospatial anticipatory abilities for each group and lexical stress pattern during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the target syllable. 0 for movement anticipation corresponds to the ms when the car reappears. Negative values in the legend indicate earlier key presses. Positive, later key presses."}
 knitr::include_graphics(
   here("figs", "vision", "gca", "car_gca.png")
 )
@@ -440,22 +440,22 @@ b0_prop <- b0 %>% inv_logit %>% round(2) %>% remove_leading_zero
 
 The full model summary is available in Appendices X (fixed effects) and Y (random effects).
 Pairwise comparisons are available in Appendices Z-J.
-Only the linear term was kept for the mulitple-factor interactions.
-There was a main effect at the intercept (*&gamma;*~00~&nbsp;=&nbsp;`r pretty_fixed_effects[1,3]`, SE =&nbsp;`r pretty_fixed_effects[1,4]`, *t* = `r pretty_fixed_effects[1,5]`, *p* = `r pretty_fixed_effects[1,6]`), which suggests the SS were fixating on the target comparably more to on the distractor or elsewhere in both conditions at target syllable offset.
+Only the linear term was kept for the multiple-factor interactions.
+There was a main effect at the intercept (*&gamma;*~00~&nbsp;=&nbsp;`r pretty_fixed_effects[1,3]`, SE =&nbsp;`r pretty_fixed_effects[1,4]`, *t* = `r pretty_fixed_effects[1,5]`, *p* = `r pretty_fixed_effects[1,6]`), which suggests the SS were fixating on the target comparably more than on the distractor or elsewhere in both conditions at target syllable offset.
 There was a main effect of the linear (*&gamma;*~01~&nbsp;=&nbsp;`r pretty_fixed_effects[5,3]`, SE =&nbsp;`r pretty_fixed_effects[5,4]`, *t* = `r pretty_fixed_effects[5,5]`, *p* = `r pretty_fixed_effects[5,6]`) and cubic time terms too (*&gamma;*~21~&nbsp;=&nbsp;`r pretty_fixed_effects[7,3]`, SE =&nbsp;`r pretty_fixed_effects[7,4]`, *t* = `r pretty_fixed_effects[7,5]`, *p* = `r pretty_fixed_effects[7,6]`).
 The effect on the linear term indicate that the slope for the L2 speakers is steeper, meaning they tend to increase their gaze fixations on the target faster than SS once they know what they are going to hear.
-The effect on the cubic term indicates that the curves are more bowed in the L2 groups, and the two curves form an inverse N shape.
+The effect on the cubic term indicates that the curves are more bowed in the L2 groups, and the inflection points form an inverse N shape.
 There was also a main effect of each group (AE: *&gamma;*~31~&nbsp;=&nbsp;`r pretty_fixed_effects[8,3]`, SE =&nbsp;`r pretty_fixed_effects[8,4]`, *t* = `r pretty_fixed_effects[8,5]`, *p* = `r pretty_fixed_effects[8,6]`; AM: *&gamma;*~02~&nbsp;=&nbsp;`r pretty_fixed_effects[9,3]`, SE =&nbsp;`r pretty_fixed_effects[9,4]`, *t* = `r pretty_fixed_effects[9,5]`, *p* = `r pretty_fixed_effects[9,6]`; IE: *&gamma;*~12~&nbsp;=&nbsp;`r pretty_fixed_effects[10,3]`, SE =&nbsp;`r pretty_fixed_effects[10,4]`, *t* = `r pretty_fixed_effects[10,5]`, *p* = `r pretty_fixed_effects[10,6]`; IM: *&gamma;*~22~&nbsp;=&nbsp;`r pretty_fixed_effects[11,3]`, SE =&nbsp;`r pretty_fixed_effects[11,4]`, *t* = `r pretty_fixed_effects[11,5]`, *p* = `r pretty_fixed_effects[11,6]`).
 The negative trend of these effects suggest that all L2 groups anticipated less than SS across conditions.
 
-The model also estimates some interactions.
-The first one is of stress in the quadratic term (*&gamma;*~33~&nbsp;=&nbsp;`r pretty_fixed_effects[16,3]`, SE =&nbsp;`r pretty_fixed_effects[16,4]`, *t* = `r pretty_fixed_effects[16,5]`, *p* = `r pretty_fixed_effects[16,6]`).
+The model also estimated interactions.
+The first significant interaction is of stress in the quadratic term (*&gamma;*~33~&nbsp;=&nbsp;`r pretty_fixed_effects[16,3]`, SE =&nbsp;`r pretty_fixed_effects[16,4]`, *t* = `r pretty_fixed_effects[16,5]`, *p* = `r pretty_fixed_effects[16,6]`).
 This estimate points that the number of fixations on the target verb in the preterit conditions was higher than in the present tense.
 The increased number of fixations thus suggests preterit was slightly easier to anticipate.
 There was an effect on the interaction between visuospatial WM and the cubic term (*&gamma;*~25~&nbsp;=&nbsp;`r pretty_fixed_effects[23,3]`, SE =&nbsp;`r pretty_fixed_effects[23,4]`, *t* = `r pretty_fixed_effects[23,5]`, *p* = `r pretty_fixed_effects[23,6]`).
 This estimate indicates the curves in the cubic term were more bowed in the present tense than in the preterit tense.
 
-Simple interactions with the linear, quadratic and cubic time terms and multiple interactions at the linear time term were kept because they improved the model (*&beta;*(78) = 219483, *p* = .006).
+Simple interactions with the linear, quadratic and cubic time terms and multiple interactions at the linear time term were kept because they improved the model (*&beta;*(4) = 14.4533, *p* = .006).
 There was an interaction between AE and the linear (*&gamma;*~35~&nbsp;=&nbsp;`r pretty_fixed_effects[24,3]`, SE =&nbsp;`r pretty_fixed_effects[24,4]`, *t* = `r pretty_fixed_effects[24,5]`, *p* = `r pretty_fixed_effects[24,6]`) and quadratic time terms (*&gamma;*~36~&nbsp;=&nbsp;`r pretty_fixed_effects[28,3]`, SE =&nbsp;`r pretty_fixed_effects[28,4]`, *t* = `r pretty_fixed_effects[28,5]`, *p* = `r pretty_fixed_effects[28,6]`).
 The linear interaction suggests the fit slope was steeper for AE, as they tend to increase their gaze on the target faster than the other groups.
 The quadratic interaction means the curve in AE is more closed than the one for SS.
@@ -470,7 +470,7 @@ Specifically, variability in visuospatial WM capacity determined more strongly a
 In the present tense, in contrast, visuospatial WM did not exert such a great impact.
 Figure X represents visually this difference.
 The second multiple interaction is between visuospatial anticipation x visuospatial WM x cubic time term (*&gamma;*~03~&nbsp;=&nbsp;`r pretty_fixed_effects[41,3]`, SE =&nbsp;`r pretty_fixed_effects[41,4]`, *t* = `r pretty_fixed_effects[41,5]`, *p* = `r pretty_fixed_effects[41,6]`).
-This interaction suggests that individuals with higher visuospatial WM were those who also tended to wait longer to signal the car in the visuospatial anticipation task would appear, and these individuals tended to anticipate better.
+This interaction suggests that individuals with higher visuospatial WM were those who also tended to wait longer to signal the car in the visuospatial anticipation task would appear, and these individuals tended to anticipate better. This effect was plotted in Figure 6.
 
 Pairwise comparisons for proficiency and L1 provided more insights.
 Within the English speakers' groups, there was an interaction effect between stress x visuospatial anticipation x visuospatial WM in the linear time term (*&gamma;*~19~&nbsp;=&nbsp;`r pretty_pairwise_table_ma[5,3]`, SE =&nbsp;`r pretty_pairwise_table_ma[5,4]`, *t* = `r pretty_pairwise_table_ma[5,5]`, *p* = `r pretty_pairwise_table_ma[5,6]`).

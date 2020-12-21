@@ -52,8 +52,8 @@ figs_path <- here("figs", "music", "gca")
 
 # Pitch
 gca_pitch_plot <- model_preds$fits_all_pitch %>%
-  mutate(stress = if_else(stress_sum == 1, "Paroxytone", "Oxytone"),
-         stress = fct_relevel(stress, "Paroxytone"),
+  mutate(stress = if_else(stress_sum == 1, "Present", "Preterit"),
+         stress = fct_relevel(stress, "Present"),
          group = fct_relevel(group, "SS", 'AE', 'AM', 'IE', 'IM')) %>%
   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
                 color = pitch_dev)) +
@@ -69,12 +69,12 @@ gca_pitch_plot <- model_preds$fits_all_pitch %>%
   # scale_color_brewer(palette = "Set1", name = "Syllable structure") +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
-  theme_big #+ legend_adj
+  theme_big + labs(color = "Pitch RT")#+ legend_adj
 
 # Rhythm
 gca_rhythm_plot <- model_preds$fits_all_rhythm %>%
-  mutate(stress = if_else(stress_sum == 1, "Paroxytone", "Oxytone"),
-         stress = fct_relevel(stress, "Paroxytone"),
+  mutate(stress = if_else(stress_sum == 1, "Present", "Preterit"),
+         stress = fct_relevel(stress, "Present"),
          group = fct_relevel(group, "SS", 'AE', 'AM', 'IE', 'IM')) %>%
   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
                 color = rhythm_dev)) +
@@ -90,7 +90,7 @@ gca_rhythm_plot <- model_preds$fits_all_rhythm %>%
   # scale_color_brewer(palette = "Set1", name = "Group") +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
-  theme_big #+ legend_adj_2
+  theme_big + labs(color = "Rhythm\ndeviation")#+ legend_adj_2
 
 ggsave(paste0(figs_path, "/gca_pitch_plot.png"), gca_pitch_plot, width = 150,
        height = 120, units = "mm", dpi = 600)

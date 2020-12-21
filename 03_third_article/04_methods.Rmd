@@ -24,7 +24,8 @@ On average, all L2 groups used Spanish less than 50% of the time on a normal wee
 Participants completed two screening tasks, two anticipation tasks and two WM tasks.
 
 ### 4.2.1. Screening tasks
-A proficiency test split participants into intermediate and advanced.
+
+A proficiency test categorized participants into intermediate and advanced.
 The proficiency test was a shortened version [@sagarra2010role] of the _Diploma de Español como Lengua Extranjera_ ('Certificate of Spanish as a Foreign Language', by Instituto Cervantes). 
 The test consisted of 56 questions: 16 on grammar, 10 on vocabulary, and 20 on reading comprehension.
 Participants whose scores ranged from 25 to 39 were assigned to the intermediate groups, and participants whose scores were located at or above 40 were assigned to the advanced groups. 
@@ -35,7 +36,7 @@ The background questionnaire contained questions related to social, such as age,
 ### 4.2.2.  Anticipation task
 #### 4.2.2.1. Linguistic anticipation task
 An eye-tracking visual-world paradigm task assessed the ability to form stress-suffix predictive associations in speech.
-Participants read two verbs on a computer screen ( _salta_ 's/he jumps,' _saltó_ 's/he jumped') and heard a sentence containing one of the two verbs ( _El ladrón saltó la valla_ 'the thief jumped over the fence') in Spanish. 
+Participants read two verbs on a computer screen (*salta* 's/he jumps,' *saltó* 's/he jumped') and heard a sentence containing one of the two verbs (*El ladrón saltó la valla* 'the thief jumped over the fence') in Spanish. 
 They had to select the verb they had heard as fast as possible by pressing the right- or left-shift key.
 When they made their selection, a green rectangle appeared around the selected verb. 
 There were 4 practice sentences, 16 experimental sentences, and 80 fillers. 
@@ -55,11 +56,11 @@ Each verb consisted of the same verb conjugated in the present and preterit tens
 The verbs were regular, had two syllables and had a CVC initial syllable.
 All belonged to the -ar conjugation and were conjugated in the 3rd person present and preterit tense. 
 Spanish regular verbs ending in -ar have 2 cues to tense: initial syllable stress and word ending morphology. 
-Stressed initial syllables indicate that the tense is present ( _salta_ ‘s/he jumps’), and unstressed initial syllables indicate that the tense is past (preterit, _saltó_ ‘s/he jumped’). 
+Stressed initial syllables indicate that the tense is present (*salta* ‘s/he jumps’), and unstressed initial syllables indicate that the tense is past (preterit, _saltó_ ‘s/he jumped’). 
 The verb suffix indicates tense, person and aspect. 
 
-There were three types of filler words. The first type were nouns in anaphora ambiguities ( _papel_ 'sheet of paper' vs. _plano_ 'map'). 
-The second type were adjectives for gender agreement ( _nuevo_ 'new~[MASC]~' vs. _nueva_ 'new~[FEM]~'). 
+There were three types of filler words. The first type were nouns in anaphora ambiguities (*papel* 'sheet of paper' vs. _plano_ 'map'). 
+The second type were adjectives for gender agreement (*nuevo* 'new~masc~' vs. _nueva_ 'new~fem~'). 
 The third type was a variety of nouns and adjectives that completed idiomatic expressions. 
 
 _Auditory stimuli_
@@ -71,13 +72,13 @@ Each block contained only two experimental sentences: one sentence of each condi
 The blocks appeared in a randomized order.
 Within and across the blocks, the sentences were pseudo-randomized to avoid two experimental sentences of the same condition appearing one after the other. 
 
-The experimental sentences ( _El ladrón saltó la valla_ 'The thief jumped over the fence') had all identical syntactic structure and length: 5 words.
+The experimental sentences (*El ladrón saltó la valla* 'The thief jumped over the fence') had all identical syntactic structure and length: 5 words.
 The verb was only preceded by an NP (the subject) to avoid possible biases towards the present or the preterit verb. 
 The object following the verb was also a NP.
 A given participant was only exposed to one of the two conditions for a given verb pair (e.g., for sentence number 6, participant Y was only exposed to condition 1, and for sentence 7 to condition 2).
 In total, each participant was exposed to 16 experimental sentences (half with present verbs and half with preterit verbs).
 
-There were three types of filler sentences: anaphora ambiguity ( _Mientras el secretario interrumpe al arquitecto, está guardando un papel en el armario_ 'While the clerk interrupts the architect, he is putting a sheet of paper away in the cabinet'), gender agreement of adjectives based on determiner and noun ( _Dice que su colegio nuevo cuesta mucho dinero_ 'He says that his new school is very costly'), and idiomatic expressions ( _La niña no cambia por nada del mundo su muñeca_ 'The little girl does not change her doll for anything in the world').   
+There were three types of filler sentences: anaphora ambiguity (*Mientras el secretario interrumpe al arquitecto, está guardando un papel en el armario* 'While the clerk interrupts the architect, he is putting a sheet of paper away in the cabinet'), gender agreement of adjectives based on determiner and noun (*Dice que su colegio nuevo cuesta mucho dinero* 'He says that his new school is very costly'), and idiomatic expressions (*La niña no cambia por nada del mundo su muñeca* 'The little girl does not change her doll for anything in the world').   
 There were four practice sentences, one of each type of sentence.     
 
 #### 4.2.2.2. Visuospatial anticipation task
@@ -95,7 +96,9 @@ The car would move in an opposite direction in each of the two trials for each s
 The task was administered in PsychoPy v3.2.
 
 ### 4.2.3. Working memory tasks
+
 #### 4.2.3.1. Verbal WM task
+
 An adapted version of Unsworth et al.’s (2005) Operation Span task (henceforth, OSpan) was used to assess verbal WM span.
 This task generates independent measures of storage and processing speed.
 In a single trial, participants heard a word followed by a simple mathematical problem that could be either true or false (e.g., 2 + 2 = 4).
@@ -103,7 +106,8 @@ For the mathematical problems, they had to decide as fast as possible whether wh
 When they made their selection, their choice on the screen turned blue.
 This process would repeat a certain number of times until a set was complete.
 At the end of each set, participants were prompted to write down the individual words they had heard before each problem in the same order they had heard them.
-The whole task was administered in the participant's L1.     
+The whole task was administered in the participant's L1.  
+
 There were two practice trials of 3 words and mathematical problems, and three experimental sets of three, four, five and six words and mathematical problems. 
 The words and mathematical problems that participants heard in the sets appeared in a fixed order across participants. 
 The words TRUE and FALSE that participants needed to select in response to the mathematical problems appeared counterbalanced on each side across participants. 
@@ -130,15 +134,14 @@ All interaction between researcher and participants happened in Spanish.
 Participants completed the tasks in this order: Spanish proficiency test (only L2 learners; 15-20 minutes), language background questionnaire (10 minutes), linguistic anticipation task (25 minutes), visuospatial anticipation task (10 minutes), Corsi-blocks task (10 minutes), and OSpan (15 minutes).
 First, participants listened to an overview of the tasks and signed the consent form.
 Participants provided oral responses for the language background questionnaire. 
-They completed the remaining tasks in a computer, using a 24" computer monitor and Sol Republic 1601-32 headphones.  
+They completed the remaining tasks in a computer, using a 24" computer monitor and Sol Republic 1601-32 headphones.
 In all tasks, the instructions were given both orally and in written. The oral instructions were in Spanish; the written instructions were in the participant’s L1.
 
-_Linguistic anticipation task_     
-For the visual-world paradigm, participants rested their head on a chin rest, and completed an 11-point grid calibration task.
+_Linguistic anticipation task_. For the visual-world paradigm, participants rested their head on a chin rest, and completed an 11-point grid calibration task.
 They could ask questions after the practice trials. 
 Both the practice and the experimental trials followed the same order.
 See Figure 1 for an example of an experimental trial.
-First, a fixation sign appeared in the middle of the screen for 250 ms.  
+First, a fixation sign appeared in the middle of the screen for 250 ms. 
 This allowed the researcher to recalibrate manually when necessary. 
 Then, two words appeared on the screen side to side. 
 Once the words had been on the screen for 1000 ms, the sentence started playing.
@@ -148,32 +151,29 @@ Response recording was set up to be registered only when the press happened afte
 The setting therefore forced participants to press again if they pressed to soon. 
 No feedback was provided. 
 
-```{r knitr, include=TRUE, echo=FALSE, fig.cap = "Sample trial of the visual-world paradigm"}
+```{r knitr, include=TRUE, echo=FALSE, fig.cap = 'Sample trial of the visual-world paradigm'}
 library(knitr)
-include_graphics("./figs/vwp.png", dpi = 108)
+include_graphics('./figs/vwp.png', dpi = 108)
 ```
 
-_Visuospatial anticipation task_     
-In the first two practice trials, participants saw the car’s position as feedback upon pressing the spacebar, to learn if they had calculated the reappearance moment correctly; in the last two practice trials, they did not receive any feedback, just like in the experimental trials. 
+_Visuospatial anticipation task_. In the first two practice trials, participants saw the car’s position as feedback upon pressing the space bar, to learn if they had calculated the reappearance moment correctly; in the last two practice trials, they did not receive any feedback, just like in the experimental trials. 
 In the experimental trials, the trial would automatically finish upon the space bar press. 
 There was a fixation cross for 250 ms between trials. 
 Figure 4 shows a trial of the task.
 
-```{r, include=TRUE, echo=FALSE, fig.cap = "Sample trial of the visuospatial anticipation task"}
-include_graphics("./figs/car_task.png", dpi = 108)
+```{r, include=TRUE, echo=FALSE, fig.cap = 'Sample trial of the visuospatial anticipation task'}
+include_graphics('./figs/car_task.png', dpi = 108)
 ```
 
-_Visuospatial WM task_     
-The Corsi-blocks task consisted of recreation of flashing square sequences previously seen. 
+_Visuospatial WM task_. The Corsi-blocks task consisted of recreation of flashing square sequences previously seen. 
 In this task participants completed 2 practice sets, and then the experimental section began. 
 Once they had clicked the same number of squares as in the original sequence, a fixation cross appeared for 500 ms in the center of the screen, and then the next sequence started (see Figure 5 for a sample trial). 
 
-```{r, include=TRUE, echo=FALSE, fig.cap = "Sample trial of the Corsi-blocks tapping task"}
-include_graphics("./figs/corsi.png", dpi = 108)
+```{r, include=TRUE, echo=FALSE, fig.cap = 'Sample trial of the Corsi-blocks tapping task'}
+include_graphics('./figs/corsi.png', dpi = 108)
 ```
 
-_Verbal WM task_     
-The OSpan task was divided into practice and experimental trials. 
+_Verbal WM task_. The OSpan task was divided into practice and experimental trials. 
 For each trial, participants first heard a word in their L1 and then heard a simple equation, like 2+2=5, also in their L1. 
 During the mathematical problems, participants saw the words TRUE or FALSE on each side of the screen, and they had to press the corresponding key (left-shift key for the word on the left, right-shift key for the word on the right) depending on whether the equation was correct or not. 
 After each equation, they saw a fixation point for 500 ms and another pair of word-equation was presented. 
@@ -182,8 +182,8 @@ Chinese speakers were allowed to write their answers in pinyin.
 If homophones were written, they were considered correct (e.g., Adam for atom).
 Figure 6 shows a sample trial.
 
-```{r, include=TRUE, echo=FALSE, fig.cap = "Sample trial of the OSpan"}
-include_graphics("./figs/ospan.png", dpi = 108)
+```{r, include=TRUE, echo=FALSE, fig.cap = 'Sample trial of the OSpan'}
+include_graphics('./figs/ospan.png', dpi = 108)
 ```
 
 ## 4.4. Data analysis
@@ -195,15 +195,15 @@ Once we made sure groups were comparable, we calculated Corsi scores and visuosp
 The Corsi score was compounded by z-score conversion of the number of sequences recreated exactly.
 In the visuospatial anticipationtask, key presses were stored taken as referent 0 the ms in which the car was meant to reappear from behind the mountain.
 Key press timings could thus be negative if they happened before, or positive if they happened afterwards.
-Trials where the participant took too long to respond and the car should have "left" the screen were discarded.
+Trials where the participant took too long to respond and the car should have 'left' the screen were discarded.
 Visuospatial anticipation was calculated as the random effects in a model that estimated key-press time as a function of speed and direction.
 
 Then we prepared the linguistic anticipation data.
 Participants' key presses were considered accurate if they pressed the key corresponding to the verb in the sentence. 
 Only the sentences with accurate responses were included in the statistical analyses. 
 In the statistical analyses, proportion and count of fixations on the verbs over time in the sentence were analyzed. 
-From the eye-tracking data, we analyzed fixations on the target and on the distractor [@barr2008].
-These data were downsamped to 50 ms bin and converted through an empirical logit transformation.
+From the eye-tracking data, we analyzed fixations on the target and on the distractor [@barr2008analyzing].
+These data were downsampled to 50 ms bin and converted through an empirical logit transformation.
 The moment of interest was offset of the first syllable of the verb, henceforth target syllable, right after the cue appears but the outcome is not available yet.
 We filtered the time window to be from 200 ms before and 600 ms after target syllable offset.
 The gaze-fixation data was shifted 200 ms to account for the time it takes to plan and launch a saccade [e.g., @fischer1992saccadic; @saslow1967effects].

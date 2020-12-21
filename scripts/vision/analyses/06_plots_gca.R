@@ -52,8 +52,8 @@ figs_path <- here("figs", "vision", "gca")
 
 # Present group differences in movement anticipation
 car_gca <- model_preds$fits_all %>%
-  mutate(stress = if_else(stress_sum == 1, "Paroxytone", "Oxytone"),
-         stress = fct_relevel(stress, "Paroxytone"),
+  mutate(stress = if_else(stress_sum == 1, "Present", "Preterit"),
+         stress = fct_relevel(stress, "Present"),
          group = fct_relevel(group, "SS", "AE", "AM", "IE", "IM")) %>%
   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin, color = car_dev)) +
   facet_grid(group ~ stress) +
@@ -67,13 +67,13 @@ car_gca <- model_preds$fits_all %>%
                      labels = c("-200", "0", "200", "400", "600")) +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
-  theme_big + #legend_adj
+  theme_big + labs(color = "Movement\nanticipation") + #legend_adj
   ggtitle('GCA considering visuospatial anticipation performance')
 
 # visuospatial WM
 corsi_gca <- model_preds$fits_all %>%
-  mutate(stress = if_else(stress_sum == 1, "Paroxytone", "Oxytone"),
-         stress = fct_relevel(stress, "Paroxytone"),
+  mutate(stress = if_else(stress_sum == 1, "Present", "Preterit"),
+         stress = fct_relevel(stress, "Present"),
          group = fct_relevel(group, "SS", "AE", "AM", "IE", "IM")) %>%
   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin, color = corsi)) + 
   facet_grid(group ~ stress) +
@@ -87,7 +87,7 @@ corsi_gca <- model_preds$fits_all %>%
                      labels = c("-200", "0", "200", "400", "600")) +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
-  theme_big + #legend_adj 
+  theme_big + labs(color = "Visuospatial\nWM") + #legend_adj 
   ggtitle("GCA considering visuospatial WM")
 
 

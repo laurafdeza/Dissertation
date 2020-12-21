@@ -15,7 +15,7 @@ The relationship found in the preterit tense is a positive one, where higher vis
 In the present tense, however, individuals with higher working memory started anticipating later, although they were also more certain once they started predicting.
 This difference may stem from an uncertainty as to whether stress is being used as a lexical contrast or with an intonational or pragmatic use.
 If this hypothesis were true, a stressed syllable may cause uncertainty because it might be signalling, for instance, that the word containing is emphasized for pragmatic purposes.
-A listener would compare the stress heard with the associations of stress in their mind, and more information about this stress is needed to disambiguate and to discard unapliccable associations.
+A listener would compare the stress heard with the associations of stress in their mind, and more information about this stress is needed to disambiguate and to discard unapplicable associations.
 
 Visuospatial WM interacted with visuospatial anticipation skills in the cubic term.
 The patterns for the relationship between visuospatial anticipation and linguistic anticipation were not as clear cut.

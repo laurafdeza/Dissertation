@@ -786,6 +786,7 @@ b0_prop <- b0 %>% inv_logit %>% round(2) %>% remove_leading_zero
 ```
 
 
+Probability estimates in both the pitch and the rhythm GCA models suggest that all groups were fixating on the target at target syllable offset, except for IM, who were at chance level.
 The full model summary of the GCA for rhythm is in the Appendix X.
 At the intercept, the model estimates the log odds of SS fixating on the target to be *&gamma;*~00~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[1,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[1,4]`, *t* = `r pretty_fixed_effects_pitch[1,5]`, *p* = `r pretty_fixed_effects_pitch[1,6]`.
 Thus, this model also estimates that SS were anticipating at the onset of the verb suffix.

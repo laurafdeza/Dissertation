@@ -1,0 +1,196 @@
+# 4. Methods
+## 4.1. Participants
+30 monolingual speakers of Spanish (20 females), 42 L2 Spanish L1 English speakers (30 females), and 43 L2 Spanish L1 Mandarin speakers (33 females) participated in the study.
+All participants lived in Spain. English L1 speakers had resided there for a mean of 31.5 months (*SD* = 28.6) and the L1 Mandarin speakers for a mean of 43.9 months (*SD* = 43.6). 
+All speakers were raised in monolingual families and communities of their L1. 
+The L2 speakers were late learners of Spanish.
+The L1 Mandarin speakers used Spanish a mean of 47.3% of the week (*SD* = 21.2) and the L1 English speakers a mean of 34.4% (*SD* = 16.6).
+The age range for all groups was 18-45 (Spanish: mean = 26.2, *SD*  = 8.82, English: mean = 25.7, *SD*  = 4.27; Mandarin: mean = 24.5, *SD*  = 4.39). 
+All participants had normal to corrected-to-normal hearing and vision, and no motor disability.    
+
+## 4.2. Materials
+### 4.2.1. Screening tasks
+Two screening tasks were used — a proficiency test and a sociolinguistic background questionnaire.
+The proficiency test screened the L2 participants and assigned them a level of proficiency. 
+It was a shortened version [@sagarra2010role] of the _Diploma de Español como Lengua Extranjera_ ('Certificate of Spanish as a Foreign Language', by Instituto Cervantes).
+Participants were interviewed following a sociolinguistic background questionnaire to gather information about their age, handedness, languages spoken and language use patterns, and music skills.            
+
+### 4.2.2. Anticipation tasks
+#### 4.2.2.1. Linguistic anticipation
+A visual-world paradigm was used to asses participants' abilities to associate verbal suffixes with stressed or unstressed syllables.
+The eye-movements during the task were recorded through an EyeLink 1000 Plus desktop mount eye-tracker from SR Research (sampling rate: 1k Hz; spatial resolution was less than .05o; averaged calibration error: .25-.5o). 
+Participants read two verbs on a computer screen side by side (*salta* 's/he jumps,' *saltó* 's/he jumped') and heard a sentence containing one of the two verbs (*El ladrón saltó la valla* 'the thief jumped over the fence').
+Participants selected the verb they had heard as fast as possible by pressing the right- or left-shift key.
+When they made their selection, a green rectangle appeared around the selected verb. 
+There were 4 practice sentences, 16 experimental sentences, and 80 fillers.
+
+The verbs were in the present tense and preterit tense 3rd person singular forms of regular -ar verbs. 
+Verbs from this conjugation were selected because they are the most numerous and less prone to irregularities.
+Spanish regular verbs have 2 cues to tense: initial syllable stress and word ending morphology. 
+Stressed initial syllables indicate that the tense is present (*salta* ‘s/he jumps’), and unstressed initial syllables indicate that the tense is past (preterit, _saltó_ ‘s/he jumped’). 
+The verb suffix indicates tense, person and aspect. 
+In total there were 16 verbs, each verb conjugated in each condition, therefore 32 final forms.
+All verbs had two syllables in both conditions: the first syllable had a CVC structure and the second syllable a CV structure. 
+Participants never heard the two conditions for a single verb. 
+Thus they heard 8 verbs in the present tense and 8 in the preterit tense.
+The position of the target verb on the screen was counterbalanced.
+
+The sentences were 5 words long with a neutral structure NP~SUBJ~-V-NP~OBJ~. 
+The sentences for each condition of a verb were the same. 
+The sentences were distributed into blocks by means of a Latin square design. 
+There were 8 blocks. 
+Each block contained 2 experimental sentences, one of each type, and 6 filler sentences. 
+The blocks appeared in a randomized order. 
+Within and across the blocks, the sentences were pseudo-randomized to avoid two experimental sentences of the same condition appearing one after the other.  
+The filler sentences contained anaphora, gender agreement and idiomatic expressions.
+
+#### 4.2.2.2. Pitch anticipation
+A pitch task measured participants' ability to predict melodic information based on previously occurring associated pitch changes. 
+This task was inspired by the melody discrimination tasks typically used in music research _[e.g., ]_. 
+This task was divided into a familiarization phase and a testing phase.
+In the famliarization phase participants listened to the melodies with which they were going to work in the experimental phase.
+They heard each melody twice and at the same time saw an arrow indicating in which direction the pitch in the melody changed.
+In the experimental phase, participants saw two arrows on the screen side by side, one pointing upwards and the other pointing downwards. 
+At the same time, they heard a melody that changed pitch direction after the third tone. 
+Participants had to select the arrow that matched the pitch change as fast as possible. 
+When they made their selection, the arrow selectd turned blue. 
+
+Two practice melodies were used as practice items, and 6 melodies were played as experimental items. 
+The practice items were repeated twice each, and the experimental melodies were repeated 8 times each. 
+The order of appearance of the melodies was pseudorandomized, so the same melody would not play twice in a row.
+After the first two practice melodies feedback was provided for accuracy of response. 
+The second time the practice melodies played no feedback was provided. 
+No feedback was provided either during the experimental phase. 
+
+The melodies were created in pairs, such that each pair started the same, but the fourth note differed. 
+One of the melodies grew higher in pitch, while the other melody grew lower. 
+A higher note than the base always signaled a following still higher note, while a lower note always signaled a following even lower note.
+The first changing tone in each melody was meant to act as a cue for participants to make their choice on whether the fifth note would be higher or lower. 
+After the variation in pitch, the melody remained at that newly reached level so as not to confuse participants on which change to judge.
+The experimental melody pairs were therefore 1) G#-G#-G#-B-C-C and G#-G#-G#-F-E, 2) C-C-C-C#-E-E and C-C-C-C#-E-E, and 3) E-E-E-F-F#-F# and E-E-E-D#-D. 
+The practice melody pair was A-A-A-B-C-C and A-A-A-G-F#-F#.
+The melodies were played at a tempo of 60 bpm in a scale of A4. 
+The test was built and run on PsychoPy v3.2. 
+The melodies were created with BeepBox 3.0.8 (http://www.beepbox.co) and saved as mp3.
+
+#### 4.2.2.3. Rhythmic anticipation    
+A rhythm tapping task adapted from @pagliarini2016predictive assessed the participants’ abilities to adapt to a rhythm and thus predict when changes were coming. 
+This task was divided into a familiarization phase and a testing phase for each rhythm. 
+The testing phase of each rhythm consisted of 10 trials of the same rhythm, with no pauses in between. 
+Participants heard the rhythms and one of the beats cued them to press a key on the start of the following beat. 
+The familiarization phase had the same length as one trial of the testing phase (~5-6 s). 
+In the familiarization phase participants simply listened to the rhythm. 
+
+There were 2 practice rhythms and 4 experimental rhythms. 
+Each trial in all rhythms consisted of 8 beats. 
+Of these 8 beats, six were context, one was the cue or imperative beat and the remaining one the tap-along beat. 
+These two last beats always appeared together in a random position in the sequence except in the first and last positions. 
+The tones were always pure tones. 
+The base tones had a frequency of 440 Hz, and the imperative beat was added a harmonic to make it distinguishable, so its frequency was 880 Hz. 
+All rhythms were at a reference tempo of 80 bpm.    
+The first practice rhythm contained eight homogeneus beats of 250 ms at 650 ms onset-to-onset intervals. 
+The second practice rhythm contained 8 beats of 200 ms each. The onset-to-onset intervals alternated between 400 and 800 ms, resembling the heart beat.
+
+In the experimental phase, the first beat rhythm sequence contained a total of eight beats at 750 ms onset-to-onset intervals. 
+Each beat lasted 200 ms. 
+The second beat rhythm also contained eight beats at 750 ms onset-to-onset intervals. 
+Four of the beats were strong and the other four were weak. 
+They always appeared in the sequence strong-weak-strong-weak. 
+The intensity of the weak tones was half of the intensity of the strong tones, and the strong tones lasted 200 ms and the weak ones 100 ms.
+The third beat rhythm contained four strong and four weak beats in the order strong-weak-strong-weak. 
+The strong tones lasted for 200 ms and the weak ones for 100 ms. 
+Between a strong and a weak beats the onset-to-onset interval was 990 ms, and between the weak and the strong beats, the onset-to-onset intervals was 510 ms. 
+The last beat rhythm contained equal tones of 200 ms duration, but the onset-to-onset intervals were 750 ms ± a random error of 30% of a duration of 750 ms. 
+This sequence was unpredictable and served as base condition. 
+There were two extra beat rhythms that served as practice sequences. 
+The task was created and administered on PsychoPy v3.2.       
+
+### 4.2.3. Verbal WM materials
+An aural version of @unsworth2005automated's Operation Span task (OSpan) was used to measure verbal WM capacities. This task generates measures of storage and processing speed. In a single trial, participants heard first a word and then a simple mathematical problem that could be either true (2 + 2 = 4) or false (2 + 2 = 5). Along the mathematical problem, they saw the words TRUE and FALSE on the screen. They had to select as fast as possible the correct word depending on whether what they heard was true or false by pressing the left- or right-shift key corresponding to the side on which their response was. This sequence of word-mathematical problem would repeat a certain number of times until a set was complete. At the end of each set, participants were prompted to write down the individual words they had heard before each problem in the same order they had heard them.      
+There were two practice trials of 3 words and simple mathematical problems, and three experimental sets of three, four, five and six words and mathematical problems. The words and mathematical problems that participants heard in the sets appeared in a fixed order across participants. The words TRUE and FALSE that participants needed to select in response to the mathematical problems appeared counterbalanced on each side across participants. No feedback was provided. The whole task was administered in the participant's L1.     
+
+## 4.3. Procedure
+Data collection was conducted in a single session with each participant individually. Each session lasted around 1 hour and 15 minutes and participants could take breaks between tasks anytime they wanted. Only the researcher accompanied the participant during this time and all interactions happened in Spanish. The room was isolated from external noise and light. Participants completed the tasks in this order: Spanish proficiency test (only L2 learners; 15-20 minutes), language background questionnaire (10 minutes), eye-tracking task (25 minutes), and OSpan (15 minutes).
+First, participants listened to an overview of the tasks and signed the consent form. Participants provided oral responses for the language background questionnaire. They completed the remaining tasks on a computer. Oral instructions were in Spanish; written instructions were in the participant's L1.     
+*Visual-world paradigm.* For the visual-world paradigm, participants rested their head on a chin rest, completed an 11-point grid calibration task, and received task instructions both orally and in writing. Then, they completed the practice trials and were given the opportunity to ask questions. Afterwards, they performed the task. Both the practice and the task trials followed this order. First, participants looked at a fixation sign in the middle of the screen for 250 ms. This fixation sign allowed the researcher to recalibrate manually when necessary. Then, two words appeared in the screen side to side. Once the words had been on the screen for 1000 ms., the sentence started playing and continued until reaching the last word. That is, the sentence did not stop when participants selected the word they heard. Participants were instructed to select the word on the screen they heard on the sentence as fast as possible by pressing the right- or left-shift keys. A green rectangle appeared on the screen around the selected word when participants pressed the key to make their choice. Response recording was set up to be registered only when the press happened after the start of the verb in the sentence. Previous presses where not recorded so the setting forced participants to press again until they saw the green rectangle appear. No feedback was provided. See Figure 1 for an example of an experimental trial.
+
+```{r knitr, include=TRUE, echo=FALSE, fig.cap = "Sample trial of the visual-world paradigm"}
+library(knitr)
+include_graphics("./figs/vwp.png", dpi = 108)
+```
+
+_Rhythm anticipation task_     
+The rhythmic anticipation task consisted of a familiarization phase and a testing phase. There were 2 rhythms for practice, and 4 experimental rhythms. For each rhythm, participants listened to 6 seconds of the rhythm to become familiarized with it. In the testing phase, one of the beats in the rhythm was replaced by a beep or imperative tone that cued the participants to press the space bar on the start of the following beat. That is, the order of the sections in the task was:     
+
+1) Practice:     
+    1.a) Familiarization phase 1      
+    1.b) Experimental phase 1     
+    1.c) Familiarization phase 2      
+    1.d) Experimental phase 2     
+2) Test:      
+    2.a) Familiarization phase 3      
+    2.b) Experimental phase 3      
+    2.c) Familiarization phase 4      
+    2.d) Experimental phase 4     
+    2.e) Familiarization phase 5      
+    2.f) Experimental phase 5       
+    2.g) Familiarization phase 6      
+    2.h) Experimental phase 6
+
+There were ten experimental trials for each rhythm in the testing phase, but participants heard no pause between trials. The rhythms sounded as if the trials were all part of the same rhythmic unit. When participants pressed the space bar after the imperative tone, a green dot appeared on the center of the screen. Otherwise, the screen remained blank. No other feedback was provided at any time (see Figure 2 for a trial representation of the rhythm anticipation task).     
+
+```{r, include=TRUE, echo=FALSE, fig.cap = "Sample trial of the rhythm anticipation task"}
+include_graphics("./figs/rhythm_task.png", dpi = 108)
+```
+
+_Pitch anticipation task_     
+In the pitch anticipation task, participants were familiarized with all the melodies first. The section order was therefore as follows:
+
+1) Familiarization     
+2) Practice     
+3) Test     
+
+Participants were not told about the pairing of melodies. During the familiarization phase, a number and an arrow appeared on the screen. The number (from 1-8) indicated what melody it was but contained no relevant information for the task. The arrow could point upwards or downwards and accompanied the direction of the pitch change.
+During the practice and testing phases, an upwards arrow and a downwards arrow appeared on the screen, each on one side. The side where each arrow appeared was counterbalanced across participants. Participants needed to select the arrow corresponding to the pitch change direction as fast as possible by pressing the keys associated with the arrows. The key associated with the arrow on the left was the left-shift key, and the key associated with the arrow on the right was the right-shift key.
+There were four practice trials. In the first two trials, participants received visual feedback on their arrow choice (right vs. wrong), and in the last two practice trials they received no feedback, imitating the format of the experimental trials. The correct sides were counterbalanced across participants. A fixation cross appeared for 250 ms between trials. A representation of a trial can be seen in Figure 3.
+
+```{r, include=TRUE, echo=FALSE, fig.cap = "Sample trial of the tone anticipation task"}
+include_graphics("./figs/tone_task.png", dpi = 108)
+```
+
+_OSpan_ The OSpan task was divided into practice and experimental trials. For each trial, participants first heard a word and then heard a simple mathematical problem, all in their L1. During the equation, participants saw the words TRUE or FALSE on each side of the screen, and they had to press the corresponding key (left-shift key for the word on the left, right-shift key for the word on the right) depending on whether the problem was correct or not. After each problem, they saw a fixation point for 500 ms. and another word-equation pair was presented. This process was repeated until the word RECALL or a linguistic equivalent in the L1 of the participant was shown on the screen, at which moment participants had to write on a piece of paper the words they had heard for that set in the order they were presented. The task started with three sets of three trials, then three sets of four trials, and so on until the third set of six trials. Figure 6 shows a sample trial.
+
+```{r, include=TRUE, echo=FALSE, fig.cap = "Sample trial of the OSpan"}
+include_graphics("./figs/ospan.png", dpi = 108)
+```
+
+## 4.3. Statistical analysis
+Statistical analyses were conducted using R [@team2013r].
+Given that speakers of different languages have different average spans, verbal WM variance was used as homogeneity measure (*K^2^*(2) = 6.376e-15, p = 1). 
+Verbal WM was calculated as the z-score of number of sets that participants got completely right (all words in correct order).
+
+Once we made sure groups were comparable, we calculated pitch and rhythm anticipation scores.
+Pitch anticipation scores were calculated as the random effects in a linear model with base note and direction of pitch as predictors and reaction time as outcome.
+Rhythm anticipation scores were calculated as the random effects in a linear model with rhythmic pattern as predictor and time difference between key press and ms of imperative beat onset.
+
+For the linguistic data, participants' key presses were considered accurate if they pressed the key corresponding to the verb in the sentence. 
+Only the sentences with accurate responses were included in the statistical analyses. 
+In the statistical analyses, proportion of fixations on the verbs over time in the sentence were analyzed. 
+We analyzed fixations on the target and on the distractor [@barr2008analyzing].
+These data were downsampled to 50 ms bin and converted through an empirical logit transformation.
+The moment of interest was the offset of the first syllable of the verb, henceforth target syllable, right after the cue appears but the outcome is not available yet.
+We filtered the time window to be from 200 ms before and 600 ms after target syllable offset.
+The gaze-fixation data was shifted 200 ms to account for the time it takes to plan and launch a saccade [e.g., @fischer1992saccadic; @saslow1967effects].
+
+After cleaning all the data, a growth curve analysis [GCA, @mirman2016growth] was fit using the package _lme4_ [@bates2014fitting].
+GCA was implemented to observe effects over time, as linguistic information becomes available.
+We ran two sets of analysis.
+Group and lexical stress condition (sum-coded present and preterit) were fixed effects in both sets.
+One of the models also had pitch as a fixed effect; the other model had rhythm instead.
+The time terms included in both models were linear, quadratic and cubic orthogonal polynomials.
+Logit fixations were the outcome.
+By-subject and by-item random intercepts and slopes were included to account for the different familiarity of each subject with each of the verbs in both tenses.
+Main effects and interactions were tested by means of nested model comparisons.
+
+SS and present tense were the baseline.
+Pairwise comparisons using the package _multcomp_ [@hothorn2016package] contrasted the data between the L2 groups in terms of L1 and in terms of proficiency.

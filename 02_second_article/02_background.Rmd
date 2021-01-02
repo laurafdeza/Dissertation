@@ -68,7 +68,8 @@ The ability to synchronize to beats or changes in rhythm is conditioned by (1) m
 Within the auditory modality, music is probably the most obvious instance of rhythm, but other domains such as language also follow rhythmic patterns.
 This similarity may involve shared cognitive mechanisms to perceive and process rhythm in different domains.
 If the mechanisms are shared, then increased abilities in rhythm, be them innate or acquired through practice, may have an effect on discrimination and processing of rhythms in language.
-Indeed, rhythmic abilities condition L1 and L2 processing. 
+Indeed, rhythmic abilities and perception condition L1 and L2 processing. 
+Matching metrical primes facilitate processing of sentences in the L1 _[@cason2015]_.
 ERP recordings have shown that on-beat sequence primes result in faster L1 speech processing than off-beat primes in adults _[@cason201]_. Rhythmic production is positively associated with L2 lexical stress placement and rhythm perception with the L2 learning experience [@bhatara2015foreign; @cason2019rhythmic].
 Better increased rhythmic perception, in contrast, is not associated with adults' reading abilities in an L1 or L2 [@swaminathan2018explaining].
 Swaminathan and colleagues were, nevertheless, mixing modalities (written text and heard rhythms), while Cason and colleagues were not. 

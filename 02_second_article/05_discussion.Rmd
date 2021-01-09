@@ -1,0 +1,44 @@
+# 5. Discussion
+We asked whether better pitch and rhythm abilities affect English and Mandarin learners of Spanish at different levels of proficiency and monolingual speakers of Spanish to acquire lexical stress-verb tense association and use them for prediction.
+Our goal was to explain individual differences in speech processing in an L1 and L2 caused by variability in innate auditory processing abilities.
+In addition, by testing the relationship between two auditory domains, we can also test transfer of abilities in associative language learning. 
+Participants completed a linguistic anticipation task, a pitch prediction task and a rhythm synchronization task.
+
+Results suggest that pitch abilities are associated with ability to predict within L2.
+Rhythm affects all groups, L2 and monolingual alike, such that those who anticipated beats and synchronized with them better anticipate preterit tense more easily and more smoothly.
+The effects of rhythm are particularly visible in the English groups in both levels of proficiency, especially in the intermediate group.
+Once again, better rhythmic synchronization abilities in these groups translates into better anticipation of preterit tense, but slower anticipation in the present tense.
+The different effects of rhythm are also visible across intermediate groups with different L1s, in which Mandarin speakers are not affected by their innate rhythmic abilities as compared to the English speakers.
+
+First we will discuss the pitch findings.
+We had hypothesized that English speakers would be affect by pitch abilities because lexical stress in English does not rely primarily on pitch; we had also hypothesized that Mandarin speakers would be affected because they need to learn to use pitch in a different way; our prediction regarding L1 Spanish speakers was that they would not be affected by their innate pitch perception and processing abilities.
+Our findings corroborate these predictions.
+English and Mandarin speakers were affected likewise by their pitch abilities, which suggests that practice with an acoustic correlate in the L1 is not helpful in acquiring L2 phonology if the correlate is used differently.
+A question that arises is whether an L2 speaker would also be affected by their pitch abilities during L2 association acquisition when pitch is used exactly in the same way and for the same purpose in their L1.
+As for L1 Spanish speakers, they might not be affected by pitch abilities because their practice with the language enables them make predictions based on lexical stress by using solely linguistic mechanisms.
+
+Regarding rhythm, rhythm appears to play a more defining role in speech processing in both the L1 and the L2.
+We had hypothesized that English speakers would benefit from better rhythm synchronization abilities as English is stress-timed and Spanish syllable-timed in terms of rhythmic structure.
+Mandarin speakers would not be affected because Mandarin Chinese and Spanish are both syllable-timed languages, and Spanish speakers because they have wide experience using lexically stressed and unstressed syllables to generate predictions.
+Our results only partially confirm these predictions.
+English speakers were affected, but so were Mandarin and Spanish speakers.
+
+In general, better rhythmic abilities improved prediction in the preterit tense.
+This result suggests that better rhythmic abilities facilitate the perception and processing of underemphasized beats.
+The contrast between present tense and preterit tense suggests that participants could distinguish between stressed and unstressed initial syllables.
+A possible explanation of why they waited longer to generate predictions in the present tense is because they were not sure whether the emphasis was related to lexical stress or some intonation function.
+Therefore, participants needed to wait longer to ascertain that the stress was lexical and not related to intonation.
+This ambiguity may also explain why L1 Spanish speakers are also affected by their rhythm abilities.
+The presence of this ambiguity overrides any advantage that experience provides, such that a faster discernment of the rhythmic properties associated with lexical stress or with intonation aids these speakers in elucidating the function of a stressed segment and assigning meaning to it and using it for processing of current and incoming information.
+
+Mandarin speakers were not strongly affected when compared to themselves, which indicates that they may have been using their knowledge of syllable-time speech rhythm from the L1.
+Similarly, advance L2 speakers not being extremely affected also suggest that their performance and processing style is more similar to that of native speakers, such that differences in rhythm abilities do not cause such a great impact as they do at intermediate stages of proficiency.
+The greatest impact of rhythm abilities was exerted in the intermediate English group.
+Possibly, this impact is due to them not having had enough L2 exposure to resort to linguistic mechanisms alone and to not being as familiar with syllable-time speech rhythms as L1 speakers of such languages or advanced L2 speakers.
+
+The association between auditory domains also lends support to theories that claim the existence of transfer across domains.
+In this case, transfer of auditory abilities would take place when the processing mechanism in one domain are not able alone to process the information in a short time enough to not lose other incoming information.
+However, the stark contrast between the intermediate groups suggest that the transfer is only useful when the transferred abilities play a "supporting" role.
+In other words, intermediate Mandarin speakers were not anticipating to start with, and therefore any transfer would make no real difference.
+The difference is made when the receiving domain has already something with which to work.
+This explanation can also account for the stark contrast between intermediate groups.

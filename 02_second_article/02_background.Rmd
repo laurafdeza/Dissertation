@@ -17,7 +17,7 @@ In addition Spanish and Mandarin Chinese are similar in terms of rhythms as they
 # 2. Background
 ## 2.1. Music and speech
 Research with musicians has been prolific in providing evidence in support of the link between speech and music.
-Behavioral online studies and neurocognitive studies have revealed that musical abilities influence positively the production and perception of linguistic sound structures in adults [@wong2007musical] and L2 learners [@marques2007musicians; @slevc2006individual].
+Behavioral online studies and neurocognitive studies have revealed that musical abilities influence positively the production and perception of linguistic sound structures in monolingual adults [@wong2007musical] and L2 learners [@marques2007musicians; @slevc2006individual].
 Similarly, neurocognitive studies reveal that musicians process speech in a more enhanced way and more synchronously to its onset than non-musicians [e.g., @dittinger2016professional; @fitzroy2013musical; @musacchia2007musicians]. 
 In a meta-analysis, @kraus2010music concluded that music training can cause functional and structural changes in the brain.
 These changes may translate into improvement in language performance as music shares with language physiological resources that process auditory information.
@@ -56,7 +56,6 @@ A typical response to a rhythm is synchronized movement to it.
 This sensorimotor behavior is based on anticipation of when the next beat is coming, especially at slow tempi [@nozaradan2016individual; @van2015sensorimotor].
 Ability to perform this anticipation grows in accuracy with years of musical training [@nozaradan2016individual]. 
 Prediction of oncoming beats is also present in rhythms with tempo changes [@van2015sensorimotor].   
-
 Within the auditory modality, music is probably the most obvious instance of rhythm, but other domains such as language also follow rhythmic patterns.
 Metrical expectancies are automatically generated as we listen to speech [e.g., @magne2016speech; @rothermich2012rhythm; @schmidt2009event]. 
 Speakers use stress patterns to generate the expectancies. 

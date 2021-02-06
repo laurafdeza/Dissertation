@@ -44,7 +44,7 @@ library("flextable")
 ```{r analysis-preferences}
 # Seed for random number generation
 set.seed(42)
-knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed, warning = FALSE)
 ```
 
 ```{r, 'source-scripts-models'}
@@ -115,13 +115,19 @@ border_1 <- fp_border(width = 1.5)
 border_2 <- fp_border(width = 0.75)
 
 model_preds$target_offset_preds_pitch %>% 
-  mutate(stress = if_else(stress == 1, "paroxytone", "oxytone")) %>%
+  mutate(stress = if_else(stress == 1, "paroxytone", "oxytone"),
+         group = fct_relevel(group, "SS", 'AE', 'AM', 'IE', 'IM')) %>%
+  group_by(group, stress) %>%
+  filter(., pitch_dev == max(pitch_dev) |
+           pitch_dev == min(pitch_dev)) %>%
+  ungroup() %>%
   arrange(group, desc(stress), pitch_dev) %>%    
   mutate(group = blank_same_as_last(as.character(group))) %>% 
-  select(Group = group, `Lexical stress` = stress, Pitch = pitch_dev, 
+  select(Group = group, `Lexical stress` = stress, `Pitch (min, max)` = pitch_dev, 
          Probability = prob, LB = prob_lb, UB = prob_ub) %>% 
   flextable() %>% 
   width(., j = c(2, 3, 4), width = c(1.1, 1.3, 1.1)) %>% 
+  padding(padding = 0, part = "all") %>% 
   font(., fontname = "Times", part = "all") %>%
   fontsize(., size = 11) %>% 
   border_remove(.) %>%  
@@ -158,7 +164,7 @@ var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
 pretty_fixed_effects_pitch$Parameter %<>% paste(., var_labels)
 
 pretty_fixed_effects_pitch %>% 
-  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr"))
 
 ```
 
@@ -476,13 +482,19 @@ border_1 <- fp_border(width = 1.5)
 border_2 <- fp_border(width = 0.75)
 
 model_preds$target_offset_preds_rhythm %>% 
-  mutate(stress = if_else(stress == 1, "paroxytone", "oxytone")) %>% 
-  arrange(group, desc(stress), rhythm_dev) %>%    # to order it in descending order, add desc() around rhythm_dev
+  mutate(stress = if_else(stress == 1, "paroxytone", "oxytone"),
+         group = fct_relevel(group, "SS", 'AE', 'AM', 'IE', 'IM')) %>% 
+  group_by(group, stress) %>%
+  filter(., rhythm_dev == max(rhythm_dev) |
+           rhythm_dev == min(rhythm_dev)) %>%
+  ungroup() %>%
+  arrange(group, desc(stress), rhythm_dev) %>%    
   mutate(group = blank_same_as_last(as.character(group))) %>% 
   select(Group = group, `Lexical stress` = stress, Rhythm = rhythm_dev, 
          Probability = prob, LB = prob_lb, UB = prob_ub) %>% 
   flextable() %>% 
   width(., j = c(2, 3, 4), width = c(1.1, 1.3, 1.1)) %>% 
+  padding(padding = 0, part = "all") %>% 
   font(., fontname = "Times", part = "all") %>%
   fontsize(., size = 11) %>% 
   border_remove(.) %>%  

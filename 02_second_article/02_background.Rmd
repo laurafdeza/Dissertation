@@ -1,26 +1,51 @@
 # 1. Introduction
-Learning a second language as adults is difficult.
-We draw from our previous knowledge to make up for the shortcomings we have in our second language (L2).
-The type of previous knowledge we resort to is varied, from other languages we speak to our musical training to learn L2 tones.
-If, how, and to what extent skills are transferred in learning is a hot debate.
-Transfer could take place between domain-general and domain-specific mechanisms and between domain-specific mechanisms alone.
-Transfer of domain-specific mechanisms alone in regards to language has been widely tested with music, for example, in learning of tones in a second language [@tang2016musical] or speech processing [e.g., @dittinger2016professional; @fitzroy2013musical; @musacchia2007musicians].
-In speech processing, anticipation of information plays an important role to ease comprehension and processing load.
-Inability to predict oncoming information and cognitive overload may be a source of lack of comprehension in second language learners.
-While speech prediction improves with language exposure [e.g., _@Primerexperimento_, @sagarra2018suprasegmental], the issue still remains how speech processing is affected by other cognitive capacities.
+Adults have difficulties in learning a second language (L2).
+We draw from our previous knowledge to support the learning process and make up for the shortcomings we have in our L2.
+The previous knowledge does not have to be linguistic.
+Musicians native to non-tonal L1s, for example, rely on their musical skills to discriminate L2 tones [@tang2016musical].
+While we may transfer non-linguistic skills to aid in L2 perception, it is still unknown what the effects of transfer is in linguistic processing.
+In particular, it is still unclear what previous knowledge we can transfer during L2 learning and processing, under what circumstances transfer may take place, and what the effects are.
+In addition, the previous research has focused on populations who had developed a non-linguistic skill but ignored the role of innate abilities, which may account for individual differences in L2 processing.
+The transfer of innate abilities could take place between domain-general and domain-specific mechanisms and between domain-specific mechanisms alone.
+_Transfer of domain-specific mechanisms alone in regards to language has been widely tested with music, or in speech processing [e.g., @dittinger2016professional; @fitzroy2013musical; @musacchia2007musicians]._
+_In speech processing, anticipation of information is crucial because it eases comprehension and processing load._
+_Inability to predict oncoming information and cognitive overload may be a source of lack of comprehension in second language learners._
+_While speech prediction improves with language exposure [e.g., _@Primerexperimento_, _@sagarra2018suprasegmental], the issue still remains how speech processing is affected by other cognitive capacities._
 
-In this paper, we investigate how auditory abilities condition speech prediction in a first language (L1) and in an L2.
-Specifically, we aimed to investigate how pitch and rhythm innate abilities condition prediction of verb tense suffixes in L1 and L2 speakers of Spanish when cued by lexically stressed and unstressed syllables.
-To observe the interaction between innate auditory abilities with the L1 in acquiring and developing L2 processing skills, we tested speakers whose L1s have lexical stress but in which pitch is not preeminent as an acoustic correlate (English and Spanish) with speakers whose L1 does not have lexical stress but for whom pitch is important (Mandarin Chinese). 
-In addition Spanish and Mandarin Chinese are similar in terms of rhythms as they are syllable-timed, while English is stress-timed.
+In this paper, we investigate how auditory abilities are transferred and may condition speech prediction in a first language (L1) and in an L2.
+Specifically, we investigate how pitch and rhythm innate abilities condition prediction of verb tense suffixes in L1 and L2 speakers of Spanish when cued by lexically stressed and unstressed syllables.
+To observe the interaction between innate rhythmic abilities and speech prediction skills, we tested monolingual speakers (Spanish), speakers whose L1 is of the same rhythmic category as the L2 (Mandarin Chinese-Spanish, both syllable-timed), and speakers whose L1 and L2 are rhythmically different (English-Spanish, English is stress-timed). 
+To observe the interaction between innate pitch abilities and pitch prediction skills, we also compare the monolingual group with speakers whose L1 and L2 share the use of pitch height for lexical stress (English-Spanish), and with speakers whose L1 and L2 use pitch differently and for different purposes (Chinese uses pitch contour for lexical tone; Spanish uses pitch height for lexical stress). 
 
 # 2. Background
-## 2.1. Music and speech
+## 2.1. Linguistic prediction
+In linguistic prediction, a cue is associated to an outcome. 
+The mental representation of this association facilitates processing. 
+The association may be established at different levels: _mention some_
+The lack of the mental representation has been suggested as a possible cause for the difficulty that native speakers of morphologically-poorer languages have in processing morphologically-richer L2s [@sagarra2018suprasegmental].
+Lacking this mental representation would cause processing difficulty because there is no pre-activation of morphological elements. Therefore all morphemes need to be paid careful attention to, which, given their typical less saliency, results cognitive taxation, slower processing and incomplete comprehension.
+
+Research on the association of lexical stress-verb tense suffix initially supports the idea that lacking a represented association hinders processing.
+L1 English speakers need to reach advanced proficiency to acquire the lexical stress-verb tense suffix and use it for prediction, although they can only apply the association when the cue appears on CVC syllables (*FIRma-firMÓ*, 's/he signs-s/he signed) and not CV syllables [*LAva-laVÓ*, 's/he washes-s/he washed', @sagarra2018suprasegmental].
+The syllable structure effect does not disappear even in proficient speakers who make out of prediction a way of living, i.e., interpreters [@lozano2019slowly].
+For CVC syllables, however, the creation of an association can be accelerated when the speaker lives immersed in the L2 [@PRIMEREXPERIMENTO].
+The facilitating effect of immersion has also been ascertained with pitch accent and noun number suffixes for the most part _[@gosselke-berthelsen2018; @hed2019; @schremm2017]_, although also with verb tense suffixes to some extent in Central Swedish _[@schremm2016]_.
+The studies on predictive processing of suffixes based on pitch accent in Central Swedish generally suggest, likewise, that the longer the exposure and the higher the proficiency the better the predictive performance.
+
+While linguistic factors such as syllable structure or immersion may affect speakers' abilities to create cue-outcome associations based on phonological and morphological structures, other factors may be at play.
+Individual differences are responsible of the different degrees of sensitivity to lexical stress in L1 French-L2 Spanish speakers [@dupoux2008].
+Trying to delve into individual differences in prediction, @sagarra2018suprasegmental tested whether they were due to verbal working memory capacity.
+In their study, verbal working memory did not predict the ability of either monolinguals or bilinguals at different levels of proficiency to anticipate tense based on lexical stress.
+Whereas domain-general mechanisms such as working memory have been more typically considered as sources of individual variability, their relationship with language processing is unclear.
+Additionally, domain-specific mechanisms not pertaining to language have rarely been included as factors conditioning language acquisition and processing, which however, have been proven to be important in language perception.
+Here, we address this neglect by examining the relationship between innate auditory abilities in the form of pitch and rhythm and speech anticipation.
+
+## 2.2. Music and speech
 Research with musicians has been prolific in providing evidence in support of the link between speech and music.
 Behavioral online studies and neurocognitive studies have revealed that musical abilities influence positively the production and perception of linguistic sound structures in monolingual adults [@wong2007musical] and L2 learners [@marques2007musicians; @slevc2006individual].
 Similarly, neurocognitive studies reveal that musicians process speech in a more enhanced way and more synchronously to its onset than non-musicians [e.g., @dittinger2016professional; @fitzroy2013musical; @musacchia2007musicians]. 
 In a meta-analysis, @kraus2010music concluded that music training can cause functional and structural changes in the brain.
-These changes may translate into improvement in language performance as music shares with language physiological resources that process auditory information.
+Brain changes caused by music training may translate into improvement in language performance as music shares with language physiological resources that process auditory information.
 Given that music and language share physiological resources and that musical practice gives an advantage in speech processing and in L2 acquisition, the relationship between both domains may extend further than training.
 In other words, varying innate abilities may be responsible for individual variation of L2 processing, in particular of phonology, among learners of L2s.
 Since music is a broad term, here we will focus on pitch, rhythm and their relationship with speech processing in an L1 and an L2.
@@ -76,77 +101,86 @@ Swaminathan and colleagues were, nevertheless, mixing modalities (written text a
 We could therefore hypothesize that a relationship between speech and rhythm is still not precluded.
 This conclusion would also agree with with association learning models proposing that the more similar two cognitive specific domains are, the likelier the transfer of abilities and mechanisms between them is.
 
-In order to extend the current findings on the association between music and speech to lexical stress and predictive processing, we tested pitch, rhythm and speech anticipation abilities of monolingual and L2 speakers of Spanish.
-There is evidence for the existence of prediction processes in music [e.g., @salimpoor2015predictions] as well as in language.
-Anticipation in music can be cued through syntactic structure [@sammler2013syntax] or acoustic properties [@loui2007harmonic].
-In language, there are many layers of prediction.
-Importantly for this study, phonology can cue outcomes.
+In order to extend the current findings on the association between music and speech to predictive processing, we tested transfer of pitch, rhythm and speech anticipation abilities of monolingual and L2 speakers of Spanish at intermediate and advanced levels of proficiency.
+The L2 speakers' L1s shared with Spanish rhythmic structure (Chinese-Spanish bilinguals) or pitch use for lexical stress (English-Spanish bilinguals).
 
-## 2.2. Linguistic anticipation
-Anticipation alleviates the load of constantly processing the information that we receive from the world. 
-At a large scale, we anticipate what is going to happen in movies and books. 
-At smaller scales, we anticipate movements in sports, other drivers' actions, and we also anticipate what we read and what we hear. 
-In linguistic anticipation, we use cues of different kinds to predict oncoming linguistic information. 
-Predictive processing in language is especially efficient in the L1, and mediated by factors like L1 transfer, L2 proficiency, or working memory in the L2. 
-These factors may interact with each other to generate successful or unsuccessful predictions.
+## 2.3. Transfer
+Transfer refers to the use and application of skills or knowledge acquired in a cognitive domain to an activity in a different domain, or the inability to do so [@singley1989transfer].  
+Transfer models focus on transfer of domain-general or domain-specific mechanisms to other specific domains.
+In the first case, if inhibitory control were transferred to driving, that would be an example of transfer of a domain-general cognitive mechanism to a specific domain.
+In types of models accounting for this type of transfer, different brain domains are connected to each other allowing for transfer of acquired skills in a domain towards another not as specialized skill in a different domain.
+This transfer is enabled through the sharing of common features [@thorndike1901influence] and cognitive elements [@anderson1990cognitive], in the form of perceptual and conceptual information [@singley1989transfer].
 
-Relevant for this study, predictions may be driven by phonological information.
-Depending on the language, coarticulation [@salverda2014immediate], intonation [@nakamura2012immediate; @weber2006role], lexical stress [@correia2013word; @sagarra2018suprasegmental], pauses between clauses [@hawthorne2014pauses; @kjelgaard1999prosodic], vowel duration [@rehrig2017acoustic], and tone [@roll2015neurolinguistic; @roll2011activating] can be cues to outcomes.
-The outcomes with which the cues are associated are varied.
-In Swedish, tonal cues indicate noun number [if low tone, then singular, _fisken_ 'fish~[SG]~'; if high tone, then plural, _fiskar_ 'fish~[PL]~,' @roll2010word; @soderstrom2015using; @roll2013word] and verb tense [if low tone, then present, _skrämmer_ 'I scare'; if high tone, then past, _skrämde_ 'I scared,' @soderstrom2012processing; @roll2015neurolinguistic].
-In Spanish, lexical stress signals verbal tense [if first syllable stressed, then present; if unstressed, then past: _CANta_ 'he sings' vs _canTÓ_ 'he sang,' @sagarra2018suprasegmental] and noun ending [*PRINcipe* 'prince' vs _prinCIPIO_ 'beginning,' @soto2001segmental]. In English, vowel duration is associated with voice [if shorter vowel duration, then active: 'the girl was pushing the boy'; if longer vowel duration, then passive: 'the girl was pushed by the boy,' @rehrig2017acoustic].  
+If visuospatial skills to gauge trajectories or distance were transferred from playing a sport to driving, that would be an example of transfer of a domain-specific cognitive mechanism to a specific domain.
+In models accounting for this type of transfer, brain domains are independent and unrelated to each other.
+The independency will stem from the idea that the more developed a skill is, the more domain-specific the features will be, reducing the likelihood of transfer as they cannot apply as easily to skills in other domains [@ericsson1994expert; @gobet2015understanding].
+Improvement of skills in a brain domain will consequently have little to no influence in other domains.
 
-L2 speakers require time to learn the associations between phonological information and the outcomes, and their learning may be conditioned by several factors, such as learning context or L1 knowledge.
-In L2 settings, only L2 learners at advanced levels of proficiency can generate predictions based on phonological structures [@rehrig2017acoustic] and depending on syllable structure [@sagarra2018suprasegmental].
-When immersed, speakers learn at lower proficiencies to make the associations that enable them to predict [@berthelsen2018neural; @PRIMEREXPERIMENTO; @hed2019neural; @schremm2016implicit].
-Learning context,however, should also be considered in light of the L1.
-The L1 and L2 of the speakers in @sagarra2018suprasegmental shared the use of lexical stress, while the languages of speakers in @rehrig2017acoustic did not share vowel lengthening, and still they got similar results.
-In contrasts, the L2 speakers learning tones in @hed2019neural and @schremm2016implicit did not have tonal L1s and at intermediate stages could generate predictions, while the speakers not sharing structures in @PRIMEREXPERIMENTO (Mandarin Chinese speakers) were slower in learning the lexical stress associations than the population that did share the structure (English speakers).
-The mixed results thus suggest that different factors interact in an L2 learner's ability to acquire cue-outcome mappings.
+The influence of domain-general mechanisms on language prediction has been started to be explored with verbal working memory [@huettig2016prediction; @otten2019does; @sagarra@2018], although no agreement on the influence has been reached so far and more extensive research is still needed to that end.
+So far, verbal working memory has shown to have little to no effect, even in non-proficient L2 speakers who are more prone to performance differences caused by working memory _[@citation]_.
+Regarding the influence of other domain-specific mechanisms, this is to our knowledge the first study exploring the influence of domain-specific mechanisms pertaining to other specific domains (i.e., rhythm and pitch).
 
-Among the factors considered in contributing to the association learning, factors regarding individual differences have been largely disregarded.
-Working memory has been considered in some studies as an individual variability factor, and only two of those tested anticipation based on phonological structures [@lozano2020; @sagarra2018suprasegmental].
-Both studies suggest that working memory plays no role in ability to anticipate either in the L1 or the L2 [@sagarra2018suprasegmental], unless the L2 speakers are extremely taxed cognitively [@lozano2020].
-Given that working memory is not relevant for prediction, other individual characteristics that are associated with speech, e.g., auditory processing, may exert some influence.
-
-In order to test the hypothesis that individual differences in the creation of L2 associations between phonological cues with outcomes for predictions stem from innate abilities in auditory processing, we investigate in this paper whether innate abilities for rhythm and pitch and practice with acoustic correlates in the L1 affect the creation of lexical stress cue-suffix outcome associations used in speech processing. 
-In particular, we asked whether better pitch and rhythm abilities affect English and Mandarin learners of Spanish at different levels of proficiency and monolingual speakers of Spanish to predict verb tense suffixes that are cued by lexical stress.
-We included L2 speakers at different levels of proficiency because the ability to use lexical stress to predict tense evolves along with exposure to the L2 [@sagarra2018suprasegmental; @PRIMER EXP].
-In addition, it is possible that cross-domain transfer varies over proficiency, just like domain-general mechanisms such as working memory affect L2 learning differently at different stages [@serafini2016evidence].
-We chose native English and Mandarin speakers because of the phonological and phonetic phenomena their L1 encodes and how they differ or assimilate to the phonological phenomena in Spanish.
-
-## 2.3. Linguistic phenomena
-### 2.3.1. Lexical stress
-Stress is the emphasis of a syllable that speakers hear relative to the other syllables in the prosodic word [@hualde2005sounds]. 
-The position within words and acoustic correlates change drastically across languages.
-In English and Spanish lexical stress has no fixed position because lexical stress is placed differently to contrast meanings. 
-The contrastive function is much more often used in Spanish than in English.
-In English lexical stress predominantly distinguishes heteronyms or pairs of verbs-nouns that have no segmental differences, such as to “proDUCE,” verb vs “PROduce,” noun. 
+## 2.4. Linguistic phenomena
+### 2.4.1. Pitch
+Pitch can be associated with a number of phonological and intonational phenomena in speech.
+Interestingly for the present study, pitch can be associated with the emphasis that some syllables receive in comparison to others not as emphasized.
+This association gives place to lexical stress [@hualde2005sounds].
+In the lexical stress association, the emphasized or stressed syllable has a higher pitch, while the unstressed syllable has a lower pitch.
+Lexical stress is present in languages like English and Spanish.
+In these languages, the differences in pitch between stressed and unstressed syllables in Spanish and English distinguishes words.
+That is, lexical stress, the difference in pitch height, is contrastive.
+In English, lexical stress predominantly distinguishes heteronyms or pairs of verbs-nouns that have no segmental differences, such as to “proDUCE,” verb vs “PROduce,” noun. 
 In Spanish, lexical stress differentiates all kinds of information, such as verbal tense and person (*CANto* 'I sing' vs _canTÓ_ 's/he sang'), nouns (*PApa* 'potato' vs _paPÁ_ 'dad'), or nouns from verbs (*TÉRmino* 'term' vs _terMIno_ 'I finish' vs _termiNÓ_ 's/he finished').
-In English lexical stress is signaled by longer vowel duration and better quality [@cooper2002constraints; @cutler1986forbear] mainly, although other cues such as intensity and pitch (F0) [@beckman1986stress; @fry1955duration; @fry1958experiments; @fry1965dependence; @sluijter1996spectral; @sluijter1997spectral] play minor roles.
-In Spanish, pitch (F0) is higher for stressed syllables and lower for unstressed syllables, stressed syllables are louder, and stressed syllables are usually slightly longer [@hualde2005sounds; @ortega2006phonetic; @ortega2007disentangling; @ortega2009perception].
-Thus it seems that perception and processing of pitch is more crucial in Spanish than in English.
+Lexical stress is however also marked by other acoustic correlates in combination with pitch.
+Such acoustic correlates are duration and vowel quality in English [@cooper2002constraints; @cutler1986forbear] or intensity in Spanish [@hualde2005sounds; @ortega2006phonetic; @ortega2007disentangling; @ortega2009perception].
 
-The acoustic characteristics of lexical stress are also related to the prosody of the language. 
-Vowel reduction is linked to the rhythmic pattern of stressed-timed languages, like English, where the intervals between stressed syllables have similar duration.
-In this type of languages, the stressed syllable signals a rhythmic unit that can be composed of multiple sub-units until the next stressed syllable and thus rhythmic unit arrives.
-Spanish, on the contrary, is defined sometimes a syllable-timed language, as syllable duration is quite stable, and thus vowel trajectory length is approximately the same for all syllables regardless of their tonicity [@colantoni2015second; @hualde2005sounds]. 
+In addition to lexical stress, pitch can be associated with other phonological phenomena at the lexical level.
+In languages like (or dialects belonging to) Mandarin Chinese, pitch is associated with tones [@gandour1978perception; @zhu2015tone].
+In Mandarin tones, it is not pitch height relativity what is important, but pitch contour [@chao1968grammar].
+In other words, whether pitch remains at a specific height, it goes up or down within a syllable.
+Another remarkable difference between tones and lexical stress is that all syllables of a word in a tonal language are associated to a tone.
+In contrast, only one syllable in each word may be stressed, although the presence of secondary stress is also possible in English.
+Some words may also not be stressed at all.
+Like lexical stress in Spanish and English, tones in Mandarin Chinese contribute to word distinction [/ma1/mā/ 'mother', /ma2/má/ 'hemp', /ma3/mǎ/ 'horse', /ma4/mà/ 'scold'].
+
+### 2.4.2. Rhythm
+The phonological structure associated with syllables determines the overall rhythmic effects of the language.
+Vowel reduction in English causes unstressed syllables to be considerably shorter than stressed syllables.
+The shortening of syllables causes the stressed syllable to signal the start of a new rhythmic unit.
+These rhythmic units are thus composed of the stressed syllable plus the following unstressed syllables until the following stressed syllable arrives.
+Languages with this rhythmic structure may be described as stressed-time.
+
+In languages like Spanish that have no vowel reduction, all syllables last approximately the same regardless of their tonicity [@colantoni2015second; @hualde2005sounds]. 
 In these languages, stress is simply part of a syllable, and each syllable is a new rhythmic unit. 
+These languages may be described as syllable-timed.
+Since pitch is the only correlate to tones in Mandarin Chinese, syllables have all similar duration.
+Therefore, Mandarin is also described as a syllable-timed language in terms of rhythm [@grabe2002durational; @lin2007mandarin; @mok2009syllable].
+     
+# 3. This study
+Previous research has mainly explored external factors that condition the ability of L2 speakers' to create associations for predictive processing.
+In those studies, individual differences as a source of variability was rarely consider.
+In the studies in which individual variability was considered, the factor included was verbal working memory.
+Verbal working memory has not been proven to be effective in accounting for individual variability so far _[@]_, although the studies on the topic are not that numerous.
+With the goal of expanding the possibilities giving rise to individual variability, here we focused on individual variability that may stem from innate skills specific to other cognitive domains.
+The skills are namely auditory skills.
+Linguistic skills have been oftentimes previously associated with musical skills in pitch perception and rhythm production.
+Most of these studies, however, have been conducted on professional musicians, which may have masked individual variability caused by the innate pitch and rhythm processing abilities of the speakers.
+Here, therefore, we expanded previous findings by testing the relationship of predictive abilities between specific cognitive domains that were linguistic (phonology) and non-linguistic (pitch and rhythm) to explore the possibility that individual differences in language processing can be caused by innate auditory abilities.
+To that end, monolingual speakers of Spanish and English and Chinese learners of Spanish at different levels of proficiency completed an eye-tracking task, a pitch anticipatory task, and a rhythm synchronization task.
+The eye-tracking task measured speakers' abilities to predict verb tense suffixes through lexical stress.
+The pitch anticipatory task measured speakers' abilities to predict upcoming tones in a melody based on the previously heard tones.
+The rhythm synchronization task measured speakers' abilities to predict beats and synchronize key presses to them.
 
-English and Spanish therefore share the use of lexical stress as contrastive, but the correlates in each language and the consequent rhythmic structure are different.
-Consequently, English speakers can only transfer phonological knowledge (i.e., contrastive function) to Spanish.
-Since they need to start paying attention to pitch and to a new rhythm, better innate abilities to perceive and process pitch and rhythm in general may help in the L2 Spanish acquisition process.
+The research question guiding the study was
 
-### 2.3.2. Tone
-Tones are the pitch contour patterns of the voiced part in syllables [@chao1968grammar]. 
-Only a few languages use tones contrastively at the lexical level.
-One such language is Mandarin Chinese, whose dialects (e.g., from Beijing and Tianjin) use all pitch (F0) contour in the syllable as the sole acoustic correlate for tones [@gandour1978perception; @zhu2015tone]. 
-Since pitch is the only correlate, syllables in Mandarin Chinese have all similar duration.
-Therefore, Mandarin is described as a syllable-timed language in terms of rhythm [@grabe2002durational; @lin2007mandarin; @mok2009syllable], just like Spanish.     
 
-Mandarin Chinese shares with Spanish that they are syllable-time languages.
-Mandarin learners of Spanish do not need therefore to learn a new rhythm.
-In consequence, their innate rhythic abilities may not be consequential.
-In contrast, they need to learn a new way to use pitch (contour in Mandarin vs height in Spanish).
-Hypothetically, better pitch perception and processing abilities may thus also help in processing pitch for lexical stress and use it for speech prediction.
-Lastly, given the practice L1 Spanish speakers have using lexical stress to predict verb tense, they will not be affected anymore by their innate pitch and rhythm abilities, as they will have overcome any association hurdles.
+
+As described above, English and Spanish share the use of pitch height to indicate lexical stress and apply lexical stress to contrast words.
+English and Spanish, however, differ in their rhythmic structure due to the different duration of English syllables depending on tonicity.
+Mandarin Chinese dialects and Spanish share the rhythmic structure as they are both syllable timed, but they differ in their use of pitch (tones in Mandarin and stress in Spanish) and the particular aspect of pitch they pay attention to (contour vs height, respectively).
+Although some scholars have proposed that Mandarin Chinese also encodes lexical stress, 
+
+
+We therefore predict that 
+
+

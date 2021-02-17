@@ -1,32 +1,19 @@
 # 3. This study
-
-This finding along with @gosselke2020different suggest that 
-The findings from the studies on pitch accent and lexical stress suggest that creating associations that facilitate pre-activation of morphology through phonology depends on several factors.
-First, it depends on L2 proficiency.
-Second, word and syllable structure is important.
-Third, language transfer may have a positive effect on the acquisition of the association and the previous language experience reflects in the neural network.
-Those studies, however, have several shortcomings.
-First, two of them rely on response time data to reach their conclusions and those two articles are the basis for the rest of the articles.
-Second, only one study focuses on transfer.
-Said study is @gosselke2020different, but they only provide evidence of positive transfer, do not take into account that languages may be placed in a continuum of how much transfer there can be, and there is no theoretical framework.
-Third, while only one study focuses on transfer, at least two other should have as the L1s of the speakers are not homogeneous, and some participants also speak a third and even a fourth language.
-Fourth, the study on transfer uses pseudowords as stimuli.
-Fifth, the conclusions in the training studies are generalized to "suffixes" even when the trainings and the pre- and post-tests do not necessarily focus on the same type of suffixes (verb tense vs noun number and gender).
+Within-word morphophonological associations are essential for language comprehension.
+These associations are typically learned implicitly, making them more prone to suffering cross-linguistic effects.
+Studies on transfer have a large history on cross-linguistic effects within components, but have not explored yet biases in the creation of L2 associations caused by the L1.
+However, understanding the acquisition of within-word morphophonological associations is crucial to explain why L2 speakers oftentimes find it difficult to process morphology.
+Previous research on the acquisition of within-word morphophonological associations are not comparable because they used different cues (pitch accent vs lexical stress) in different contexts (immersion vs non-immersion, respectively), because some measured brain activity while others performance, and performance was sometimes unconscious (eye movements) and others conscious (reaction times), because speakers self-reported their proficiency, had mixed L1s or also spoke third and even fourth languages, or because the studies mixed nominal and verbal morphology.
+Furthermore, only one study has investigated transfer effects on association acquisition [@gosselke2020different]. 
+This study only provides evidence of transfer from two extremes (transfer either was not possible at all or the overlap was complete) but does not take into account that languages may be placed in a continuum of how much transfer there can be, and there is no theoretical framework.
+Moreover, that study used pseudowords as stimuli.
 
 The present study fills some of the gaps left by the previous studies on the association between phonology-morphology for prediction.
-Specifically, we address the issue of transfer considering phonological overlap as a continuum rather than closed categories.
-We test transfer in real words.
-Specifically, we test Spanish monolinguals, English-Spanish and Mandarin Chinese-Spanish bilinguals ability to predict present and past suffixes based on lexically stressed and unstressed syllables.
-We test the transfer effects at different levels of proficiency, and thus acquisition stages, and control for possible individual differences by keeping verbal working memory homogeneous.
-In order to collect online data, we use eye-tracking.
-
-
-The current study aims to fill the gap left by previous studies on the acquisition of phonology-morphology within word associations.
-This gap is characterized by the lack of grounding online data that serves as starting point for later studies, by very few data on verb suffixes, and by a negligence on possible transfer effects in bilingual speakers.
-For that purpose, we test prediction performance in bilingual speakers who can transfer different degrees of phonological knowledge from their L1 (English or Mandarin Chinese) to their L2 (Spanish) to anticipate present and past tense suffixes based on lexically stressed or unstressed stem CVC syllables.
-Additionally, we test how transfer varies according to proficiency.
-In order to make these results comparable to findings in Swedish, the participants lived immersed in the L2.
-The specific research question is:
+We address the issue of transfer considering phonological overlap as a continuum rather than separate categories.
+To that end, we test online prediction performance through eye-tracking in bilingual speakers who can transfer different degrees of phonological knowledge from their L1 (English or Mandarin Chinese) to their L2 (Spanish) to anticipate present and past tense suffixes based on lexically stressed or unstressed stem CVC syllables.
+We test transfer effects at different levels of proficiency, and thus acquisition stages, and control for possible individual differences by keeping verbal working memory homogeneous.
+In order to make these results comparable to findings with pitch accent, the participants lived immersed in the L2.
+The specific research questions are:
 
 *1. Do Spanish monolinguals, and intermediate and advanced Mandarin and English learners of Spanish use lexical stress to anticipate verbal suffixes in Spanish?*  
 We predict that monolingual Spanish speakers will anticipate verb tense when cued by stressed and unstressed syllables [@lozano2019slowly; @sagarra2018suprasegmental]. 

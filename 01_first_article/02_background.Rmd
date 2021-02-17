@@ -1,6 +1,6 @@
 # 2. Background
 ## 2.1. Transfer
-Cognitive models of L2 acquisition consider that the existing L1 system influences the acquisition and processing of the L2 [e.g., Competition Model, @macwhinney1987; @macwhinney2012; Full Transfer/Full Access Hypothesis, @schwartz1994; @schwartz1996; @white1989].
+Cognitive models of L2 acquisition consider that the existing L1 system influences the acquisition and processing of the L2 [e.g., Competition Model, @li2012competition; @macwhinney1987competition; Full Transfer/Full Access Hypothesis, @schwartz1996l2].
 This influence is called transfer or cross-linguistic influence [@lado1957linguistics].
 In instances in which the L1 system facilitates acquisition of the L2 system, transfer is said to be positive.
 For example, in cases in which the L1 and the L2 both mark noun number overtly [@luk2009acquisition].
@@ -8,10 +8,11 @@ In cases in which the L1 system hinders or blocks the acquisition of an element 
 For example, when the L1 does not explicitly mark noun number but the L2 does, L2 speakers struggle in acquiring the noun number representation [@luk2009acquisition].
 Positive transfer of similar cross-linguistic structures thus accelerates the L2 acquisition process, and negative transfer may impede L2 acquisition because of differing cross-linguistic structures [@melby2011cross], or at least slow it down.
 
-Importantly for this study, L1 transfer may affect phonology [@yang2017investigation] and morphology [@yang2017investigation; @sagarra2013seeing], but there are other factors interacting with transfer to bear in mind.
+Importantly for this study, L1 transfer may affect phonology [@yang2017investigation] and morphology [@yang2017investigation; @sagarra2013seeing].
+There are also other factors interacting with transfer to bear in mind. 
 In phonological transfer, the magnitude of the effects varies across proficiency [@jun2000acquisition], such that transfer effects decrease as proficiency increases.
 Phonological transfer also varies according to the structure being acquired [@simon2010phonological].
-Thus, Dutch L1 speakers assimilate syllable- and word-final obstruents before voiced stops more often than before sonorant consonants in L2 English, following Dutch phonological rules instead of English rules.
+Dutch L1 speakers assimilate syllable- and word-final obstruents before voiced stops more often than before sonorant consonants in L2 English, following Dutch phonological rules instead of English rules.
 In terms of prosody, L1 structures like lexical stress may affect processing and production of different L2 structures like lexical tones, with effects discernible at advanced levels of proficiency [@shih2010prosody].
 Finally, L2 speakers transfer necessary skills to segment, analyze, manipulate, and assemble speech sounds [@yang2017investigation].
 These results suggest that there may be cross-linguistic effects of phonological knowledge at different levels, namely segments and intonation.
@@ -27,20 +28,41 @@ Transfer starts to affect L2 processing more stably at intermediate levels [see 
 
 Taken together, research on phonological and morphological transfer show that cross-linguistic effects may start early in the acquisition process, but the effects grow stronger as proficiency increases.
 The characteristics of each language involved in the process will condition the extent of the effects as well as its helpfulness. 
-One important aspect of previous studies is that they have focused on one specific component.
+One important aspect of previous studies is that they have focused on one specific linguistic component.
 While elucidating the effects of transfer on processing within each specific component is key in our understanding and language and cognition, we also need to understand transfer in a more global context in which component processing does not happen in isolation, but as part of a whole interconnected system.
-So far, most transfer research has failed to account for the interaction and the association between components and for the effects of transfer on that interaction and association during linguistic processing.
+So far, most transfer research has failed to account for the interaction and the association between components and for the effects of transfer on that interaction and association during linguistic processing, even though association is a fundamental learning strategy in cognitive perspectives of L2 acquisition, [e.g., Competition Model, @macwhinney1997second; Associative-Cognitive CREED, @ellis2006cognitive].
+<!--The ability of speakers to create those associations is determined by the validity of the input, or cues, they receive [@macwhinney1997second].
+The cue validity consists of three parts: frequency, availability, and reliability.
+Frequency refers to how often an association is called upon.
+Frequency is important in L2 acquisition because L2 is not and has not been used as frequently as the L1.
+Availability refers to how typical an association is.
+For example, in gender agreement in Spanish, the suffix *-o* is the most typical suffix for masculine adjectives and nouns, thus the more available.
+However, there are other endings that can also indicate masculine, especially in nouns, such as *-e* or a consonant.
+These endings are less typical and thus their availability is lower.
+Finally, reliability refers to what cue is stronger when more than one cue is present.
+For instance, the  most canonical form in Spanish is SVO, although other orders are possible, such as when clitic pronouns appear, in which case the order is SOV.
+In Spanish it is also very frequent for subjects not to be explicit.
+Thus, when an L2 speaker encounters a sentence like *lo vi ayer* (him saw~1 sg~ yesterday) 'I~NULL~ saw him yesterday' has two conflicting words: morphology vs word order and needs to learn that in Spanish morphology is a stronger cue.-->
+
+The associations that cognitive perspectives on L2 acquisition have referred to most commonly are form-meaning associations (e.g., suffix *-a* in Spanish corresponds to feminine grammatical gender).
+However, associations between different elements in phrases, sentences and discourse is also necessary to facilitate language processing [@sagarra2013seeing].
+Associating already heard elements in the speech stream with incoming information allows for the prediction of the incoming information.
+This kind of associations are mostly acquired implicitly in the case of the L1.
+In the case of the L2, they are sometimes overtly explained, like is the case of gender agreement or case declination in a noun phrase, and other times they are never taught, such as a morphophonological association.
+The L2 speaker must therefore pick up the associations that lead to prediction.
+An important aspect to take into account in cognitive perspectives of L2 acquisitionis not only the characteristics of the input in enabling the creation of L2 associations, but also the effect of a pre-existing linguistic system on the creation of those associations.
+Exploring the cross-linguistic effects on acquisition of implicit associations and on L2 processing of these associations will clarify 1) whether the learning mechanisms underlying first and second language acquisition are similar, 2) whether they can be transferred to learn other languages and to facilitate their processing, and 3) whether the information that the L1 requires paying attention to conditions biases the creation of L2 associations through transfer.
 
 ## 2.2. Linguistic prediction
 Prediction is a cognitive mechanism deployed by the brain to process all the input it receives.
 Predictions are based on probabilistic associations [@clark2013whatever] between a cue and an outcome that are learned unconsciously [@cohen1980preserved].
-The cue and outcome may belong to the same linguistic component (e.g., semantic, @altmann1999incremental) or to different ones (e.g., phonology-morphology, @sagarra2018suprasegmental).
-Because of their probabilistic nature, the associations are acquired gradually according to their frequency and consistency [Competition Model, @bates1987; @bates1989; CREED, @ellis2006].
+The cue and outcome may belong to the same linguistic component [e.g., semantic, @altmann1999incremental] or to different ones [e.g., phonology-morphology, @sagarra2018suprasegmental].
+Because of their probabilistic nature, the associations are acquired gradually according to their frequency and consistency [Competition Model, @bates1982functionalist; @bates1987competition; CREED, @ellis2006cognitive].
 An association will be stronger the more examples there are of it (high availability) and the more regular it is (high reliability).
-These associations are crucial for language acquisition [bates1982functionalist; bates1987competition; @romberg2010statistical] and prediction [@kuperberg2016what]. 
+These associations are crucial for language acquisition [@bates1982functionalist; @macwhinney1997second; @romberg2010statistical] and prediction [@kuperberg2016what]. 
 
 L1 and L2 speakers do not predict to the same extent.
-L1 speakers use semantic [@altmann1999incremental], semantic-morphosyntactic [@altmann2007real], morphosyntactic [@gruter2016l2; @huettig2016prediction; @lew2010real], morphophonological [@roll2010word; @roll2013] associations for prediction.
+L1 speakers use semantic [@altmann1999incremental], semantic-morphosyntactic [@altmann2007real], morphosyntactic [@gruter2016l2; @huettig2016prediction; @lew2010real], morphophonological [@roll2010word; @roll2013word] associations for prediction.
 Relevantly for the study, associations with phonological cues are possible, and the cues are varied.
 Among the possible phonological cues, we find pitch accent [@roll2011activating], lexical stress [@sagarra2018suprasegmental], coarticulation [@salverda2014immediate], and vowel duration [@rehrig2017acoustic].
 
@@ -96,19 +118,27 @@ In addition, the advanced L2 speakers could only do so when the stem syllable st
 Working memory did not affect integration of lexical stress and prediction of verb tense suffixes, suggesting that working memory does not affect processing of morphophonological associations when the speaker has already had some experience with the language.
 In the search for other factors constraining morphophonological prediction, @lozano2019slowly investigated whether anticipatory experience could affect anticipation performance for the same type of association, for which they added a group of English-Spanish interpreters.
 As in @sagarra2018suprasegmental, CVC stem was a more reliable cue for the L2 groups than CV.
-_Anticipatory experience did have an effect_
+Anticipatory experience did have a positive effect in some cases (CVC stem + past tense), allowing interpreters to predict faster, although not necessarily earlier, than monolinguals did.
+The findings from these two studies indicate that morphophonological associations are not only restricted to pitch accent, but also to other phonological phenomena, and that they can be activated in non-immersion contexts.
+Importantly, they also indicate that there are factors constraining the acquisition of anticipatory associations, but the nature of these factors is still unclear.
 
 Finally, @lozanoreview expanded the scope of the associations, and examined whether monolinguals and L2 speakers can use associations of lexical stress to non-morphological endings (*PApa* 'potato' vs *paPÁ* 'dad, Pope') for prediction.
 In a similar study to @sagarra2018suprasegmental and @lozano2019slowly, @lozanoreview found out that the ability to use lexical stress-word endings association does extend to non-morphological endings.
 This finding led the authors to conclude that the association may not be so much a phonology-morphology association, but rather a phonology-meaning association.
 In sum, the studies on lexical stress extend previous findings on pitch accent to more phonological structures, at the same time that they open the possibility of needing to conceptualize associations in a different way, where form is not only connected to form, but also to meaning.
+These studies point towards the fundamental effects of L2 development in L2 prediction, a phenomenon that affects all L2 learners independently of their L1, but more information is necessary on the effect of the L1 cues on L2 associative predictions.
+Some of these studies recruited in fact L2 speakers from multiple L1s, with L3s or even L4s, or the design did not allow for comparison of cross-linguistic effects.
+Additionally, comparison across studies is not always possible as participants in some studies lived immersed in the L1 and in others in the L2, proficiency measures were not always standardized, or the studies focused on different levels of proficiency, on different outcomes, or mixed outcomes (noun and verb suffixes).
+Moreover, some studies focused on brain activity but not on anticipation performance necessarily, or the performance was only measured via reaction times.
+These limitations are problematic because we cannot make sure how the L1 affects L2 prediction, if the speakers really knew had the same proficiency, if they are bogged down by difficulty processing only the cue in the association or also the outcome, or if the brain activity prediction translates into performance.
 
-_relate to my study. why my study crucial_
-
-
-_Here you need a separate paragraph making the point that the results of all L2 studies with phonological cues described above can be due to L2 development, a phenomenon that affects all L2 learners independently of their L1, or to their L1 having cues that differ from the L2. And THEN, sth like, to tease these two possibilities apart, and a full description of these studies, followed by a list of limitations (e.g. However, these studies.... First, the learners belonged to different tonal L1s and non-tonal L1s. This is problematic because... Second, etc). And then 2 sentences in the next paragraph explaining how your study addresses this limitations._
-
-
+To tease apart the effects of L2 proficiency and of L1 transfer on linguistic prediction, we investigate anticipation abilities of English and Mandarin Chinese native speakers in L2 Spanish.
+The association tested was lexical stress-verb tense suffixes.
+Performance was measured through eye-tracking, allowing to observer processing in real time without the need for the brain to command a hand movement to measure reaction time.
+Participants' proficiency was measured with a standardized test to make sure they all were at the same development stage.
+English and Mandarin Chinese were chosen for two reasons, the first one being that they have poor morphology for verb tense.
+The second reason is that English and Mandarin Chinese are located at different distances from Spanish in how they encode lexical stress and the purpose it serves.
+All three languages encode lexical stress, but the nature, frequency and sensitivity to it varies across the three languages, where English is more similar to Spanish than Mandarin Chinese.
 
 ## 2.4. Linguistic phenomena
 The cue-outcome association tested in this study is lexical stress-verb tense suffix.

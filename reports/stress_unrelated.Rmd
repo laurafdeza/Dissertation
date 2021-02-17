@@ -99,13 +99,13 @@ The tables can also be copy and pasted where appropriate.
 
 # Plots
 
-```{r, 'plot-ind-preds', echo=FALSE, fig.cap="Growth curve analysis estimates of fixations on target as a function of lexical stress for each group during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms. after the offset of the target syllable."}
+```{r, 'plot-ind-preds', echo=FALSE, fig.cap="Growth curve analysis estimates of fixations on target as a function of lexical stress for each group during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
 knitr::include_graphics(
   here("figs", "stress", "gca", "stress_p2.png")
 )
 ```
 
-```{r, 'plot-group-preds', echo=FALSE, fig.cap="Growth curve analysis estimates of fixations on the target as a function of lexical stress for each group during the analysis window. Symbols and lines represent model estimates, and the ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms. after the offset of the target syllable."}
+```{r, 'plot-group-preds', echo=FALSE, fig.cap="Growth curve analysis estimates of fixations on the target as a function of lexical stress for each group during the analysis window. Symbols and lines represent model estimates, and the ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
 knitr::include_graphics(
   here("figs", "stress", "gca", "stress_p3.png")
 )
@@ -438,60 +438,47 @@ b0_prop <- b0 %>% inv_logit %>% round(2) %>% remove_leading_zero
 ```
 
 
+SS speakers results are presented first, followed by comparisons between L2 groups. 
+The summary for the full model of the Growth Curve Analysis is in the Appendices 2 and 3.
+The model also estimated the probability of fixations on the target at the offset of the first syllable in the verb; the probabilities were estimated for each group in both lexical stress conditions (see Table 1; stressed syllable = present, unstressed syllable = preterit).
+These probabilities are contained in Table 1.
 
-The summary for the full model of the Growth Curve Analysis is in the Appendices 2 and 3, and the results are plotted in Figures 3 and 4. 
-In the plots, the x-axis in these plots represents time (ms.) in the trial and the y-axis represents the logit probability of fixation on the target. 
-Figure 3 represents the model fit for each group in both conditions. 
-Figure 4 represents the model fit for each verbal tense across groups. 
-The vertical line at 200 ms. represents the offset of the first syllable in the target verbs.
+The model intercept estimates the log odds of SS fixating their gaze on the target averaging across lexical stress condition and time course (*&gamma;*~00~&nbsp;=&nbsp;`r pretty_fixed_effects[1,3]`, SE =&nbsp;`r pretty_fixed_effects[1,4]`. *t* = `r pretty_fixed_effects[1,5]`, *p* = `r pretty_fixed_effects[1,6]`) with a probability of `r printnum(model_preds$target_offset_preds[1,6])` (LB = `r printnum(model_preds$target_offset_preds[1,7])`, UB = 
+`r printnum(model_preds$target_offset_preds[1,8])`) in the present tense and of probability = `r printnum(model_preds$target_offset_preds[2,6])` (LB = `r printnum(model_preds$target_offset_preds[2,7])`, UB = 
+`r printnum(model_preds$target_offset_preds[2,8])`) in the preterit tense.
+The value for the intercept along with the probabilities suggest that SS were anticipating correctly.
 
-These plots indicate that SS start anticipating earlier than the L2 groups. 
-The higher crossing point of the 200 ms. line also indicates that they are anticipating more than the L2 groups. 
-Within groups, SS, IE and to some extent IM anticipate present and preterit tense similarly. 
-In the case of AE and AM, preterit tense appears to be easier to anticipate than present tense.
-
-For reporting the results of the growth curve model, SS and present tense were taken as baseline. 
-The results for these speakers are presented first.
-Comparisons between L2 groups according to L1 and to L2 proficiency come afterwards.
-The model intercept estimates the log odds of SS fixating their gaze on the target averaging across lexical stress condition and time course (*&gamma;*~00~&nbsp;=&nbsp;`r pretty_fixed_effects[1,3]`, SE =&nbsp;`r pretty_fixed_effects[1,4]`. *t* = `r pretty_fixed_effects[1,5]`, *p* = `r pretty_fixed_effects[1,6]`). 
-This value for the intercept suggests that SS were anticipating correctly. 
-The linear and cubic polynomial time terms captured the sigmoid shape of the time course and were retained in the model (linear: *&gamma;*~10~&nbsp;=&nbsp;`r pretty_fixed_effects[2,3]`, SE =&nbsp;`r pretty_fixed_effects[2,4]`. *t* = `r pretty_fixed_effects[2,5]`, *p* = `r pretty_fixed_effects[2,6]`; cubic: *&gamma;*~30~&nbsp;=&nbsp;`r pretty_fixed_effects[4,3]`, SE =&nbsp;`r pretty_fixed_effects[4,4]`. *t* = `r pretty_fixed_effects[4,5]`, *p* = `r pretty_fixed_effects[4,6]`).
-There was no effect of lexical stress (*&gamma;*~02~&nbsp;=&nbsp;`r pretty_fixed_effects[9,3]`, SE =&nbsp;`r pretty_fixed_effects[9,4]`. *t* = `r pretty_fixed_effects[9,5]`, *p* = `r pretty_fixed_effects[9,6]`)), but there was a main effect of group on the intercept which corroborates the plots in that L2 speakers predicted less than SS (AE: *&gamma;*~01~&nbsp;=&nbsp;`r pretty_fixed_effects[5,3]`, SE =&nbsp;`r pretty_fixed_effects[5,4]`. *t* = `r pretty_fixed_effects[5,5]`, *p* = `r pretty_fixed_effects[5,6]`; AM: *&gamma;*~11~&nbsp;=&nbsp;`r pretty_fixed_effects[6,3]`, SE =&nbsp;`r pretty_fixed_effects[6,4]`. *t* = `r pretty_fixed_effects[6,5]`, *p* = `r pretty_fixed_effects[6,6]`; AE: *&gamma;*~21~&nbsp;=&nbsp;`r pretty_fixed_effects[7,3]`, SE =&nbsp;`r pretty_fixed_effects[7,4]`. *t* = `r pretty_fixed_effects[7,5]`, *p* = `r pretty_fixed_effects[7,6]`; AM: *&gamma;*~31~&nbsp;=&nbsp;`r pretty_fixed_effects[8,3]`, SE =&nbsp;`r pretty_fixed_effects[8,4]`. *t* = `r pretty_fixed_effects[8,5]`, *p* = `r pretty_fixed_effects[8,6]`). 
-The estimates for the intercept also demonstrate that IM were the ones that anticipated less in comparison with the SS.
-There was also an effect caused by the group AE in the linear term (*&gamma;*~12~&nbsp;=&nbsp;`r pretty_fixed_effects[10,3]`, SE =&nbsp;`r pretty_fixed_effects[10,4]`. *t* = `r pretty_fixed_effects[10,5]`, *p* = `r pretty_fixed_effects[10,6]`), which reveals that the slope for this group is steeper than for SS.
-This steeper slope means that AE tended to increased its fixations on the target more abruptly than SS. 
-That is, AE anticipated more abruptly.
-The lack of an interaction between the linear term and the other L2 groups reveal that they followed a more similar pattern of prediction to SS in terms of steepness.
-There was an effect of all groups in the quadratic term with higher estimates for L2 groups (AE: *&gamma;*~13~&nbsp;=&nbsp;`r pretty_fixed_effects[14,3]`, SE =&nbsp;`r pretty_fixed_effects[14,4]`. *t* = `r pretty_fixed_effects[14,5]`, *p* = `r pretty_fixed_effects[14,6]`; AM: *&gamma;*~23~&nbsp;=&nbsp;`r pretty_fixed_effects[15,3]`, SE =&nbsp;`r pretty_fixed_effects[15,4]`. *t* = `r pretty_fixed_effects[15,5]`, *p* = `r pretty_fixed_effects[15,6]`; AE: *&gamma;*~33~&nbsp;=&nbsp;`r pretty_fixed_effects[16,3]`, SE =&nbsp;`r pretty_fixed_effects[16,4]`. *t* = `r pretty_fixed_effects[16,5]`, *p* = `r pretty_fixed_effects[16,6]`; AM: *&gamma;*~04~&nbsp;=&nbsp;`r pretty_fixed_effects[17,3]`, SE =&nbsp;`r pretty_fixed_effects[17,4]`. *t* = `r pretty_fixed_effects[17,5]`, *p* = `r pretty_fixed_effects[17,6]`) that indicates that the quadratic curve was more bowed for the L2 speakers, reflecting their delay with respect to SS in predicting.
-Lastly, there was an interaction effect in the quadratic term between AE and lexical stress (*&gamma;*~36~&nbsp;=&nbsp;`r pretty_fixed_effects[30,3]`, SE =&nbsp;`r pretty_fixed_effects[30,4]`. *t* = `r pretty_fixed_effects[30,5]`, *p* = `r pretty_fixed_effects[30,6]`) and between AM and lexical stress (GroupAM x Lexical stress: *&gamma;*~00~&nbsp;=&nbsp;`r pretty_fixed_effects[31,3]`, SE =&nbsp;`r pretty_fixed_effects[31,4]`. *t* = `r pretty_fixed_effects[31,5]`, *p* = `r pretty_fixed_effects[31,6]`). 
-This interaction confirms the information advanced by plots in Figures 3 and 4 in that advanced L2 learners fixated more on the target in the preterit tense than they did in the present tense.
-This increased number of fixations reveals that preterit tense may be easier to anticipate than present tense.
-
-Pairwise comparisons extend the results on performance differences across L2 groups. 
-The pairwise comparisons are in Appendices 4, 5, 6 and 7.
-In terms of L1, there is only a slightly difference in the quadratic term for the L1 English speakers (*&gamma;*~19~&nbsp;=&nbsp;`r pretty_pairwise_table_en[6,3]`, SE =&nbsp;`r pretty_pairwise_table_en[6,4]`. *t* = `r pretty_pairwise_table_en[6,5]`, *p* = `r pretty_pairwise_table_en[6,6]`), such that IE anticipate less than AE in the preterit tense.
-This finding contrasts with their performance in the present tense, where IE anticipate more than AE, although the prediction difference there between the two groups does not reach significance.
-As for L1 Mandarin Chinese speakers, AM and IM only differ in the intercept, where IM is shown to predict less than AM averaging across time course and stress conditions (*&gamma;*~08~&nbsp;=&nbsp;`r pretty_pairwise_table_ma[1,3]`, SE =&nbsp;`r pretty_pairwise_table_ma[1,4]`. *t* = `r pretty_pairwise_table_ma[1,5]`, *p* = `r pretty_pairwise_table_ma[1,6]`). 
-That is, AM predict better overall than IM.
-Regarding L2 proficiency, IE and IM only differ in the intercept too, which reveals that IE anticipate more than IM averaging across time course and stress conditions (*&gamma;*~08~&nbsp;=&nbsp;`r pretty_pairwise_table_int[1,3]`, SE =&nbsp;`r pretty_pairwise_table_int[1,4]`. *t* = `r pretty_pairwise_table_int[1,5]`, *p* = `r pretty_pairwise_table_int[1,6]`). 
-At advanced proficiencies, AM and AE only differ in the linear term (`r pretty_pairwise_table_adv[2,3]`, SE =&nbsp;`r pretty_pairwise_table_adv[2,4]`. *t* = `r pretty_pairwise_table_adv[2,5]`, *p* = `r pretty_pairwise_table_adv[2,6]`).
-This estimate suggests that the increase of fixations on the target in the AM group is less steep than in the AE group.
-In other words, AM predict more smoothly than AE in both stress conditions.
-
-The model estimated probability of fixations on the target above 50% chance in lexical stress conditions across all groups at the offset of the first syllable in the verb (SS x present: probability = `r printnum(model_preds$target_offset_preds[1,6])`, LB = `r printnum(model_preds$target_offset_preds[1,7])`, UB = 
-`r printnum(model_preds$target_offset_preds[1,8])`; SS x preterit: probability = `r printnum(model_preds$target_offset_preds[2,6])`, LB = `r printnum(model_preds$target_offset_preds[2,7])`, UB = 
-`r printnum(model_preds$target_offset_preds[2,8])`; AE x present: probability = `r printnum(model_preds$target_offset_preds[3,6])`, LB = `r printnum(model_preds$target_offset_preds[3,7])`, UB = `r printnum(model_preds$target_offset_preds[3,8])`; AE x preterit: probability = `r printnum(model_preds$target_offset_preds[4,6])`, LB = `r printnum(model_preds$target_offset_preds[4,7])`, UB = `r printnum(model_preds$target_offset_preds[4,8])`; AM x present: probability = `r printnum(model_preds$target_offset_preds[5,6])`, LB = `r printnum(model_preds$target_offset_preds[5,7])`, UB = `r printnum(model_preds$target_offset_preds[5,8])`; AM x preterit: probability = `r printnum(model_preds$target_offset_preds[6,6])`, LB = `r printnum(model_preds$target_offset_preds[6,7])`, UB = `r printnum(model_preds$target_offset_preds[6,8])`; IE x present: probability = `r printnum(model_preds$target_offset_preds[7,6])`, LB = `r printnum(model_preds$target_offset_preds[7,7])`, UB = 
+There was a main effect of group indicating that L2 speakers predicted less than SS (AE: *&gamma;*~01~&nbsp;=&nbsp;`r pretty_fixed_effects[5,3]`, SE =&nbsp;`r pretty_fixed_effects[5,4]`. *t* = `r pretty_fixed_effects[5,5]`, *p* = `r pretty_fixed_effects[5,6]`; AM: *&gamma;*~11~&nbsp;=&nbsp;`r pretty_fixed_effects[6,3]`, SE =&nbsp;`r pretty_fixed_effects[6,4]`. *t* = `r pretty_fixed_effects[6,5]`, *p* = `r pretty_fixed_effects[6,6]`; IE: *&gamma;*~21~&nbsp;=&nbsp;`r pretty_fixed_effects[7,3]`, SE =&nbsp;`r pretty_fixed_effects[7,4]`. *t* = `r pretty_fixed_effects[7,5]`, *p* = `r pretty_fixed_effects[7,6]`; IM: *&gamma;*~31~&nbsp;=&nbsp;`r pretty_fixed_effects[8,3]`, SE =&nbsp;`r pretty_fixed_effects[8,4]`. *t* = `r pretty_fixed_effects[8,5]`, *p* = `r pretty_fixed_effects[8,6]`).
+The two fit plots in Figure 3 reflect this trend in both tenses.
+The estimates for the intercept demonstrate that IM was the group that most differed from SS in their ability to anticipate. 
+As seen in Figure 3, the fixation log odds for SS crosses the intercept at a higher point than the log odds for the L2 groups, indicating that SS were fixating more on the target verb at the offset of the first syllable. 
+The estimated probabilities suggest nonetheless that all L2 groups were still anticipating, except for IM in the present tense (AE x present: probability = `r printnum(model_preds$target_offset_preds[3,6])`, LB = `r printnum(model_preds$target_offset_preds[3,7])`, UB = `r printnum(model_preds$target_offset_preds[3,8])`; AE x preterit: probability = `r printnum(model_preds$target_offset_preds[4,6])`, LB = `r printnum(model_preds$target_offset_preds[4,7])`, UB = `r printnum(model_preds$target_offset_preds[4,8])`; AM x present: probability = `r printnum(model_preds$target_offset_preds[5,6])`, LB = `r printnum(model_preds$target_offset_preds[5,7])`, UB = `r printnum(model_preds$target_offset_preds[5,8])`; AM x preterit: probability = `r printnum(model_preds$target_offset_preds[6,6])`, LB = `r printnum(model_preds$target_offset_preds[6,7])`, UB = `r printnum(model_preds$target_offset_preds[6,8])`; IE x present: probability = `r printnum(model_preds$target_offset_preds[7,6])`, LB = `r printnum(model_preds$target_offset_preds[7,7])`, UB = 
 `r printnum(model_preds$target_offset_preds[7,8])`; IE x preterit: probability = `r printnum(model_preds$target_offset_preds[8,6])`, LB = `r printnum(model_preds$target_offset_preds[8,7])`, UB = 
 `r printnum(model_preds$target_offset_preds[8,8])`; IM x present: probability = `r printnum(model_preds$target_offset_preds[9,6])`, LB = `r printnum(model_preds$target_offset_preds[9,7])`, UB = 
 `r printnum(model_preds$target_offset_preds[9,8])`; IM x preterit: probability = `r printnum(model_preds$target_offset_preds[10,6])`, LB = `r printnum(model_preds$target_offset_preds[10,7])`, UB = 
 `r printnum(model_preds$target_offset_preds[10,8])`).
-These probabilities are contained in Table 1.
-These probabilities indicate that all groups are likely to anticipate above chance except for IM.
-They also indicate that prediction probability in SS speakers is higher than in the L2 groups.
-The probabilities also reflect the striking performance of AE, in the sense that their anticipation probability in present tense decreases from intermediate proficiency levels.
-In contrast, the probabilities for the Mandarin speakers suggest that they improve more in anticipation performance in this tense over proficiency.
 
-The data in this study revealed that Mandarin speakers generally improved over proficiency, as evidenced by increased gaze fixations on the target verb upon hearing the lexically stressed initial syllable. 
-English speakers improved in the preterit tense condition but not in the present tense condition, where they in fact got worse. IE anticipated better than IM, but at advanced levels AM catch up with AE
-SS anticipated better than the L2 speakers.
-Stress condition yielded overall no significant differences.
+There was also a main effect of the linear term and of the cubic term (*&gamma;*~10~&nbsp;=&nbsp;`r pretty_fixed_effects[2,3]`, SE =&nbsp;`r pretty_fixed_effects[2,4]`. *t* = `r pretty_fixed_effects[2,5]`, *p* = `r pretty_fixed_effects[2,6]`; *&gamma;*~30~&nbsp;=&nbsp;`r pretty_fixed_effects[4,3]`, SE =&nbsp;`r pretty_fixed_effects[4,4]`. *t* = `r pretty_fixed_effects[4,5]`, *p* = `r pretty_fixed_effects[4,6]`, respectively).
+These two effects indicate that the slopes were bowed differently across groups—slopes were steeper and bows more closed in the L2 groups (see Fig. 3).
+The interactions in the linear and cubic polynomial time terms reflect the sigmoid shape of the time course and were retained in the model because they improved the model fit (*&beta;*&nbsp;=&nbsp;16.939, *df*&nbsp;=&nbsp;4, *p*&nbsp;=&nbsp;.002).
+Keeping these interactions yielded an effect caused by the group AE in the linear term (*&gamma;*~12~&nbsp;=&nbsp;`r pretty_fixed_effects[10,3]`, SE =&nbsp;`r pretty_fixed_effects[10,4]`. *t* = `r pretty_fixed_effects[10,5]`, *p* = `r pretty_fixed_effects[10,6]`), revealing that AE increased their gaze fixations on the target faster than any other group once they started anticipating (see Fig. 3).
+There was also an effect of all groups in the quadratic term (AE: *&gamma;*~13~&nbsp;=&nbsp;`r pretty_fixed_effects[14,3]`, SE =&nbsp;`r pretty_fixed_effects[14,4]`. *t* = `r pretty_fixed_effects[14,5]`, *p* = `r pretty_fixed_effects[14,6]`; AM: *&gamma;*~23~&nbsp;=&nbsp;`r pretty_fixed_effects[15,3]`, SE =&nbsp;`r pretty_fixed_effects[15,4]`. *t* = `r pretty_fixed_effects[15,5]`, *p* = `r pretty_fixed_effects[15,6]`; AE: *&gamma;*~33~&nbsp;=&nbsp;`r pretty_fixed_effects[16,3]`, SE =&nbsp;`r pretty_fixed_effects[16,4]`. *t* = `r pretty_fixed_effects[16,5]`, *p* = `r pretty_fixed_effects[16,6]`; AM: *&gamma;*~04~&nbsp;=&nbsp;`r pretty_fixed_effects[17,3]`, SE =&nbsp;`r pretty_fixed_effects[17,4]`. *t* = `r pretty_fixed_effects[17,5]`, *p* = `r pretty_fixed_effects[17,6]`) that indicates that the quadratic curve was more bowed for the L2 speakers, reflecting that all L2 groups predicted later than SS.
+
+Keeping the term interactions also yielded a more complex interaction effect in the quadratic term between AE and lexical stress (*&gamma;*~36~&nbsp;=&nbsp;`r pretty_fixed_effects[30,3]`, SE =&nbsp;`r pretty_fixed_effects[30,4]`. *t* = `r pretty_fixed_effects[30,5]`, *p* = `r pretty_fixed_effects[30,6]`) and between AM and lexical stress (GroupAM x Lexical stress: *&gamma;*~00~&nbsp;=&nbsp;`r pretty_fixed_effects[31,3]`, SE =&nbsp;`r pretty_fixed_effects[31,4]`. *t* = `r pretty_fixed_effects[31,5]`, *p* = `r pretty_fixed_effects[31,6]`). 
+This interaction shows that advanced L2 learners fixated more on the target in the preterit tense than they did in the present tense (see Fig. 4).
+This increased number of fixations reveals that preterit tense may be easier to anticipate than present tense.
+Figure 4 reflects the anticipation abilities difference in the advanced groups in the preterit tense towards the present tense. This difference consists of earlier increased fixations on the target verb in the preterit tense upon hearing a lexically unstressed syllable and is represented in the figure by the shift of the preterit tense line to the left in comparison to the present tense line.
+
+Pairwise comparisons analyze performance across L2 groups. 
+The pairwise comparisons are in Appendices 4 (advanced groups), 5 (intermediate groups), 6 (English groups) and 7 (Mandarin groups).
+Comparing speakers of the same L1 across proficiency, there is only a difference in the quadratic term for the L1 English speakers (*&gamma;*~19~&nbsp;=&nbsp;`r pretty_pairwise_table_en[6,3]`, SE =&nbsp;`r pretty_pairwise_table_en[6,4]`. *t* = `r pretty_pairwise_table_en[6,5]`, *p* = `r pretty_pairwise_table_en[6,6]`), such that IE anticipate less than AE in the preterit tense.
+As for L1 Mandarin Chinese speakers, there is only an effect on the intercept, where IM is shown to predict less than AM averaging across time course and stress conditions (*&gamma;*~08~&nbsp;=&nbsp;`r pretty_pairwise_table_ma[1,3]`, SE =&nbsp;`r pretty_pairwise_table_ma[1,4]`. *t* = `r pretty_pairwise_table_ma[1,5]`, *p* = `r pretty_pairwise_table_ma[1,6]`). 
+That is, AM predict better overall than IM.
+Comparing speakers of different L1s with similar proficiency, there was a significant effect on the intercept between IE and IM, such that IE had a higher fixation rate on the target than IM, indicating higher prediction in IE (*&gamma;*~08~&nbsp;=&nbsp;`r pretty_pairwise_table_int[1,3]`, SE =&nbsp;`r pretty_pairwise_table_int[1,4]`. *t* = `r pretty_pairwise_table_int[1,5]`, *p* = `r pretty_pairwise_table_int[1,6]`). 
+At advanced proficiency, there was an effect of group on the linear term, demonstrating that AM increased their fixations on the target less steeply than AE in both stress conditions (`r pretty_pairwise_table_adv[2,3]`, SE =&nbsp;`r pretty_pairwise_table_adv[2,4]`. *t* = `r pretty_pairwise_table_adv[2,5]`, *p* = `r pretty_pairwise_table_adv[2,6]`).
+
+The data in this study revealed that all groups except IM anticipated.
+SS was the group that anticipated most and the earliest.
+Within-group performance was similar across tense conditions for the intermediate groups and SS. 
+For both advanced groups, preterit tense was easier to anticipate than present. 
+Over proficiency, Mandarin speakers improved their prediction ability; English speakers improved overall although the anticipation performance difference is smaller.

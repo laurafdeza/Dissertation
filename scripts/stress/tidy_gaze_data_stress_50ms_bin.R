@@ -70,7 +70,8 @@ stress50 <- stress_50 %>%
   # Get suffix onset label and center at 0 for each
   # participant for each item
   dplyr::select(participant, group, target, cond, target, bin,
-                target_count, target_prop, eLog, wts, onset_c3) %>%
+                target_count, target_prop, eLog, wts, onset_c3) %>%   
+  # change onset_v1 in previous line depending on what trigger we want to observe
   gather(., landmark, lm_bin, -c(participant:wts)) %>%
   mutate(., lm_bin = (lm_bin / 50) %>% ceiling(.),
          t_onset = if_else(bin == lm_bin, TRUE, FALSE)) %>%
@@ -82,7 +83,7 @@ stress50 <- stress_50 %>%
 # Load verbal WM
 dem <- read_csv(here("data", "pupurri_analysis.csv"))
 dem <- dem %>%
-  select(., participant, WM_set)
+  select(., participant, WM_set, DELE, percent_l2_week)
   
 dem$participant <- tolower(dem$participant)
   
@@ -91,6 +92,18 @@ dem$participant <- tolower(dem$participant)
 stress50 <- merge(x = stress50, y = dem, by = "participant", all.x=TRUE)
 
 
+# Create L1 column
+stress50 <- separate(data = stress50,
+                    col = group,
+                    into = c("prof", "l1"),
+                    sep = 1,
+                    remove = FALSE)
+
+stress50$l1 <- str_replace(stress50$l1, "es", "en")
+stress50$l1 <- str_replace(stress50$l1, "ms", "ma")
+stress50$l1 <- str_replace(stress50$l1, "on", "es")
+
+# change name of .csv if trigger checked different
 write_csv(stress50, here("data", "clean", "stress_50ms_final.csv"))
 
 # -----------------------------------------------------------------------------

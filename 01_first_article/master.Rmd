@@ -1,6 +1,6 @@
 ---
 title             : |
-  Anticipation of verbal suffixed based on lexical stress in Spanish by L1 Mandarin and L1 English speakers
+  Proficiency and transfer effects on anticipation of verb tense in Spanish by L1 Mandarin and L1 English speakers
 shorttitle        : "Lexical stress-based anticipation in L1 and L2 speakers"
 
 author: 
@@ -88,12 +88,12 @@ knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
 ```-->
 
 <!-- DISCUSSION -->
-```{r, 'include-disc', child='./06_discussion.Rmd'}
-```
+<!--```{r, 'include-disc', child='./06_discussion.Rmd'}
+```-->
 
 <!-- CONCLUSION -->
-```{r, 'include-disc', child='./07_conclusion.Rmd'}
-```
+<!--```{r, 'include-disc', child='./07_conclusion.Rmd'}
+```-->
 
 <!-- Pagebreak for refs -->
 ```{=openxml}

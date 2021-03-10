@@ -83,7 +83,7 @@ stress10 <- stress10 %>%
 # Load verbal WM
 dem <- read_csv(here("data", "pupurri_analysis.csv"))
 dem <- dem %>%
-  select(., participant, WM_set)
+  select(., participant, DELE, percent_l2_week)
 
 dem$participant <- tolower(dem$participant)
 
@@ -91,7 +91,22 @@ dem$participant <- tolower(dem$participant)
 # Add verbal wm score to eyetracking data frame
 stress10 <- merge(x = stress10, y = dem, by = "participant", all.x=TRUE)
 
-write_csv(stress10, here("data", "clean", "stress_10ms_final.csv"))
+# Create L1 column
+stress10 <- separate(data = stress10,
+                     col = group,
+                     into = c("prof", "l1"),
+                     sep = 1,
+                     remove = FALSE)
+
+stress10$l1 <- str_replace(stress10$l1, "es", "en")
+stress10$l1 <- str_replace(stress10$l1, "ms", "ma")
+stress10$l1 <- str_replace(stress10$l1, "on", "es")
+
+wm <- read_csv("./data/clean/ospan_set_z_scores.csv")
+
+stress10 <- merge(x = stress10, y = wm, by = "participant", all.x=TRUE)
+
+write_csv(stress10, here("data", "clean", "stress_10ms_final_onset_c3.csv"))
 
 
 # -----------------------------------------------------------------------------

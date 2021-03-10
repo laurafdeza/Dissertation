@@ -1,14 +1,12 @@
-# 1. Introduction
 One way humans learn is through association.
-This type of learning is essential in language and second language (L2) acquisition.
-The activation of associations allows speakers to anticipate incoming information, reducing the cognitive processing load and facilitating comprehension.
-Decades of transfer research have informed how cross-linguistic effects impact L2 representations, but the impact on the creation of L2 associations is an emerging field.
-Understanding the effects of transfer on anticipatory associations, especially on those implicitly learned such as morphophonological associations, is crucial because it can explain the difficulty that L2 speakers have to process the linguistic phenomena involved, as happens with morphology.
+Associations are probabilistic connections between a cue and an outcome [@clark2013whatever].
+Associations are essential for any kind of learning, including language.
+In language, associations allow speakers to anticipate incoming information based on the cues present, reducing the cognitive processing load and facilitating comprehension.
+For instance, phonological cues such as lexical stress can be associated with morphological outcomes such as verb tense suffixes.
+Inability to create this type of morphophonological association may be a source of L2 processing difficulty, as the outcome goes unnoticed since the L2 speaker cannot pay attention to all the incoming information.
 
-Here we investigate cross-linguistic effects on the creation of L2 morphophonological associations.
-For that purpose, we examine verb tense suffix anticipation based off lexical stress in adult Spanish monolinguals and English and Mandarin Chinese intermediate and advanced learners of Spanish. 
-Mandarin, English and Spanish have all lexical stress.
-However, lexical stress in English is more similar to lexical stress in Spanish than lexical stress in Chinese.
-Choosing these three languges allows to observe transfer effects from different distances in a continuum.
-Besides, English and Chinese are both morphologically poor in terms of verb morphology.
-Different levels of proficiency were included because language experience is essential in shaping the linguistic system [@bybee2006usage] and so it can shift what a speaker can pay attention to and inhibit in the input.             
+While L2 speakers eventually acquire morphophonological associations [e.g., @sagarra2018suprasegmental; @schremm2016implicit], the factors contributing to their acquisition are unknown.
+Here we investigate L1 transfer, L2 proficiency and language use effects and their interactions on the acquisition of L2 morphophonological associations.
+For that purpose, we examine verb tense suffix anticipation based on its association with lexical stress in adult English and Mandarin Chinese learners of Spanish at different stages of L2 development. 
+We also compare their performance with a Spanish control group.
+The findings from this study can thus inform models of L2 acquisition about the different effects of L1 transfer, L2 proficiency and language use in the acquisition of morphophonological associations. Additionally, it can also provide insight into the learning mechanisms underlying L2 acquisition.

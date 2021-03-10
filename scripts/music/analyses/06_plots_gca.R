@@ -20,7 +20,7 @@ load(paste0(gca_mods_path, "/pitch_mods.Rdata"))
 load(paste0(gca_mods_path, "/rhythm_mods.Rdata"))
 load(paste0(gca_mods_path, "/model_preds.Rdata"))
 
-gca_final_mod <- full_mods$gca_full_mod_int_3
+gca_final_mod <- pitch_mods$gca_full_mod_int_3
 
 # Set path for saving figs
 figs_path <- here("figs", "music", "gca")
@@ -52,6 +52,8 @@ figs_path <- here("figs", "music", "gca")
 
 # Pitch
 gca_pitch_plot <- model_preds$fits_all_pitch %>%
+  na.omit(.) %>%
+  #filter(., time_zero >= -10, time_zero <= 20) %>%
   mutate(stress = if_else(stress_sum == 1, "Present", "Preterit"),
          stress = fct_relevel(stress, "Present"),
          group = fct_relevel(group, "SS", 'AE', 'AM', 'IE', 'IM')) %>%
@@ -61,7 +63,10 @@ gca_pitch_plot <- model_preds$fits_all_pitch %>%
   geom_hline(yintercept = 0, lty = 3, size = 0.4) +
   geom_vline(xintercept = 4, lty = 3, size = 0.4) +
   geom_ribbon(alpha = 0.2, color = NA, show.legend = F) +
-  geom_line(size = 0.75) +
+  stat_summary(fun.y = "mean", geom = "line", size = 1) +  
+  stat_summary(fun.data = mean_cl_boot, geom = 'pointrange', size = 0.5,
+               stroke = 0.5, pch = 21) +
+  #geom_line(size = 0.75) +
   geom_point(aes(color = pitch_dev), color = "black", size = 1.3, show.legend = F) +
   geom_point(aes(color = pitch_dev), size = 0.85, show.legend = F) +
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
@@ -73,6 +78,7 @@ gca_pitch_plot <- model_preds$fits_all_pitch %>%
 
 # Rhythm
 gca_rhythm_plot <- model_preds$fits_all_rhythm %>%
+  na.omit(.) %>%
   mutate(stress = if_else(stress_sum == 1, "Present", "Preterit"),
          stress = fct_relevel(stress, "Present"),
          group = fct_relevel(group, "SS", 'AE', 'AM', 'IE', 'IM')) %>%
@@ -82,7 +88,10 @@ gca_rhythm_plot <- model_preds$fits_all_rhythm %>%
   geom_hline(yintercept = 0, lty = 3, size = 0.4) +
   geom_vline(xintercept = 4, lty = 3, size = 0.4) +
   geom_ribbon(alpha = 0.2, color = NA, show.legend = F) +
-  geom_line(size = 0.75) +
+  stat_summary(fun.y = "mean", geom = "line", size = 1) +  
+  stat_summary(fun.data = mean_cl_boot, geom = 'pointrange', size = 0.5,
+               stroke = 0.5, pch = 21) +
+  #geom_line(size = 0.75) +
   geom_point(aes(color = rhythm_dev), color = "black", size = 1.3, show.legend = F) +
   geom_point(aes(color = rhythm_dev), size = 0.85, show.legend = F) +
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),

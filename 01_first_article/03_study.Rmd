@@ -1,29 +1,41 @@
 # 3. This study
-Within-word morphophonological associations are essential for language comprehension.
-These associations are typically learned implicitly, making them more prone to suffering cross-linguistic effects.
-Studies on transfer have a large history on cross-linguistic effects within components, but have not explored yet biases in the creation of L2 associations caused by the L1.
-However, understanding the acquisition of within-word morphophonological associations is crucial to explain why L2 speakers oftentimes find it difficult to process morphology.
-Previous research on the acquisition of within-word morphophonological associations are not comparable because they used different cues (pitch accent vs lexical stress) in different contexts (immersion vs non-immersion, respectively), because some measured brain activity while others performance, and performance was sometimes unconscious (eye movements) and others conscious (reaction times), because speakers self-reported their proficiency, had mixed L1s or also spoke third and even fourth languages, or because the studies mixed nominal and verbal morphology.
-Furthermore, only one study has investigated transfer effects on association acquisition [@gosselke2020different]. 
-This study only provides evidence of transfer from two extremes (transfer either was not possible at all or the overlap was complete) but does not take into account that languages may be placed in a continuum of how much transfer there can be, and there is no theoretical framework.
-Moreover, that study used pseudowords as stimuli.
+Mandarin Chinese and English differ from Spanish to different degrees in the way they associate lexical stress with morphology.
+The different similarity makes them a perfect pair to compare L1 transfer effects on L2 word prediction.
+By adding L2 proficiency, we can also discern what effects are due to L1 transfer or to the development of the L2 system.
+Examining that distinction will clarify whether the results from the previous studies with morphophonological associations are due to varying effects of L1 transfer over L2 proficiency or to L2 acquisition stages general to all L2 Spanish speakers, regardless of their L1.
+In addition to L1 transfer and L2 proficiency, language use may contribute to morphophonological association acquisition too, since an increased use of the language will expose the speaker to more instances of the association.
+So far, we know that L2 speakers can acquire morphophonological associations [e.g., @schremm2016implicit], but it requires time [@gosselke2018neural; @sagarra2018suprasegmental].
 
-The present study fills some of the gaps left by the previous studies on the association between phonology-morphology for prediction.
-We address the issue of transfer considering phonological overlap as a continuum rather than separate categories.
-To that end, we test online prediction performance through eye-tracking in bilingual speakers who can transfer different degrees of phonological knowledge from their L1 (English or Mandarin Chinese) to their L2 (Spanish) to anticipate present and past tense suffixes based on lexically stressed or unstressed stem CVC syllables.
-We test transfer effects at different levels of proficiency, and thus acquisition stages, and control for possible individual differences by keeping verbal working memory homogeneous.
-In order to make these results comparable to findings with pitch accent, the participants lived immersed in the L2.
+Regarding language use, it is emerging as a factor that contributes to language processing , but its effects on morphophonological association acquisition are still unknown.
+
+Following the previous research on acquisition of morphophonological association, it is difficult to ascertain the role of L1 transfer [@gosselke2020different] and language use [e.g., @beatty2017bilingual] as factors contributing to language processing for several reasons.
+First, there has only been one study exploring the role of L1 transfer [@gosselke2020different] and none testing language use effects on prediction during L2 processing.
+The study on L1 transfer is problematic because the stimuli were pseudo-words and because transfer was considered as a categorical event, rather than an overlap between languages that can range from total, to partial, to none. 
+Second, some studies have mixed L2 speakers of several L1s [@schremm2016implicit], because, the authors argued, the L1s do not have pitch accents, or the L2 speakers spoke a third or even a fourth language, which were not stated.
+However, with so much variability the languages may have differed in similarity to the L2, therefore making possible L1 transfer effects.
+Third, while studies on pitch accent as a cue covered L2 learners at all levels of proficiency, studies on lexical stress as a cue have examined only beginners and advanced speakers.
+Fourth, the two lines of research in the topic, one with pitch accents and the other with lexical stress, are not easily comparable for three reasons: L2 proficiency was sometimes self-reported, sometimes assigned according the level of the language course the learners were enrolled in, and sometimes measured with a standardized test; speakers in the pitch accent studies lived immersed in the L2 but speakers in the lexical stress studies lived in an L1 context; and fifth, the behavioral research on pitch accent associations consist of reaction times, while the behavioral research on lexical stress consists of eye-tracking.
+
+The present study addresses the issue of the interaction between L1 transfer, L2 proficiency, and language use effects on the acquisition of morphophonologial associations.
+To that end, we investigate L2 use of lexical stress to predict verbal tense suffixes.
+To tease the effects of L1 transfer, L2 proficiency, and language use apart, we compare two populations from different L1s (English and Mandarin Chinese) at different stages of proficiency (intermediate-near native), and we also compare their weekly language use.
 The specific research questions are:
 
-*1. Do Spanish monolinguals, and intermediate and advanced Mandarin and English learners of Spanish use lexical stress to anticipate verbal suffixes in Spanish?*  
-We predict that monolingual Spanish speakers will anticipate verb tense when cued by stressed and unstressed syllables [@lozano2019slowly; @sagarra2018suprasegmental]. 
-Advanced-Spanish English speakers will generate the predictions at advanced levels of proficiency.
-This type of bilinguals predicted when in an L1 context [@lozano2019slowly; @sagarra2018suprasegmental], and adding up the behavioral findings related to the Swedish bilinguals who start anticipating at intermediate levels of proficiency when immersed in the L2 [@schremm2016implicit], we hypothesize that the English-advanced Spanish bilinguals should have no problem in generating predictions.
-Following @sagarra2018suprasegmental, we do not expect intermediate English speakers to anticipate, even if they are immersed.
-Given there is no previous research for the Mandarin speakers, our following predictions and the prediction for the next question are based mostly on logical thinking.
-We predict advanced Mandarin speakers to be able to anticipate due to their linguistic experience with the L2, and because advanced speakers predict in other studies [@lozano2019slowly; @sagarra2018suprasegmental; @schremm2016implicit].
-We do not believe intermediate speakers will anticipate.
+*1. Does L1 transfer affect L1 Mandarin and L1 English learners of L2 Spanish's abilities to use lexical stress to anticipate verbal suffixes in Spanish?* 
+We predict that L1 transfer effects will manifest differently in English and Mandarin speakers' ability to anticipate, given the different phonological characteristics of each language and their similarity to Spanish phonology [@gosselke2020different].
+English speakers will anticipate [@lozano2020slowly; @sagarra2018suprasegmental] with more ease than Mandarin speakers because their knowledge of lexical stress in English will aid them in creating morphophonological associations for prediction.
+The mixing of lexical stress with tones in Mandarin will prevent the L1 Mandarin speakrs from transfering lexical stress knowledge, therefore delying the creation of morphophonological associations.
+This delay will translate into later abilities to predict.
 
-*2. How does anticipation performance compare across L1s within proficiency level?*  
-Comparing intermediate bilingual groups and advanced bilingual groups, we predict English speakers will show earlier tendencies towards anticipation than Mandarin speakers.
-We base this prediction in the closer similarity of lexical stress in English and Spanish, and in its more common use in those two languages than in Mandarin Chinese.
+*2. Does L2 proficiency affect L1 Mandarin and L1 English learners of L2 Spanish's abilities to use lexical stress to anticipate verbal suffixes in Spanish?*
+Based on previous studies with L2 Swedish speakers [@schremm2016implicit; @gosselke2018neural] and L2 Spanish speakers [@sagarra2018suprasegmental], we expect advanced speakers to predict more frequently than intermediate speakers.
+They will not develop monolingual-like abilities, however.
+Advanced L2 speakers are expected to anticipate more because of their longer exposure to and interaction with the L2.
+Previous studies on the relationship between L2 proficiency and morphophonological prediction were carried out with populations immersed in an L2 context [@schremm2016implicit; @gosselke2018neural] and not immersed [@sagarra2018suprasegmental], yielding different results.
+Speakers immersed were able to start anticipating earlier in the L2 development process.
+Given that none of those studies included a group to test different effects of L1 transfer, we do not have a prediction about intermediate L2 speakers' abilities to anticipate.
+
+*3. Does language use affect L1 Mandarin and L1 English learners of L2 Spanish's abilities to use lexical stress to anticipate verbal suffixes in Spanish?*
+Following previous results on the facilitatory role of bilingual processing [e.g., @beatty2017bilingual], we hypothesize language use to be positively correlated with anticipatory abilities.
+In other words, individuals who use their L2 more frequently will anticipate more in comparison to individuals who use their L2 less often.
+Language use will thus contribute to the creation of morphophonological associations and their activation, determining language processing costs.

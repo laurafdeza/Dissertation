@@ -1,0 +1,541 @@
+---
+floatsintext      : yes
+figurelist        : yes
+tablelist         : yes
+footnotelist      : yes
+linenumbers       : yes
+mask              : yes
+draft             : yes
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_word
+---
+
+```{r setup, include = FALSE warning = FALSE}
+library("papaja")
+library("officer")
+library("flextable")
+```
+
+```{r analysis-preferences}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+
+```{r, 'source-scripts-models'}
+source(here::here("scripts", "02_load_data.R"))
+source(here::here("scripts", "01_helpers.R"))
+
+# Get path to saved models
+gca_mods_path  <- here("mods", "stress", "gca")
+
+# Load models as list and store full mod to global env
+load(paste0(gca_mods_path, "/gca_mon_mods.Rdata"))
+load(paste0(gca_mods_path, "/gca_l2_mods.Rdata"))
+load(paste0(gca_mods_path, "/model_preds.Rdata"))
+mon_preds <- readRDS(file = here("mods", "stress", "gca", "model_preds_mon.Rdata"))
+load(paste0(gca_mods_path, "/nested_model_comparisons.Rdata"))
+
+```
+
+
+
+
+
+
+# Journal of Memory and Language article (stress, natives and late advanced and intermediate EN y Ma Ch
+
+## Overview
+
+This document contains updates to the statistical analysis for stress_unrelated experiment 
+(draft for ISB). 
+Last updated on `r Sys.Date()`. 
+The results section can be copied and pasted into the corresponding google doc. 
+The tables can also be copy and pasted where appropriate. 
+
+
+# Plots
+
+
+
+```{r, 'plot-ind-preds', echo=FALSE, fig.cap="Growth curve analysis estimates of fixations on target as a function of lexical stress for each L2 group during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+knitr::include_graphics(
+  here("figs", "stress", "gca", "stress_dele_cond.png")
+)
+```
+
+
+
+```{r, 'plot-group-preds', echo=FALSE, fig.cap="Growth curve analysis estimates of fixations on the target as a function of lexical stress for each group during the analysis window. Symbols and lines represent model estimates, and the ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+knitr::include_graphics(
+  here("figs", "stress", "gca", "stress_use_cond.png"))
+```
+
+
+
+
+```{r, 'plot-ind-preds', echo=FALSE, fig.cap="Growth curve analysis estimates of fixations on target as a function of lexical stress for each L2 group during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+knitr::include_graphics(
+  here("figs", "stress", "gca", "stress_dele_split.png")
+)
+```
+
+
+```{r, 'plot-ind-preds', echo=FALSE, fig.cap="Growth curve analysis estimates of fixations on target as a function of lexical stress for each L2 group during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+knitr::include_graphics(
+  here("figs", "stress", "gca", "stress_use_split.png")
+)
+```
+
+# Tables 
+
+## Model estimates at target syllable offset  
+
+```{r, table-target-offset-props, eval=T, echo=F}
+
+border_1 <- fp_border(width = 1.5)
+border_2 <- fp_border(width = 0.75)
+
+mon_preds %>% 
+  mutate(cond = if_else(stress == 1, "Present", "Preterit")) %>% 
+  # arrange(cond, ospan) %>% 
+  arrange(cond) %>%
+  group_by(cond) %>%
+  mutate(prob = mean(prob),
+         prob_lb = mean(prob_lb),
+         prob_ub = mean(prob_ub)) %>%
+  mutate(cond = blank_same_as_last(as.character(cond))) %>%
+  # group_by(cond) %>%
+  # filter(., ospan == max(ospan) |
+  #          ospan == min(ospan)) %>%
+  # ungroup() %>%
+  select(`Lexical stress` = cond, Probability = prob, #ospan, 
+         LB = prob_lb, UB = prob_ub) %>%
+  distinct() %>%
+  flextable() %>% 
+  #width(., j = c(2, 3, 4), width = c(1.1, 1.3, 1.1)) %>% 
+  font(., fontname = "Times", part = "all") %>%
+  fontsize(., size = 11) %>% 
+  border_remove(.) %>%  
+  border(., part = "header", 
+            border.top = border_1,
+            border.bottom = border_2) %>% 
+  hline_bottom(., part = "body", border = border_1)
+```
+*Table 1*: Model estimates for probability of target fixations ±SE at 200 ms 
+after the target syllable offset. (LB = lower bound; UP = upper bound). MONOLINGUALS
+
+
+
+
+
+## Fixed effects
+
+```{r, warning=F}
+
+# Get full mod and make it pretty for the table
+pretty_fixed_effects <- gca_mod_mon_base %>%  #gca_l2_mods$
+  tidy_lme4() %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) 
+
+# Include gammas (Gij) after each parameter name
+subs <- c(paste0(0:3, 0))
+var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+pretty_fixed_effects$Parameter %<>% paste(., var_labels)
+
+# pretty_fixed_effects <- pretty_fixed_effects[0:4,]
+pretty_fixed_effects %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr"))
+
+```
+
+Appendix 2. Growth Curve Analysis fixed effects (monolinguals)
+
+
+
+```{r, warning=F}
+
+# Get full mod and make it pretty for the table
+pretty_fixed_effects <- gca_l2_dele_final %>%  #gca_l2_mods$
+  tidy_lme4() %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) 
+
+# Include gammas (Gij) after each parameter name
+subs <- c(paste0(0:3, 0), paste0(0:3, 1), 
+          paste0(0:3, 2))
+var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+pretty_fixed_effects$Parameter %<>% paste(., var_labels)
+
+pretty_fixed_effects %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+Appendix 3: Growth curve model fixed effects L2 speakers (proficiency)
+
+
+
+```{r, warning=F}
+
+# Get full mod and make it pretty for the table
+pretty_fixed_effects <- gca_l2_use_final %>%  #gca_l2_mods$
+  tidy_lme4() %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) 
+
+# Include gammas (Gij) after each parameter name
+subs <- c(paste0(0:3, 0), paste0(0:3, 1), 
+          paste0(0:3, 2))
+var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+pretty_fixed_effects$Parameter %<>% paste(., var_labels)
+
+pretty_fixed_effects %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+
+Appendix 4: Growth curve model fixed effects for L2 speakers (L2 use)
+
+
+```{r, warning=F}
+
+# # Get full mod and make it pretty for the table
+# pretty_fixed_effects <- gca_l2_mod_wm_final %>%  #gca_l2_mods$
+#   tidy_lme4() %>% 
+#   mutate(p = format_pval(p), 
+#          Parameter = fix_param_names(Parameter)) %>% 
+#   mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+#   rename(`_t_` = t, `_p_` = p) 
+# 
+# # Include gammas (Gij) after each parameter name
+# subs <- c(paste0(0:3, 0), paste0(0:3, 1), 
+#           paste0(0:3, 2))
+# var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+# pretty_fixed_effects$Parameter %<>% paste(., var_labels)
+# 
+# pretty_fixed_effects %>% 
+#   knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+Appendix 0: Growth curve model fixed effects L2 (WM)
+
+
+## Random effects
+
+```{r, 'ranef-table', results = "asis"}
+ranef_table <- gca_mod_mon_base %>% 
+  tidy_ranef_summary %>% 
+  # Format the numbers
+  mutate_each(funs(format_fixef_num), vcov, sdcor) %>%
+  mutate_each(funs(format_cor), -var1, -grp, -vcov, -sdcor) %>%
+  sort_ranef_grps %>%
+  # Format variable names and group names
+  mutate(var1 = fix_param_names(var1) %>% blank_nas,
+         grp =  blank_same_as_last(grp) %>% fix_param_names) %>% 
+  rename(Group = grp, Parameter = var1, Variance = vcov, SD = sdcor)
+
+# Correlation columns need names with characters so that pandoc can align them
+names(ranef_table)[5:9] <- 
+  c("Correlations", "&nbsp;", " &nbsp;", "  &nbsp;", "  &nbsp;")
+
+ranef_table %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("llrrrrrr"))
+```
+
+
+Appendix 5.Growth curve model random effects (monolinguals)
+
+
+
+
+
+```{r, 'ranef-table', results = "asis"}
+ranef_table <- gca_l2_mods$gca_l2_mod_use_final %>% # Ranef same for DELE and USE
+  tidy_ranef_summary %>% 
+  # Format the numbers
+  mutate_each(funs(format_fixef_num), vcov, sdcor) %>%
+  mutate_each(funs(format_cor), -var1, -grp, -vcov, -sdcor) %>%
+  sort_ranef_grps %>%
+  # Format variable names and group names
+  mutate(var1 = fix_param_names(var1) %>% blank_nas,
+         grp =  blank_same_as_last(grp) %>% fix_param_names) %>% 
+  rename(Group = grp, Parameter = var1, Variance = vcov, SD = sdcor)
+
+# Correlation columns need names with characters so that pandoc can align them
+names(ranef_table)[5:9] <- 
+  c("Correlations", "&nbsp;", " &nbsp;", "  &nbsp;", "  &nbsp;")
+
+ranef_table %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("llrrrrrr"))
+```
+
+Appendix 6: Growth curve model random effects (L2)
+
+
+
+
+
+
+
+
+
+# 5. Results
+The time course data for the three L1 populations are shown in Figure 3. 
+The time courses reveal that fixations on the target increased over time.
+The three L1s fixated at chance from the beginning of the sentence and increased fixations on the target before the offset of the target syllable.
+Monolingual Spanish speakers (SS) increased gaze fixations on the target earlier than L2 speakers.
+The increase plateaued shortly after target syllable offset.
+
+```{r, 'plot-ind-preds', echo=FALSE, fig.cap="Figure 3. Gaze fixation patterns on target from 500 ms before target syllable offset to 1000 ms after as a function of L1 and stress condition."}
+knitr::include_graphics(
+  here("figs", "stress", "gca", "stress_l1.png")
+)
+```
+
+
+The summaries for the final models of the Growth Curve Analyses are in the Appendices 2 (SS), 3 and 4 (L2).
+The GCA models estimated the probability of gaze fixations on the target at the offset of the first syllable in the verb; the probabilities were estimated for each L1 population in both lexical stress conditions (paroxytone form = present, oxytone form = preterit).
+The probabilities are contained in Table 1.
+The results for SS are presented first.
+For the L2 speaker, the results for proficiency are presented first and results for L2 use last.
+
+```{r, 'write-up-prep', warning=F, eval=T}
+# Prepare table to support easy in-line printing of equations
+
+params <- gca_mod_mon_base %>% 
+  tidy_lme4() %>% 
+  rename(B = Estimate)
+
+params$subscript <- 
+  c(paste0(0:3, 0)) 
+
+params <- tibble::column_to_rownames(params, 'subscript')
+
+params$subscript <- 
+  c(paste0(0:3, 0)) 
+
+# Shortcut for inline reporting from the above table
+report_row <- function(row_name) report_fixef_row(params, row_name)
+
+# # Pre-calculate intercept as proportion
+# b0 <- params$B[params$subscript == "00"] %>% as.numeric
+# b0_prop <- b0 %>% inv_logit %>% round(2) %>% remove_leading_zero
+
+```
+
+
+We conducted a GCA on SS to take them as reference.
+The model intercept for SS estimates their log odds for gaze fixation on the target averaging across lexical stress condition and time course.
+The log odds estimate is `r report_row('1')`.
+There were main effects in the linear (`r report_row('2')`), quadratic (`r report_row('3')`) and cubic polynomial time terms (`r report_row('4')`).
+These results suggest SS were predicting the verb form upon hearing a stressed or unstressed syllable.
+The fixation probability estimate for both stress conditions in SS is 0.953 (LB = 0.942; UB = 0.962).
+Figure 4 shows the GCA model fit for SS.
+
+```{r, 'plot-ind-preds', echo=FALSE, fig.cap="Figure 4. Growth curve analysis estimates of fixations on target as a function of lexical stress for the Spanish monolingual speakers during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+knitr::include_graphics(
+  here("figs", "stress", "gca", "stress_mon.png")
+)
+```
+
+
+Given the near ceiling effect in SS, we performed *post-hoc* generalized linear mixed models (GLMM) at the onset of every segment in the target syllable to find out when SS started anticipating.
+We took as baseline the onset of the verb.
+The intercept log odds estimate for SS at verb onset was <em>&gamma;</em>&nbsp;=&nbsp;-0.138 (*p*&nbsp;&lt;&nbsp;0.467), indicating SS were at chance level.
+At the onset of the vowel, the log odds estimate was <em>&gamma;</em>&nbsp;=&nbsp;0.402 (*p*&nbsp;&lt;&nbsp;0.031), demonstrating SS were already predicting.
+
+```{r, 'write-up-prep', warning=F, eval=T}
+# Prepare table to support easy in-line printing of equations
+# params <- pretty_fixed_effects %>% 
+#  rename(B = Estimate)
+
+params <- gca_l2_mods$gca_l2_mod_dele_final %>%
+  tidy_lme4() %>% 
+  rename(B = Estimate)
+
+params$subscript <- 
+  c(paste0(0:4, 0), paste0(0:4, 1),
+    paste0(0:2, 2))
+
+params <- tibble::column_to_rownames(params, 'subscript')
+
+params$subscript <- 
+  c(paste0(0:4, 0), paste0(0:4, 1), 
+    paste0(0:2, 2))
+
+# Shortcut for inline reporting from the above table
+report_row <- function(row_name) report_fixef_row(params, row_name)
+
+```
+
+Two GCA analyses were conducted for the L2 groups.
+L1 and stress condition were nested as fixed effects in both of them.
+The difference was that one of the models also included proficiency as fixed effect, and the other included weekly L2 use in percentage.
+In both models, English speakers and present tense (paroxytone stress) are the baseline.
+
+The GCA analysis with proficiency estimates the intercept log odds at `r report_row('1')`.
+There were main effects of the linear (`r report_row('2')`), quadratic (`r report_row('3')`) and cubic (`r report_row('4')`) polynomial time terms.
+These results suggest the L2 speakers were anticipating tense at target syllable offset, regardless of their L1.
+There was a main effect of proficiency (`r report_row('5')`), such that the higher the proficiency, the higher the likelihood of predicting.
+The variability in prediction abilities as a function of proficiency are shown in Table 2.
+The values under the Proficiency column refer to the minimum and maximum score obtained within each L1.
+
+```{r, table-target-offset-props, eval=T, echo=F}
+
+border_1 <- fp_border(width = 1.5)
+border_2 <- fp_border(width = 0.75)
+
+model_preds$target_offset_preds_l2_dele %>% 
+  mutate(stress = if_else(stress == 1, "Present", "Preterit"),
+         l1 = if_else(l1 == 'en', "English", "Mandarin"),
+         l1 = fct_relevel(l1, "English", "Mandarin")) %>% 
+  arrange(l1, stress) %>% 
+  group_by(l1, stress) %>%
+  filter(., DELE == max(DELE) | DELE == min(DELE)) %>%
+  distinct() %>%
+  #ungroup() %>%
+  mutate(l1 = blank_same_as_last(as.character(l1)),
+         stress = blank_same_as_last(as.character(stress))) %>%
+  select(L1 = l1, `Lexical stress` = stress, Proficiency = DELE, Probability = prob,
+         LB = prob_lb, UB = prob_ub) %>%
+  flextable() %>% 
+  width(., j = c(2, 3, 4), width = c(1.1, 1.3, 1.1)) %>%
+  font(., fontname = "Times", part = "all") %>%
+  fontsize(., size = 11) %>% 
+  border_remove(.) %>%  
+  border(., part = "header", 
+            border.top = border_1,
+            border.bottom = border_2) %>% 
+  hline_bottom(., part = "body", border = border_1)
+```
+
+*Table 2*: Model estimates for probability of target fixations ±SE at 200 ms 
+after the target syllable offset as a function of L2 proficiency. (LB = lower bound; UP = upper bound).
+
+
+There were interaction effects between proficiency x stress in the English speakers (`r report_row('6')`).
+The negative value in this interaction suggests that present tense (paroxytone stress) was more difficult to anticipate than preterit tense, although higher proficiency helped in overcoming this difficulty.
+The panel on the left of Figure 5 reflects the difference in likelihood of fixations on each tense in the English group.
+There was also an interaction effect between proficiency x stress in the Mandarin speakers in the linear time term (`r report_row('9')`).
+This interaction suggests that the slope for the Mandarin speakers estimates is more steep in the present tense.
+The steeper slope indicates that Mandarin speakers fixated faster on the present tense form than on the preterit tense.
+This effect can be observed in the right panel of Figure 5.
+Lastly, there were interaction effects for both L2 populations in the cubic term between proficiency x stress (English: `r report_row('12')`; Mandarin: `r report_row('13')`).
+The negative value in both cases indicates that the curve is more closed in the present tense than in the preterit tense.
+This curve suggests that the increase of fixations on the present tense targets was faster than in the preterit tense forms for both L1s.
+
+```{r, 'plot-group-preds', echo=FALSE, fig.cap="Figure 5. Growth curve analysis estimates of fixations on the target as a function of lexical stress for each group during the analysis window. Symbols and lines represent model estimates, and the ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+knitr::include_graphics(
+  here("figs", "stress", "gca", "stress_dele_l1.png")
+)
+```
+
+```{r, 'write-up-prep', warning=F, eval=T}
+# Prepare table to support easy in-line printing of equations
+# params <- pretty_fixed_effects %>% 
+#  rename(B = Estimate)
+
+params <- gca_l2_mods$gca_l2_mod_use_final %>%
+  tidy_lme4() %>% 
+  rename(B = Estimate)
+
+params$subscript <- 
+  c(paste0(0:4, 0), paste0(0:4, 1),
+    paste0(0:4, 2))
+
+params <- tibble::column_to_rownames(params, 'subscript')
+
+params$subscript <- 
+  c(paste0(0:4, 0), paste0(0:4, 1), 
+    paste0(0:4, 2))
+
+# Shortcut for inline reporting from the above table
+report_row <- function(row_name) report_fixef_row(params, row_name)
+
+```
+
+
+The GCA analysis with L2 weekly use in percentage estimates the intercept log odds at `r report_row('1')` for the L2 speakers.
+There were main effects of the linear (`r report_row('2')`) and cubic (`r report_row('4')`) polynomial time terms.
+These results suggest again the L2 speakers were anticipating tense at target syllable offset.
+There was a main effect of L2 use in the quadratic polynomial time term (`r report_row('6')`), such that the more frequent the use, the higher the likelihood of predicting.
+The probabilities of fixating as a function of L2 use can be seen in Table 3.
+The two values in the column Weekly L2 % use represent the minimum and the maximum L2 use reported by the participants.
+
+```{r, table-target-offset-props, eval=T, echo=F}
+
+border_1 <- fp_border(width = 1.5)
+border_2 <- fp_border(width = 0.75)
+
+model_preds$target_offset_preds_l2_use %>% 
+  mutate(stress = if_else(stress == 1, "Present", "Preterit"),
+         l1 = if_else(l1 == 'en', "English", "Mandarin"),
+         l1 = fct_relevel(l1, "English", "Mandarin")) %>% 
+  arrange(l1, stress) %>% 
+  group_by(l1, stress) %>%
+  filter(., percent_l2_week == max(percent_l2_week) | 
+           percent_l2_week == min(percent_l2_week)) %>%
+  distinct() %>%
+  #ungroup() %>%
+  mutate(l1 = blank_same_as_last(as.character(l1)),
+         stress = blank_same_as_last(as.character(stress))) %>%
+  select(L1 = l1, `Lexical stress` = stress, `Weekly L2 % use` = percent_l2_week, Probability = prob,
+         LB = prob_lb, UB = prob_ub) %>%
+  flextable() %>% 
+  width(., j = c(2, 3, 4), width = c(1.1, 1.3, 1.1)) %>%
+  font(., fontname = "Times", part = "all") %>%
+  fontsize(., size = 11) %>% 
+  border_remove(.) %>%  
+  border(., part = "header", 
+            border.top = border_1,
+            border.bottom = border_2) %>% 
+  hline_bottom(., part = "body", border = border_1)
+```
+
+*Table 3*: Model estimates for probability of target fixations ±SE at 200 ms 
+after the target syllable offset as a function of L2 weekly % use. (LB = lower bound; UP = upper bound).
+
+
+There was an interaction effect of L2 use x stress in the linear term for the Mandarin speakers (`r report_row('11')`).
+The negative value of this effect indicates that the slope for the present tense predictions is steeper.
+Therefore, Mandarin speakers increased their gaze fixations on present tense targets faster than on preterit tense targets when their use of the L2 is greater than when it is less frequent.
+This interaction is shown in the right panel of Figure 6.
+There was also an interaction effect in the cubic term for both L2 groups between L2 use x stress (English: `r report_row('14')`; Mandarin: `r report_row('15')`).
+The negative values in these interactions demonstrate that the curves for both L2 populations were more closed in the present tense than in the preterit tense, indicating they increased their fixations on present tense targets faster than in preterit tense targets.
+
+```{r, 'plot-group-preds', echo=FALSE, fig.cap="Figure 6. Growth curve analysis estimates of fixations on the target as a function of lexical stress for each group during the analysis window. Symbols and lines represent model estimates, and the ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+knitr::include_graphics(
+  here("figs", "stress", "gca", "stress_use_l1.png"))
+```
+
+
+Following the same procedure as for SS, we conducted *post-hoc* GLMM to find out when the L2 speakers started to anticipate.
+For the GLMMs, we also ran two nested comparison models.
+One of them included proficiency as fixed effect and the other one included L2 use.
+In contrast to SS, L2 speakers only showed signs of anticipation at the onset of the second syllable.
+Importantly, these signs were more visible in the GLMM with L2 use.
+In that model, the log odds estimate at the intercept is <em>&gamma;</em>&nbsp;=&nbsp;0.733 (*p* = .000).
+While no L1 main effects were observed in the GCA models, the GLMMs did show a different between L2 groups.
+In the L2 use model, there were main effects of L1 and of L2 use.
+Mandarin speakers anticipated less than English speakers <em>&gamma;</em>&nbsp;=&nbsp;-0.352 (*p* = 0.013), and more use of the L2 correlated with better anticipation <em>&gamma;</em>&nbsp;=&nbsp;0.009 (*p* = 0.015).
+In the proficiency model, the log odd intercept estimates indicated L2 speakers were anticipating <em>&gamma;</em>&nbsp;=&nbsp;1.0229 (*p* = .000) until proficiency was added.
+When proficiency was added, the main effect of L1 remains <em>&gamma;</em>&nbsp;=&nbsp;-0.306 (*p* = .025), and there is a main effect of proficiency <em>&gamma;</em>&nbsp;=&nbsp;0.031 (*p* = .000).
+These value indicate that Mandarin speakers were anticipating less than English speakers, and that proficiency mediated ability to anticipate in both populations, with more proficient individuals generating predictions more consistently.
+
+In summary, the data in this study revealed that all groups were anticipating tense suffixes at the offset of the target syllable.
+SS started anticipating in the first consonant of the verb, which suggests they are relying on cues other than lexical stress to generate tense suffix predictions.
+L2 speakers needed to hear the target syllable to generate predictions, which suggests they were using lexical stress as a cue.
+English speakers were more successful in their prediction than Mandarin speakers. 
+Proficiency and L2 use mediated L2 speakers' ability to generate predictions.

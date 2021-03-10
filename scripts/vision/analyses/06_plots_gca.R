@@ -52,6 +52,7 @@ figs_path <- here("figs", "vision", "gca")
 
 # Present group differences in movement anticipation
 car_gca <- model_preds$fits_all %>%
+  na.omit(.) %>%
   mutate(stress = if_else(stress_sum == 1, "Present", "Preterit"),
          stress = fct_relevel(stress, "Present"),
          group = fct_relevel(group, "SS", "AE", "AM", "IE", "IM")) %>%
@@ -60,7 +61,10 @@ car_gca <- model_preds$fits_all %>%
   geom_hline(yintercept = 0, lty = 3, size = 0.4) +
   geom_vline(xintercept = 4, lty = 3, size = 0.4) +
   geom_ribbon(alpha = 0.2, color = NA, show.legend = F) +
-  geom_line(size = 0.75) +
+  stat_summary(fun.y = "mean", geom = "line", size = 1) +  
+  stat_summary(fun.data = mean_cl_boot, geom = 'pointrange', size = 0.5,
+               stroke = 0.5, pch = 21) +
+  #geom_line(size = 0.75) +
   geom_point(aes(color = car_dev), color = "black", size = 1.3, show.legend = F) +
   geom_point(aes(color = car_dev), size = 0.85, show.legend = F) +
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
@@ -72,6 +76,7 @@ car_gca <- model_preds$fits_all %>%
 
 # visuospatial WM
 corsi_gca <- model_preds$fits_all %>%
+  na.omit(.) %>%
   mutate(stress = if_else(stress_sum == 1, "Present", "Preterit"),
          stress = fct_relevel(stress, "Present"),
          group = fct_relevel(group, "SS", "AE", "AM", "IE", "IM")) %>%
@@ -80,7 +85,10 @@ corsi_gca <- model_preds$fits_all %>%
   geom_hline(yintercept = 0, lty = 3, size = 0.4) +
   geom_vline(xintercept = 4, lty = 3, size = 0.4) +
   geom_ribbon(alpha = 0.2, color = NA, show.legend = F) +
-  geom_line(size = 0.75) +
+  stat_summary(fun.y = "mean", geom = "line", size = 1) +  
+  stat_summary(fun.data = mean_cl_boot, geom = 'pointrange', size = 0.5,
+               stroke = 0.5, pch = 21) +
+  #geom_line(size = 0.75) +
   geom_point(aes(color = corsi), color = "black", size = 1.3, show.legend = F) +
   geom_point(aes(color = corsi), size = 0.85, show.legend = F) +
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),

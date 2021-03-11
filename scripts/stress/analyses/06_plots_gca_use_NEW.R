@@ -18,11 +18,10 @@ gca_mods_path <- here("mods", "stress", "gca")
 # Load models as list and store full mod to global env
 load(paste0(gca_mods_path, "/gca_mon_mods.Rdata"))
 load(paste0(gca_mods_path, "/gca_l2_mods.Rdata"))
-# load(paste0(gca_mods_path, "/model_preds.Rdata"))
+load(paste0(gca_mods_path, "/model_preds.Rdata"))
 list2env(gca_mon_mods, globalenv())
 list2env(gca_l2_mods, globalenv())
-# list2env(gca_full_mods, globalenv())  
-# list2env(model_preds, globalenv())
+list2env(model_preds, globalenv())
 
 # Set path for saving figs
 figs_path <- here("figs", "stress", "gca")
@@ -149,9 +148,9 @@ stress_dele_l1 <- model_preds$fits_all_l2_dele %>%
   mutate(condition = if_else(condition_sum == 1, "Present", "Preterit"),
          condition = fct_relevel(condition, "Present"),
          l1 = if_else(l1 == 'en', 'English', 'Mandarin'),
-         l1 = fct_relevel(l1, "English", "Mandarin")
-  ) %>%
-  ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin, fill = condition)) + 
+         l1 = fct_relevel(l1, "English", "Mandarin")) %>%
+  ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin, 
+                fill = condition, color = DELE)) + 
   facet_wrap(l1 ~ .) +
   geom_hline(yintercept = 0, lty = 3, size = 0.4) +
   geom_vline(xintercept = 4, lty = 3, size = 0.4) +
@@ -163,10 +162,25 @@ stress_dele_l1 <- model_preds$fits_all_l2_dele %>%
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
                      labels = c("-200", "0", "200", "400", "600")) +
   labs(x = "Time (ms) relative to target syllable offset",
-       y = "Empirical logit of looks to target") +
-  # scale_fill_brewer(palette = 'Set1', name = "Tense",
-  #                   labels = c("Present", "Preterit")) +
-  theme_big + legend_adj + labs(color = "Proficiency")
+       y = "Empirical logit of looks to target",
+       color = 'L2 proficiency') +
+  scale_fill_brewer(palette = 'Set1', name = "Tense",
+                    labels = c("Present", "Preterit")) +
+  theme_big + labs(color = "Proficiency") +
+  theme(
+    legend.position = c(0.1, 0.75),
+    legend.key = element_blank(),
+    legend.background = element_blank(),
+    strip.background = element_blank(),
+    axis.title.y = element_text(size = rel(.9), hjust = 0.95),
+    axis.title.x = element_text(size = rel(.9)),
+    legend.key.size = unit(0.75, 'lines'),
+    legend.text = element_text(size = 6),
+    legend.title = element_text(size = 7),
+    plot.margin = unit(rep(2, 4), "mm"),
+    panel.grid.major = element_line(colour = 'grey90', size = 0.15),
+    panel.grid.minor = element_line(colour = 'grey90', size = 0.15)
+  )
   
 # stress_dele_l1_pres <- model_preds$fits_all_l2_dele %>%
 #   mutate(condition = if_else(condition_sum == 1, "Present", "Preterit"),
@@ -268,7 +282,22 @@ stress_dele_split <- model_preds$fits_all_l2_dele %>%
                      labels = c("-200", "0", "200", "400", "600")) +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
-  theme_big + legend_adj + labs(color = "Proficiency")
+  theme_big + labs(color = "Proficiency") +
+  theme(
+    legend.position = c(0.1, 0.85),
+    legend.key = element_blank(),
+    legend.background = element_blank(),
+    strip.background = element_blank(),
+    axis.title.y = element_text(size = rel(.9), hjust = 0.95),
+    axis.title.x = element_text(size = rel(.9)),
+    legend.key.size = unit(0.75, 'lines'),
+    legend.text = element_text(size = 6),
+    legend.title = element_text(size = 7),
+    plot.margin = unit(rep(2, 4), "mm"),
+    panel.grid.major = element_line(colour = 'grey90', size = 0.15),
+    panel.grid.minor = element_line(colour = 'grey90', size = 0.15)
+  )
+
 
 
 
@@ -297,7 +326,21 @@ stress_use_l1 <- model_preds$fits_all_l2_use %>%
        y = "Empirical logit of looks to target") +
   scale_fill_brewer(palette = 'Set1', name = "Tense",
                     labels = c("Present", "Preterit")) +
-  theme_big + legend_adj + labs(color = "Weekly L2 % use")
+  theme_big + labs(color = "Weekly L2 % use") +
+  theme(
+    legend.position = c(0.1, 0.75),
+    legend.key = element_blank(),
+    legend.background = element_blank(),
+    strip.background = element_blank(),
+    axis.title.y = element_text(size = rel(.9), hjust = 0.95),
+    axis.title.x = element_text(size = rel(.9)),
+    legend.key.size = unit(0.75, 'lines'),
+    legend.text = element_text(size = 6),
+    legend.title = element_text(size = 7),
+    plot.margin = unit(rep(2, 4), "mm"),
+    panel.grid.major = element_line(colour = 'grey90', size = 0.15),
+    panel.grid.minor = element_line(colour = 'grey90', size = 0.15)
+  )
 
 # Within condition differences
 stress_use_cond <- model_preds$fits_all_l2_use %>%
@@ -322,7 +365,21 @@ stress_use_cond <- model_preds$fits_all_l2_use %>%
        y = "Empirical logit of looks to target") +
   scale_fill_brewer(palette = 'Set1', name = "L1",
                     labels = c("EN", "MA")) +
-  theme_big + legend_adj + labs(color = "Weekly L2 % use")
+  theme_big + labs(color = "Weekly L2 % use") +
+  theme(
+    legend.position = c(0.1, 0.75),
+    legend.key = element_blank(),
+    legend.background = element_blank(),
+    strip.background = element_blank(),
+    axis.title.y = element_text(size = rel(.9), hjust = 0.95),
+    axis.title.x = element_text(size = rel(.9)),
+    legend.key.size = unit(0.75, 'lines'),
+    legend.text = element_text(size = 6),
+    legend.title = element_text(size = 7),
+    plot.margin = unit(rep(2, 4), "mm"),
+    panel.grid.major = element_line(colour = 'grey90', size = 0.15),
+    panel.grid.minor = element_line(colour = 'grey90', size = 0.15)
+  )
 
 # Condition and L1 split
 stress_use_split <- model_preds$fits_all_l2_dele %>%
@@ -345,17 +402,27 @@ stress_use_split <- model_preds$fits_all_l2_dele %>%
                      labels = c("-200", "0", "200", "400", "600")) +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
-  theme_big + legend_adj + labs(color = "Weekly L2 % use")
+  theme_big + labs(color = "Weekly L2 % use") +
+  theme(
+    legend.position = c(0.11, 0.85),
+    legend.key = element_blank(),
+    legend.background = element_blank(),
+    strip.background = element_blank(),
+    axis.title.y = element_text(size = rel(.9), hjust = 0.95),
+    axis.title.x = element_text(size = rel(.9)),
+    legend.key.size = unit(0.75, 'lines'),
+    legend.text = element_text(size = 6),
+    legend.title = element_text(size = 7),
+    plot.margin = unit(rep(2, 4), "mm"),
+    panel.grid.major = element_line(colour = 'grey90', size = 0.15),
+    panel.grid.minor = element_line(colour = 'grey90', size = 0.15)
+  )
 
 
 
 
 
 # wm
-
-# Create the plot
-ggplot(df, aes(x = dose, y = len)) + 
-  geom_boxplot(aes(fill = supp)) +
 
 # Within group differences
 stress_wm_l1 <- model_preds$fits_all_l2_wm %>%
@@ -380,7 +447,21 @@ stress_wm_l1 <- model_preds$fits_all_l2_wm %>%
        y = "Empirical logit of looks to target") +
   scale_fill_brewer(palette = 'Set1', name = "Tense",
                     labels = c("Present", "Preterit")) +
-  theme_big + legend_adj + labs(color = "Verbal WM")
+  theme_big + labs(color = "Verbal WM") +
+  theme(
+    legend.position = c(0.1, 0.75),
+    legend.key = element_blank(),
+    legend.background = element_blank(),
+    strip.background = element_blank(),
+    axis.title.y = element_text(size = rel(.9), hjust = 0.95),
+    axis.title.x = element_text(size = rel(.9)),
+    legend.key.size = unit(0.75, 'lines'),
+    legend.text = element_text(size = 6),
+    legend.title = element_text(size = 7),
+    plot.margin = unit(rep(2, 4), "mm"),
+    panel.grid.major = element_line(colour = 'grey90', size = 0.15),
+    panel.grid.minor = element_line(colour = 'grey90', size = 0.15)
+  )
 
 # Within condition differences
 stress_wm_cond <- model_preds$fits_all_l2_wm %>%
@@ -405,7 +486,21 @@ stress_wm_cond <- model_preds$fits_all_l2_wm %>%
        y = "Empirical logit of looks to target") +
   scale_fill_brewer(palette = 'Set1', name = "L1",
                     labels = c("EN", "MA")) +
-  theme_big + legend_adj + labs(color = "Verbal WM")
+  theme_big + labs(color = "Verbal WM") +
+  theme(
+    legend.position = c(0.1, 0.75),
+    legend.key = element_blank(),
+    legend.background = element_blank(),
+    strip.background = element_blank(),
+    axis.title.y = element_text(size = rel(.9), hjust = 0.95),
+    axis.title.x = element_text(size = rel(.9)),
+    legend.key.size = unit(0.75, 'lines'),
+    legend.text = element_text(size = 6),
+    legend.title = element_text(size = 7),
+    plot.margin = unit(rep(2, 4), "mm"),
+    panel.grid.major = element_line(colour = 'grey90', size = 0.15),
+    panel.grid.minor = element_line(colour = 'grey90', size = 0.15)
+  )
 
 # Condition and L1 split
 stress_wm_split <- model_preds$fits_all_l2_wm %>%
@@ -428,7 +523,21 @@ stress_wm_split <- model_preds$fits_all_l2_wm %>%
                      labels = c("-200", "0", "200", "400", "600")) +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
-  theme_big + legend_adj + labs(color = "Verbal WM")
+  theme_big + labs(color = "Verbal WM") +
+  theme(
+    legend.position = c(0.1, 0.85),
+    legend.key = element_blank(),
+    legend.background = element_blank(),
+    strip.background = element_blank(),
+    axis.title.y = element_text(size = rel(.9), hjust = 0.95),
+    axis.title.x = element_text(size = rel(.9)),
+    legend.key.size = unit(0.75, 'lines'),
+    legend.text = element_text(size = 6),
+    legend.title = element_text(size = 7),
+    plot.margin = unit(rep(2, 4), "mm"),
+    panel.grid.major = element_line(colour = 'grey90', size = 0.15),
+    panel.grid.minor = element_line(colour = 'grey90', size = 0.15)
+  )
 
 
 

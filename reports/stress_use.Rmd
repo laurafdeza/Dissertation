@@ -329,7 +329,7 @@ While SS do not seem to need lexical stress information, this piece of informati
 Importantly, anticipation signs were more visible in the GLMM with L2 use.
 In that model, the log odds estimate at the intercept is <em>&gamma;</em>&nbsp;=&nbsp;0.733, *SE* = 0.169, *z* = 4.342, *p* = 0.000.
 In the proficiency model, the log odd intercept estimates indicated L2 speakers were anticipating <em>&gamma;</em>&nbsp;=&nbsp;1.0229 (*p* = .000) until proficiency was added.
-When proficiency was added, the intercept estimate did not reflect prediction anymore <em>&gamma;</em>&nbsp;=&nbsp;-0.152, *SE* = 0.355, *z* = -0.427, *p* = 0.670.
+When proficiency was added, the intercept estimate did not reflect prediction anymore <em>&gamma;</em>&nbsp;=&nbsp;-0.152, *SE* = 0.355, *z* = -0.427, *p* = 0.670, but that predictor was kept because it improved the model <em>&chi^2^;</em>&nbsp;(1) = 11.681, *p* = 0.001.
 
 While no L1 main effects were observed in the GCA models, the GLMMs did show a different between L2 groups.
 In the L2 use model, there were main effects of L1 and of L2 use.

@@ -1137,7 +1137,7 @@ if(F) {
   prop_0_l2_mod_int_dele   <- update(prop_0_l2_mod_dele,  . ~ . + l1:condition_sum:DELE)
   
   anova(prop_0_l2_mod_l1, prop_0_l2_mod_dele, test = "Chisq") 
-  # npar   AIC   BIC logLik deviance  Chisq Df Pr(>Chisq)
+  #                    npar   AIC   BIC logLik deviance  Chisq Df Pr(>Chisq)
   # prop_0_l2_mod_l1      6 22691 22724 -11339    22679                         
   # prop_0_l2_mod_dele    7 22681 22720 -11334    22667 11.681  1  0.0006315 ***
   

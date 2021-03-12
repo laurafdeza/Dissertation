@@ -35,13 +35,15 @@ source(here::here("scripts", "02_load_data.R"))
 gca_mods_path  <- here("mods", "stress", "gca")
 
 # Load models as lists
-load(paste0(gca_mods_path, "/full_mods.Rdata"))
+load(paste0(gca_mods_path, "/gca_mon_mods.Rdata"))
+load(paste0(gca_mods_path, "/gca_l2_mods.Rdata"))
 load(paste0(gca_mods_path, "/nested_model_comparisons.Rdata"))
-#load(paste0(gca_mods_path, "/model_preds.Rdata"))
+load(paste0(gca_mods_path, "/model_preds.Rdata"))
+# load(paste0(gca_mods_path, "/model_preds_mon.Rdata"))
 
 # Store objects in global env
-list2env(ind_mods, globalenv())
-list2env(full_mods, globalenv())
+list2env(gca_mon_mods, globalenv())
+list2env(gca_l2_mods, globalenv())
 list2env(nested_model_comparisons, globalenv())
 list2env(model_preds, globalenv())
 

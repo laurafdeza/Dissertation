@@ -151,7 +151,7 @@ Given the near ceiling effect in SS, we performed *post-hoc* GLMMs at the onset 
 We started at the onset of the verb.
 The intercept log odds estimate for SS at verb onset was <em>&gamma;</em>&nbsp;=&nbsp;-0.138 (*p*&nbsp;&lt;&nbsp;0.467), indicating SS were at chance level and nothing so far was cueing them towards one tense or the other.
 At the onset of the vowel in the target syllable, the log odds estimate was <em>&gamma;</em>&nbsp;=&nbsp;0.402, *SE* =  0.189, *z* = -0.727, *p*&nbsp;&lt;&nbsp;0.031, demonstrating SS were already predicting.
-<!-- This result suggests there is some acoustic cue that seeps into the consonant that allows SS to start anticipating only by hearing that segment. -->
+<!-- This result suggests there is some acoustic cue that seeps into the consonant that allows SS to start anticipating only by hearing that segment, as could be intensity. -->
 
 ```{r, 'write-up-prep-dele', warning=F, eval=T}
 # Prepare table to support easy in-line printing of equations
@@ -185,9 +185,9 @@ In both models, English speakers and present tense (paroxytone stress) are the b
 The GCA with proficiency estimates the intercept log odds at `r report_row('1')`.
 There were main effects of the linear (`r report_row('2')`), quadratic (`r report_row('3')`) and cubic (`r report_row('4')`) polynomial time terms.
 These results suggest the English speakers were anticipating present tense at target syllable offset.
-The lack of main effects from L1 and stress condition suggest that they were also anticipating preterit tense and that Mandarin speakers were also anticipating both tenses.
+The lack of main effects from L1 (<em>&chi^2^;</em>&nbsp;(1) = 2.840, *p* = 0.092) and stress condition (<em>&chi^2^;</em>&nbsp;(1) = 0.570, *p* = 0.450) suggest that they were also anticipating preterit tense and that Mandarin speakers were also anticipating both tenses.
 <!--These results suggest the L2 speakers were anticipating both tenses at target syllable offset, regardless of their L1.-->
-There was a main effect of proficiency (`r report_row('5')`), such that the higher the L2 proficiency, the higher the likelihood of predicting.
+Adding proficiency resulted in a main effect of proficiency (<em>&chi^2^;</em>&nbsp;(1) = 7.523, *p* = 0.006), such that the higher the L2 proficiency, the higher the likelihood of predicting (`r report_row('5')`).
 The variability in prediction abilities as a function of proficiency is shown in Table 2.
 The values under the Proficiency column refer to the minimum and maximum scores obtained within each L1.
 
@@ -224,15 +224,15 @@ model_preds$target_offset_preds_l2_dele %>%
 after the target syllable offset as a function of L2 proficiency. (LB = lower bound; UP = upper bound).
 
 
-There were interaction effects between proficiency x stress in the English speakers (`r report_row('6')`).
-The negative value in this interaction suggests that present tense (paroxytone stress) was more difficult to anticipate than preterit tense, although higher proficiency helped in overcoming this difficulty.
+There were also interaction effects between proficiency x stress in the English speakers .
+The negative value in this interaction suggests that present tense (paroxytone stress) was more difficult to anticipate than preterit tense, although higher proficiency helped in overcoming this difficulty (`r report_row('6')`).
 The panel on the left of Figure 5 reflects the difference in likelihood of fixations on each tense in the English group.
 There was also an interaction effect between proficiency x stress in the Mandarin speakers in the linear time term (`r report_row('9')`).
 This interaction suggests that the slope for the Mandarin speakers estimates is steeper in the present tense.
 The steeper slope indicates that Mandarin speakers fixated faster on the present tense form than on the preterit tense.
 This effect can be observed in the right panel of Figure 5.
-Lastly, there were interaction effects for both L2 populations in the cubic term between proficiency x stress (English: `r report_row('12')`; Mandarin: `r report_row('13')`).
-The negative value in both cases indicates that the curve is more closed in the present tense than in the preterit tense.
+Lastly, there were interaction effects for both L2 populations in the cubic term between proficiency x stress (<em>&chi^2^;</em>&nbsp;(2) = 6.657, *p* = 0.036).
+The negative value in both cases indicates that the curve is more closed in the present tense than in the preterit tense (English: `r report_row('12')`; Mandarin: `r report_row('13')`).
 This curve suggests that the increase of fixations on the present tense targets was faster than in the preterit tense forms for both L1s.
 
 ```{r, 'plot-dele-preds', echo=FALSE, fig.cap="Figure 5. Growth curve analysis estimates of fixations on the target as a function of lexical stress for each group during the analysis window. Symbols and lines represent model estimates, and the ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
@@ -307,12 +307,12 @@ model_preds$target_offset_preds_l2_use %>%
 after the target syllable offset as a function of L2 weekly % use. (LB = lower bound; UP = upper bound).
 
 
-There was an interaction effect of L2 use x stress in the linear term for the Mandarin speakers (`r report_row('11')`).
-The negative value of this effect indicates that the slope for the present tense predictions is steeper.
+There was an interaction effect of L2 use x stress in the linear term for the Mandarin speakers (<em>&chi^2^;</em>&nbsp;(2) = 11.632, *p* = 0.003).
+The negative value of this effect indicates that the slope for the present tense predictions is steeper (`r report_row('11')`).
 Therefore, Mandarin speakers increased their gaze fixations on present tense targets faster than on preterit tense targets when they use the L2 more frequently.
 This interaction is shown in the right panel of Figure 6.
-There was also an interaction effect in the cubic term for both L2 groups between L2 use x stress (English: `r report_row('14')`; Mandarin: `r report_row('15')`).
-The negative values in these interactions demonstrate that the curves for both L2 populations were more closed in the present tense than in the preterit tense, indicating they increased their fixations on present tense targets faster than in preterit tense targets.
+There was also an interaction effect in the cubic term for both L2 groups between L2 use x stress (<em>&chi^2^;</em>&nbsp;(2) = 6.967, *p* = 0.031).
+The negative values in these interactions demonstrate that the curves for both L2 populations were more closed in the present tense than in the preterit tense, indicating they increased their fixations on present tense targets faster than in preterit tense targets (English: `r report_row('14')`; Mandarin: `r report_row('15')`).
 
 ```{r, 'plot-use-preds', echo=FALSE, fig.cap="Figure 6. Growth curve analysis estimates of fixations on the target as a function of lexical stress for each group during the analysis window. Symbols and lines represent model estimates, and the ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
 knitr::include_graphics(
@@ -331,11 +331,11 @@ In that model, the log odds estimate at the intercept is <em>&gamma;</em>&nbsp;=
 In the proficiency model, the log odd intercept estimates indicated L2 speakers were anticipating <em>&gamma;</em>&nbsp;=&nbsp;1.0229 (*p* = .000) until proficiency was added.
 When proficiency was added, the intercept estimate did not reflect prediction anymore <em>&gamma;</em>&nbsp;=&nbsp;-0.152, *SE* = 0.355, *z* = -0.427, *p* = 0.670, but that predictor was kept because it improved the model <em>&chi^2^;</em>&nbsp;(1) = 11.681, *p* = 0.001.
 
-While no L1 main effects were observed in the GCA models, the GLMMs did show a different between L2 groups.
-In the L2 use model, there were main effects of L1 and of L2 use.
+While no L1 main effects were observed in the GCA models, the GLMMs to analyze the influence of predictors in more detail did show a different between L2 groups.
+In the L2 use model, there were main effects of L1 (<em>&chi^2^;</em>&nbsp;(1) = 3.894, *p* = 0.048) and of L2 use (<em>&chi^2^;</em>&nbsp;(1) = 5.792, *p* = 0.016).
 Mandarin speakers anticipated less than English speakers <em>&gamma;</em>&nbsp;=&nbsp;-0.352, *SE* = 0.142, *z* = -2.486, *p* = 0.013, and greater L2 use correlated with better anticipation <em>&gamma;</em>&nbsp;=&nbsp;0.009, *SE* = 0.004, *z* = 2.435, *p* = 0.015.
-In the proficiency model, the main effect of L1 appeared before adding proficiency and it remained when L2 proficiency was added <em>&gamma;</em>&nbsp;=&nbsp;-0.304, *SE* = 0.136, *z* = -2.238, *p* = .025.
-There was also a main effect of proficiency <em>&gamma;</em>&nbsp;=&nbsp;0.031, *SE* = 0.009, *z* = 3.496, *p* = .000.
+In the proficiency model, the main effect of L1 appeared before adding proficiency (<em>&chi^2^;</em>&nbsp;(1) = 3.894, *p* = 0.048) and the estimated difference between L1 groups remained when L2 proficiency was added <em>&gamma;</em>&nbsp;=&nbsp;-0.304, *SE* = 0.136, *z* = -2.238, *p* = .025.
+There was also a main effect of proficiency (<em>&chi^2^;</em>&nbsp;(1) = 11.681, *p* = 0.001), such that higher proficiency correlated with increased anticipation (<em>&gamma;</em>&nbsp;=&nbsp;0.031, *SE* = 0.009, *z* = 3.496, *p* = .000).
 These values indicate that Mandarin speakers were anticipating less than English speakers, and that proficiency mediated ability to anticipate in both populations, with more proficient individuals generating predictions more consistently.
 
 In summary, the data in this study revealed that all groups were anticipating tense suffixes at the offset of the target syllable.

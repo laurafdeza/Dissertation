@@ -70,22 +70,23 @@ Last updated on `r Sys.Date()`.
 The results section can be copied and pasted into the corresponding google doc. 
 The tables can also be copy and pasted where appropriate. 
 
-## 3.4. Statistical analysis
-Statistical analyses were conducted on *R* (R Core Team, 2019) using the packages *lme4* (D. Bates, Mächler, Bolker, & Walker, 2014) and *multcomp* (Hothorn et al., 2016). 
+
+
+## Statistical analysis
+Statistical analyses were conducted on R (R Core Team, 2019) using the packages *lme4* (D. Bates, Mächler, Bolker, & Walker, 2014) and *multcomp* (Hothorn et al., 2016). 
 The gaze-fixation data was downsampled to 10 ms and 50 ms bins. 
-We analyzed the data at 200 ms after the time stamp of interest to account for the time it takes to plan and launch a saccade (e.g., Fischer, 1992; Saslow, 1967). 
+The 50 ms bins data were modeled using a growth curve analysis (GCA, Mirman, 2016) to observe how the pattern of gaze fixations changed over time, including linear, quadratic, and cubic orthogonal polynomials.
+We centered the data at 200 ms after the onset of the last syllable of the target items to account for the time it takes to plan and launch a saccade (e.g., Fischer, 1992; Saslow, 1967). 
 The empirical logit transformation was applied to binary responses (fixations on target or distractor, Barr, 2008). 
-The 50 ms bins were centered at the onset of the last syllable of the target items and used to model a growth curve analysis (GCA, Mirman, 2016) to observe how the pattern of gaze fixations changed over time. 
-Data in the GCA were modeled using linear, quadratic, and cubic orthogonal polynomials. 
-The 10 ms bins were used to model generalized linear mixed models (GLMM) at word target onset, onset of each segment in the target syllable, and onset of the suffix syllable to analyze the specific effect of each fixed effect on prediction and to find out precisely when each population started to anticipate.
-For both the GCA and the GLMMs we first ran a model for the monolingual speakers with lexical stress as fixed effect. 
+The 10 ms bins data were model using generalized linear mixed models (GLMM) at 200 ms after word target onset, onset of each segment in the target syllable, and onset of the suffix syllable to analyze the specific effect of each fixed effect on prediction and to find out precisely when each population started to anticipate.
+For both the GCA and the GLMMs we first ran a model for the monolingual speakers with lexical stress as fixed effect and participant and item as random effects. 
 For the L2 speakers, we ran two GCA and two GLMM at each time stamp of interest.
-The first model included L1, lexical stress, and proficiency as fixed effects. 
+The first model of each kind included L1, lexical stress, and proficiency as fixed effects. 
 The second one included L1, lexical stress, and L2 use as fixed effects. 
-L1 was categorical and stood for transfer. 
+L1 was categorical, stood for transfer and was sum-coded. 
 Lexical stress was categorical and was sum-coded. 
 Proficiency and language use were continuous. 
-By-subject and by-item random effects were also tested in all models. 
+By-subject and by-item random effects were tested in all models. 
 Nested model comparisons were implemented to assess main effects and interactions.
 
 # 4. Results

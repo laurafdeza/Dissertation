@@ -763,12 +763,12 @@ if(F) {
   anova(prop_0_l2_mod_0, prop_0_l2_mod_wm, test = "Chisq") 
   #                  npar   AIC   BIC logLik deviance  Chisq Df Pr(>Chisq)
   # prop_0_l2_mod_0     5 25700 25728 -12845    25690                     
-  # prop_0_l2_mod_wm    6 25702 25736 -12845    25690 0.0088  1     0.9254
+  # prop_0_l2_mod_wm    6 25702 25736 -12845    25690 0.0124  1     0.9113
   
   anova(prop_0_l2_mod_0, prop_0_l2_mod_int_wm, test = "Chisq") # no interaction wm x condition
-  #                      npar   AIC   BIC logLik deviance Chisq Df Pr(>Chisq)
+  #                      npar   AIC   BIC logLik deviance  Chisq Df Pr(>Chisq)
   # prop_0_l2_mod_0         5 25700 25728 -12845    25690                       
-  # prop_0_l2_mod_int_wm    8 25699 25744 -12842    25683 6.7183  3    0.08144 .
+  # prop_0_l2_mod_int_wm    8 25699 25744 -12842    25683 6.6485  3    0.08399 .
   
   l2_onset_c2_all_final <- prop_0_l2_mod_0
   
@@ -780,8 +780,8 @@ if(F) {
   
   # ROUTE 2
   
-  prop_0_l2_mod_dele       <- update(prop_0_l2_mod_0,  . ~ . + DELE)
-  prop_0_l2_mod_int_dele   <- update(prop_0_l2_mod_dele,  . ~ . + l1:condition_sum:DELE)
+  prop_0_l2_mod_dele       <- update(prop_0_l2_mod_0,  . ~ . + DELE_z)
+  prop_0_l2_mod_int_dele   <- update(prop_0_l2_mod_dele,  . ~ . + l1:condition_sum:DELE_z)
   
   anova(prop_0_l2_mod_0, prop_0_l2_mod_dele, test = "Chisq") 
   # npar   AIC   BIC logLik deviance  Chisq Df Pr(>Chisq)
@@ -789,9 +789,9 @@ if(F) {
   # prop_0_l2_mod_dele    6 25701 25735 -12844    25689 1.0688  1     0.3012
   
   anova(prop_0_l2_mod_0, prop_0_l2_mod_int_dele, test = "Chisq") # no interaction wm x condition
-  #                      npar   AIC   BIC logLik deviance Chisq Df Pr(>Chisq)
+  #                      npar   AIC   BIC logLik deviance  Chisq Df Pr(>Chisq)
   # prop_0_l2_mod_0         5 25700 25728 -12845    25690                     
-  # prop_0_l2_mod_int_dele  8 25702 25747 -12843    25686 3.8567  3     0.2774
+  # prop_0_l2_mod_int_dele  8 25701 25747 -12842    25685 4.9354  3     0.1766
   
   
   # ROUTE 3
@@ -1179,6 +1179,12 @@ if(F) {
   # use_z            0.23642    0.09709   2.435   0.0149 *   
     
 }
+
+saveRDS(l2_onset_c3_dele_final, here("mods", "stress", 
+                                   "glmm", "onset_c3", "l2_onset_c3_dele_final_z.rds"))
+saveRDS(l2_onset_c3_use_final, here("mods", "stress", 
+                                     "glmm", "onset_c3", "l2_onset_c3_use_final_z.rds"))
+                                     
 # -----------------------------------------------------------------------------
 
 

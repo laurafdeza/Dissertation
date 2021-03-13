@@ -46,6 +46,7 @@ source(here::here("scripts", "01_helpers.R"))
 
 # Get path to saved models
 gca_mods_path  <- here("mods", "stress", "gca")
+glmm_mods_path  <- here("mods", "stress", "glmm")
 
 # Load models as list and store full mod to global env
 load(paste0(gca_mods_path, "/gca_mon_mods.Rdata"))
@@ -53,6 +54,10 @@ load(paste0(gca_mods_path, "/gca_l2_mods.Rdata"))
 load(paste0(gca_mods_path, "/model_preds.Rdata"))
 mon_preds <- readRDS(file = here("mods", "stress", "gca", "model_preds_mon.Rdata"))
 load(paste0(gca_mods_path, "/nested_model_comparisons.Rdata"))
+
+mon_onset_v1_final <- readRDS(here("mods", "stress", "glmm", "onset_v1", "mon_onset_v1_final.rds"))
+l2_onset_c3_dele <- readRDS(here("mods", "stress", "glmm", "onset_c3", "l2_onset_c3_dele_final_z.rds"))
+l2_onset_c3_dele <- readRDS(here("mods", "stress", "glmm", "onset_c3", "l2_onset_c3_dele_final_z.rds"))
 
 ```
 
@@ -151,8 +156,22 @@ knitr::include_graphics(
 Given the near ceiling effect in SS, we performed post-hoc GLMMs at the onset of every segment in the target syllable to find out when SS started anticipating.
 We started at the onset of the verb.
 The intercept log odds estimate for SS at verb onset was <em>&gamma;</em>&nbsp;=&nbsp;-0.138 (*p*&nbsp;&lt;&nbsp;0.467), indicating SS were at chance level and nothing so far was cueing them towards one tense or the other.
-At the onset of the vowel in the target syllable, the log odds estimate was <em>&gamma;</em>&nbsp;=&nbsp;0.402, *SE* =  0.189, *z* = -0.727, *p*&nbsp;&lt;&nbsp;0.031, demonstrating SS were already predicting.
+At the onset of the vowel in the target syllable, the log odds estimate was <em>&gamma;</em>&nbsp;=&nbsp;0.402, *SE* =  0.189, *z* = -0.727, *p*&nbsp;&lt;&nbsp;0.031, demonstrating SS were already predicting (see Table 0 for all fixed effects).
 <!-- This result suggests there is some acoustic cue that seeps into the consonant that allows SS to start anticipating only by hearing that segment, as could be intensity. -->
+
+```{r, warning=F}
+
+# Get full mod and make it pretty for the table
+mon_onset_v1_final %>%  
+  tidy_lme4() %>% 
+  mutate(Parameter = fix_param_names(Parameter)) %>%
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p.value) %>%
+  select(-p, -effect) %>%
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+```
+*Table 0*. GLMM for Spanish speakers at onset of vowel in target syllable.
+
 
 Two GCA analyses were conducted for the L2 groups.
 One tested L2 proficiency along with L1 and stress condition.
@@ -374,9 +393,45 @@ knitr::include_graphics(
 
 
 
-Following the same procedure as for SS, we conducted post-hoc GLMMs to find out when the L2 speakers started to anticipate.
+Following the same procedure as for SS, we conducted post-hoc GLMMs to find out when the L2 speakers started to anticipate (see Tables 5 and 6).
 For the GLMMs, we also ran two nested comparison models at each time stamp of interest (onset of target word, and then onset of each segment in the first syllable and onset of second syllable).
 One of them included proficiency as fixed effect and the other one included L2 use.
+As a reminder, the baselines are present tense and L1 English speakers.
+
+
+```{r, warning=F}
+
+# Get full mod and make it pretty for the table
+l2_onset_c3_dele %>%  
+  tidy_lme4() %>% 
+  mutate(Parameter = fix_param_names(Parameter)) %>%
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p.value) %>%
+  select(-p, -effect) %>%
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+*Table 5*. GLMM with proficiency for L2 speakers at onset of second syllable.
+
+
+```{r, warning=F}
+
+# Get full mod and make it pretty for the table
+l2_onset_c3_use %>%  
+  tidy_lme4() %>% 
+  mutate(Parameter = fix_param_names(Parameter)) %>%
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p.value) %>%
+  select(-p, -effect) %>%
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+*Table 2*. GLMM for L2 speakers with weekly L2 use at onset of second syllable.
+
+
+
 In contrast to SS, L2 speakers only showed signs of anticipation at the onset of the second syllable.
 At this time stamp, the log odd intercept estimates were significant for the first time in both L2 models: with proficiency <em>&beta;</em>&nbsp;=&nbsp;1.137, *SE* = 0.123, *z* = 9.239, *p* = 0.000; with L2 use <em>&beta;</em>&nbsp;=&nbsp;1.142, *SE* = 0.130, *z* = 8.781, *p* = 0.000. 
 <!--This delay in comparison to SS indicates L2 speakers need more information to generate verb tense suffix predictions.

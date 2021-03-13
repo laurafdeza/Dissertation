@@ -25,7 +25,7 @@ unique(stress_50$AVERAGE_IA_0_SAMPLE_COUNT)  # elsewhere
 # Tidy data -------------------------------------------------------------------
 
 # Read data
-stress50 <- stress_50 %>%
+stress_50 <- stress_50 %>%
   
   # create variable group
   separate(., col = RECORDING_SESSION_LABEL,
@@ -86,22 +86,36 @@ dem <- dem %>%
   select(., participant, WM_set, DELE, percent_l2_week)
   
 dem$participant <- tolower(dem$participant)
-  
+dem$DELE <- as.numeric(dem$DELE)
+
   
 # Add verbal wm score to eyetracking data frame
-stress50 <- merge(x = stress50, y = dem, by = "participant", all.x=TRUE)
+stress_50 <- merge(x = stress_50, y = dem, by = "participant", all.x=TRUE)
 
 
 # Create L1 column
-stress50 <- separate(data = stress50,
+stress_50 <- separate(stress_50,
                     col = group,
                     into = c("prof", "l1"),
                     sep = 1,
                     remove = FALSE)
+  
 
-stress50$l1 <- str_replace(stress50$l1, "es", "en")
-stress50$l1 <- str_replace(stress50$l1, "ms", "ma")
-stress50$l1 <- str_replace(stress50$l1, "on", "es")
+stress_50$l1 <- str_replace(stress_50$l1, "es", "en")
+stress_50$l1 <- str_replace(stress_50$l1, "ms", "ma")
+stress_50$l1 <- str_replace(stress_50$l1, "on", "es")
+
+
+stress_50$DELE[is.na(stress_50$DELE) & stress_50$l1 == 'es'] <- 56
+stress_50$percent_l2_week[is.na(stress_50$percent_l2_week) & stress_50$l1 == 'es'] <- 0
+
+stress50 <- stress_50 %>%
+  # mutate(DELE = DELE + runif(n(), min = -0.15, max = 0.15) * (n() > 1)) %>%
+  mutate(., ospan = (WM_set - mean(WM_set))/sd(WM_set),
+         use_z = (percent_l2_week - mean(percent_l2_week))/sd(percent_l2_week),
+    DELE_z = (DELE - mean(DELE))/sd(DELE)
+  )
+ 
 
 # change name of .csv if trigger checked different
 write_csv(stress50, here("data", "clean", "stress_50ms_final.csv"))

@@ -80,15 +80,12 @@ list2env(model_preds, globalenv())
 # Number of bins:     1  2  3  4 5 6 7 8 9 10 11 12 13 14 15 16 17
 # Actual bin number: -4 -3 -2 -1 0 1 2 3 4  5  6  7  8  9 10 11 12
 
-wm <- read_csv("./data/clean/ospan_set_z_scores.csv")
-
-stress_50 <- merge(x = stress50, y = wm, by = "participant", all.x=TRUE)
-
-# stress_50 <- na.omit(stress_50)
 
 
+# stress_50 <- na.omit(stress50)
 
-stress_gc_subset <- stress_50 %>%
+
+stress_gc_subset <- stress50 %>%
   select(., -WM_set) %>%
   filter(., time_zero >= -4 & time_zero <= 12) %>%
   mutate(., l1 = fct_relevel(l1, "es", "en", "ma"),
@@ -346,10 +343,10 @@ l2_stress_anova <-
 
 # add proficiency effect to intercept, linear slope, quadratic, and cubic time terms
 
-gca_l2_mod_dele_0 <- update(gca_l2_mod_base,   . ~ . + DELE) 
-gca_l2_mod_dele_1 <- update(gca_l2_mod_dele_0, . ~ . + ot1:DELE) 
-gca_l2_mod_dele_2 <- update(gca_l2_mod_dele_1, . ~ . + ot2:DELE)
-gca_l2_mod_dele_3 <- update(gca_l2_mod_dele_2, . ~ . + ot3:DELE)
+gca_l2_mod_dele_0 <- update(gca_l2_mod_base,   . ~ . + DELE_z) 
+gca_l2_mod_dele_1 <- update(gca_l2_mod_dele_0, . ~ . + ot1:DELE_z) 
+gca_l2_mod_dele_2 <- update(gca_l2_mod_dele_1, . ~ . + ot2:DELE_z)
+gca_l2_mod_dele_3 <- update(gca_l2_mod_dele_2, . ~ . + ot3:DELE_z)
 
 l2_dele_anova <-
   anova(gca_l2_mod_base, gca_l2_mod_dele_0, gca_l2_mod_dele_1,
@@ -364,31 +361,31 @@ l2_dele_anova <-
 
 # add interaction
 
-gca_l2_mod_dele_int_0 <- update(gca_l2_mod_dele_0,   . ~ . + l1:condition_sum:DELE) 
-gca_l2_mod_dele_int_1 <- update(gca_l2_mod_dele_int_0, . ~ . + ot1:l1:condition_sum:DELE) 
-gca_l2_mod_dele_int_2 <- update(gca_l2_mod_dele_int_1, . ~ . + ot2:l1:condition_sum:DELE)
-gca_l2_mod_dele_int_3 <- update(gca_l2_mod_dele_int_2, . ~ . + ot3:l1:condition_sum:DELE)
+gca_l2_mod_dele_int_0 <- update(gca_l2_mod_dele_0,   . ~ . + l1:condition_sum:DELE_z) 
+gca_l2_mod_dele_int_1 <- update(gca_l2_mod_dele_int_0, . ~ . + ot1:l1:condition_sum:DELE_z) 
+gca_l2_mod_dele_int_2 <- update(gca_l2_mod_dele_int_1, . ~ . + ot2:l1:condition_sum:DELE_z)
+gca_l2_mod_dele_int_3 <- update(gca_l2_mod_dele_int_2, . ~ . + ot3:l1:condition_sum:DELE_z)
 
 l2_dele_int_anova <-
   anova(gca_l2_mod_dele_0, gca_l2_mod_dele_int_0, gca_l2_mod_dele_int_1,
         gca_l2_mod_dele_int_2, gca_l2_mod_dele_int_3)
 #                       npar    AIC    BIC logLik deviance  Chisq Df Pr(>Chisq)  
 # gca_l2_mod_dele_0       31 188987 189249 -94463   188925                       
-# gca_l2_mod_dele_int_0   33 188990 189269 -94462   188924 1.4052  2    0.49530  
-# gca_l2_mod_dele_int_1   35 188991 189287 -94460   188921 3.1764  2    0.20430  
-# gca_l2_mod_dele_int_2   37 188992 189305 -94459   188918 2.8605  2    0.23925  
-# gca_l2_mod_dele_int_3   39 188989 189319 -94456   188911 6.6570  2    0.03585 *
+# gca_l2_mod_dele_int_0   33 188988 189267 -94461   188922 3.4608  2    0.17721  
+# gca_l2_mod_dele_int_1   35 188985 189281 -94458   188915 6.7273  2    0.03461 *
+# gca_l2_mod_dele_int_2   37 188982 189295 -94454   188908 7.3006  2    0.02598 *
+# gca_l2_mod_dele_int_3   39 188981 189311 -94451   188903 4.9358  2    0.08476 .
 
-gca_l2_mod_dele_final <- gca_l2_mod_dele_int_3
+gca_l2_mod_dele_final <- gca_l2_mod_dele_int_2
 
 ### ROUTE 2 (L2 use alone)
 
 # add L2 use effect to intercept, linear slope, quadratic, and cubic time terms
 
-gca_l2_mod_use_0 <- update(gca_l2_mod_base,  . ~ . + percent_l2_week) 
-gca_l2_mod_use_1 <- update(gca_l2_mod_use_0, . ~ . + ot1:percent_l2_week) 
-gca_l2_mod_use_2 <- update(gca_l2_mod_use_1, . ~ . + ot2:percent_l2_week)
-gca_l2_mod_use_3 <- update(gca_l2_mod_use_2, . ~ . + ot3:percent_l2_week)
+gca_l2_mod_use_0 <- update(gca_l2_mod_base,  . ~ . + use_z) 
+gca_l2_mod_use_1 <- update(gca_l2_mod_use_0, . ~ . + ot1:use_z) 
+gca_l2_mod_use_2 <- update(gca_l2_mod_use_1, . ~ . + ot2:use_z)
+gca_l2_mod_use_3 <- update(gca_l2_mod_use_2, . ~ . + ot3:use_z)
 
 l2_use_anova <-
   anova(gca_l2_mod_base, gca_l2_mod_use_0, gca_l2_mod_use_1,
@@ -402,22 +399,22 @@ l2_use_anova <-
 
 # add interaction
 
-gca_l2_mod_use_int_0 <- update(gca_l2_mod_use_2,     . ~ . + l1:condition_sum:percent_l2_week) 
-gca_l2_mod_use_int_1 <- update(gca_l2_mod_use_int_0, . ~ . + ot1:l1:condition_sum:percent_l2_week) 
-gca_l2_mod_use_int_2 <- update(gca_l2_mod_use_int_1, . ~ . + ot2:l1:condition_sum:percent_l2_week)
-gca_l2_mod_use_int_3 <- update(gca_l2_mod_use_int_2, . ~ . + ot3:l1:condition_sum:percent_l2_week)
+gca_l2_mod_use_int_0 <- update(gca_l2_mod_use_2,     . ~ . + l1:condition_sum:use_z) 
+gca_l2_mod_use_int_1 <- update(gca_l2_mod_use_int_0, . ~ . + ot1:l1:condition_sum:use_z) 
+gca_l2_mod_use_int_2 <- update(gca_l2_mod_use_int_1, . ~ . + ot2:l1:condition_sum:use_z)
+gca_l2_mod_use_int_3 <- update(gca_l2_mod_use_int_2, . ~ . + ot3:l1:condition_sum:use_z)
 
 l2_use_int_anova <-
   anova(gca_l2_mod_use_0, gca_l2_mod_use_int_0, gca_l2_mod_use_int_1,
         gca_l2_mod_use_int_2, gca_l2_mod_use_int_3)
 #                      npar    AIC    BIC logLik deviance   Chisq Df Pr(>Chisq)   
 # gca_l2_mod_use_0       31 188995 189257 -94466   188933                         
-# gca_l2_mod_use_int_0   35 188996 189292 -94463   188926  6.2237  4   0.183055   
-# gca_l2_mod_use_int_1   37 188989 189302 -94457   188915 11.6320  2   0.002979 **
-# gca_l2_mod_use_int_2   39 188993 189322 -94457   188915  0.0390  2   0.980703   
-# gca_l2_mod_use_int_3   41 188990 189336 -94454   188908  6.9672  2   0.030697 * 
+# gca_l2_mod_use_int_0   35 188996 189292 -94463   188926  6.2537  4   0.180988   
+# gca_l2_mod_use_int_1   37 188987 189300 -94456   188913 13.4092  2   0.001225 **
+# gca_l2_mod_use_int_2   39 188987 189317 -94455   188909  3.4908  2   0.174576   
+# gca_l2_mod_use_int_3   41 188989 189336 -94454   188907  1.9898  2   0.369763 
 
-gca_l2_mod_use_final <- gca_l2_mod_use_int_3
+gca_l2_mod_use_final <- gca_l2_mod_use_int_1
 
 
 ### ROUTE 3 (working memory) 
@@ -506,7 +503,7 @@ new_dat_mon <- mon_data %>%
   distinct
 
 new_dat_l2 <- l2_data %>%
-  dplyr::select(l1, time_zero, ot1:ot3, condition_sum, ospan, DELE, percent_l2_week) %>%
+  dplyr::select(l1, time_zero, ot1:ot3, condition_sum, ospan, DELE_z, use_z) %>%
   distinct
 
 write_csv(new_dat_l2, here::here('new_dat_l2.csv'))
@@ -524,16 +521,16 @@ fits_all_l2_dele <- predictSE(gca_l2_mod_dele_final, new_dat_l2) %>%
   bind_cols(new_dat_l2) %>%
   rename(se = se.fit) %>%
   mutate(ymin = fit - se, ymax = fit + se,
-         group = fct_recode(l1, EN = "en", MA = "ma"),
-         group = fct_relevel(l1, "EN", "MA"))
+         l1 = fct_recode(l1, EN = "en", MA = "ma"),
+         l1 = fct_relevel(l1, "EN", "MA"))
 
 fits_all_l2_use <- predictSE(gca_l2_mod_use_final, new_dat_l2) %>%  
   as_tibble %>%
   bind_cols(new_dat_l2) %>%
   rename(se = se.fit) %>%
   mutate(ymin = fit - se, ymax = fit + se,
-         group = fct_recode(l1, EN = "en", MA = "ma"),
-         group = fct_relevel(l1, "EN", "MA"))
+         l1 = fct_recode(l1, EN = "en", MA = "ma"),
+         l1 = fct_relevel(l1, "EN", "MA"))
 
 fits_all_l2_wm <- predictSE(gca_l2_mod_wm_final, new_dat_l2) %>%  
   as_tibble %>%
@@ -552,7 +549,7 @@ target_offset_preds_mon <- filter(fits_all_mon, time_zero == 4) %>%
          prob_ub = plogis(elog_ub)) 
 
 target_offset_preds_l2_dele <- filter(fits_all_l2_dele, time_zero == 4) %>%
-  select(l1, stress = condition_sum, DELE,
+  select(l1, stress = condition_sum, DELE = DELE_z,
          elog = fit, elog_lb = ymin, elog_ub = ymax) %>%
   mutate(prob = plogis(elog),
          prob_lb = plogis(elog_lb),
@@ -560,7 +557,7 @@ target_offset_preds_l2_dele <- filter(fits_all_l2_dele, time_zero == 4) %>%
   arrange(l1)
 
 target_offset_preds_l2_use <- filter(fits_all_l2_use, time_zero == 4) %>%
-  select(l1, stress = condition_sum, percent_l2_week,
+  select(l1, stress = condition_sum, percent_l2_week = use_z,
          elog = fit, elog_lb = ymin, elog_ub = ymax) %>%
   mutate(prob = plogis(elog),
          prob_lb = plogis(elog_lb),

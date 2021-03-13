@@ -70,8 +70,9 @@ stress10 <- stress10 %>%
   mutate(.,eLog = log((target_count + 0.5) / (10 - target_count + 0.5)),
          wts = 1 / (target_count + 0.5) + 1 / (10 - target_count + 0.5)) %>%
   
+  # CHANGE onset_c3 DEPENDING ON TRIGGER TO ANALYZE
   dplyr::select(participant, group, target, cond, target, bin,
-                target_count, target_prop, eLog, wts, onset_c3) %>%
+                target_count, target_prop, eLog, wts, onset_c3) %>% 
   gather(., landmark, lm_bin, -c(participant:wts)) %>%
   mutate(., lm_bin = (lm_bin / 10) %>% ceiling(.),
          t_onset = if_else(bin == lm_bin, TRUE, FALSE)) %>%
@@ -83,10 +84,10 @@ stress10 <- stress10 %>%
 # Load verbal WM
 dem <- read_csv(here("data", "pupurri_analysis.csv"))
 dem <- dem %>%
-  select(., participant, DELE, percent_l2_week)
+  select(., participant, DELE, percent_l2_week, WM_set)
 
 dem$participant <- tolower(dem$participant)
-
+dem$DELE <- as.numeric(dem$DELE)
 
 # Add verbal wm score to eyetracking data frame
 stress10 <- merge(x = stress10, y = dem, by = "participant", all.x=TRUE)
@@ -102,9 +103,21 @@ stress10$l1 <- str_replace(stress10$l1, "es", "en")
 stress10$l1 <- str_replace(stress10$l1, "ms", "ma")
 stress10$l1 <- str_replace(stress10$l1, "on", "es")
 
-wm <- read_csv("./data/clean/ospan_set_z_scores.csv")
+# This needs to be updated for all df at triggers other than C3
+stress10$DELE[is.na(stress10$DELE) & stress10$l1 == 'es'] <- 56
+stress10$percent_l2_week[is.na(stress10$percent_l2_week) & stress10$l1 == 'es'] <- 0
 
-stress10 <- merge(x = stress10, y = wm, by = "participant", all.x=TRUE)
+stress10 <- stress10 %>%
+  # mutate(DELE = DELE + runif(n(), min = -0.15, max = 0.15) * (n() > 1)) %>%
+  mutate(., ospan = (WM_set - mean(WM_set))/sd(WM_set),
+         use_z = (percent_l2_week - mean(percent_l2_week))/sd(percent_l2_week),
+         DELE_z = (DELE - mean(DELE))/sd(DELE)
+  )
+# 
+# 
+# wm <- read_csv("./data/clean/ospan_set_z_scores.csv")
+
+# stress10 <- merge(x = stress10, y = wm, by = "participant", all.x=TRUE)
 
 write_csv(stress10, here("data", "clean", "stress_10ms_final_onset_c3.csv"))
 

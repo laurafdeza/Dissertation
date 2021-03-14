@@ -149,8 +149,8 @@ stress_dele_l1 <- model_preds$fits_all_l2_dele %>%
          condition = fct_relevel(condition, "Present"),
          l1 = if_else(l1 == 'EN', 'English', 'Mandarin'),
          l1 = fct_relevel(l1, "English", "Mandarin")) %>%
-  ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin, 
-                fill = condition, color = DELE_z)) + 
+  ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
+                fill = condition)) +
   facet_wrap(l1 ~ .) +
   geom_hline(yintercept = 0, lty = 3, size = 0.4) +
   geom_vline(xintercept = 4, lty = 3, size = 0.4) +
@@ -158,7 +158,7 @@ stress_dele_l1 <- model_preds$fits_all_l2_dele %>%
   # geom_ribbon(alpha = 0.2, color = "grey", show.legend = F) +
   stat_summary(fun.data = mean_cl_boot, geom = 'ribbon',fun.args=list(conf.int=0.95),
                alpha = 0.5) +
-  geom_point(aes(color = DELE_z), size = 0.85, show.legend = F) +
+  geom_point(aes(color = DELE_z), alpha = .5, pch = 21, size = 0.85, show.legend = T) +
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
                      labels = c("-200", "0", "200", "400", "600")) +
   labs(x = "Time (ms) relative to target syllable offset",
@@ -168,7 +168,7 @@ stress_dele_l1 <- model_preds$fits_all_l2_dele %>%
                     labels = c("Present", "Preterit")) +
   theme_big + labs(color = "Proficiency") +
   theme(
-    legend.position = c(0.1, 0.75),
+    legend.position = c(0.06, 0.7),
     legend.key = element_blank(),
     legend.background = element_blank(),
     strip.background = element_blank(),
@@ -182,60 +182,10 @@ stress_dele_l1 <- model_preds$fits_all_l2_dele %>%
     panel.grid.minor = element_line(colour = 'grey90', size = 0.15)
   )
   
-# stress_dele_l1_pres <- model_preds$fits_all_l2_dele %>%
-#   mutate(condition = if_else(condition_sum == 1, "Present", "Preterit"),
-#          condition = fct_relevel(condition, "Present"),
-#          l1 = if_else(l1 == 'en', 'English', 'Mandarin'),
-#          l1 = fct_relevel(l1, "English", "Mandarin")
-#          ) %>%
-#   filter(condition == "Present") %>%
-#   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin)) + #, fill = condition
-#   facet_wrap(l1 ~ .) +
-#   geom_hline(yintercept = 0, lty = 3, size = 0.4) +
-#   geom_vline(xintercept = 4, lty = 3, size = 0.4) +
-#   stat_summary(fun.y = "mean", geom = "line", size = 1, color = 'pink') + 
-#   # geom_ribbon(alpha = 0.2, color = "grey", show.legend = F) +
-#   stat_summary(fun.data = mean_cl_boot, geom = 'ribbon',fun.args=list(conf.int=0.95),
-#                alpha = 0.5, color = 'pink') +
-#   geom_point(aes(color = DELE), size = 0.85, show.legend = F) +
-#   scale_color_gradient(low = "#E74C3C", high = "#AF7AC5") +
-#   # geom_point(data = dele_preterit, aes(color = DELE)) +
-#   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
-#                      labels = c("-200", "0", "200", "400", "600")) +
-#   labs(x = "Time (ms) relative to target syllable offset",
-#        y = "Empirical logit of looks to target") +
-#   # scale_fill_brewer(palette = 'Set1', name = "Tense",
-#   #                   labels = c("Present", "Preterit")) +
-#   theme_big + labs(color = "Proficiency") #legend_adj + 
 
-# stress_dele_l1_pret <- model_preds$fits_all_l2_dele %>%
-#   mutate(condition = if_else(condition_sum == 1, "Present", "Preterit"),
-#          condition = fct_relevel(condition, "Present"),
-#          l1 = if_else(l1 == 'en', 'English', 'Mandarin'),
-#          l1 = fct_relevel(l1, "English", "Mandarin")
-#   ) %>%
-#   filter(condition == "Preterit") %>%
-#   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin)) + #, fill = condition
-#   facet_wrap(l1 ~ .) +
-#   geom_hline(yintercept = 0, lty = 3, size = 0.4) +
-#   geom_vline(xintercept = 4, lty = 3, size = 0.4) +
-#   stat_summary(fun.y = "mean", geom = "line", size = 1) + 
-#   # geom_ribbon(alpha = 0.2, color = "grey", show.legend = F) +
-#   stat_summary(fun.data = mean_cl_boot, geom = 'ribbon',fun.args=list(conf.int=0.95),
-#                alpha = 0.5) +
-#   geom_point(aes(color = DELE), size = 0.85, show.legend = F) +
-#   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
-#                      labels = c("-200", "0", "200", "400", "600")) +
-#   labs(x = "Time (ms) relative to target syllable offset",
-#        y = "Empirical logit of looks to target") +
-#   # scale_fill_brewer(palette = 'Set1', name = "Tense",
-#   #                   labels = c("Present", "Preterit")) +
-#   theme_big + labs(color = "Proficiency") #legend_adj + 
-# 
-#  
-# stress_dele_l1_pres + 
-#   
-# 
+  
+
+
 # Within condition differences
 stress_dele_cond <- model_preds$fits_all_l2_dele %>%
   mutate(condition = if_else(condition_sum == 1, "Present", "Preterit"),
@@ -251,14 +201,15 @@ stress_dele_cond <- model_preds$fits_all_l2_dele %>%
   # geom_ribbon(alpha = 0.2, color = "grey", show.legend = F) +
   stat_summary(fun.data = mean_cl_boot, geom = 'ribbon',fun.args=list(conf.int=0.95),
                alpha = 0.5) +
-  geom_point(aes(color = DELE_z), size = 0.85, show.legend = F) +
+  geom_point(aes(color = DELE_z), alpha = .6, pch = 21, 
+             size = 0.85, show.legend = T) +
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
                      labels = c("-200", "0", "200", "400", "600")) +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
   scale_fill_brewer(palette = 'Set1', name = "L1",
                     labels = c("English", "Mandarin")) +
-  theme_big + legend_adj + labs(color = "Proficiency") +
+  theme_big + labs(color = "Proficiency") + #legend_adj + 
   theme(
     legend.position = c(0.065, 0.65),
     legend.key = element_blank(),
@@ -330,7 +281,8 @@ stress_use_l1 <- model_preds$fits_all_l2_use %>%
   # geom_ribbon(alpha = 0.2, color = "grey", show.legend = F) +
   stat_summary(fun.data = mean_cl_boot, geom = 'ribbon',fun.args=list(conf.int=0.95),
                alpha = 0.5) +
-  geom_point(aes(color = use_z), size = 0.85, show.legend = F) +
+  geom_point(aes(color = use_z), alpha = .6, pch = 21, 
+             size = 0.85, show.legend = T) +
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
                      labels = c("-200", "0", "200", "400", "600")) +
   labs(x = "Time (ms) relative to target syllable offset",
@@ -339,7 +291,7 @@ stress_use_l1 <- model_preds$fits_all_l2_use %>%
                     labels = c("Present", "Preterit")) +
   theme_big + labs(color = "Weekly L2 % use") +
   theme(
-    legend.position = c(0.1, 0.65),
+    legend.position = c(0.1, 0.68),
     legend.key = element_blank(),
     legend.background = element_blank(),
     strip.background = element_blank(),
@@ -368,8 +320,8 @@ stress_use_cond <- model_preds$fits_all_l2_use %>%
   # geom_ribbon(alpha = 0.2, color = "grey", show.legend = F) +
   stat_summary(fun.data = mean_cl_boot, geom = 'ribbon',fun.args=list(conf.int=0.95),
                alpha = 0.5) +
-  geom_point(aes(color = use_z), size = 1.3, show.legend = F) +
-  geom_point(aes(color = use_z), size = 0.85, show.legend = F) +
+  geom_point(aes(color = use_z), alpha = .6, pch = 21, 
+             size = 0.85, show.legend = T) +
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
                      labels = c("-200", "0", "200", "400", "600")) +
   labs(x = "Time (ms) relative to target syllable offset",
@@ -378,7 +330,7 @@ stress_use_cond <- model_preds$fits_all_l2_use %>%
                     labels = c("EN", "MA")) +
   theme_big + labs(color = "Weekly L2 % use") +
   theme(
-    legend.position = c(0.1, 0.65),
+    legend.position = c(0.1, 0.68),
     legend.key = element_blank(),
     legend.background = element_blank(),
     strip.background = element_blank(),

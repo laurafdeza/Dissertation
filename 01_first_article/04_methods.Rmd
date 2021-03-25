@@ -1,39 +1,129 @@
 # 4. Methods
 ## 4.1. Participants
-30 monolingual speakers of Spanish (20 females), 42 L2 Spanish L1 English speakers (30 females), and 43 L2 Spanish L1 Mandarin speakers (33 females) participated in the study. All participants were living in Madrid, Spain at the time of data collection. English L1 speakers had been in a Spanish-speaking country for a mean of 31.5 months ( _SD_ = 28.6) and the L1 Mandarin speakers for a mean of 43.9 months ( _SD_ = 43.6). All speakers were raised in monolingual families in monolingual communities of their L1. The monolingual Spanish speakers were local to the Madrid area and spoke no other language fluently nor had lived abroad. The participants belonging to all L2 groups started learning Spanish after age 12. At the time of data collection, the L1 Mandarin speakers used Spanish a mean of 47.3% of the week ( _SD_ = 21.2) and the L1 English speakers a mean of 34.4% ( _SD_ = 16.6). The age range for all groups was 18-45 (Spanish: mean = 26.2, _SD_  = 8.82, English: mean = 25.7, _SD_  = 4.27; Mandarin: mean = 24.5, _SD_  = 4.39). All participants had normal to corrected-to-normal hearing and vision, and no motor disability.    
+The sample pool consisted of 30 Spanish monolinguals (20 females), 65 English learners of Spanish (48 females), and 64 Mandarin learners of Spanish (52 females). 
+The age range for all groups was 18-45 (Spanish: *M* = 26.2, *SD*  = 8.82, English: *M* = 26.8, *SD*  = 4.54; Mandarin: *M* = 24.7, *SD*  = 4.13).
+All participants were raised in monolingual families in monolingual communities of their L1, but were living in Spain at the time of data collection. 
+All participants had completed at least high school.
+Their cognitive capacity was compared as measured by verbal working memory.
+The monolingual group obtained a mean working  memory score of 6.20 (*SD* = 2.72), the English group got a mean score of 8.89 (*SD* = 2.11), and the Mandarin group of 7.78 (*SD* = 2.14).
+All participants were right-handed, had normal to corrected-to-normal hearing and vision, and no motor disability.  
 
-## 4.2. Materials
-### 4.2.1. Screening tasks
-A proficiency test was administered to the L2 participants to screen them and to assign them a level of proficiency. The proficiency test was a shortened version [@sagarra2010role] of the _Diploma de Español como Lengua Extranjera_ ('Certificate of Spanish as a Foreign Language', by Instituto Cervantes). The test consisted of 56 questions: 16 on grammar, 10 on vocabulary, and 20 on reading comprehension. Each question was worth one point. Participants who scored below 25 were disqualified for the study.        
-Participants were interviewed and completed a language background questionnaire, to make sure that they qualified for the study. The background questionnaire contained questions related to their age, handedness, what language they spoke in their household while growing up, how old they were when they started learning Spanish, how long they had lived in Spanish-speaking countries, how much they used each language per week at the time of data collection, and other languages that they spoke fluently.            
-Participants also completed a vocabulary test with some of the words from the linguistic anticipation task. This test was a multiple-choice test with 17 screens with 8 words each. For each word in Spanish, they had to choose between 8 possible meanings in the participants' L1. An extra option was provided to mark in case they did not know the meaning of the word in Spanish.     
+The monolingual Spanish speakers were local to the Madrid area.
+They had studied English in school but did not speak it fluently or had lived abroad.
+They did not speak any other language.
 
-### 4.2.2. Linguistic materials
-A visual-world paradigm was used to asses participants' abilities to associate verbal suffixes with stressed or unstressed syllables. The eye-movements during the task were recorded through an EyeLink 1000 Plus desktop mount eye-tracker from SR Research (sampling rate: 1k Hz; spatial resolution was less than .05o; averaged calibration error: .25-.5o). Participants read two verbs on a computer screen side by side ( _salta_ 's/he jumps,' _saltó_ 's/he jumped') and heard a sentence containing one of the two verbs ( _El ladrón saltó la valla_ 'the thief jumped over the fence'). Their task consisted of selecting the verb they had heard as fast as possible by pressing the right- or left-shift key. When they made their selection, a green rectangle appeared around the selected verb. There were 4 practice sentences, 16 experimental sentences, and 80 fillers.
-The verbs were the present tense and preterit tense 3rd person singular forms of regular -ar verbs. Spanish regular verbs have 2 cues to tense: initial syllable stress and word ending morphology. Stressed initial syllables indicate that the tense is present ( _salta_ ‘s/he jumps’), and unstressed initial syllables indicate that the tense is past (preterit, _saltó_ ‘s/he jumped’). Regarding morphology, the verb suffix indicates tense, person and aspect. In total there were 16 verbs, so 16 pairs of present and preterit verbs, 16 in each condition, 32 final forms. All verbs had two syllables in both conditions: the first syllable had a CVC structure and the second syllable a CV structure. Participants never heard the two conditions for a single verb. The number of verbs in tense on each side of the screen was counterbalanced across trials and across participants.  
-The aural sentences were 5 words long with a neutral structure NP~SUBJ~-V-NP~OBJ~. The sentences for each condition within a pair were the same. The sentences were distributed into blocks by means of a Latin square design. There were 8 blocks. Each block contained 2 experimental sentences, one of each type, and 6 filler sentences. The blocks appeared in a randomized order. Within and across the blocks, the sentences were pseudo-randomized to avoid two experimental sentences of the same condition appearing one after the other.     
+English L1 speakers had been in a Spanish-speaking country for a mean of 38.1 months (*SD* = 33.5) and the L1 Mandarin speakers for a mean of 40.8 months (*SD* = 45.5). 
+All L2 speakers were late learners of Spanish. 
+At the time of data collection, the L1 English speakers a mean of 33.3% (*SD* = 17.4) and the L1 Mandarin speakers used Spanish a mean of 41.6% of the week (*SD* = 21.7). 
+The values used to calculate language use were self-reported. 
+Most English speakers were working as English instructors.
+Most Mandarin speakers were enrolled in the university.
+Some English speakers had studied other languages, but none said to speak them fluently.
+Mandarin speakers had also taken English classes while growing up.
+Their self-reported proficiency in English varied from participant to participant.
 
-### 4.2.3. Verbal WM materials
-An aural version of @unsworth2005automated's Operation Span task (OSpan) was used to measure verbal WM capacities. This task generates measures of storage and processing speed. In a single trial, participants heard first a word and then a simple mathematical problem that could be either true (2 + 2 = 4) or false (2 + 2 = 5). Along the mathematical problem, they saw the words TRUE and FALSE on the screen. They had to select as fast as possible the correct word depending on whether what they heard was true or false by pressing the left- or right-shift key corresponding to the side on which their response was. This sequence of word-mathematical problem would repeat a certain number of times until a set was complete. At the end of each set, participants were prompted to write down the individual words they had heard before each problem in the same order they had heard them.      
-There were two practice trials of 3 words and simple mathematical problems, and three experimental sets of three, four, five and six words and mathematical problems. The words and mathematical problems that participants heard in the sets appeared in a fixed order across participants. The words TRUE and FALSE that participants needed to select in response to the mathematical problems appeared counterbalanced on each side across participants. No feedback was provided. The whole task was administered in the participant's L1.     
+## 4.2. Procedure
+Data collection was conducted in a single session with each participant individually. Each session lasted around 1 hour and 15 minutes and participants could take breaks between tasks anytime they wanted. All interactions happened in Spanish. The room was isolated from external noise and light. Participants first participants listened to an overview of the tasks and signed the consent form. They then completed the following tasks: Spanish proficiency test (only L2 learners; 15-20 minutes), language background questionnaire (10 minutes), eye-tracking task (25 minutes), and working memory (15 minutes).
 
-## 4.3. Procedure
-Data collection was conducted in a single session with each participant individually. Each session lasted around 1 hour and 15 minutes and participants could take breaks between tasks anytime they wanted. Only the researcher accompanied the participant during this time and all interactions happened in Spanish. The room was isolated from external noise and light. Participants completed the tasks in this order: Spanish proficiency test (only L2 learners; 15-20 minutes), language background questionnaire (10 minutes), eye-tracking task (25 minutes), OSpan (15 minutes), and a vocabulary test (10 minutes).
-First, participants listened to an overview of the tasks and signed the consent form. Participants provided oral responses for the language background questionnaire. They completed the remaining tasks on a computer.     
-_Visual-world paradigm._ For the visual-world paradigm, participants rested their head on a chin rest, completed an 11-point grid calibration task, and received task instructions both orally and in writing. Then, they completed the practice trials and were given the opportunity to ask questions. Afterwards, they performed the task. Both the practice and the task trials followed this order. First, participants looked at a fixation sign in the middle of the screen for 250 ms. This fixation sign allowed the researcher to recalibrate manually when necessary. Then, two words appeared in the screen side to side. Once the words had been on the screen for 1000 ms., the sentence started playing and continued until reaching the last word. That is, the sentence did not stop when participants selected the word they heard. Participants were instructed to select the word on the screen they heard on the sentence as fast as possible by pressing the right- or left-shift keys. A green rectangle appeared on the screen around the selected word when participants pressed the key to make their choice. Response recording was set up to be registered only when the press happened after the start of the verb in the sentence. Previous presses where not recorded so the setting forced participants to press again until they saw the green rectangle appear. No feedback was provided. See Figure 1 for an example of an experimental trial.
+For the experimental task, a visual-world paradigm, participants rested their head on a chin rest, completed an 11-point grid calibration task, and received task instructions both orally and in writing. Then, they completed the practice trials and were given the opportunity to ask questions. 
+Afterwards, they performed the task. For each trial, participants saw three screens: one for drift correction for 250 ms before the stimuli were presented, a second one with the target and distractor words alone for 1000 ms, and a third one with those same words at the same time the sentence played.
+The sentence was played entirely and did not stop when participants selected the word they heard. 
+When they pressed the key to record their choice, a green rectangle appeared around the selected verb.
+Response recording was set up to be registered only when the press happened after the start of the verb in the sentence. 
+No feedback was provided.
+
+## 4.3. Materials
+### 4.3.1. Screening tasks
+_Spanish proficiency test_ (only L2 learners).
+The L2 learners completed an adapted version of the _Diploma de Español como Lengua Extranjera_ [Certificate of Spanish as a Foreign Language'; @sagarra2010role] to assess their Spanish proficiency.
+The test comprised 56 questions on grammar and vocabulary. 
+Each question was worth one point. 
+Participants who scored below 25 were disqualified for the study.
+This test was computerized using Qualtrics.
+
+*Language background questionnaire.* 
+This questionnaire contained questions related to their age, handedness, languages spoken in their household while growing up, age of onset of the L2, time spent in Spanish-speaking countries, weekly percentage of use for each language at the time of data collection, and other languages spoken fluently.     
+The questionnaire was completed orally.
+
+_Working memory test._ 
+An aural version of @unsworth2005automated's Operation Span task (OSpan) was used to measure verbal working memory.
+The aural version was selected because it aligns with the format of the linguistic task.
+Participants heard a word and then heard a simple mathematical problem that could be either true (2 + 2 = 4) or false (2 + 2 = 5).
+At the same time they heard the problem, participants saw the words TRUE or FALSE on each side of the screen.
+They had to select the correct option through a key-press. 
+The word-mathematical problem pairs were grouped in set.
+At the end of each set, participants had to write down the words they had heard in the set in the same order they had appeared (see Figure 1 for a sample trial).
+The task was coded and administered via PsychoPy.
+
+There were two practice sets of two trials each, and three experimental sets of 3, 4, 5 and 6 word-mathematical problem pairs each, totaling 12 experimental sets.
+The words and mathematical problems in each set appeared in a fixed order across participants.
+The words TRUE and FALSE on the scree accompanying the oral mathematical problems appeared counterbalanced on each side across participants.
+No feedback was provided.
+The task was delivered inthe participant's L1.
+
+
+```{r, include=TRUE, echo=FALSE, fig.cap = "Sample trial of the OSpan"}
+include_graphics("./figs/ospan.png", dpi = 108)
+```
+
+### 4.3.2. Linguistic prediction task
+A visual-world paradigm that recorded eye-movements was used to assess participants' abilities to predict verbal suffixes based onthe associated stressed or unstressed syllables. 
+The eye-movements were recorded with an EyeLink 1000 Plus desktop mount eye-tracker from SR Research (sampling rate: 1k Hz; spatial resolution of .32^o^ horizontal and .25^o^ vertical; averaged calibration error: .01^o^).
+The monitor was a BenQ XL2420TE display monitor at a resolution of 1920 x 1080 pixels. 
+Tracking was binocular and the data were averaged across the right and left eyes.  _THAT IS NOT TRUE. TRACKING WAS MONOCULAR_
+The task was programmed and delivered with SR Research’s Experiment Builder software, and the data were extracted with SR Research’s Data Viewer software. 
+We followed Data Viewer’s cognitive parser settings (9-sample model) to isolate fixations (pauses over regions of interest). 
+Smaller eye movements that take place during fixations (e.g., tremors, drifts, and micro saccades) were considered to form part of fixation if they did not surpass the aforementioned threshold, and were included because numerous studies show that they often mean little in higher-level analyses [e.g., @ditchburn1980function]. 
+All equipment was identical for all participants. 
+
+In the visual-world paradigm, participants read two verbs on a computer screen side by side (*salta* 's/he jumps,' *saltó* 's/he jumped') and heard a sentence containing one of the two verbs (*El ladrón saltó la valla* 'the thief jumped over the fence') and selected the verb they heard as possible with a key press (see Figure 2 for a sample trial). 
+The verbs shown on the screen were conjugated in the present tense and preterit tense 3rd person singular forms of regular -ar verbs. 
+There were 4 practice sentences, 16 experimental sentences, and 80 fillers. 
+The sentences were 5 words long with a neutral structure NP~SUBJ~-V-NP~OBJ~. 
+The subject and object noun phrases in each sentence for each condition within a pair were the same (*El ladrón salta/saltó la valla* 'the thief jumps/jumped over the fence').
+The sentences were distributed into blocks by means of a Latin square design. 
+That is, there were 8 blocks; each block contained 2 experimental sentences, one of each type, and 6 filler sentences. 
+The blocks appeared in a randomized order. 
+Within and across blocks, the sentences were pseudo-randomized to avoid two experimental sentences of the same condition appearing consecutively. 
+The practice sentences were the same for all participants and appeared in a fixed order.
+The sentences were played at an intensity of ~75dB.
+
+Bisyllable Spanish regular verbs have 2 cues to tense: initial syllable stress and word ending morphology. 
+Stressed initial syllables indicate that the tense is present (*salta* ‘s/he jumps’), and unstressed initial syllables indicate that the tense is past (preterit, *saltó* ‘s/he jumped’). 
+Regarding morphology, the verb suffix indicates tense, person and aspect. 
+In total there were 16 verbs, which renders 16 pairs of present and preterit forms.
+The number of verbs in each tense on each side of the screen was counterbalanced across trials and across participants.
 
 ```{r knitr, include=TRUE, echo=FALSE, fig.cap = "Sample trial of the visual-world paradigm"}
 library(knitr)
 include_graphics("./figs/vwp.png", dpi = 108)
 ```
 
-_OSpan_ The OSpan task was divided into practice and experimental trials. For each trial, participants first heard a word and then heard a simple mathematical problem, all in their L1. During the equation, participants saw the words TRUE or FALSE on each side of the screen, and they had to press the corresponding key (left-shift key for the word on the left, right-shift key for the word on the right) depending on whether the problem was correct or not. After each problem, they saw a fixation point for 500 ms. and another word-equation pair was presented. This process was repeated until the word RECALL or a linguistic equivalent in the L1 of the participant was shown on the screen, at which moment participants had to write on a piece of paper the words they had heard for that set in the order they were presented. The task started with three sets of three trials, then three sets of four trials, and so on until the third set of six trials. Figure 6 shows a sample trial.
 
-```{r, include=TRUE, echo=FALSE, fig.cap = "Sample trial of the OSpan"}
-include_graphics("./figs/ospan.png", dpi = 108)
-```
+## 4.4. Statistical analysis
+Statistical analyses were conducted on R [@R-base] using the packages lme4 [@bates2014fitting] and multcomp [@hothorn2016package]. 
+The gaze-fixation data was downsampled to 50 ms bins.
+We analyzed the data at 200 ms after the time stamp of interest to account for the time it takes to plan and launch a saccade [e.g., @fischer1992saccadic; @saslow1967effects],  and centered at the onset of the last syllable of target items. 
+The empirical logit transformation was applied to binary responses [fixations on target or distractor, @barr2008analyzing]. 
+The bins were used to model a growth curve analysis [GCA, @mirman2016growth] to observe how the pattern of gaze fixations changed over time. 
+Data were modeled using linear, quadratic, and cubic orthogonal polynomials.
+We first ran a model for the monolingual speakers with lexical stress as fixed effect.
+For the L2 speakers, we ran two models.
+The first one included L1, lexical stress, and proficiency as fixed effects.
+The second one included L1, lexical stress, and language use as fixed effects.
+L1 was categorical and stood for transfer.
+Lexical stress was categorical and had been sum-coded.
+Proficiency and language use were continuous.
+By-subject and by-item random effects were also tested. 
+In all models, subject and item were tested for random effects.
+Nested model comparisons were implemented to assess main effects and interactions. 
 
-## 4.3. Statistical analysis
-Statistical analyses were conducted on R [@R-base] using the packages lme4 [@bates2014fitting] and multcomp [@hothorn2016package]. The gaze-fixation data was shifted 200 ms. to account for the time it takes to plan and launch a saccade [e.g., @fischer1992saccadic; @saslow1967effects], downsampled to 10 ms. and 50 ms. bins and centered at the onset of the last syllable of target items. The empirical logit transformation was applied to binary responses [fixations on target or distractor; @barr2008analyzing]. The 10 ms. bins were run through independent t-tests to find out whether participants were anticipating the correct verbal tense upon hearing a stressed or unstressed initial syllable. The 50 ms. bins were used to model a growth curve analysis [@mirman2016growth] to observe how the pattern of gaze fixations changed as suprasegmental and segmental information became available. The models with the time course were implemented by using linear, quadratic, and cubic orthogonal polynomials with the independent variables group and lexical stress. The monolinguals served as baseline. Lexical stress had been sum-coded. By-subject and by-item random effects were also tested. Nested model comparisons were implemented to assess main effects and interactions. 
-For the OSpan, reaction times to the mathematical problems were averaged and used as score, since different languages have differnt memory score and therefore are not comparable.
-The proficiency was analyzed as a continuous scale. OSpan scores were analyzed as homogeneity measure and as a continuous scales to observe how verbal WM capacity affects language processing and anticipation.       
+# 5. Results
+- Monolingual speakers
+- Bilinguals
+  - L1 transfer
+  - L2 proficiency
+  - Interaction L1 transfer ~ L2 proficiency
+  - Language use
+  - Interaction L1 transfer ~ Language use
+  

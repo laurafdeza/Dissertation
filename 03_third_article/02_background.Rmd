@@ -17,9 +17,22 @@ In addition, this paper seeks to explore how domain-general mechanisms mediate t
 Thus, this paper will inform models of cognition and learning about how processing mechanisms in typical individuals can be shared by cognitive domains in different modalities (visual vs auditory). 
 
 # 2. Background
+## 2.1. Linguistic anticipation
 Language anticipation is essential for language processing [e.g., @federmeier2007thinking; @wicha2003potato].
 Ability to process sounds, words, grammatical structures correctly results in better comprehension.
 While monolingual speakers generate predictions constantly [e.g., @huettig2016prediction; @soderstrom2017stem], it requires time to acquire an L2 and develop the ability to generate predictions in that L2 [e.g., @lew2010real; @sagarra2018suprasegmental].
+The lack of or inability to create associations that enable prediction has been suggested as a possible cause for the difficulties L2 speakers have in comprehending language or not being sensitive to incongruencies _[@citation]_.
+This suggestion has more typically been applied to morphological and morphosyntactic processing _[@citation]_.
+In the particular case where morphological outcomes are cued phonologically, for example where a lexically stressed syllable cues present tense (*FIRma* 's/he signs' in Spanish), L2 proficiency and verbal working memory [@sagarra2018suprasegmental], practice anticipating [@lozano2019slowly], immersion and similarity between the L1 and the L2 [@PRIMEREXP], and auditory innate abilities [@SEGUNDOEXP] have been tested as factors conditioning the use of the associations for predictions.
+From these factors, only auditory innate abilities and working memory represent individual differences, while the other factors are external and imposed by experience and/or the environment.
+Auditory innate abilities, especially rhythmic, contribute to a speaker's ability to generate phonological-suffix association that they can use for prediction during processing.
+Even monolingual speakers appeared to be affected by their innate rhythmic abilities.
+In contrast, the effect of pitch processing abilities only play some role at intermediate L2 stages, and verbal working memory played not role whatsoever.
+In order to further tease apart the influence of individual differences in language processing, we explored transfer of two non-linguistic processing mechanisms.
+Specifically, we tested the influence of visuospatial working memory as a domain-general mechanism and of visuospatial prediction abilities as a domain-specific mechanism.
+To make sure we tested transfer of innate abilities, we recruited participants who had not developed special visuospatial skills through, for instance, playing sports professionally.
+
+## 2.2. Transfer
 Two types of models have been proposed with mechanisms that account for acquisition and learning of a (second) language. 
 Models that prioritize domain-general learning mechanisms posit that different brain domains are connected to each other, such that the acquisition of a skill in one of them may influence learning of unrelated skills.
 This influence, or transfer, takes place because and to the extent that the skills depend on domains that share common features [@thorndike1901influence] and cognitive elements [@anderson1990cognitive], in the form of perceptual and conceptual information [@singley1989transfer].
@@ -47,6 +60,7 @@ Individual differences condition the strength of the connection between auditory
 One source of individual differences may be that some people are innately more gifted in a domain, for example sounds, while others in a different one, for instance visuospatial organization.
 If there is transfer of domain-specific mechanisms, speakers may be aided or hindered by better or worse innate abilities in other domains that may affect language, even if they have not had a chance to develop higher skills through expertise in the source domains.
 
+## 2.3. Language and the visuospatial domain
 The influence of innate cognitive abilities in specific domains other than language on second language acquisition has not been a primary research of focus.
 And yet, language interacts with other domains on a regular basis.
 One of these domains is the visuospatial domain.

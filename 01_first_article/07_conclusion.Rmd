@@ -1,0 +1,7 @@
+# 7. Conclusion
+This study explored transfer in the creation of anticipatory associations within-words.
+Mandarin Chinese and English speakers completed a visual-world paradigm that measured their abilities to predict tense suffixes through lexical stress cues.
+Intermediate English speakers and advanced speakers could make predictions, but intermediate Mandarin speakers could not. 
+Our findings thus demonstrate that within-word associations can be acquired implicitly, although this acquisition will be biased by cross-linguistic effects from the L1.
+A more similar structure will result in positive influence, while a more distant encoding will result in negative transfer.
+Cross-linguistic effects in associations are likely to fade as proficiency increases.

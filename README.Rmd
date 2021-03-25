@@ -3,3 +3,5 @@ title: "README"
 ---
 
 Committing large files: https://docs.github.com/en/free-pro-team@latest/github/managing-large-files/configuring-git-large-file-storage
+
+If lexical frequency were to be included as a factor at some point, the values are not correct. They need to be updated.

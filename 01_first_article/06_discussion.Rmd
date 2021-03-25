@@ -1,0 +1,63 @@
+# 6. Discussion
+In this project, we investigated the effect of L1 transfer on Mandarin and English L2 learners of Spanish's ability to anticipate verbal tense morphology based on lexical stress.
+For that purpose, participants completed a visual-world paradigm in Spanish and we compared them to a monolingual group of Spanish.
+Results revealed that monolingual speakers and advanced L2 Spanish speakers from both L1s were able to generate the correct predictions. 
+Advanced speakers did not reach monolingual-like prediction performance. 
+Intermediate English speakers were also able to predict verb tense based on lexical stress, but intermediate Mandarin speakers were not. 
+While Mandarin speakers’ ability to predict improved over proficiency, English speakers’ ability did not improve significantly. 
+These results suggest that L1 transfer took place at both intermediate and advanced levels of proficiency, although cross-linguistic effects affected the populations differently.
+We discuss our findings following our research questions.
+
+*1. Do Spanish monolinguals, and intermediate and advanced Mandarin and English learners of Spanish use lexical stress to anticipate verbal suffixes in Spanish?*  
+We had predicted that monolingual speakers and advanced speakers of both L1s would generate anticipations but intermediate speakers would not.
+Our results confirm that monolingual and advanced L2 speakers were able to anticipate and intermediate Mandarin speakers would not.
+Against our predictions, intermediate English speakers were also able to anticipate.
+Monolingual and advanced English speakers' ability to anticipate tense suffixes according to lexical stress matches previous findings regarding morphophonological associations, at least when the cue is contained in a CVC syllable [e.g., @lozano2019slowly; @sagarra2018suprasegmental]. 
+However, anticipation performance at advanced levels did not reach monolingual-like levels, adding to the evidence that  L2 speakers will rarely be as efficient as in their L1 [@perdomo2019prosodic]. 
+
+Intermediate Mandarin speakers could not make morphophonological predictions.
+Intermediate English speakers also generated predictions in the present study.
+The performance of the intermediate speakers herein contrasts with intermediate speakers’ anticipatory performance in previous studies, in which intermediate speakers did not anticipate [@sagarra2018suprasegmental]. 
+This difference can be explained through linguistic context. 
+The L2 speakers in the current study were living immersed in the L2, while the L2 speakers in @sagarra2018suprasegmental’s were not. 
+We should note, however, that target syllables in @sagarra2018suprasegmental could be either CV or CVC, while here they were only CVC, potentially facilitating anticipation by reducing the number of options to process. 
+Future studies should explore whether immersed L2 speakers can generate predictions with CV syllables too, or whether the beneficial effects of immersion is reduced to CVC syllables only.
+The possible beneficial effect of linguistic context in creating anticipatory associations is corroborated by similar studies demonstrating that intermediate L2 speakers of Central Swedish do use tones as cues to verb suffixes when living immersed in the L2 [@hed2019neural; @schremm2016implicit] and that activation of linguistic elements is faster in immersion contexts [@beatty2019interactional].
+Given that the present study did not include L2 groups to analyze linguistic context as a predictor, it is impossible to ascertain whether there would also be differences between advanced L2 groups living in L1 or L2 contexts. 
+
+For the advanced groups, preterit tense is easier to anticipate than present tense.
+A possible explanation is that they are initially unsure as to what the meaning of stress really is in the present tense, whether it carries only lexical information or has other intonational and pragmatic meaning.
+In the preterit tense, however, there is no room for different alternatives as there is no stress, leading into an earlier use of the lexically unstressed syllable to anticipate word ending.
+The data also suggest that English speakers improve at anticipating the preterit tense over proficiency but remain approximately the same in the present tense. 
+The initial advantage in the present tense might be caused by a more typical use of present tense, providing them with more frequent examples to create associations for this tense. 
+
+Lastly, this is the first study to show that advanced Mandarin speakers can generate predictions in an L2 based on morphophonological associations.
+It should be noted, nonetheless, that they need longer to create the associations in comparison to native speakers of other languages, probably due to cross-linguistic effects.
+
+*2. How does anticipation performance compare across L1s within proficiency level?* 
+We had hypothesized that English speakers would develop anticipatory associations earlier than Mandarin speakers because of the closer proximity between English and Spanish than Mandarin and Spanish.
+The results confirm our prediction.
+Intermediate Mandarin speakers did not use lexical stress as a cue to morphology, especially in the present tense.
+In contrast, intermediate English speakers did generate anticipations.
+At advanced proficiency, Mandarin speakers do provide evidence of such ability.
+The ability may be due to an increased exposure to the L2.
+Having reached a threshold of exposure may in fact have allowed them to overcome the anticipatory struggle they reflect at intermediate stages and to perform equally well as English learners. 
+
+The different levels of struggle revealed at intermediate stages may be explained through cross-linguistic effects.
+The earlier creation of anticipatory association in English speakers may be buttressed by their knowledge of lexical contrastive function in English. 
+These speakers may be using their knowledge of lexical stress in English to contrast present and preterit tense in Spanish as well.
+In their case, transfer would be positive.
+Transfer can also explain why they anticipate similarly both tenses.
+The successful application of lexical stress knowledge along with the need to use any resource to process a language in which they are not proficient may be making the English intermediate speakers hyper-aware of phonological processes. 
+This hyper-awareness would be the cause of the similar anticipation abilities in both conditions. 
+
+Intermediate Mandarin speakers could not generate predictions reliable or successfully.
+In their case, knowledge of lexical stress in the L1, if they have it [@selkirk1990prosodic], may be confused with tone representation, making it impossible for them to transfer lexical stress knowledge successfully.
+They would be suffering negative L1 transfer.
+In order to overcome the effects of negative transfer, Mandarin speakers would therefore need longer exposure to the L2 to offset the initial blocking imposed by the transfer and create anticipatory associations.
+The similar performance of advanced Mandarin and English speakers suggests that there is an exposure or a developmental threshold such that, once it has been crossed, cross-linguistic effects diminish and speakers process linguistic information equally regardless of their L1.
+
+The fact that both advanced groups perform similarly suggests that mappings are stable in the lexicon to the same degree and with similar properties in both L2 advanced populations.
+Even if transfer is less obvious in advanced speakers, it can also explain why they do not reach monolingual-like performance.
+The transfer they suffered at lower levels of proficiency may remain in the associations that allow them to predict as “noise.”
+Future studies may examine whether explicit instruction, or at least focused instruction [@hed2019neural; @schremm2017influence], may help in getting rid of the noise or preventing its inclusion in the first place.

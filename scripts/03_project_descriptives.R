@@ -143,6 +143,15 @@ prop.table(table(english$country))
 # 0.01538462 0.03076923 0.00000000 0.38461538 0.47692308
 
 
+agg %>%
+  filter(., group %in% c("aes", "ies", "ams", "ims")) %>%
+  group_by(., l1) %>%
+  summarise(mean_l2use_week = mean(percent_l2_week),
+            sd_l2use_week = sd(percent_l2_week))
+# l1    mean_l2use_week sd_l2use_week
+# 1 en             33.3          17.4
+# 2 ma             41.6          21.7
+
 #############################################################################################################
 
 # PROFICIENCIES NOT COLLAPSED

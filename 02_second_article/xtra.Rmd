@@ -1,0 +1,45 @@
+
+
+## 2.2. Linguistic anticipation
+Anticipation alleviates the load of constantly processing the information that we receive from the world. 
+At a large scale, we anticipate what is going to happen in movies and books. 
+At smaller scales, we anticipate movements in sports, other drivers' actions, and we also anticipate what we read and what we hear. 
+In linguistic anticipation, we use cues of different kinds to predict oncoming linguistic information. 
+Predictive processing in language is especially efficient in the L1, and mediated by factors like L1 transfer, L2 proficiency, or working memory in the L2. 
+These factors may interact with each other to generate successful or unsuccessful predictions.
+
+Relevant for this study, predictions may be driven by phonological information.
+Depending on the language, coarticulation [@salverda2014immediate], intonation [@nakamura2012immediate; @weber2006role], lexical stress [@correia2013word; @sagarra2018suprasegmental], pauses between clauses [@hawthorne2014pauses; @kjelgaard1999prosodic], vowel duration [@rehrig2017acoustic], and tone [@roll2015neurolinguistic; @roll2011activating] can be cues to outcomes.
+The outcomes with which the cues are associated are varied.
+In Swedish, tonal cues indicate noun number [if low tone, then singular, _fisken_ 'fish~[SG]~'; if high tone, then plural, _fiskar_ 'fish~[PL]~,' @roll2010word; @soderstrom2015using; @roll2013word] and verb tense [if low tone, then present, _skrämmer_ 'I scare'; if high tone, then past, _skrämde_ 'I scared,' @soderstrom2012processing; @roll2015neurolinguistic].
+In Spanish, lexical stress signals verbal tense [if first syllable stressed, then present; if unstressed, then past: _CANta_ 'he sings' vs _canTÓ_ 'he sang,' @sagarra2018suprasegmental] and noun ending [*PRINcipe* 'prince' vs _prinCIPIO_ 'beginning,' @soto2001segmental]. In English, vowel duration is associated with voice [if shorter vowel duration, then active: 'the girl was pushing the boy'; if longer vowel duration, then passive: 'the girl was pushed by the boy,' @rehrig2017acoustic].  
+
+L2 speakers require time to learn the associations between phonological information and the outcomes, and their learning may be conditioned by several factors, such as learning context or L1 knowledge.
+In L2 settings, only L2 learners at advanced levels of proficiency can generate predictions based on phonological structures [@rehrig2017acoustic] and depending on syllable structure [@sagarra2018suprasegmental].
+When immersed, speakers learn at lower proficiencies to make the associations that enable them to predict [@berthelsen2018neural; @PRIMEREXPERIMENTO; @hed2019neural; @schremm2016implicit].
+Learning context,however, should also be considered in light of the L1.
+The L1 and L2 of the speakers in @sagarra2018suprasegmental shared the use of lexical stress, while the languages of speakers in @rehrig2017acoustic did not share vowel lengthening, and still they got similar results.
+In contrasts, the L2 speakers learning tones in @hed2019neural and @schremm2016implicit did not have tonal L1s and at intermediate stages could generate predictions, while the speakers not sharing structures in @PRIMEREXPERIMENTO (Mandarin Chinese speakers) were slower in learning the lexical stress associations than the population that did share the structure (English speakers).
+The mixed results thus suggest that different factors interact in an L2 learner's ability to acquire cue-outcome mappings.
+
+Among the factors considered in contributing to the association learning, factors regarding individual differences have been largely disregarded.
+Working memory has been considered in some studies as an individual variability factor, and only two of those tested anticipation based on phonological structures [@lozano2020; @sagarra2018suprasegmental].
+Both studies suggest that working memory plays no role in ability to anticipate either in the L1 or the L2 [@sagarra2018suprasegmental], unless the L2 speakers are extremely taxed cognitively [@lozano2020].
+Given that working memory is not relevant for prediction, other individual characteristics that are associated with speech, e.g., auditory processing, may exert some influence.
+
+In order to test the hypothesis that individual differences in the creation of L2 associations between phonological cues with outcomes for predictions stem from innate abilities in auditory processing, we investigate in this paper whether innate abilities for rhythm and pitch and practice with acoustic correlates in the L1 affect the creation of lexical stress cue-suffix outcome associations used in speech processing. 
+In particular, we asked whether better pitch and rhythm abilities affect English and Mandarin learners of Spanish at different levels of proficiency and monolingual speakers of Spanish to predict verb tense suffixes that are cued by lexical stress.
+We included L2 speakers at different levels of proficiency because the ability to use lexical stress to predict tense evolves along with exposure to the L2 [@sagarra2018suprasegmental; @PRIMER EXP].
+In addition, it is possible that cross-domain transfer varies over proficiency, just like domain-general mechanisms such as working memory affect L2 learning differently at different stages [@serafini2016evidence].
+We chose native English and Mandarin speakers because of the phonological and phonetic phenomena their L1 encodes and how they differ or assimilate to the phonological phenomena in Spanish.
+
+There is evidence for the existence of prediction processes in music [e.g., @salimpoor2015predictions] as well as in language.
+Anticipation in music can be cued through syntactic structure [@sammler2013syntax] or acoustic properties [@loui2007harmonic].
+In language, there are many layers of prediction.
+Importantly for this study, phonology can cue outcomes.
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 ---
 title             : |
-  Anticipation of verbal suffixed based on lexical stress in Spanish by L1 Mandarin and L1 English speakers
+  Proficiency and transfer effects on anticipation of verb tense in Spanish by L1 Mandarin and L1 English speakers
 shorttitle        : "Lexical stress-based anticipation in L1 and L2 speakers"
 
 author: 
@@ -10,10 +10,22 @@ author:
     address       : |
       Rutgers University - Department of Spanish and Portuguese, 15 Seminary Place, New Brunswick, NJ 08904, USA
     email         : "laura.fdeza@rutgers.edu"
+  - name          : "Nuria Sagarra"
+    affiliation   : "1"
+    corresponding : no
+    address       : 
+    email         :
+  - name          : "Cristina Lozano Argüelles"
+    affiliation   : "2"
+    corresponding : no
+    address       : 
+    email         : 
 
 affiliation:
   - id            : "1"
     institution   : "Rutgers University"
+  - id            : "2"
+    institution   : "John Jay College of Criminal Justice"
     
 authornote: | 
 Correspondence concerning this article should be addressed to Laura Fernandez Arroyo, 15 Seminary Place, New Brusnwick, NJ. E-mail: laura.fdeza@rutgers.edu
@@ -39,7 +51,7 @@ documentclass     : "apa6"
 classoption       : "man"
 output            : 
   papaja::apa6_word:
-    toc: true
+    toc: false
     toc_depth: 4
 ---
 

@@ -84,7 +84,7 @@ Statistical analyses were conducted on R (R Core Team, 2019) using the packages 
 The gaze-fixation data was downsampled to 10 ms and 50 ms bins. 
 The 50 ms bins data were modeled using a growth curve analysis (GCA, Mirman, 2016) to observe how the pattern of gaze fixations changed over time by including linear, quadratic, and cubic orthogonal polynomials.
 <!-- GOOD: I think you need a preposition or something before including, e.g., "by including" --> 
-We centered the data at the onset of the last syllable of the target items, and calculated estimations and probabilities of target fixations 200 ms later to account for the time it takes to plan and launch a saccade (e.g., Fischer, 1992; Saslow, 1967). 
+We centered the data at the onset of the last syllable of the target items, and calculated estimations and probabilities of target fixations 200 ms afterwards to account for the time it takes to plan and launch a saccade (e.g., Fischer, 1992; Saslow, 1967). 
 <!-- GOOD: If the time course is centered at 200ms after the onset of the last syllable of the target word why do you have the 200ms vertical line? Also how is it possible for the ES group to be predicting at this point? --> 
 The empirical logit transformation was applied to binary responses (fixations on target or distractor, Barr, 2008). 
 The 10 ms bins data were used for individual generalized linear mixed models (GLMM) at the bins for word target onset, onset of each segment in the target syllable, and onset of the suffix syllable to analyze the specific effect of each fixed effect on prediction and to find out precisely when each population started to anticipate.

@@ -179,7 +179,7 @@ TOSTtwo(m1 = 38.48, sd1 = 8.19, n1 = 65, # EN
 
 
 # L2 weekly use
-# signicant and outside area between dotted lines
+# significant and outside area between dotted lines
 TOSTtwo(m1 = 33.31, sd1 = 17.44, n1 = 65, # EN
         m2 = 41.64, sd2 = 21.66, n2 = 64, # MA
         low_eqbound_d = -0.3,
@@ -189,6 +189,25 @@ TOSTtwo(m1 = 33.31, sd1 = 17.44, n1 = 65, # EN
 
 t.test(percent_l2_week ~ l1, data = dem_all, var.equal = TRUE)
 # t = -2.4087, df = 127, p-value = 0.01745
+
+
+
+arrange(dem_all, (desc(percent_l2_week))) %>% View()
+
+t.test(percent_l2_week ~ l1, data = dem_all %>% filter(participant != 'IES04' & participant != 'IES17' & 
+                                                         participant != 'AES32' & participant != 'IES28'), var.equal = TRUE)
+# t = -1.9516, df = 123, p-value = 0.05326
+bartlett.test(percent_l2_week ~ l1, data = dem_all %>% filter(participant != 'IES04' & participant != 'IES17' & 
+                                                                participant != 'AES32' & participant != 'IES28'))
+# K-squared = 3.6896, df = 1, p-value = 0.05475
+t.test(DELE ~ l1, data = dem_all %>% filter(participant != 'IES04' & participant != 'IES17' & 
+                                                         participant != 'AES32' & participant != 'IES28'), var.equal = TRUE)
+# t = -0.14658, df = 123, p-value = 0.8837
+bartlett.test(DELE ~ l1, data = dem_all %>% filter(participant != 'IES04' & participant != 'IES17' & 
+                                                                participant != 'AES32' & participant != 'IES28'))
+
+# Bartlett's K-squared = 0.23176, df = 1, p-value = 0.6302
+
 
 
 

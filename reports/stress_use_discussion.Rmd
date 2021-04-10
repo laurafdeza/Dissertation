@@ -54,7 +54,7 @@ glmm_mods_path  <- here("mods", "stress", "glmm")
 # Load models as list and store full mod to global env
 load(paste0(gca_mods_path, "/gca_mon_mods.Rdata"))
 load(paste0(gca_mods_path, "/gca_l2_mods.Rdata"))
-load(paste0(gca_mods_path, "/model_preds.Rdata"))
+load(paste0(gca_mods_path, "/model_preds_l2.Rdata"))
 mon_preds <- readRDS(file = here("mods", "stress", "gca", "model_preds_mon.Rdata"))
 load(paste0(gca_mods_path, "/nested_model_comparisons.Rdata"))
 
@@ -85,6 +85,7 @@ The tables can also be copy and pasted where appropriate.
 
 Statistical analyses were conducted on R (R Core Team, 2019) using the packages *lme4* (D. Bates, Mächler, Bolker, & Walker, 2014) and *multcomp* (Hothorn et al., 2016). 
 The gaze-fixation data was downsampled to 10 ms and 50 ms bins. 
+Only the data pertaining to trials with correct responses were analyzed, which resulted in the loss of 0.42% of the data.
 The 50 ms bins data were modeled using a growth curve analysis (GCA, Mirman, 2016) to observe how the pattern of gaze fixations changed over time by including linear, quadratic, and cubic orthogonal polynomials.
 We centered the data at the onset of the last syllable of the target items, and calculated estimations and probabilities of target fixations 200 ms afterwards to account for the time it takes to plan and launch a saccade (e.g., Fischer, 1992; Saslow, 1967). 
 The empirical logit transformation was applied to binary responses (fixations on target or distractor, Barr, 2008). 
@@ -153,7 +154,7 @@ We conducted a GCA on SS and took them as reference when discussing our findings
 Figure 4 shows the GCA model fit for SS.
 The GCA intercept for SS was positive and significant, indicating this group was anticipating at suffix onset.
 The probability of SS fixating on the target was 0.953 (LB = 0.942; UB = 0.962) averaging across stress conditions, which indicates they were fixating on the target verb above chance at suffix onset.
-There were main effects on the linear (`r report_row('2')`), quadratic (`r report_row('3')`) and cubic polynomial time terms (`r report_row('4')`).
+There were main effects on the linear (`r report_row('2')`) and quadratic (`r report_row('3')`) polynomial time terms.
 Since they improved the model, we kept them.
 
 
@@ -166,8 +167,8 @@ knitr::include_graphics(
 
 Given the near ceiling effect in SS, we performed post-hoc GLMMs at the onset of every segment in the target word to find out when SS started anticipating.
 We started at the onset of the verb.
-The probability of SS fixating on the target at verb onset was `plogis(-0.138)` (<em>&beta;</em>&nbsp;=&nbsp;-0.138, *SE* = 0.189, *z* = -0.727, *p* = 0.467), indicating SS were not anticipating yet and nothing so far was cuing them towards one tense or the other.
-At the onset of the vowel in the target syllable (i.e., first syllable), the probability of gaze fixations on target was `plogis(0.402)` (<em>&beta;</em>&nbsp;=&nbsp;0.402, *SE* =  0.189, *z* = -0.727, *p*&nbsp;&lt;&nbsp;0.031), demonstrating SS had started to predict (see Table 1 for all fixed effects).
+The probability of SS fixating on the target at verb onset was 47% (<em>&beta;</em>&nbsp;=&nbsp;-0.138, *SE* = 0.189, *z* = -0.727, *p* = 0.467), indicating SS were not anticipating yet and nothing so far was cuing them towards one tense or the other.
+At the onset of the vowel in the target syllable (i.e., first syllable), the probability of gaze fixations on target was 60% (<em>&beta;</em>&nbsp;=&nbsp;0.402, *SE* =  0.189, *z* = -0.727, *p*&nbsp;&lt;&nbsp;0.031), demonstrating SS had started to predict (see Table 1 for all fixed effects).
 <!-- L: This result suggests there is some acoustic cue that seeps into the consonant that allows SS to start anticipating only by hearing that segment, as could be intensity. -->
 
 ```{r, warning=F}
@@ -188,7 +189,7 @@ Two GCA analyses were conducted for the L2 groups.
 One tested L2 proficiency along with L1, stress condition and polynomial time terms.
 The other one tested L2 use instead of L2 proficiency.
 This division was performed to avoid overfitting and to make interpretation of results easier.
-In both models, English speakers and present tense (paroxytone stress) were the baseline.
+In both models, English speakers was the baseline.
 
 ```{r, 'write-up-prep-dele', warning=F, eval=T}
 # Prepare table to support easy in-line printing of equations
@@ -200,12 +201,14 @@ params <- gca_l2_mods$gca_l2_mod_dele_final %>%
   rename(B = Estimate)
 
 params$subscript <- 
-  c(paste0(0:5, 0), paste0(0:4, 1))
+  c(paste0(0:5, 0), paste0(0:5, 1),
+    paste0(0:4, 2))
 
 params <- tibble::column_to_rownames(params, 'subscript')
 
 params$subscript <- 
-  c(paste0(0:5, 0), paste0(0:4, 1))
+  c(paste0(0:5, 0), paste0(0:5, 1),
+    paste0(0:4, 2))
 
 # Shortcut for inline reporting from the above table
 report_row <- function(row_name) report_fixef_row(params, row_name)
@@ -224,7 +227,7 @@ pretty_fixed_effects <- gca_l2_mods$gca_l2_mod_dele_final %>%
 
 # Include gammas (Gij) after each parameter name
 subs <- c(paste0(0:3, 0), paste0(0:3, 1), 
-          paste0(0:2, 2))
+          paste0(0:4, 2))
 var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
 pretty_fixed_effects$Parameter %<>% paste(., var_labels)
 
@@ -237,18 +240,11 @@ pretty_fixed_effects %>%
 Table 2: Growth curve model fixed effects for L2 speakers (proficiency).
 
 
-The GCA with proficiency as a predictor estimates the intercept log odds at `r report_row(1)`, which indicates the L2 speakers were generally anticipating both tenses at target syllable offset.
-To analyze whether both groups were anticipating in each stress condition we can observe Table 3.
-Table 3 shows the predicted probabilities of the GCA model for anticipation as a function of L2 proficiency. 
+The GCA with proficiency as a predictor estimates the intercept log odds at `r report_row(1)`, which indicates the L2 speakers were generally fixating on the target above chance.
+We take this as evidence that they were anticipating both tenses at target syllable offset.
+The probability estimates for fixations of each group in each condition as a function of L2 proficiency are given in Table 3.
 The values under the Proficiency column refer to the minimum and maximum scores obtained within each L1 as converted to z-scores.
-As Table 3 shows, all groups were above chance level, even those who were less likely to fixate. 
-Table 3 also shows that the higher the proficiency, the higher the probability of fixating on the target at target syllable offset.
-
-The linear (`r report_row(2)`), quadratic (`r report_row(3)`) and cubic (`r report_row(4)`) polynomial time terms estimates reached significance, and thus we kept them in the model.
-The absence of main effects from L1 (<em>&chi^2^;</em>&nbsp;(1) = 2.840, *p* = 0.092) and stress condition (<em>&chi^2^;</em>&nbsp;(1) = 0.570, *p* = 0.450) suggest that there was no statistical difference in fixations on the target across L2 speakers of the two L1s and across stress conditions.
-<!-- GOOD?: Ok, I definitely don't follow here. How does the absence of a main effect imply they were anticipating? Don't you just mean that there wasn't a difference in the log odds of focusing on the target based on tense and stress? You need to walk the reader through this. --> 
-Adding proficiency resulted in a main effect of proficiency (<em>&chi^2^;</em>&nbsp;(1) = 7.523, *p* = 0.006), with an estimate of `r report_row(5)`.
-This estimate suggests that for each extra point in the proficiency test, the probability of predicting increased by `r plogis(0.222)`.
+As Table 3 shows, all participants were above chance level, even those who were less likely to fixate. 
 
 
 ```{r, table-dele-probs, eval=T, echo=F}
@@ -283,22 +279,37 @@ model_preds$target_offset_preds_l2_dele %>%
 *Table 3*: Model estimates for probability of target fixations ±SE at 200 ms after the target syllable offset as a function of L2 proficiency. (LB = lower bound; UP = upper bound).
 
 
-The GCA estimates in the proficiency model also show interaction effects between proficiency x stress in the English speakers in the linear time term (`r report_row(8)`) and the quadratic term (`r report_row(10)`).
-The interactions in the two time terms suggest that the influence of proficiency varied according to stress pattern in English speakers.
-The positive sign of the estimate for the effect on the linear term indicates a steeper slope for preterit tense.
-This steeper slope suggests that preterit tense was anticipated faster than present tense.
-The interaction with proficiency arises because L1 English speakers anticipated present tense equally regardless of proficiency, whereas higher proficiency was associated with increased looks at target at suffix onset in the preterit tense.
-The positive sign of the estimate for the effect on the quadratic term indicates a more bowed curved in the fit for preterit tense than for present tense, which suggests preterit was generally anticipated later than present tense.
-In addition, the interaction suggests a more bowed curved for higher proficiency individuals,  pointing towards them starting to anticipate earlier than lower proficiency individuals, especially in the preterit tense, as shown on the top left panel of Figure 5.
+The linear (`r report_row(2)`) and cubic (`r report_row(4)`) polynomial time terms estimates reached significance, and thus we kept them in the model.
+There was a main effect of L1 (`r report_row(5)`), which indicates that there was a difference in the log odds of Mandarin speakers fixating on the target, such that they were fixating less on the target at suffix onset.
+There was a main effect of proficiency as well (`r report_row(7)`), pointing towards an association between increased fixations for each extra score in proficiency.
+
+There was a main effect of L1 (`r report_row(8)`) and L2 proficiency (`r report_row(11)`) in the linear term.
+The negative value of the L1 effect indicates the slope for Mandarin speakers was less steep, as Figure 5a shows, which suggests the rate at which fixations increased in this group was slower in comparison to monolinguals.
+In contrast, the positive value for L2 proficiency suggests the slope was steeper for higher proficiency individuals, which helped them increase fixations faster.
 
 
-```{r, 'plot-preds-dele-l1', echo=FALSE, fig.cap="Figure 5a. Growth curve analysis estimates of fixations on target as a function of lexical stress for each L2 group during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+```{r, 'plot-preds-dele-cond', echo=FALSE, fig.cap="Figure 5a. Growth curve analysis estimates of fixations on target as a function of lexical stress for each L2 group during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
 knitr::include_graphics(
-  here("figs", "stress", "gca", "stress_dele_l1.png")
+  here("figs", "stress", "gca", "stress_dele_cond_tog.png")
 )
 ```
 
-```{r, 'plot-preds-dele-split', echo=FALSE, fig.cap="Figure 5b. Growth curve analysis estimates of fixations on target as a function of lexical stress for each L2 group during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+There was an effect of lexical stress condition in the quadratic term (`r report_row(10)`).
+This effect suggests that the curve for present tense was less bowed than for preterit tense, as observed in Figure 5b.
+The difference in curve represents the gap in anticipation of each tense in L2 speakers, where fixations on the target in preterit tense started earlier and thus resulted in more probability of fixation on the target at suffix onset.
+
+```{r, 'plot-preds-dele-l1', echo=FALSE, fig.cap="Figure 5b. Growth curve analysis estimates of fixations on target as a function of lexical stress for each L2 group during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+knitr::include_graphics(
+  here("figs", "stress", "gca", "stress_dele_l1_tog.png")
+)
+```
+
+Finally, there was an interaction in the quadratic term between lexical stress x proficiency in L1 English speakers (`r report_row(16)`).
+This interaction indicates that the bow for the present tense curve is more open in comparison to the bow of the preterit tense curve, especially at higher levels of proficiency.
+As Figure 5c shows, the difference in bowness suggests that proficiency had a stronger facilitatory effect in increasing fixations on the target in preterit than in present tense, where speakers performed more similarly regardless of their Spanish command.
+
+
+```{r, 'plot-preds-dele-split', echo=FALSE, fig.cap="Figure 5c. Growth curve analysis estimates of fixations on target as a function of lexical stress for each L2 group during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
 knitr::include_graphics(
   here("figs", "stress", "gca", "stress_dele_split.png")
 )
@@ -315,13 +326,13 @@ params <- gca_l2_mods$gca_l2_mod_use_final %>%
 
 params$subscript <- 
   c(paste0(0:4, 0), paste0(0:4, 1),
-    paste0(0:0, 2))
+    paste0(0:4, 2), paste0(0:3, 3))
 
 params <- tibble::column_to_rownames(params, 'subscript')
 
 params$subscript <- 
   c(paste0(0:4, 0), paste0(0:4, 1), 
-    paste0(0:0, 2))
+    paste0(0:4, 2), paste0(0:3, 3))
 
 # Shortcut for inline reporting from the above table
 report_row <- function(row_name) report_fixef_row(params, row_name)
@@ -354,18 +365,9 @@ pretty_fixed_effects %>%
 *Table 4*: Growth curve model fixed effects for L2 speakers (L2 use).
 
 The GCA analysis with L2 weekly use in percentage estimates the intercept log odds at `r report_row(1)` for the L2 speakers. 
-Observing the estimated probabilities of target fixations (Table 5), L2 speakers were anticipating tense at target syllable offset.
+The estimated probabilities of target fixations (Table 5) on the target at suffix onset in this model indicate all L2 speakers were fixating on the target above chance, which we take to mean they were anticipating the suffix they were going to hear.
 The two values in the column Weekly L2 % use represent the minimum and the maximum L2 use reported by the participants.
-As Table 5 shows, the more frequent the weekly L2 use, the greater the probability of prediction, but even speakers who used the L2 less frequently are well above chance level.
-
-The estimates of the linear (`r report_row(2)`), quadratic (`r report_row(3)`) and cubic (`r report_row(4)`) polynomial time terms were significant.
-These effects suggest differences in slope and bow curve. 
-Since they improved the model, we kept them.
-There was an effect of L2 use in the quadratic polynomial time term (<em>&chi^2^;</em>&nbsp;(1) = 4.750, *p* = 0.029).
-The negative value indicates that the fit curve was more bowed for individuals with greater L2 use (`r report_row(7)`).
-The steeper slope indicates individuals who used Spanish more often increased fixations on the target faster than those who used Spanish less often.
-
- 
+Taking into account Spanish use for the probabilities, Table 5 shows that the more frequent the weekly L2 use, the greater the probability of prediction is in the present tense, but surprisingly, not in the preterit tense. 
 
 
 ```{r, table-use-probs, eval=T, echo=F}
@@ -402,28 +404,47 @@ model_preds$target_offset_preds_l2_use %>%
 after the target syllable offset as a function of L2 weekly % use. (LB = lower bound; UP = upper bound).
 
 
-There was an interaction effect of L2 use x stress in the linear term (<em>&chi^2^;</em>&nbsp;(2) = 13.409, *p* = 0.001).
-This interaction resulted in negative estimates for both groups (English: `r report_row(10)`; Mandarin: `r report_row(11)`).
-The negative values indicate the slopes were steeper in the preterit tense as a function of L2 use in both groups.
-However, the extent of the effects is different.
-In English speakers, differences in L2 use only showed facilitation in the preterit tense, while L2 use had barely or no effect in the present tense.
-In Mandarin speakers, the facilitatory trend was not as clear-cut and they showed more variability in fixation rate in both tenses. 
-The steeper slope and interaction between Spanish use and stress in each L2 group can be observed in Figure 7.
+The estimates of the linear (`r report_row(2)`) and cubic (`r report_row(4)`) polynomial time terms were significant.
+These effects suggest differences in slope and bow curve across conditions. 
+Since they improved the model, we kept them.
+
+There was an effect of L1 as in the proficiency model (`r report_row(5)`), which we interpret again as a sign that English speakers were fixating on the target more than Mandarin speakers at suffix onset.
+This effect appeared also in the linear term (`r report_row(8)`).
+This effect indicates the slope for Mandarin speakers was less steep, as observed in Figure 6a.
+The steeper slope for English speakers in comparison to Mandarin speakers suggests English speakers were increasing fixations on the target faster.
+There is also an effect of L2 use in the linear term (`r report_row(11)`).
+Following the same reasoning as for L1, a larger value in the estimate is associated with a steeper rise, associated with faster increase of fixations as proficiency improves.
 
 
-```{r, 'plot-preds-use-cond', echo=FALSE, fig.cap="Figure 6. Growth curve analysis estimates of fixations on target as a function of lexical stress and L2 weekly use for each L2 group during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+```{r, 'plot-preds-use-cond', echo=FALSE, fig.cap="Figure 6a. Growth curve analysis estimates of fixations on target as a function of lexical stress and L2 weekly use for each L2 group during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
 knitr::include_graphics(
-  here("figs", "stress", "gca", "stress_use_cond.png")
+  here("figs", "stress", "gca", "stress_use_cond_tog.png")
 )
 ```
+
+
+There was an effect of lexical stress in the quadratic term (`r report_row(10)`).
+This effect indicates the curve was more bowed in preterit than in present tense.
+The closer curve in preterit indicates that tense elicited fixations on the target earlier than present tense, as Figure 6b shows.
+
+
+```{r, 'plot-preds-use-l1', echo=FALSE, fig.cap="Figure 6b. Growth curve analysis estimates of fixations on target as a function of lexical stress and L2 weekly use for each L2 group during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
+knitr::include_graphics(
+  here("figs", "stress", "gca", "stress_use_l1_tog.png")
+)
+```
+
+There were also multiple interactions for Mandarin speakers between stress condition x use at all time terms (linear: `r report_row(15)`; quadratic: `r report_row(17)`; cubic: `r report_row(19)`).
+The estimate values for these interactions indicate that the slope was steeper in higher proficiency individuals especially in the present tense (see Figure 6b).
+In addition, the bow differed depending on the tense, such that present tense was more curved than preterit tense for more advanced individuals, but not for less proficient speakers.
+These results appear to suggest that use was actually hindering anticipation of preterit tense as a function of increased use, but that effect did not take place in the present tense.
 
 
 ```{r, 'plot-preds-use-split', echo=FALSE, fig.cap="Figure 7. Growth curve analysis estimates of fixations on target as a function of lexical stress and weekly L2 use for each stress condition during the analysis window. Lines represent model estimates, and the transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the targets. The vertical dotted line indicates 200 ms after the offset of the target syllable."}
 knitr::include_graphics(
-  here("figs", "stress", "gca", "stress_use_cond.png")
+  here("figs", "stress", "gca", "stress_use_split.png")
 )
 ```
-
 
 
 Following the same procedure as for SS, we conducted post-hoc GLMMs to find out when the L2 speakers started to anticipate (see Tables 6 and 7).
@@ -468,14 +489,14 @@ l2_onset_c3_use %>%
 In contrast to SS, L2 speakers only showed signs of anticipation at the onset of the suffix.
 <!--L: This delay in comparison to SS indicates L2 speakers need more information to generate verb tense suffix predictions.
 While SS do not seem to need lexical stress information, this piece of information is crucial for L2 speakers to generate the prediction.-->
-At that moment, the log odd intercept estimates were significant for the first time in both L2 models (L2 proficiency model: <em>&beta;</em>&nbsp;=&nbsp;1.104, *SE* = 0.120, *z* = 9.235, *p* = 0.000; L2 use <em>&beta;</em>&nbsp;=&nbsp;______, *SE* = , *z* = , *p* = ).
-In both models there was en effect of L1.
-The estimate indicated that Mandarin speakers were fixating on the target at suffix onset less than English speakers (L2 proficiency model: <em>&beta;</em>&nbsp;=&nbsp;-0.269, *SE* = 0.133, *z* = -2.019, *p* = 0.043; L2 use <em>&beta;</em>&nbsp;=&nbsp;______, *SE* = , *z* = , *p* = ).
-In the proficiency model, there was also an effect of stress condition (<em>&beta;</em>&nbsp;=&nbsp;-0.188, *SE* = 0.081, *z* = -2.309, *p* = 0.021), indicating preterit was fixated on more than present tense.
-There was an effect of proficiency (<em>&beta;</em>&nbsp;=&nbsp;0.319, *SE* = 0.083, *z* = 3.830, *p* = 0.000), reflecting more anticipating in individuals with higher proficiency.
-Lastly, there was also an interaction between stress condition x proficiency in the English speakers (<em>&beta;</em>&nbsp;=&nbsp;-0.254, *SE* = 0.096, *z* = -2.647, *p* = 0.008), replicating the results of the GCA.
+At that moment, the log odd intercept estimates were significant for the first time in both L2 models (L2 proficiency model: <em>&beta;</em>&nbsp;=&nbsp;1.104, SE = 0.120, *t* = 9.235, *p* = 0.000; L2 use <em>&beta;</em>&nbsp;=&nbsp;1.120, SE = 0.126, *t* = 8.882, *p* = 0.000).
+In both models there was an effect of L1.
+The estimate indicated that Mandarin speakers were fixating on the target at suffix onset less than English speakers (L2 proficiency model: <em>&beta;</em>&nbsp;=&nbsp;-0.269, SE = 0.133, *t* = -2.019, *p* = 0.043; L2 use <em>&beta;</em>&nbsp;=&nbsp;-0.323, SE = 0.138, *t* = -2.343, *p* = 0.019).
+In the proficiency model, there was also an effect of stress condition (<em>&beta;</em>&nbsp;=&nbsp;-0.188, SE = 0.081, *t* = -2.309, *p* = 0.021), indicating preterit was fixated on more than present tense.
+There was an effect of proficiency (<em>&beta;</em>&nbsp;=&nbsp;0.319, SE = 0.083, *t* = 3.830, *p* = 0.000), reflecting more anticipating in individuals with higher proficiency.
+Lastly, there was also an interaction between stress condition x proficiency in the English speakers (<em>&beta;</em>&nbsp;=&nbsp;-0.254, SE = 0.096, *t* = -2.647, *p* = 0.008), replicating the results of the GCA.
 
-In the L2 use model, there was a main effect L2 use (<em>&beta;</em>&nbsp;=&nbsp;0.265, *SE* = 0.096, *z* = 2.768, *p* = 0.006) in addition to the L1 main effect, pointing that greater L2 use correlated with increased fixations on the target.
+In the L2 use model, there was a main effect of L2 use (<em>&beta;</em>&nbsp;=&nbsp;0.265, SE = 0.096, *t* = 2.768, *p* = 0.006) in addition to the L1 main effect, pointing that greater L2 use correlated with increased fixations on the target.
 
 In summary, the data in this study revealed that all groups were fixating their gaze on the correct verb forms at the offset of the target syllable.
 SS started to fixate above chance in the first consonant of the verb, which suggests they are relying on cues other than lexical stress to generate tense suffix predictions.
@@ -507,10 +528,9 @@ The previous study on processing of morphophonological associations focusing on 
 In addition, this study also provides evidence for the first time that native speakers of Mandarin Chinese dialect also generate morphophonological predictions in L2 Spanish at intermediate and advanced levels of proficiency.
 Together with the studies on Swedish morphophonological associations [e.g., @gosselke2018neural; @schremm2016implicit], these studies suggest that L2 speakers can learn to use this type of associations to facilitate language processing regardless of their L1.
 
-We did not find a main effect of L1 transfer in the GCA, but the difference did show up in the GLMMs. 
-The GLMMs showed that Mandarin speakers anticipated less than English speakers.
-These results suggest that L1 transfer is modulated by other factors, and thus its effects should be studied and interpreted in combination with the effects of those other factors.
-One such factor is L2 proficiency.
+The difference in target fixations across speakers of English and Mandarin suggests they may have been conditioned by their L1.
+Given that English speakers outperformed the Mandarin speakers, their ability to use lexical stress as a cue to verb suffixes can be evidence that the more similarity in lexical stress and verb morphology between English and Spanish is helping them to predict. 
+The lower similarity between Mandarin Chinese and Spanish in terms of lexical stress and verbal morphology would then be a reason why Chinese speakers lag behind the other L2 group in fixating on the target.
 
 
 *2. **L2 proficiency**: Does L2 proficiency affect L2 learners’ ability to make stress-suffix tense associations during spoken word processing?* 
@@ -566,20 +586,22 @@ The similarity between lexical stress in English and Spanish would have resulted
 
 *3. **Language use**: Does language use affect L2 learners’ ability to make stress-suffix tense association during spoken word processing?* 
 We predicted that a greater use of Spanish would be associated with more and more accurate prediction.
-This prediction is borne out by our results.
-Specifically, a higher percentage of use of Spanish per week was associated with a higher probability of predicting.
-Although both L2 groups benefited of a larger amount of Spanish use, the effects were different depending on the group.
-In the English speakers, speaking Spanish more often resulted in increased prediction in the preterit tense, but it made no difference in the present tense.
-In the Mandarin speakers, speaking Spanish more often resulted in barely any variability in prediction ability in the preterit tense, but created much variability in the present tense.
+This prediction is partially borne out by our results.
+Specifically, a higher percentage of use of Spanish per week was associated with a higher probability of predicting in the present tense.
+In the preterit tense, greater use was however associated with fewer fixations on the target.
+This trend only reached significance in the Mandarin group.
 
-<!-- How to explain these results?-->
+
+^^ I DON'T KNOW HOW TO EXPLAIN THIS.
+
+
 
 The present study is the first study exploring how L2 use affects processing of morphophonological associations.
 Just as increased L2 use helps in morphophonological association, L2 use is likely to be a reliable predictor of successful processing in other areas such as morphosyntax.
 As relates to morpophonological associations, future studies could expand the findings here by focusing on training.
 Previous studies on training of Swedish morphophonological associations in Swedish suggest that targeted training can help in acquisition of these associations [@schremm2017influence].
 Training does not only direct L2 learners attention towards the association, but increases its use.
-Training is therefore likely to help L2 learners acquire morphophonological associations in Spanish as well as in Swedish.
+Future studies could investigate whether training helps L2 learners acquire morphophonological associations in Spanish as well as in Swedish and in reversing the apparently detrimental effects of greater L2 use in preterit anticipation.
 In addition, training different L1s can also expand findings on the role of L1 transfer and its interaction with L2 use.
 
 

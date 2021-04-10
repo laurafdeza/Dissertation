@@ -208,7 +208,19 @@ bartlett.test(DELE ~ l1, data = dem_all %>% filter(participant != 'IES04' & part
 
 # Bartlett's K-squared = 0.23176, df = 1, p-value = 0.6302
 
-
+dem_all %>%
+  filter(., participant != 'IES04' & participant != 'IES17' & 
+           participant != 'AES32' & participant != 'IES28') %>%
+  group_by(., l1) %>%
+  summarise(
+            l2_use = round(mean(percent_l2_week),2),
+            l2_use_sd = round(sd(percent_l2_week),2),
+            n = length(unique(participant))
+  ) %>% knitr::kable()
+# |l1 | l2_use| l2_use_sd|  n|
+#   |:--|------:|---------:|--:|
+#   |en |  34.84|     16.91| 61|
+#   |ma |  41.64|     21.66| 64|
 
 
 

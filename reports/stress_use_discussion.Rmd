@@ -252,13 +252,16 @@ As Table 3 shows, all participants were above chance level, even those who were 
 border_1 <- fp_border(width = 1.5)
 border_2 <- fp_border(width = 0.75)
 
+#mean(model_preds$target_offset_preds_l2_dele$DELE) - sd(model_preds$target_offset_preds_l2_dele$DELE)
+
 model_preds$target_offset_preds_l2_dele %>% 
   mutate(stress = if_else(stress == 1, "Present", "Preterit"),
          l1 = if_else(l1 == 'EN', "English", "Mandarin"),
          l1 = fct_relevel(l1, "English", "Mandarin")) %>% 
   arrange(l1, stress) %>% 
   group_by(l1, stress) %>%
-  filter(., DELE == max(DELE) | DELE == min(DELE)) %>%
+  filter(., DELE == mean(DELE) + sd(DELE) | DELE == mean(DELE) - sd(DELE)
+           ) %>%
   distinct() %>%
   #ungroup() %>%
   mutate(l1 = blank_same_as_last(as.character(l1)),

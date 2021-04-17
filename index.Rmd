@@ -372,7 +372,7 @@ L2 use/week
 Visual-world paradigm
 
 ```{r, include=TRUE, echo=FALSE}
-include_graphics("./00_first_chapter/figs/vwp.png", dpi = 100) # the larger the number, the smaller the image
+include_graphics("./00_intro/figs/vwp.png", dpi = 100) # the larger the number, the smaller the image
 ```
 
 ???
@@ -385,7 +385,7 @@ Close tracking of time
 ~ Melody discrimination task
 
 ```{r, include=TRUE, echo=FALSE}
-include_graphics("./00_first_chapter/figs/tone_task.png", dpi = 130)
+include_graphics("./00_intro/figs/tone_task.png", dpi = 130)
 ```
 
 ---
@@ -395,7 +395,7 @@ include_graphics("./00_first_chapter/figs/tone_task.png", dpi = 130)
 Imperative tone task
 
 ```{r, include=TRUE, echo=FALSE}
-include_graphics("./00_first_chapter/figs/rhythm_task.png", dpi = 108)
+include_graphics("./00_intro/figs/rhythm_task.png", dpi = 108)
 ```
 
 ---
@@ -405,7 +405,7 @@ include_graphics("./00_first_chapter/figs/rhythm_task.png", dpi = 108)
 ~ Time/Movement anticipation task
 
 ```{r, include=TRUE, echo=FALSE}
-include_graphics("./00_first_chapter/figs/car_task.png", dpi = 108)
+include_graphics("./00_intro/figs/car_task.png", dpi = 108)
 ```
 
 ---
@@ -415,7 +415,7 @@ include_graphics("./00_first_chapter/figs/car_task.png", dpi = 108)
 Operation Span
 
 ```{r, include=TRUE, echo=FALSE}
-include_graphics("./00_first_chapter/figs/ospan.png", dpi = 108)
+include_graphics("./00_intro/figs/ospan.png", dpi = 108)
 ```
 
 ---
@@ -425,7 +425,7 @@ include_graphics("./00_first_chapter/figs/ospan.png", dpi = 108)
 Corsi-blocks task
 .center[
 ```{r, include=TRUE, echo=FALSE}
-include_graphics("./00_first_chapter/figs/corsi.png", dpi = 140)
+include_graphics("./00_intro/figs/corsi.png", dpi = 140)
 ```
 ]
 ---

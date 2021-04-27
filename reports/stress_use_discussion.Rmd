@@ -252,7 +252,6 @@ As Table 3 shows, all participants were above chance level, even those who were 
 border_1 <- fp_border(width = 1.5)
 border_2 <- fp_border(width = 0.75)
 
-#mean(model_preds$target_offset_preds_l2_dele$DELE) - sd(model_preds$target_offset_preds_l2_dele$DELE)
 
 model_preds$target_offset_preds_l2_dele %>% 
   mutate(stress = if_else(stress == 1, "Present", "Preterit"),
@@ -260,8 +259,6 @@ model_preds$target_offset_preds_l2_dele %>%
          l1 = fct_relevel(l1, "English", "Mandarin")) %>% 
   arrange(l1, stress) %>% 
   group_by(l1, stress) %>%
-  filter(., DELE == mean(DELE) + sd(DELE) | DELE == mean(DELE) - sd(DELE)
-           ) %>%
   distinct() %>%
   #ungroup() %>%
   mutate(l1 = blank_same_as_last(as.character(l1)),
@@ -277,6 +274,7 @@ model_preds$target_offset_preds_l2_dele %>%
             border.top = border_1,
             border.bottom = border_2) %>% 
   hline_bottom(., part = "body", border = border_1)
+
 ```
 
 *Table 3*: Model estimates for probability of target fixations ±SE at 200 ms after the target syllable offset as a function of L2 proficiency. (LB = lower bound; UP = upper bound).
@@ -346,7 +344,7 @@ report_row <- function(row_name) report_fixef_row(params, row_name)
 ```{r, warning=F}
 
 # Get full mod and make it pretty for the table
-pretty_fixed_effects <- gca_l2_mods$gca_l2_mod_use_final %>%  
+pretty_fixed_effects <- gca_l2_mod_use_final %>%  #gca_l2_mods$
   tidy_lme4() %>% 
   mutate(p = format_pval(p), 
          Parameter = fix_param_names(Parameter)) %>% 
@@ -378,13 +376,13 @@ Taking into account Spanish use for the probabilities, Table 5 shows that the mo
 border_1 <- fp_border(width = 1.5)
 border_2 <- fp_border(width = 0.75)
 
-model_preds$target_offset_preds_l2_use %>% 
+use_prob <- model_preds$target_offset_preds_l2_use %>% 
   mutate(stress = if_else(stress == 1, "Present", "Preterit"),
          l1 = if_else(l1 == 'EN', "English", "Mandarin"),
          l1 = fct_relevel(l1, "English", "Mandarin")) %>% 
   group_by(l1, stress) %>%
-  filter(., percent_l2_week == max(percent_l2_week) | 
-           percent_l2_week == min(percent_l2_week)) %>%
+  # filter(., percent_l2_week == max(percent_l2_week) | 
+  #          percent_l2_week == min(percent_l2_week)) %>%
   distinct() %>%
   # ungroup() %>%
   arrange(l1, stress) %>% 
@@ -401,6 +399,8 @@ model_preds$target_offset_preds_l2_use %>%
             border.top = border_1,
             border.bottom = border_2) %>% 
   hline_bottom(., part = "body", border = border_1)
+
+# save_as_docx(dele_prob, use_prob, path = here::here('prob.docx'))
 ```
 
 *Table 5*: Model estimates for probability of target fixations ±SE at 200 ms 

@@ -29,7 +29,8 @@ allinfo$participant <- tolower(allinfo$participant)
 allinfo$DELE <- as.numeric(as.character(allinfo$DELE))
 allinfo$age_fluent_L2 <- as.numeric(as.character(allinfo$age_fluent_L2))
 allinfo$percent_l1_week <- as.numeric(as.character(allinfo$percent_l1_week))
-allinfo$percent_l2_week <- as.numeric(as.character(allinfo$pc_l2_week))
+allinfo$percent_l2_week <- as.numeric(as.character(allinfo$percent_l2_week))
+
 #######################################################################################################
 # for groups not collapsed, see below
 
@@ -144,7 +145,7 @@ prop.table(table(english$country))
 
 
 agg %>%
-  filter(., group %in% c("aes", "ies", "ams", "ims")) %>%
+  filter(., l1 %in% c("en", "ma")) %>%
   group_by(., l1) %>%
   summarise(mean_l2use_week = mean(percent_l2_week),
             sd_l2use_week = sd(percent_l2_week))
@@ -152,9 +153,28 @@ agg %>%
 # 1 en             33.3          17.4
 # 2 ma             41.6          21.7
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #############################################################################################################
 
-# PROFICIENCIES NOT COLLAPSED
+# PROFICIENCY CATEGORICAL - DISREGARD
 
 
 #####

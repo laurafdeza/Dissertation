@@ -87,7 +87,7 @@ stress_50 <- stress_50 %>%
 # Load verbal WM
 dem <- read_csv(here("data", "pupurri_analysis.csv"))
 dem <- dem %>%
-  select(., participant, WM_set, DELE, percent_l2_week)
+  select(., participant,DELE, percent_l2_week)
   
 dem$participant <- tolower(dem$participant)
 dem$DELE <- as.numeric(dem$DELE)
@@ -115,10 +115,15 @@ stress_50$percent_l2_week[is.na(stress_50$percent_l2_week) & stress_50$l1 == 'es
 
 stress50 <- stress_50 %>%
   # mutate(DELE = DELE + runif(n(), min = -0.15, max = 0.15) * (n() > 1)) %>%
-  mutate(., ospan = (WM_set - mean(WM_set))/sd(WM_set),
+  mutate(., #ospan = (WM_set - mean(WM_set))/sd(WM_set),
          use_z = (percent_l2_week - mean(percent_l2_week))/sd(percent_l2_week),
     DELE_z = (DELE - mean(DELE))/sd(DELE)
-  )
+  ) %>%
+  
+  # filter participants to make ES use and proficiency homogeneous
+  
+  filter(participant != 'ies04' & participant != 'ies17' & 
+           participant != 'aes32' & participant != 'ies28')
  
 
 # change name of .csv if trigger checked different

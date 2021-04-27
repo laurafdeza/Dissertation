@@ -19,9 +19,11 @@ gca_mods_path <- here("mods", "stress", "gca")
 load(paste0(gca_mods_path, "/gca_mon_mods.Rdata"))
 load(paste0(gca_mods_path, "/gca_l2_mods.Rdata"))
 load(paste0(gca_mods_path, "/model_preds.Rdata"))
+load(paste0(gca_mods_path, "/model_preds_l2.Rdata"))
 list2env(gca_mon_mods, globalenv())
 list2env(gca_l2_mods, globalenv())
 list2env(model_preds, globalenv())
+list2env(model_preds_l2, globalenv())
 
 # Set path for saving figs
 figs_path <- here("figs", "stress", "gca")
@@ -183,6 +185,10 @@ stress_dele_l1_tog <- fits_all_l2_dele %>% #model_preds$
   )
 
 
+
+
+
+
 # stress_dele_l1_sep <- fits_all_l2_dele %>% #model_preds$
 #   mutate(condition = if_else(condition_sum == 1, "Present", "Preterit"),
 #          condition = fct_relevel(condition, "Present"),
@@ -340,6 +346,9 @@ stress_use_l1_tog <- fits_all_l2_use %>% #model_preds$
     panel.grid.minor = element_line(colour = 'grey90', size = 0.15)
   )
 
+
+
+  
 # Within condition differences
 stress_use_cond_tog <- fits_all_l2_use %>% #model_preds$
   mutate(condition = if_else(condition_sum == 1, "Present", "Preterit"),
@@ -563,3 +572,123 @@ ggsave(paste0(figs_path, "/stress_wm_split.png"), stress_wm_split, width = 150,
        height = 120, units = "mm", dpi = 600)
 
 # -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+use_cond <- fits_all_l2_use %>%
+  mutate(`Weekly L2 use` = as.factor(use_z),
+         Condition = if_else(condition_sum == 1, "Present", "Preterit"),
+         Condition = fct_relevel(Condition, "Present"),
+         L1 = if_else(l1 == 'EN', 'English', 'Mandarin'),
+         L1 = fct_relevel(L1, "English", "Mandarin")
+  ) %>%
+  ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
+                fill = L1, color = L1, lty = `Weekly L2 use`)) + 
+  facet_grid(. ~ Condition) +
+  geom_hline(yintercept = 0, lty = 3, size = 0.4) +
+  geom_vline(xintercept = 4, lty = 3, size = 0.4) +
+  # stat_summary(fun.y = "mean", geom = "line", size = 1) + 
+  geom_ribbon(alpha = 0.2, color = NA, show.legend = F) + #'grey'
+  # stat_summary(fun.data = mean_cl_boot, geom = 'ribbon',fun.args=list(conf.int=0.95),
+  #              alpha = 0.5) +
+  geom_line(size = 0.35) +
+  # geom_point(aes(color = Group), size = 0.8, show.legend = T) +  #alpha = .5, pch = 15, 
+  scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
+                     labels = c("-200", "0", "200", "400", "600")) +
+  labs(x = "Time (ms) relative to target syllable offset",
+       y = "Empirical logit of looks to target") +
+  # labs(color = "Weekly Spanish use") + theme_big + legend_adj + 
+  theme_grey(base_size = 10, base_family = "Times")
+
+
+use_l1 <- fits_all_l2_use %>%
+  mutate(`Weekly L2 use` = as.factor(use_z),
+         Condition = if_else(condition_sum == 1, "Present", "Preterit"),
+         Condition = fct_relevel(Condition, "Present"),
+         L1 = if_else(l1 == 'EN', 'English', 'Mandarin'),
+         L1 = fct_relevel(L1, "English", "Mandarin")
+  ) %>%
+  ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
+                fill = Condition, color = Condition, lty = `Weekly L2 use`)) + 
+  facet_grid(. ~ L1) +
+  geom_hline(yintercept = 0, lty = 3, size = 0.4) +
+  geom_vline(xintercept = 4, lty = 3, size = 0.4) +
+  # stat_summary(fun.y = "mean", geom = "line", size = 1) + 
+  geom_ribbon(alpha = 0.2, color = NA, show.legend = F) + #'grey'
+  # stat_summary(fun.data = mean_cl_boot, geom = 'ribbon',fun.args=list(conf.int=0.95),
+  #              alpha = 0.5) +
+  geom_line(size = 0.35) +
+  # geom_point(aes(color = Group), size = 0.8, show.legend = T) +  #alpha = .5, pch = 15, 
+  scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
+                     labels = c("-200", "0", "200", "400", "600")) +
+  labs(x = "Time (ms) relative to target syllable offset",
+       y = "Empirical logit of looks to target") +
+  # labs(color = "Weekly Spanish use") + theme_big + legend_adj + 
+  theme_grey(base_size = 10, base_family = "Times")
+
+
+prof_cond <- fits_all_l2_dele %>%
+  mutate(Proficiency = as.factor(DELE_z),
+         Condition = if_else(condition_sum == 1, "Present", "Preterit"),
+         Condition = fct_relevel(Condition, "Present"),
+         L1 = if_else(l1 == 'EN', 'English', 'Mandarin'),
+         L1 = fct_relevel(L1, "English", "Mandarin")
+  ) %>%
+  ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
+                fill = L1, color = L1, lty = Proficiency)) + 
+  facet_grid(. ~ Condition) +
+  geom_hline(yintercept = 0, lty = 3, size = 0.4) +
+  geom_vline(xintercept = 4, lty = 3, size = 0.4) +
+  # stat_summary(fun.y = "mean", geom = "line", size = 1) + 
+  geom_ribbon(alpha = 0.2, color = NA, show.legend = F) + #'grey'
+  # stat_summary(fun.data = mean_cl_boot, geom = 'ribbon',fun.args=list(conf.int=0.95),
+  #              alpha = 0.5) +
+  geom_line(size = 0.35) +
+  # geom_point(aes(color = Group), size = 0.8, show.legend = T) +  #alpha = .5, pch = 15, 
+  scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
+                     labels = c("-200", "0", "200", "400", "600")) +
+  labs(x = "Time (ms) relative to target syllable offset",
+       y = "Empirical logit of looks to target") +
+  # labs(color = "Weekly Spanish use") + theme_big + legend_adj + 
+  theme_grey(base_size = 10, base_family = "Times")
+
+
+prof_l1 <- fits_all_l2_dele %>%
+  mutate(Proficiency = as.factor(DELE_z),
+         Condition = if_else(condition_sum == 1, "Present", "Preterit"),
+         Condition = fct_relevel(Condition, "Present"),
+         L1 = if_else(l1 == 'EN', 'English', 'Mandarin'),
+         L1 = fct_relevel(L1, "English", "Mandarin")
+  ) %>%
+  ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
+                fill = Condition, color = Condition, lty = Proficiency)) + 
+  facet_grid(. ~ L1) +
+  geom_hline(yintercept = 0, lty = 3, size = 0.4) +
+  geom_vline(xintercept = 4, lty = 3, size = 0.4) +
+  # stat_summary(fun.y = "mean", geom = "line", size = 1) + 
+  geom_ribbon(alpha = 0.2, color = NA, show.legend = F) + #'grey'
+  # stat_summary(fun.data = mean_cl_boot, geom = 'ribbon',fun.args=list(conf.int=0.95),
+  #              alpha = 0.5) +
+  geom_line(size = 0.35) +
+  # geom_point(aes(color = Group), size = 0.8, show.legend = T) +  #alpha = .5, pch = 15, 
+  scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
+                     labels = c("-200", "0", "200", "400", "600")) +
+  labs(x = "Time (ms) relative to target syllable offset",
+       y = "Empirical logit of looks to target") +
+  # labs(color = "Weekly Spanish use") + theme_big + legend_adj + 
+  theme_grey(base_size = 10, base_family = "Times")
+
+
+ggsave(paste0(figs_path, "/use_cond.png"), use_cond, width = 150,
+       height = 120, units = "mm", dpi = 600)
+ggsave(paste0(figs_path, "/use_l1.png"), use_l1, width = 150,
+       height = 120, units = "mm", dpi = 600)
+ggsave(paste0(figs_path, "/prof_cond.png"), prof_cond, width = 150,
+       height = 120, units = "mm", dpi = 600)
+ggsave(paste0(figs_path, "/prof_l1.png"), prof_l1, width = 150,
+       height = 120, units = "mm", dpi = 600)

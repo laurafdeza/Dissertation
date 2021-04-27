@@ -86,7 +86,7 @@ list2env(model_preds, globalenv())
 
 
 stress_gc_subset <- stress50 %>%
-  select(., -WM_set) %>%
+  # select(., -WM_set) %>%
   filter(., time_zero >= -4 & time_zero <= 12) %>%
   mutate(., l1 = fct_relevel(l1, "es", "en", "ma"),
             condition_sum = if_else(cond == "1", 1, -1)) %>%       # 1 = present, 2 = past
@@ -505,12 +505,21 @@ new_dat_mon <- mon_data %>%
   dplyr::select(time_zero, ot1:ot3, condition_sum) %>% #, ospan
   distinct
 
-new_dat_l2 <- l2_data %>%
-  dplyr::select(l1, time_zero, ot1:ot3, condition_sum, ospan, DELE_z, use_z) %>%
-  distinct
+dele_dat_l2 <- l2_data %>%
+  dplyr::select(l1, time_zero, ot1:ot3, condition_sum) %>%
+  distinct %>%
+  mutate(l1 = as.character(l1)) %>% 
+  expand_grid(., tibble(DELE_z = c(-1, 0, 1)))
 
-write_csv(new_dat_l2, here::here('new_dat_l2.csv'))
-new_dat_l2 <- read_csv(here::here('new_dat_l2.csv'))
+use_dat_l2 <- l2_data %>%
+  dplyr::select(l1, time_zero, ot1:ot3, condition_sum) %>%
+  distinct %>%
+  mutate(l1 = as.character(l1)) %>% 
+  expand_grid(., tibble(use_z = c(-1, 0, 1)))
+  
+
+# write_csv(dele_dat_l2, here::here('dele_dat_l2.csv'))
+# dele_dat_l2 <- read_csv(here::here('dele_dat_l2.csv'))
 
 # Get model predictions and SE
 fits_all_mon <- predictSE(gca_mod_mon_base, new_dat_mon) %>%  
@@ -519,29 +528,22 @@ fits_all_mon <- predictSE(gca_mod_mon_base, new_dat_mon) %>%
   rename(se = se.fit) %>%
   mutate(ymin = fit - se, ymax = fit + se)
 
-fits_all_l2_dele <- predictSE(gca_l2_mod_dele_final, new_dat_l2) %>%
+fits_all_l2_dele <- predictSE(gca_l2_mod_dele_final, dele_dat_l2) %>%
   as_tibble %>%
-  bind_cols(new_dat_l2) %>%
+  bind_cols(dele_dat_l2) %>%
   rename(se = se.fit) %>%
   mutate(ymin = fit - se, ymax = fit + se,
          l1 = fct_recode(l1, EN = "en", MA = "ma"),
          l1 = fct_relevel(l1, "EN", "MA"))
 
-fits_all_l2_use <- predictSE(gca_l2_mod_use_final, new_dat_l2) %>%  
+fits_all_l2_use <- predictSE(gca_l2_mod_use_final, use_dat_l2) %>%  
   as_tibble %>%
-  bind_cols(new_dat_l2) %>%
+  bind_cols(use_dat_l2) %>%
   rename(se = se.fit) %>%
   mutate(ymin = fit - se, ymax = fit + se,
          l1 = fct_recode(l1, EN = "en", MA = "ma"),
          l1 = fct_relevel(l1, "EN", "MA"))
 
-fits_all_l2_wm <- predictSE(gca_l2_mod_wm_final, new_dat_l2) %>%  
-  as_tibble %>%
-  bind_cols(new_dat_l2) %>%
-  rename(se = se.fit) %>%
-  mutate(ymin = fit - se, ymax = fit + se,
-         group = fct_recode(l1, EN = "en", MA = "ma"),
-         group = fct_relevel(l1, "EN", "MA"))
 
 # Filter preds at target syllable offset
 target_offset_preds_mon <- filter(fits_all_mon, time_zero == 4) %>%
@@ -551,13 +553,15 @@ target_offset_preds_mon <- filter(fits_all_mon, time_zero == 4) %>%
          prob_lb = plogis(elog_lb),
          prob_ub = plogis(elog_ub)) 
 
-target_offset_preds_l2_dele <- filter(fits_all_l2_dele, time_zero == 4) %>%
+
+target_offset_preds_l2_dele <- filter(fits_all_l2_dele, time_zero == 4) %>% 
   select(l1, stress = condition_sum, DELE = DELE_z,
          elog = fit, elog_lb = ymin, elog_ub = ymax) %>%
   mutate(prob = plogis(elog),
          prob_lb = plogis(elog_lb),
          prob_ub = plogis(elog_ub)) %>%
   arrange(l1)
+
 
 target_offset_preds_l2_use <- filter(fits_all_l2_use, time_zero == 4) %>%
   select(l1, stress = condition_sum, percent_l2_week = use_z,
@@ -567,13 +571,9 @@ target_offset_preds_l2_use <- filter(fits_all_l2_use, time_zero == 4) %>%
          prob_ub = plogis(elog_ub)) %>%
   arrange(l1)
 
-target_offset_preds_l2_wm <- filter(fits_all_l2_wm, time_zero == 4) %>%
-  select(l1, stress = condition_sum, wm = ospan,
-         elog = fit, elog_lb = ymin, elog_ub = ymax) %>%
-  mutate(prob = plogis(elog),
-         prob_lb = plogis(elog_lb),
-         prob_ub = plogis(elog_ub)) %>%
-  arrange(l1)
+
+
+
 
 # Save models predictions
 model_preds <- mget(c(#"fits_all_mon", "fits_all_l2_dele", "fits_all_l2_use", "fits_all_l2_wm",
@@ -590,3 +590,68 @@ saveRDS(target_offset_preds_mon, file = here("mods", "stress", "gca", "model_pre
 
 # -----------------------------------------------------------------------------
 
+
+dele_dat_l2 <- l2_data %>%
+  dplyr::select(l1, time_zero, ot1:ot3, condition_sum, ospan, DELE_z, use_z) %>%
+  distinct
+
+dele_dat_l2 <- dele_dat_l2[ which(dele_dat_l2$l1!='es'), ]
+write_csv(dele_dat_l2, here::here('dele_dat_l2.csv'))
+dele_dat_l2 <- read_csv(here::here('dele_dat_l2.csv'))
+
+dele_dat_l2 <- expand.grid(
+  l1 = c('en', 'ma'), 
+  time_zero = 4,
+  ot1 = unique(l2_data$ot1),
+  ot2 = unique(l2_data$ot2),
+  ot3 = unique(l2_data$ot3),
+  condition_sum = unique(l2_data$condition_sum),
+  DELE_z = c(-1, 0, 1))
+
+fits_all_l2_dele <- predictSE(gca_l2_mod_dele_final, dele_dat_l2) %>%
+  as_tibble %>%
+  bind_cols(dele_dat_l2) %>%
+  rename(se = se.fit) %>%
+  mutate(ymin = fit - se, ymax = fit + se,
+         l1 = fct_recode(l1, EN = "en", MA = "ma"),
+         l1 = fct_relevel(l1, "EN", "MA"))
+
+
+# Filter preds at target syllable offset
+target_offset_preds_dele <- filter(fits_all_l2_dele, time_zero == 4) %>% #
+  select(l1, stress = condition_sum, DELE = DELE_z,
+         elog = fit, elog_lb = ymin, elog_ub = ymax) %>%
+  mutate(prob = plogis(elog),
+         prob_lb = plogis(elog_lb),
+         prob_ub = plogis(elog_ub),
+         DELE = c(-1, 0, 1))
+  
+  
+  
+  border_1 <- fp_border(width = 1.5)
+  border_2 <- fp_border(width = 0.75)
+  
+  #mean(model_preds$target_offset_preds_l2_dele$DELE) - sd(model_preds$target_offset_preds_l2_dele$DELE)
+  
+  target_offset_preds_dele %>% 
+    mutate(stress = if_else(stress == 1, "Present", "Preterit"),
+           l1 = if_else(l1 == 'EN', "English", "Mandarin"),
+           l1 = fct_relevel(l1, "English", "Mandarin")) %>% 
+    arrange(l1, stress) %>% 
+    group_by(l1, stress) %>%
+    distinct() %>%
+    #ungroup() %>%
+    mutate(l1 = blank_same_as_last(as.character(l1)),
+           stress = blank_same_as_last(as.character(stress))) %>%
+    select(L1 = l1, `Lexical stress` = stress, Proficiency = DELE, Probability = prob,
+           LB = prob_lb, UB = prob_ub) %>%
+    flextable() %>% 
+    width(., j = c(2, 3, 4), width = c(1.1, 1.3, 1.1)) %>%
+    font(., fontname = "Times", part = "all") %>%
+    fontsize(., size = 11) %>% 
+    border_remove(.) %>%  
+    border(., part = "header", 
+           border.top = border_1,
+           border.bottom = border_2) %>% 
+    hline_bottom(., part = "body", border = border_1)
+  

@@ -24,9 +24,14 @@ dem_all$l1 <- str_replace(dem_all$l1, "ms", "ma")
 dem_all$l1 <- str_replace(dem_all$l1, "on", "es")
 
 
+dem_all$participant <- tolower(dem_all$participant)
+dem_all$DELE <- as.numeric(as.character(dem_all$DELE))
+dem_all$percent_l2_week <- as.numeric(as.character(dem_all$percent_l2_week))
+
+
 dem_all %>%
   group_by(l1) %>%
-  summarize(n = n()) # en = Eglish speakers, ma = Mandarin Chinese speakers, es = Spanish speakers
+  summarize(n = n()) # en = English speakers, ma = Mandarin Chinese speakers, es = Spanish speakers
 #   l1        n
 # 1 en       65
 # 2 es       30
@@ -34,34 +39,91 @@ dem_all %>%
 
 
 dem_all %>%
+  #filter(., group %in% c("hs", "l2")) %>%
   group_by(., l1) %>%
-  summarise(., ospan_mean = round(mean(WM_set),2),   # ospan instead of WM_set if using z scores
+  summarise(mean_perc_week_Spa = mean(percent_l2_week),
+            sd_perc_week_Spa = sd(percent_l2_week),
+            mean_DELE = mean(DELE),
+            sd_DELE = sd(DELE),
+            ospan_mean = round(mean(WM_set),2),   # ospan instead of WM_set if using z scores
             ospan_sd = round(sd(WM_set),2),          # ospan instead of WM_set if using z scores
             n = length(unique(participant))) %>%
   knitr::kable()
-#   |l1 | ospan_mean| ospan_sd|  n|
-#   |:--|----------:|--------:|--:|
-#   |en |          0|     2.11| 65|
-#   |es |          0|     2.72| 30|
-#   |ma |          0|     2.14| 64|
-
-#   |l1 | ospan_mean| ospan_sd|  n|
-#   |:--|----------:|--------:|--:|
-#   |en |       8.89|     2.11| 65|
-#   |es |       6.20|     2.72| 30|
-#   |ma |       7.78|     2.14| 64|
+# |l1 | mean_perc_week_Spa| sd_perc_week_Spa| mean_DELE|  sd_DELE| ospan_mean| ospan_sd|  n|
+# |:--|------------------:|----------------:|---------:|--------:|----------:|--------:|--:|
+# |en |           33.30769|         17.43911|  38.47692| 8.185558|       8.89|     2.11| 65|
+# |es |           88.93333|          9.43191|        NA|       NA|       6.20|     2.72| 30|
+# |ma |           41.64062|         21.65851|  39.17188| 7.564652|       7.78|     2.14| 64|
 
 
+t.test(percent_l2_week ~ l1, data = dem_all %>% filter(l1 != 'es' & participant != 'ies04' & participant != 'ies17' & 
+                                                         participant != 'aes32' & participant != 'ies28'), var.equal = TRUE)
+# t = -1.9516, df = 123, p-value = 0.05326
+bartlett.test(percent_l2_week ~ l1, data = dem_all %>% filter(l1 != 'es' & participant != 'ies04' & participant != 'ies17' & 
+                                                                participant != 'aes32' & participant != 'ies28'))
+# K-squared = 3.6896, df = 1, p-value = 0.05475
+t.test(DELE ~ l1, data = dem_all %>% filter(l1 != 'es' & participant != 'ies04' & participant != 'ies17' & 
+                                              participant != 'aes32' & participant != 'ies28'), var.equal = TRUE)
+# t = -0.14658, df = 123, p-value = 0.8837
+bartlett.test(DELE ~ l1, data = dem_all %>% filter(l1 != 'es' & participant != 'ies04' & participant != 'ies17' & 
+                                                     participant != 'aes32' & participant != 'ies28'))
+# K-squared = 0.23176, df = 1, p-value = 0.6302
 
-zsc <- dem_all %>% 
+
+
+
+
+
+bartlett.test(WM_set ~ l1, data = dem_all %>% filter(participant != 'ies04' & participant != 'ies17' & 
+                                                       participant != 'aes32' & participant != 'ies28'))
+# Bartlett's K-squared = 2.8135, df = 2, p-value = 0.2449
+
+
+t.test(WM_set ~ l1, data = dem_all %>% filter(l1 != 'es' & participant != 'ies04' & participant != 'ies17' & 
+                                                           participant != 'aes32' & participant != 'ies28'), var.equal = TRUE)
+# t = 2.9647, df = 127, p-value = 0.002919
+
+t.test(WM_set ~ l1, data = dem_all %>% filter(l1 != "en" & participant != 'ies04' & participant != 'ies17' & 
+                                                participant != 'aes32' & participant != 'ies28'), var.equal = TRUE)
+# t = -3.0541, df = 92, p-value = 0.002953
+
+t.test(WM_set ~ l1, data = dem_all %>% filter(l1 != "ma" & participant != 'ies04' & participant != 'ies17' & 
+                                                participant != 'aes32' & participant != 'ies28'), var.equal = TRUE)
+# t = 5.2551, df = 93, p-value = 1.127e-06
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ----------------------------------- DISCARD
+
+
+
+dem_all %>%
+  filter(., participant != 'ies04' & participant != 'ies17' & 
+           participant != 'aes32' & participant != 'ies28' & 
+           participant != 'mon04' & participant != 'mon20'  & 
+           participant != 'mon24'  & participant != 'mon21') %>%
   group_by(., l1) %>%
-  mutate(zscoreWM = (WM_set - mean(WM_set))/sd(WM_set)) 
+  summarise(.,
+            ospan_mean = round(mean(WM_set),2),   
+            ospan_sd = round(sd(WM_set),2),          
+            n = length(unique(participant))) %>%
+  knitr::kable()
 
-
-
-
-bartlett.test(zscoreWM ~ l1, data = zsc)
-# Bartlett's K-squared = 6.376e-15, df = 2, p-value = 1
+arrange(dem_all %>%
+          filter(., participant != 'ies04' & participant != 'ies17' & 
+                   participant != 'aes32' & participant != 'ies28' & 
+                   participant != 'mon04' & participant != 'mon20'  & 
+                   participant != 'mon24'  & participant != 'mon21'), (desc(WM_set))) %>% View()
 
 
 
@@ -88,6 +150,11 @@ TOSTtwo(m1 = 0, sd1 = 2.14, n1 = 64, # MA
         high_eqbound_d = 0.3,
         alpha = 0.05)
 # The null hypothesis test was non-significant, t(46.47) = 0.000, p = 1.000, given an alpha of 0.05.
+
+
+
+
+
 
 
 
@@ -194,20 +261,6 @@ t.test(percent_l2_week ~ l1, data = dem_all, var.equal = TRUE)
 
 arrange(dem_all, (desc(percent_l2_week))) %>% View()
 
-t.test(percent_l2_week ~ l1, data = dem_all %>% filter(participant != 'IES04' & participant != 'IES17' & 
-                                                         participant != 'AES32' & participant != 'IES28'), var.equal = TRUE)
-# t = -1.9516, df = 123, p-value = 0.05326
-bartlett.test(percent_l2_week ~ l1, data = dem_all %>% filter(participant != 'IES04' & participant != 'IES17' & 
-                                                                participant != 'AES32' & participant != 'IES28'))
-# K-squared = 3.6896, df = 1, p-value = 0.05475
-t.test(DELE ~ l1, data = dem_all %>% filter(participant != 'IES04' & participant != 'IES17' & 
-                                                         participant != 'AES32' & participant != 'IES28'), var.equal = TRUE)
-# t = -0.14658, df = 123, p-value = 0.8837
-bartlett.test(DELE ~ l1, data = dem_all %>% filter(participant != 'IES04' & participant != 'IES17' & 
-                                                                participant != 'AES32' & participant != 'IES28'))
-
-# Bartlett's K-squared = 0.23176, df = 1, p-value = 0.6302
-
 dem_all %>%
   filter(., participant != 'IES04' & participant != 'IES17' & 
            participant != 'AES32' & participant != 'IES28') %>%
@@ -282,6 +335,29 @@ bartlett.test(percent_l2_week ~ l1, data = dem_all)
 
 
 
+bartlett.test(age ~ l1, data = agg)
+# Bartlett's K-squared = 30.63, df = 2, p-value = 2.233e-07
+
+TOSTER::TOSTtwo(m1 = 26.8, sd1 = 4.54, n1 = 65, # EN
+                m2 = 24.7, sd2 = 4.13, n2 = 64, # MA
+                low_eqbound_d = -0.3,
+                high_eqbound_d = 0.3,
+                alpha = 0.05)
+# t(126.22) = 2.749, p = 0.00686
+
+TOSTER::TOSTtwo(m1 = 26.8, sd1 = 4.54, n1 = 65, # EN
+                m2 = 26.2, sd2 = 8.82, n2 = 30, # ES
+                low_eqbound_d = -0.3,
+                high_eqbound_d = 0.3,
+                alpha = 0.05)
+# t(36.28) = 0.352, p = 0.727
+
+TOSTER::TOSTtwo(m1 = 24.7, sd1 = 4.13, n1 = 64, # MA
+                m2 = 26.2, sd2 = 8.82, n2 = 30, # ES
+                low_eqbound_d = -0.3,
+                high_eqbound_d = 0.3,
+                alpha = 0.05)
+# t(35.1) = -0.887, p = 0.381
 
 
 # dele tost intermediate groups
@@ -361,3 +437,32 @@ TOSTtwo(m1 = 38.59, sd1 = 16.23, n1 = 32, # en
         low_eqbound_d = -0.3,
         high_eqbound_d = 0.3,
         alpha = 0.05)
+
+
+
+
+
+# Age
+bartlett.test(age ~ l1, data = agg)
+# Bartlett's K-squared = 30.63, df = 2, p-value = 2.233e-07
+
+TOSTER::TOSTtwo(m1 = 26.8, sd1 = 4.54, n1 = 65, # EN
+                m2 = 24.7, sd2 = 4.13, n2 = 64, # MA
+                low_eqbound_d = -0.3,
+                high_eqbound_d = 0.3,
+                alpha = 0.05)
+# t(126.22) = 2.749, p = 0.00686
+
+TOSTER::TOSTtwo(m1 = 26.8, sd1 = 4.54, n1 = 65, # EN
+                m2 = 26.2, sd2 = 8.82, n2 = 30, # ES
+                low_eqbound_d = -0.3,
+                high_eqbound_d = 0.3,
+                alpha = 0.05)
+# t(36.28) = 0.352, p = 0.727
+
+TOSTER::TOSTtwo(m1 = 24.7, sd1 = 4.13, n1 = 64, # MA
+                m2 = 26.2, sd2 = 8.82, n2 = 30, # ES
+                low_eqbound_d = -0.3,
+                high_eqbound_d = 0.3,
+                alpha = 0.05)
+# t(35.1) = -0.887, p = 0.381

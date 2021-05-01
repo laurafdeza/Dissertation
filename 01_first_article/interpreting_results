@@ -1,0 +1,31 @@
+# L2 proficiency effects
+
+
+DELE_z (γ21) 								0.197	< .001		+ prof + prediction
+Time1 × l1ma (γ31)							−0.950	.002		decreased slope, 
+Time2 × Lexical stress (γ12)				0.363	.004		Oxy more
+Time1 × DELE_z (γ22)						0.565	.003		increased slope for those with increased proficiency
+Time2 × l1en:Lexical stress × DELE_z (γ20)	0.302	.007		increased bowing for 
+
+
+
+# L2 use effects
+
+
+l1ma (γ01)									−0.190	.047		Mand predicted less
+Time1 × l1ma (γ31)							−1.072	< .001		decreased slope
+Time2 × Lexical stress (γ12)				0.274	.032		change from parox to ox, increased the bowing
+Time1 × use_z (γ22)							0.533	.014		more use, more prediction
+Time1 × l1ma:Lexical stress × use_z (γ30)	0.245	.031		increased slope for man in one stress condition as a function of use
+Time2 × l1ma:Lexical stress × use_z (γ11)	−0.323	.004		decreased bowing for mand in one stress condition as a function of use
+Time3 × l1ma:Lexical stress × use_z (γ31)	−0.426	< .001		sharper vertices for mand in one stress condition as a function of use
+
+
+
+# Efectos claros
+- Proficiency increases prediction: more and faster (for both groups)
+- Stress: oxytones predicted later, but faster
+- Use increases prediction
+- Mandarin speakers predict less, and slower??
+
+

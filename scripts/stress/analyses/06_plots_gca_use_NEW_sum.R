@@ -10,6 +10,7 @@
 # Source scripts and load models ----------------------------------------------
 
 source(here::here("scripts", "00_load_libs.R"))
+source(here::here("scripts", "01_helpers.R"))
 source(here::here("scripts", "02_load_data.R"))
 
 # Get path to saved models 
@@ -157,9 +158,11 @@ prof_sum <- fits_all_l2_dele %>%
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
                      labels = c("-200", "0", "200", "400", "600")) +
   scale_color_brewer(palette = "Set1", name = "Condition") +
+  scale_linetype_manual(values=c("solid", "dashed", 'dotted')) +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
-  theme_grey(base_size = 10, base_family = "Times") #+ legend_adj_3
+  theme_grey(base_size = 10, base_family = "Times") + legend_adj_2 +
+  theme(legend.position = c(0.1, 0.70))
 
 prof_sum_cond <- fits_all_l2_dele %>%
   mutate(Proficiency = as.factor(DELE_z),
@@ -177,9 +180,11 @@ prof_sum_cond <- fits_all_l2_dele %>%
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
                      labels = c("-200", "0", "200", "400", "600")) +
   scale_color_brewer(palette = "Set1", name = "Condition") +
+  scale_linetype_manual(values=c("solid", "dashed", 'dotted')) +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
-  theme_grey(base_size = 10, base_family = "Times") #+ legend_adj_3
+  theme_grey(base_size = 10, base_family = "Times") + legend_adj_2 +
+  theme(legend.position = c(0.12, 0.70))
 
 
 # L2 use
@@ -199,13 +204,39 @@ use_sum <- fits_all_l2_use %>%
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
                      labels = c("-200", "0", "200", "400", "600")) +
   scale_color_brewer(palette = "Set1", name = "Condition") +
+  scale_linetype_manual(values=c("solid", "dashed", 'dotted')) +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
-  theme_grey(base_size = 10, base_family = "Times")
+  theme_grey(base_size = 10, base_family = "Times") + legend_adj_2 +
+  theme(legend.position = c(0.1, 0.70))
 
-ggsave(paste0(figs_path, "/use_sum_cond.png"), use_sum, width = 200,
+use_sum_cond <- fits_all_l2_use %>%
+  mutate(`L2 use` = as.factor(use_z),
+         Stress = if_else(condition_sum == 1, "Present", "Past"),
+         Stress = fct_relevel(Stress, 'Present'),
+         L1 = if_else(l1_sum == 1, "Mandarin Chinese", "English"),
+         L1 = fct_relevel(L1, "English")) %>%
+  ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
+                fill = L1, color = L1, lty = `L2 use`)) +
+  facet_grid(. ~ Stress) +
+  geom_hline(yintercept = 0, size = .5, color = "grey40", linetype = 'dotted') +
+  geom_vline(xintercept = 4, size = .5, color = "grey40", linetype = 'dotted') +
+  geom_ribbon(alpha = 0.2, color = NA, show.legend = F) +
+  geom_line(size = 0.35) +
+  scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
+                     labels = c("-200", "0", "200", "400", "600")) +
+  scale_color_brewer(palette = "Set1", name = "Condition") +
+  scale_linetype_manual(values=c("solid", "dashed", 'dotted')) +
+  labs(x = "Time (ms) relative to target syllable offset",
+       y = "Empirical logit of looks to target") +
+  theme_grey(base_size = 10, base_family = "Times") + legend_adj_2 +
+  theme(legend.position = c(0.12, 0.70))
+
+ggsave(paste0(figs_path, "/use_sum.png"), use_sum, width = 180,
        height = 120, units = "mm", dpi = 600)
-ggsave(paste0(figs_path, "/prof_sum.png"), prof_sum, width = 150,
+ggsave(paste0(figs_path, "/use_sum_cond.png"), use_sum_cond, width = 180,
        height = 120, units = "mm", dpi = 600)
-ggsave(paste0(figs_path, "/prof_sum_cond.png"), prof_sum_cond, width = 150,
+ggsave(paste0(figs_path, "/prof_sum.png"), prof_sum, width = 180,
+       height = 120, units = "mm", dpi = 600)
+ggsave(paste0(figs_path, "/prof_sum_cond.png"), prof_sum_cond, width = 180,
        height = 120, units = "mm", dpi = 600)

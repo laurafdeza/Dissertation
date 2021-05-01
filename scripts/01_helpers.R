@@ -321,7 +321,7 @@ legend_adj_2 <- theme(
   legend.position = c(0.05, 0.90),
   legend.key = element_blank(),
   legend.background = element_blank(),
-  strip.background = element_blank(),
+  # strip.background = element_blank(),
   axis.title.y = element_text(size = rel(.9), hjust = 0.95),
   axis.title.x = element_text(size = rel(.9)),
   legend.key.size = unit(0.75, 'lines'),

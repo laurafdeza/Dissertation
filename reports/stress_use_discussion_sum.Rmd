@@ -94,6 +94,28 @@ report_row <- function(row_name) report_fixef_row(params, row_name)
 ```
 
 
+```{r, table-mon-params, warning=F}
+
+# Get full mod and make it pretty for the table
+pretty_fixed_effects <- gca_mon_mods$gca_mod_mon_final %>%  
+  tidy_lme4() %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) 
+
+# Include gammas (Gij) after each parameter name
+subs <- c(paste0(0:2, 0))
+var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+pretty_fixed_effects$Parameter %<>% paste(., var_labels)
+
+pretty_fixed_effects %>% 
+  select(-effect) %>%
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+
+```
+
 We conducted a GCA on SS and took them as reference when discussing our findings.
 Figure 4 shows the GCA model fit for SS.
 The GCA intercept for SS was positive and significant, indicating this group was anticipating at suffix onset.
@@ -478,7 +500,7 @@ Appendix 0: Growth curve model fixed effects L2 (WM)
 ## Random effects
 
 ```{r, 'ranef-table-mon', results = "asis"}
-ranef_table <- gca_mon_mods$gca_mod_mon_base %>% 
+ranef_table <- gca_mon_mods$gca_mod_mon_final %>% 
   tidy_ranef_summary %>% 
   # Format the numbers
   mutate_each(funs(format_fixef_num), vcov, sdcor) %>%

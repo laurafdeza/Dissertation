@@ -1,0 +1,244 @@
+---
+title: "Phonological and phonetic transfer in L2 prediction based on lexical stress"
+subtitle: "ISB13"
+author: "Laura Fernandez Arroyo, Nuria Sagarra & Cristina Lozano-Argüelles"
+date: "July 11, 2021"
+output: 
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["hygge", "rutgers-fonts", "rutgers"]
+    nature:
+      beforeInit: "macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+# L2 phonological acquisition
+
+ - Speech Learning Model <font size="-1">(Flege, 1995)</font>
+ - Perceptual Assimilation Model for L2 <font size="-1">(Best, 1995)</font>
+ - Second Language Linguistic Perception <font size="-1">(Escudero, 2005)</font>
+
+--
+
+## Prosody, intonation...?
+Lexical stress <font size="-1">(Dupoux et al., 2008)</font> </br>
+Lexical tones <font size="-1">(Hao, 2012; Wang, Sereno, & Jongman, 2006)</font>
+
+???
+Wang, Y., Sereno, J. A., & Jongman, A. (2006). L2 acquisition and processing of Mandarin tones. In P. Li, L. H. Tan, E. Bates, & O. J. L. Tzeng (Eds.), The handbook of East Asian Psycholinguistics (pp. 250-256). DOI:10.1017/CBO9780511550751.024. 
+
+---
+
+# L1 anticipation
+
+## Central Swedish
+
+Low tone + singular: _fisken_ 'fish<sub>[SG]</sub>'     
+High tone + plural: _fiskar_ 'fish<sub>[PL]</sub>' <font size="-1">     
+(Roll et al., 2010)</font>
+
+## Spanish
+First syllable stressed + present: _canta_ 's/he sings'     
+First syllable unstressed + preterite: _cantó_ 's/he sang' <font size="-1">     
+(Sagarra & Casillas, 2018)</font>
+
+---
+
+# L2 speakers
+
+.pull-left[
+.content-box-green[
+- L2 proficiency <font size="-1">(Schremm et al., 2016, Gosselke Berthelsen et al., 2018)</font>
+- Syllabic structure <font size="-1">(Sagarra & Casillas, 2018)</font>
+- Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font>
+]]
+
+--
+
+.pull-right[
+.content-box-red[
+- L1 transfer <font size="-1">(Gosselke Berthelsen et al., 2020)</font>
+- L2 use
+]]
+
+---
+
+# Research Questions
+
+##Do Spanish monolinguals, and intermediate and advanced Mandarin and English learners of Spanish use lexical stress to anticipate verbal suffixes in Spanish? 
+
+##Does L1 transfer cause differences in their prediction and how?
+
+##Do L2 proficiency and use modulate the ability differently and how?
+
+
+
+---
+
+# Linguistic phenomena
+</br>
+## 
+
+## Lexical stress
+
+ _TÉRmino_ 'term'     
+ _terMIno_ 'I finish' (paroxytone) </br>
+ _termiNÓ_ 's/he finished' (oxytone)
+ 
+## Tone
+
+???
+|   Spanish           |   English           | Mandarin Chinese  |
+|---------------------:---------------------:-------------------|
+|   Lexical stress    |   Lexical stress    |   Lexical tones   |
+
+---
+
+# Methods
+
+## Participants
+
+- 30 monolinguals speakers of Spanish     
+- 61 L1 English-L2 Spanish    
+- 64 L1 Mandarin Chinese-L2 Spanish    
+
+???
+Right-handed
+No bil education
+Monolingual regions and families
+Studies up to high school at least
+At least two months living in Spanish-speaking countries
+Late L2 learners
+L2 use/week
+
+--
+
+## Materials and procedure
+
+- Spanish Proficiency Test
+- Sociolinguistic Background Questionnaire
+- Linguistic anticipation task
+
+---
+
+# Linguistic anticipation task
+
+Visual-world paradigm
+
+```{r knitr, include=TRUE, echo=FALSE, warning=FALSE}
+library(knitr)
+include_graphics("./vwp.png", dpi = 120) 
+```
+
+???
+Close tracking of time
+
+---
+
+# Results
+
+Monolinguals
+
+.center[
+```{r, include=TRUE, echo=FALSE, out.width="80%"}
+include_graphics("./figs/stress/gca/stress_mon.png", dpi = 150)
+```
+]
+
+---
+
+# Results
+
+Bilinguals (proficiency)
+
+.center[
+```{r, include=TRUE, echo=FALSE, out.width="90%"}
+include_graphics("./figs/stress/gca/prof_sum_cond.png", dpi = 150)
+```
+]
+
+---
+
+# Results
+
+Bilinguals (L2 use)
+
+.center[
+```{r, include=TRUE, echo=FALSE, out.width="90%"}
+include_graphics("./figs/stress/gca/use_sum_cond.png", dpi = 150)
+```
+]
+
+---
+
+# Summary and Discussion
+
+- English speakers predicted more and faster than Mandarin Chinese speakers
+  - Phonological transfer more helpful than phonetic transfer
+
+---
+
+# Summary and Discussion
+
+- English speakers predicted more and faster than Mandarin Chinese speakers
+  - Phonological transfer more helpful than phonetic transfer </br> </br>
+- Oxytones easier to anticipate in either case
+  - Developmental process
+  - Fewer competitors
+
+---
+
+# Summary and Discussion
+
+- English speakers predicted more and faster than Mandarin Chinese speakers
+  - Phonological transfer more helpful than phonetic transfer </br> </br>
+- Oxytones easier to anticipate in either case
+  - Developmental process
+  - Fewer competitors </br> </br>
+- Higher proficiency facilitated more and faster prediction
+- More extensive use of Spanish facilitated faster prediction
+  - Language experience helps regardless of L1, but not all language experience helps equally
+
+---
+
+# Summary and Discussion
+
+- English: more use contributes to later but faster prediction of oxytones
+- Mandarin Chinese: more use contributes to later but faster prediction of paroxytones
+  - Reliance on L1 for its more typical patterns
+  - More options to consider, but more certainty
+
+---
+
+# Summary and Discussion
+
+- English: more use contributes to later but faster prediction of oxytones
+- Mandarin Chinese: more use contributes to later but faster prediction of paroxytones
+  - Reliance on L1 for its more typical patterns
+  - More options to consider, but more certainty </br> </br>
+- Bilinguals anticipate less than monolinguals
+  - More cognitive difficulty regardless of language experience
+
+---
+
+# Future studies
+
+- Other types of L1 transfer
+- Training vs. L1 transfer
+
+---
+
+# Conclusion
+
+.center[
+Models of L2 phonological acquisition should account for non-phonemic phenomena as well as language experience factors
+]
+---
+
+class: title-slide-section-red, center, middle
+
+# Thank you!
+
+laura.fdeza@rutgers.edu

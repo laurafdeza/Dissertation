@@ -137,7 +137,7 @@ corsi_stats_group <- agg_vis %>%
             corsi_sd = sd(corsi_pt))
 
 print(corsi_stats_group)
-# l1    ospan_mean  ospan_sd
+# l1    corsi_mean  corsi_sd
 
 # 1 es        4.77      1.16 EN 
 # 2 ms        4.5       1.02 MA

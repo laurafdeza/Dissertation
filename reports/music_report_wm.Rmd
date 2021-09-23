@@ -1,0 +1,976 @@
+---
+title             : "The title"
+shorttitle        : "Title"
+
+author: 
+  - name          : "Laura Fernandez Arroyo"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "Postal address"
+    email         : "my@email.com"
+  - name          : "Nuria Sagarra"
+    affiliation   : "1"
+
+affiliation:
+  - id            : "1"
+    institution   : "Rutgers University"
+
+
+
+keywords          : ""
+wordcount         : ""
+
+
+
+floatsintext      : yes
+figurelist        : yes
+tablelist         : yes
+footnotelist      : yes
+linenumbers       : yes
+mask              : yes
+draft             : yes
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_word
+---
+
+```{r setup, include = FALSE}
+library("papaja")
+library("officer")
+library("flextable")
+```
+
+```{r analysis-preferences}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed, warning = FALSE)
+```
+
+```{r, 'source-scripts-models'}
+source(here::here("scripts", "02_load_data.R"))
+source(here::here("scripts", "01_helpers.R"))
+
+# Get path to saved models
+gca_mods_path  <- here("mods", "music", "gca", "continuous", "wm")
+
+# Load models as list and store full mod to global env
+load(paste0(gca_mods_path, "/en_mods.Rdata"))
+load(paste0(gca_mods_path, "/ma_preds.Rdata"))
+load(paste0(gca_mods_path, "/es_mods.Rdata"))
+load(paste0(gca_mods_path, "/model_preds.Rdata"))
+
+```
+
+
+
+Last updated on `r Sys.Date()`. 
+
+
+# ENGLISH
+
+```{r, 'plot-en-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations for English native speakers during the analysis window for the proficiency mean, one standard deviation below and one standard deviation above. Lines represent model estimates. The transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the verbs' first syllable."}
+knitr::include_graphics(
+  here("figs", "music", "gca", 'wm', "gca_en.png")
+)
+```
+
+
+
+```{r, warning=F}
+
+# Get full mod and make it pretty for the table
+pretty_fixed_effects_pitch <- en_mods$gca_mod_en_final %>% 
+  tidy_lme4() %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) 
+
+# Include gammas (Gij) after each parameter name
+subs <- c(paste0(0:3, 0), paste0(0:2, 1))
+var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+pretty_fixed_effects_pitch$Parameter %<>% paste(., var_labels)
+
+pretty_fixed_effects_pitch %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr"))
+
+```
+
+Appendix 1: Growth curve model fixed effects for English speakers.
+
+(No effects of pitch or rhythm)
+
+
+
+```{r, table-props_en, eval=T, echo=F}
+
+border_1 <- fp_border(width = 1.5)
+border_2 <- fp_border(width = 0.75)
+
+model_preds$syll_onset_preds_en_pitch %>% 
+  mutate(prob = mean(prob),
+         prob_lb = mean(prob_lb),
+         prob_ub = mean(prob_ub)) %>%
+  select(Proficiency = prof_std,
+         Probability = prob, LB = prob_lb, UB = prob_ub) %>% 
+  distinct() %>%
+  flextable() %>% 
+  width(., j = c(2, 3, 4), width = c(1.1, 1.3, 1.1)) %>% 
+  padding(padding = 0, part = "all") %>% 
+  font(., fontname = "Times", part = "all") %>%
+  fontsize(., size = 11) %>% 
+  border_remove(.) %>%  
+  border(., part = "header", 
+            border.top = border_1,
+            border.bottom = border_2) %>% 
+  hline_bottom(., part = "body", border = border_1)
+```
+
+*Table 1*: Model estimates for probability of target fixations ±SE at 200 ms after the target syllable offset when pitch anticipation abilities taken into account.
+
+
+
+
+
+# MANDARIN CHINESE SPEAKERS
+
+## PITCH
+
+```{r, 'plot-en-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations for Mandarin Chinese native speakers during the analysis window for the proficiency mean, one standard deviation below and one standard deviation above (y-axis on the right). Lines represent model estimates. The transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the verbs' first syllable."}
+knitr::include_graphics(
+  here("figs", "music", "gca", 'wm', "gca_pitch_ma.png")
+)
+```
+
+
+
+```{r, warning=F}
+
+# Get full mod and make it pretty for the table
+pretty_fixed_effects_pitch <- ma_mods$gca_mod_ma_pitch_final %>% 
+  tidy_lme4() %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) 
+
+# Include gammas (Gij) after each parameter name
+subs <- c(paste0(0:3, 0), paste0(0:1, 1))
+var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+pretty_fixed_effects_pitch$Parameter %<>% paste(., var_labels)
+
+pretty_fixed_effects_pitch %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr"))
+
+```
+
+
+
+## RHYTHM
+
+```{r, 'plot-en-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations for Mandarin Chinese native speakers during the analysis window for the proficiency mean, one standard deviation below and one standard deviation above (y-axis on the right). Lines represent model estimates. The transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the verbs' first syllable."}
+knitr::include_graphics(
+  here("figs", "music", "gca", 'wm', "gca_rhythm_ma.png")
+)
+```
+
+
+
+```{r, warning=F}
+
+# Get full mod and make it pretty for the table
+pretty_fixed_effects_pitch <- ma_mods$gca_mod_ma_rhythm_final %>% 
+  tidy_lme4() %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) 
+
+# Include gammas (Gij) after each parameter name
+subs <- c(paste0(0:3, 0), paste0(0:1, 1))
+var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+pretty_fixed_effects_pitch$Parameter %<>% paste(., var_labels)
+
+pretty_fixed_effects_pitch %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr"))
+
+```
+
+
+
+
+
+
+# SPANISH SPEAKERS
+
+## PITCH
+
+```{r, 'plot-en-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations for Spanish native speakers during the analysis window for the proficiency mean, one standard deviation below and one standard deviation above (y-axis on the right). Lines represent model estimates. The transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the verbs' first syllable."}
+knitr::include_graphics(
+  here("figs", "music", "gca", 'wm', "gca_pitch_mon.png")
+)
+```
+
+
+
+```{r, warning=F}
+
+# Get full mod and make it pretty for the table
+pretty_fixed_effects_pitch <- ss_mods$gca_mod_ss_pitch_final %>% 
+  tidy_lme4() %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) 
+
+# Include gammas (Gij) after each parameter name
+subs <- c(paste0(0:3, 0), paste0(0:1, 1))
+var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+pretty_fixed_effects_pitch$Parameter %<>% paste(., var_labels)
+
+pretty_fixed_effects_pitch %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr"))
+
+```
+
+
+
+## RHYTHM
+
+```{r, 'plot-en-preds', echo=FALSE, fig.cap="Growth curve estimates of target fixations for Spanish native speakers during the analysis window for the proficiency mean, one standard deviation below and one standard deviation above (y-axis on the right). Lines represent model estimates. The transparent ribbons represent ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the verbs' first syllable."}
+knitr::include_graphics(
+  here("figs", "music", "gca", 'wm', "gca_rhythm_mon.png")
+)
+```
+
+
+
+```{r, warning=F}
+
+# Get full mod and make it pretty for the table
+pretty_fixed_effects_pitch <- ss_mods$gca_mod_ss_rhythm_final %>% 
+  tidy_lme4() %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) 
+
+# Include gammas (Gij) after each parameter name
+subs <- c(paste0(0:3, 0))
+var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+pretty_fixed_effects_pitch$Parameter %<>% paste(., var_labels)
+
+pretty_fixed_effects_pitch %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr"))
+
+```
+
+
+
+# Tables             PITCH
+
+## Model estimates at target syllable offset  
+
+
+
+
+
+
+
+## Fixed effects
+
+```{r, warning=F}
+
+# Get full mod and make it pretty for the table
+pretty_fixed_effects_pitch <- pitch_mods$gca_full_mod_pitch_int_2 %>% 
+  tidy_lme4() %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) 
+
+# Include gammas (Gij) after each parameter name
+subs <- c(paste0(0:3, 0), paste0(0:3, 1), 
+          paste0(0:3, 2), paste0(0:3, 3), 
+          paste0(0:3, 4), paste0(0:3, 5), 
+          paste0(0:3, 6))
+var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+pretty_fixed_effects_pitch$Parameter %<>% paste(., var_labels)
+
+pretty_fixed_effects_pitch %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr"))
+
+```
+
+Appendix 1: Growth curve model fixed effects when pitch is a predictor.
+
+
+
+
+
+
+## Random effects
+
+```{r, 'ranef-table-pitch', results = "asis"}
+ranef_table_pitch <- pitch_mods$gca_full_mod_pitch_int_2 %>% 
+  tidy_ranef_summary %>% 
+  # Format the numbers
+  mutate_each(funs(format_fixef_num), vcov, sdcor) %>%
+  mutate_each(funs(format_cor), -var1, -grp, -vcov, -sdcor) %>%
+  sort_ranef_grps %>%
+  # Format variable names and group names
+  mutate(var1 = fix_param_names(var1) %>% blank_nas,
+         grp =  blank_same_as_last(grp) %>% fix_param_names) %>% 
+  rename(Group = grp, Parameter = var1, Variance = vcov, SD = sdcor)
+
+# Correlation columns need names with characters so that pandoc can align them
+names(ranef_table_pitch)[5:9] <- 
+  c("Correlations", "&nbsp;", " &nbsp;", "  &nbsp;", "  &nbsp;")
+
+ranef_table_pitch %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("llrrrrrr"))
+```
+
+Appendix 2: Growth curve model random effects.
+
+
+
+
+## Pairwise comparisons
+
+```{r, 'learner-comparison-en-pitch'}
+# AES vs. IES
+
+# make table for printing
+pairwise_comp_en_pitch <- pitch_mods$gca_full_mod_pitch_int_2_aes %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ies") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp_en_pitch$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
+pairwise_comp_en_pitch <- tibble::column_to_rownames(pairwise_comp_en_pitch, 'subscript')
+pairwise_comp_en_pitch$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise_en_pitch <- function(row_name) report_fixef_row(pairwise_comp_en_pitch, row_name)
+
+```
+
+
+```{r, pairwise-comp-table, results='asis', eval=T}
+
+# Make table for appendix
+pretty_pairwise_table_en_pitch <- pitch_mods$gca_full_mod_pitch_int_2_aes %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "IE") == TRUE) 
+
+pretty_pairwise_table_en_pitch$Parameter %<>% str_replace("Group AE", "AE - IE")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:3, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table_en_pitch$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table_en_pitch %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+Appendix 3: Pairwise comparisons between EN learner groups (AE reference) when pitch is a predictor. 
+
+
+```{r, 'learner-comparison-ma-pitch'}
+########### AMS and IMS
+
+# make table for printing
+pairwise_comp_ma_pitch <- pitch_mods$gca_full_mod_pitch_int_2_ams %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ims") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp_ma_pitch$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
+pairwise_comp_ma_pitch <- tibble::column_to_rownames(pairwise_comp_ma_pitch, 'subscript')
+pairwise_comp_ma_pitch$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise_ma_pitch <- function(row_name) report_fixef_row(pairwise_comp_ma_pitch, row_name)
+
+```
+
+
+```{r, pairwise-comp-table-ma-pitch, results='asis', eval=T}
+
+# Make table for appendix
+pretty_pairwise_table_ma_pitch <- pitch_mods$gca_full_mod_pitch_int_2_ams %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "IM") == TRUE) 
+
+pretty_pairwise_table_ma_pitch$Parameter %<>% str_replace("Group AM", "AM - IM")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:3, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table_ma_pitch$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table_ma_pitch %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+Appendix 4: Pairwise comparisons between MA learner groups (AM reference) when pitch is a predictor. 
+
+
+```{r, 'learner-comparison-adv-pitch'}
+########### AES and AMS
+
+# make table for printing
+pairwise_comp_adv_pitch <- pitch_mods$gca_full_mod_pitch_int_2_aes %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ams") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp_adv_pitch$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
+pairwise_comp_adv_pitch <- tibble::column_to_rownames(pairwise_comp_adv_pitch, 'subscript')
+pairwise_comp_adv_pitch$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise_adv_pitch <- function(row_name) report_fixef_row(pairwise_comp_adv_pitch, row_name)
+
+```
+
+
+```{r, pairwise-comp-table-adv-pitch, results='asis', eval=T}
+# Make table for appendix
+pretty_pairwise_table_adv_pitch <- pitch_mods$gca_full_mod_pitch_int_2_aes %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "AM") == TRUE) 
+
+pretty_pairwise_table_adv_pitch$Parameter %<>% str_replace("Group AE", "AE - AM")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:3, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table_adv_pitch$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table_adv_pitch %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+Appendix 5: Pairwise comparisons between advanced learner groups when pitch is a predictor (AE reference). 
+
+
+```{r, 'learner-comparison-int-pitch'}
+########### IMS and IES
+
+# make table for printing
+pairwise_comp_int_pitch <- pitch_mods$gca_full_mod_pitch_int_2_ies %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ims") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp_int_pitch$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
+pairwise_comp_int_pitch <- tibble::column_to_rownames(pairwise_comp_int_pitch, 'subscript')
+pairwise_comp_int_pitch$subscript <- c(paste0(0:3, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise_int_pitch <- function(row_name) report_fixef_row(pairwise_comp_int_pitch, row_name)
+
+```
+
+
+```{r, pairwise-comp-table-int-pitch, results='asis', eval=T}
+# Make table for appendix
+pretty_pairwise_table_int_pitch <- pitch_mods$gca_full_mod_pitch_int_2_ies %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "IM") == TRUE) 
+
+pretty_pairwise_table_int_pitch$Parameter %<>% str_replace("Group IE", "IE - IM")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:3, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table_int_pitch$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table_int_pitch %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+Appendix 6: Pairwise comparisons between intermediate learner groups when pitch is a predictor (IE reference). 
+
+
+
+
+
+# Results
+
+```{r, 'write-up-prep-pitch', warning=F, eval=T}
+# Prepare table to support easy in-line printing of equations
+# params <- pretty_fixed_effects %>% 
+#  rename(B = Estimate)
+
+params <- pitch_mods$gca_full_mod_pitch_int_2 %>% 
+  tidy_lme4() %>% 
+  rename(B = Estimate)
+
+params$subscript <- 
+  c(paste0(0:5, 0), paste0(0:5, 1), 
+    paste0(0:5, 2), paste0(0:5, 3), 
+    paste0(0:5, 4), paste0(0:4, 5), 
+    paste0(0:4, 6))
+
+params <- tibble::column_to_rownames(params, 'subscript')
+
+params$subscript <- 
+  c(paste0(0:5, 0), paste0(0:5, 1), 
+    paste0(0:5, 2), paste0(0:5, 3), 
+    paste0(0:5, 4), paste0(0:4, 5), 
+    paste0(0:4, 6))
+
+# Shortcut for inline reporting from the above table
+report_row <- function(row_name) report_fixef_row(params, row_name)
+
+# Pre-calculate intercept as proportion
+b0 <- params$B[params$subscript == "00"] %>% as.numeric
+b0_prop <- b0 %>% inv_logit %>% round(2) %>% remove_leading_zero
+
+```
+
+
+Probability estimates in both the pitch and the rhythm GCA models suggest that all groups were fixating on the target at target syllable offset, except for IM, who were at chance level.
+We will first explain the results for the model containing pitch anticipation ability as a predictor.
+Appendix X contains the full summary for the pitch GCA model.
+Interactions up to the quadratic term were maintained for the final model (*&beta;*(4) = 11.5755, *p*  = 0.021).
+
+The log odds of fixating on the target for the SS at the intercept were *&gamma;*~00~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[1,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[1,4]`, *t* = `r pretty_fixed_effects_pitch[1,5]`, *p* = `r pretty_fixed_effects_pitch[1,6]`, suggesting that SS were anticipating the tense suffix at target syllable offset.
+There were main effects of the linear (*&gamma;*~30~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[4,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[4,4]`, *t* = `r pretty_fixed_effects_pitch[4,5]`, *p* = `r pretty_fixed_effects_pitch[4,6]`) and cubic terms (*&gamma;*~11~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[6,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[6,4]`, *t* = `r pretty_fixed_effects_pitch[6,5]`, *p* = `r pretty_fixed_effects_pitch[6,6]`).
+These values indicate that L2 groups tended to anticipate less in advanced than SS and that there was variability in how fast they increased gaze fixations on the target form once they could anticipate.
+There was a main effect across groups (AE: *&gamma;*~21~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[7,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[7,4]`, *t* = `r pretty_fixed_effects_pitch[7,5]`, *p* = `r pretty_fixed_effects_pitch[7,6]`; AM: *&gamma;*~31~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[8,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[8,4]`, *t* = `r pretty_fixed_effects_pitch[8,5]`, *p* = `r pretty_fixed_effects_pitch[8,6]`; IE: *&gamma;*~02~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[9,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[9,4]`, *t* = `r pretty_fixed_effects_pitch[9,5]`, *p* = `r pretty_fixed_effects_pitch[9,6]`; IM: *&gamma;*~12~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[10,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[10,4]`, *t* = `r pretty_fixed_effects_pitch[10,5]`, *p* = `r pretty_fixed_effects_pitch[10,6]`), demonstrating that all L2 groups anticipated less than SS. These trend is reflected on the curve for each group in Figure X.
+There was a main effect of stress on the quadratic time term (*&gamma;*~03~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[13,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[13,4]`, *t* = `r pretty_fixed_effects_pitch[13,5]`, *p* = `r pretty_fixed_effects_pitch[13,6]`), meaning that the bowness of the curve between both tense conditions differs.
+The different bowness suggests that preterit was easier to anticipate, as Figure X shows.
+There was also an effect of group AE on the linear term (*&gamma;*~14~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[18,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[18,4]`, *t* = `r pretty_fixed_effects_pitch[18,5]`, *p* = `r pretty_fixed_effects_pitch[18,6]`).
+The positive value indicates that the slope for that group was steeper.
+A steeper value suggests it was primarily AE who anticipated more abruptly.
+That is, AE increased fixations on the target after starting to anticipate faster than any other group.
+There was also an effect of group AE on the quadratic term (*&gamma;*~15~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[22,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[22,4]`, *t* = `r pretty_fixed_effects_pitch[22,5]`, *p* = `r pretty_fixed_effects_pitch[22,6]`) but also of the other L2 groups (AM: *&gamma;*~25~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[23,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[23,4]`, *t* = `r pretty_fixed_effects_pitch[23,5]`, *p* = `r pretty_fixed_effects_pitch[23,6]`; IE: *&gamma;*~35~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[24,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[24,4]`, *t* = `r pretty_fixed_effects_pitch[24,5]`, *p* = `r pretty_fixed_effects_pitch[24,6]`; IM: *&gamma;*~15~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[25,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[25,4]`, *t* = `r pretty_fixed_effects_pitch[25,5]`, *p* = `r pretty_fixed_effects_pitch[25,6]`).
+The positive values indicate the curve is more bowed for the L2 groups, which means they started anticipating later than SS.
+
+Similar to the lack of pitch processing effects in the model estimates, pairwise comparisons showed no effect of pitch abilities across L1s.
+In the intermediate groups, there was only a difference in the intercept (*&gamma;*~08~&nbsp;=&nbsp;`r pretty_pairwise_table_int_pitch[1,3]`, SE =&nbsp;`r pretty_pairwise_table_int_pitch[1,4]`, *t* = `r pretty_pairwise_table_int_pitch[1,5]`, *p* = `r pretty_pairwise_table_int_pitch[1,6]`), suggesting that IM anticipated less than IE.
+In the advanced groups there was only an effect of group in the linear term (*&gamma;*~18~&nbsp;=&nbsp;`r pretty_pairwise_table_adv_pitch[2,3]`, SE =&nbsp;`r pretty_pairwise_table_adv_pitch[2,4]`, *t* = `r pretty_pairwise_table_adv_pitch[2,5]`, *p* = `r pretty_pairwise_table_adv_pitch[2,6]`), indicating that AM increased gaze fixations on the target verb slower than AE did.
+
+While there is a lack of a main effect of pitch when L2 groups are compared to the SS baseline and across L1s, pairwise comparisons across proficiency do reveal that pitch abilities may result in anticipation ability differences at different proficiency stages.
+Across proficiency, there was an interaction of pitch abilities x lexical stress in the L1 English group (*&gamma;*~38~&nbsp;=&nbsp;`r pretty_pairwise_table_en_pitch[4,3]`, SE =&nbsp;`r pretty_pairwise_table_en_pitch[4,4]`, *t* = `r pretty_pairwise_table_en_pitch[4,5]`, *p* = `r pretty_pairwise_table_en_pitch[4,6]`), such that IE with better pitch processing abilities anticipated better the preterit and worse the preterit. In contrast, AE with better pitch processing abilities anticipated the present better, but performed similarly to less skilled individuals for pitch in the preterit tense. 
+In the L1 English group there was also an interaction lexical stress x pitch in the linear term (*&gamma;*~09~&nbsp;=&nbsp;`r pretty_pairwise_table_en_pitch[5,3]`, SE =&nbsp;`r pretty_pairwise_table_en_pitch[5,4]`, *t* = `r pretty_pairwise_table_en_pitch[5,5]`, *p* = `r pretty_pairwise_table_en_pitch[5,6]`).
+This interaction suggests that the slope of fixations on the target was steeper in AE than in IE, especially in the present tense, where the anticipation abilities were related to pitch processing abilities in opposite directions.
+The model curves in Figure X reflect more clearly that individuals of all pitch abilities in AE had a similar slope steepness, but individuals in IE had a steeper slope if they had lower pitch processing abilities.
+The L1 Mandarin Chinese groups also reveal some differences in terms of pitch.
+Before that, however, we should note that IM anticipated less than AM (*&gamma;*~08~&nbsp;=&nbsp;`r pretty_pairwise_table_ma_pitch[1,3]`, SE =&nbsp;`r pretty_pairwise_table_ma_pitch[1,4]`, *t* = `r pretty_pairwise_table_ma_pitch[1,5]`, *p* = `r pretty_pairwise_table_ma_pitch[1,6]`).
+The interaction of pitch in this L1 happened with lexical stress in the quadratic term (*&gamma;*~19~&nbsp;=&nbsp;`r pretty_pairwise_table_ma_pitch[6,3]`, SE =&nbsp;`r pretty_pairwise_table_ma_pitch[6,4]`, *t* = `r pretty_pairwise_table_ma_pitch[6,5]`, *p* = `r pretty_pairwise_table_ma_pitch[6,6]`).
+This interaction points that IM anticipated more smoothly, especially in the present tense.
+In the preterit tense there was more variability in IM, where higher pitch processing abilities was associated with higher speech anticipation abilities were associated with slower pitch processing.
+AM, in contrast, reveals an opposite tendency, as shown in Figure X.
+The tendencies in the present tense were the contrary.
+Slower pitch processing was linked to earlier anticipation in the present tense in AM, but IM showed little variability.
+
+Lastly, the probabilities in the model reflect the trends offered by the estimates: SS's probabilities are quite homogeneous for all pitch scores in both tenses.
+The longer AE and AM need to process pitch, the lower the probability for present tense prediction and the higher for preterit tense prediction. IE and IM, in contrast, show the reverse relationship.
+
+
+
+
+
+# Tables          RHYTHM
+
+## Model estimates at target syllable offset  
+
+
+```{r, table-target-offset-props-rhythm, eval=T, echo=F}
+
+border_1 <- fp_border(width = 1.5)
+border_2 <- fp_border(width = 0.75)
+
+model_preds$target_offset_preds_rhythm %>% 
+  mutate(stress = if_else(stress == 1, "paroxytone", "oxytone"),
+         group = fct_relevel(group, "SS", 'AE', 'AM', 'IE', 'IM')) %>% 
+  group_by(group, stress) %>%
+  filter(., rhythm_dev == max(rhythm_dev) |
+           rhythm_dev == min(rhythm_dev)) %>%
+  ungroup() %>%
+  arrange(group, desc(stress), rhythm_dev) %>%    
+  mutate(group = blank_same_as_last(as.character(group))) %>% 
+  select(Group = group, `Lexical stress` = stress, Rhythm = rhythm_dev, 
+         Probability = prob, LB = prob_lb, UB = prob_ub) %>% 
+  flextable() %>% 
+  width(., j = c(2, 3, 4), width = c(1.1, 1.3, 1.1)) %>% 
+  padding(padding = 0, part = "all") %>% 
+  font(., fontname = "Times", part = "all") %>%
+  fontsize(., size = 11) %>% 
+  border_remove(.) %>%  
+  border(., part = "header", 
+            border.top = border_1,
+            border.bottom = border_2) %>% 
+  hline_bottom(., part = "body", border = border_1)
+```
+
+
+*Table 1*: Model estimates for probability of target fixations ±SE at 200 ms 
+after the target syllable offset when rhythm anticipation abilities are taken into account.
+
+
+
+
+## Fixed effects
+
+```{r, warning=F}
+
+# Get full mod and make it pretty for the table
+pretty_fixed_effects_rhythm <- rhythm_mods$gca_full_mod_rhythm_int_3 %>% 
+  tidy_lme4() %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) 
+
+# Include gammas (Gij) after each parameter name
+subs <- c(paste0(0:3, 0), paste0(0:3, 1), 
+          paste0(0:3, 2), paste0(0:3, 3), 
+          paste0(0:3, 4), paste0(0:3, 5), 
+          paste0(0:3, 6))
+var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+pretty_fixed_effects_rhythm$Parameter %<>% paste(., var_labels)
+
+pretty_fixed_effects_rhythm %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+
+
+Appendix 1: Growth curve model fixed effects when rhythm is a predictor.
+
+
+
+
+
+
+## Random effects
+
+```{r, 'ranef-table-rhythm', results = "asis"}
+ranef_table_rhythm <- rhythm_mods$gca_full_mod_rhythm_int_3 %>% 
+  tidy_ranef_summary %>% 
+  # Format the numbers
+  mutate_each(funs(format_fixef_num), vcov, sdcor) %>%
+  mutate_each(funs(format_cor), -var1, -grp, -vcov, -sdcor) %>%
+  sort_ranef_grps %>%
+  # Format variable names and group names
+  mutate(var1 = fix_param_names(var1) %>% blank_nas,
+         grp =  blank_same_as_last(grp) %>% fix_param_names) %>% 
+  rename(Group = grp, Parameter = var1, Variance = vcov, SD = sdcor)
+
+# Correlation columns need names with characters so that pandoc can align them
+names(ranef_table_rhythm)[5:9] <- 
+  c("Correlations", "&nbsp;", " &nbsp;", "  &nbsp;", "  &nbsp;")
+
+ranef_table_rhythm %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("llrrrrrr"))
+```
+
+
+Appendix 2: Growth curve model random effects
+
+
+
+
+## Pairwise comparisons
+
+```{r, 'learner-comparison-en-rhythm'}
+# AES vs. IES
+
+# make table for printing
+pairwise_comp_en_rhythm <- rhythm_mods$gca_full_mod_rhythm_int_3_aes %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ies") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp_en_rhythm$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+pairwise_comp_en_rhythm <- tibble::column_to_rownames(pairwise_comp_en_rhythm, 'subscript')
+pairwise_comp_en_rhythm$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise_en_rhythm <- function(row_name) report_fixef_row(pairwise_comp_en_rhythm, row_name)
+
+```
+
+
+```{r, pairwise-comp-table-en-rhythm, results='asis', eval=T}
+
+# Make table for appendix
+pretty_pairwise_table_en_rhythm <- rhythm_mods$gca_full_mod_rhythm_int_3_aes %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "IE") == TRUE) 
+
+pretty_pairwise_table_en_rhythm$Parameter %<>% str_replace("Group AE", "AE - IE")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:4, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table_en_rhythm$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table_en_rhythm %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+
+Appendix 3: Pairwise comparisons between EN learner groups when rhythm is a predictor (AE reference). 
+
+
+```{r, 'learner-comparison-ma-rhythm'}
+########### AMS and IMS
+
+# make table for printing
+pairwise_comp_ma_rhythm <- rhythm_mods$gca_full_mod_rhythm_int_3_ams %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ims") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp_ma_rhythm$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+pairwise_comp_ma_rhythm <- tibble::column_to_rownames(pairwise_comp_ma_rhythm, 'subscript')
+pairwise_comp_ma_rhythm$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise_ma_rhythm <- function(row_name) report_fixef_row(pairwise_comp_ma_rhythm, row_name)
+
+```
+
+
+```{r, pairwise-comp-table-ma-rhythm, results='asis', eval=T}
+
+# Make table for appendix
+pretty_pairwise_table_ma_rhythm <- rhythm_mods$gca_full_mod_rhythm_int_3_ams %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "IM") == TRUE) 
+
+pretty_pairwise_table_ma_rhythm$Parameter %<>% str_replace("Group AM", "AM - IM")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:4, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table_ma_rhythm$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table_ma_rhythm %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+
+Appendix 7: Pairwise comparisons between MA learner groups when rhythm is a predictor (AM reference).
+
+```{r, 'learner-comparison-adv-rhythm'}
+########### AES and AMS
+
+# make table for printing
+pairwise_comp_adv_rhythm <- rhythm_mods$gca_full_mod_rhythm_int_3_aes %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ams") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp_adv_rhythm$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+pairwise_comp_adv_rhythm <- tibble::column_to_rownames(pairwise_comp_adv_rhythm, 'subscript')
+pairwise_comp_adv_rhythm$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise_adv_rhythm <- function(row_name) report_fixef_row(pairwise_comp_adv_rhythm, row_name)
+
+```
+
+
+```{r, pairwise-comp-table-adv-rhythm, results='asis', eval=T}
+# Make table for appendix
+pretty_pairwise_table_adv_rhythm <- rhythm_mods$gca_full_mod_rhythm_int_3_aes %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "AM") == TRUE) 
+
+pretty_pairwise_table_adv_rhythm$Parameter %<>% str_replace("Group AE", "AE - AM")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:4, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table_adv_rhythm$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table_adv_rhythm %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+
+Appendix 8: Pairwise comparisons between advanced learner groups when rhythm is a predictor (AE reference).
+
+
+```{r, 'learner-comparison-int-rhythm'}
+########### IMS and IES
+
+# make table for printing
+pairwise_comp_int_rhythm <- rhythm_mods$gca_full_mod_rhythm_int_3_ies %>% 
+  tidy_lme4 %>% 
+  rename(B = Estimate) %>% 
+  filter(str_detect(Parameter, "ims") == TRUE) 
+
+# Add subscript column, convert to rownames, and then add it again
+pairwise_comp_int_rhythm$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+pairwise_comp_int_rhythm <- tibble::column_to_rownames(pairwise_comp_int_rhythm, 'subscript')
+pairwise_comp_int_rhythm$subscript <- c(paste0(0:4, 8), paste0(0:1, 9))
+
+
+# Shortcut for inline reporting from the above table
+report_pairwise_int_rhythm <- function(row_name) report_fixef_row(pairwise_comp_int_rhythm, row_name)
+
+```
+
+
+```{r, pairwise-comp-table-int-rhythm, results='asis', eval=T}
+# Make table for appendix
+pretty_pairwise_table_int_rhythm <- rhythm_mods$gca_full_mod_rhythm_int_3_ies %>% 
+  tidy_lme4 %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) %>% 
+  filter(str_detect(Parameter, "IM") == TRUE) 
+
+pretty_pairwise_table_int_rhythm$Parameter %<>% str_replace("Group IE", "IE - IM")
+
+# Include gammas after each parameter name
+pw_subs <- c(paste0(0:4, 8), paste0(0:1, 9))
+pw_var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", pw_subs, "~"))
+pretty_pairwise_table_int_rhythm$Parameter %<>% paste(., pw_var_labels)
+
+pretty_pairwise_table_int_rhythm %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+```
+
+
+Appendix 9: Pairwise comparisons between intermediate learner groups when rhythm is a predictor (IE reference).
+
+
+# Results
+
+```{r, 'write-up-prep-rhythm ', warning=F, eval=T}
+# Prepare table to support easy in-line printing of equations
+# params <- pretty_fixed_effects %>% 
+#  rename(B = Estimate)
+
+params <- rhythm_mods$gca_full_mod_rhythm_int_3 %>% 
+  tidy_lme4() %>% 
+  rename(B = Estimate)
+
+params$subscript <- 
+  c(paste0(0:6, 0), paste0(0:6, 1), 
+    paste0(0:5, 2), paste0(0:5, 3), 
+    paste0(0:5, 4), paste0(0:5, 5), 
+    paste0(0:5, 6))
+
+params <- tibble::column_to_rownames(params, 'subscript')
+
+params$subscript <- 
+  c(paste0(0:6, 0), paste0(0:6, 1), 
+    paste0(0:5, 2), paste0(0:5, 3), 
+    paste0(0:5, 4), paste0(0:5, 5), 
+    paste0(0:5, 6))
+
+# Shortcut for inline reporting from the above table
+report_row <- function(row_name) report_fixef_row(params, row_name)
+
+# Pre-calculate intercept as proportion
+b0 <- params$B[params$subscript == "00"] %>% as.numeric
+b0_prop <- b0 %>% inv_logit %>% round(2) %>% remove_leading_zero
+
+```
+
+We will now move on the model with rhythic scores.
+The full model summary of the GCA for rhythm is in the Appendix X.
+At the intercept, the model estimates the log odds of SS fixating on the target to be *&gamma;*~00~&nbsp;=&nbsp;`r pretty_fixed_effects_pitch[1,3]`, SE =&nbsp;`r pretty_fixed_effects_pitch[1,4]`, *t* = `r pretty_fixed_effects_pitch[1,5]`, *p* = `r pretty_fixed_effects_pitch[1,6]`.
+Thus, this model also estimates that SS were anticipating at the onset of the verb suffix.
+In this model there is again an effect of the linear (*&gamma;*~30~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[4,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[4,4]`, *t* = `r pretty_fixed_effects_rhythm[4,5]`, *p* = `r pretty_fixed_effects_rhythm[4,6]`) and cubic terms (*&gamma;*~11~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[6,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[6,4]`, *t* = `r pretty_fixed_effects_rhythm[6,5]`, *p* = `r pretty_fixed_effects_rhythm[6,6]`).
+The linear term therefore suggests again that the slope for SS is not at steep, which translates into a slower increment of fixations on the target over time.
+The cubic term suggests that overall SS anticipated more and earlier than the L2 groups.
+In the rhythm model there is also an effect of groups, such that all L2 groups started anticipating later than SS (AE: *&gamma;*~21~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[7,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[7,4]`, *t* = `r pretty_fixed_effects_rhythm[7,5]`, *p* = `r pretty_fixed_effects_rhythm[7,6]`; AM: *&gamma;*~31~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[8,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[8,4]`, *t* = `r pretty_fixed_effects_rhythm[8,5]`, *p* = `r pretty_fixed_effects_rhythm[8,6]`; IE: *&gamma;*~02~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[9,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[9,4]`, *t* = `r pretty_fixed_effects_rhythm[9,5]`, *p* = `r pretty_fixed_effects_rhythm[9,6]`; IM: *&gamma;*~12~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[10,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[10,4]`, *t* = `r pretty_fixed_effects_rhythm[10,5]`, *p* = `r pretty_fixed_effects_rhythm[10,6]`).
+
+In the GCA analysis with rhythm, interactions were kept up to the cubic time term (*&beta;*(4) = 10.303, *p* = 0.036). 
+There was an effect of stress in the quadratic term (*&gamma;*~03~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[13,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[13,4]`, *t* = `r pretty_fixed_effects_rhythm[13,5]`, *p* = `r pretty_fixed_effects_rhythm[13,6]`), which indicates that it generally took longer to anticipate the present tense forms.
+This delay can also be observed in the fits of the model in Figure X.
+Group AE also caused an effect in the linear term (*&gamma;*~14~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[18,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[18,4]`, *t* = `r pretty_fixed_effects_rhythm[18,5]`, *p* = `r pretty_fixed_effects_rhythm[18,6]`), which replicates the result of the pitch model that AE increased gaze fixations on the target faster than anyone else.
+There was an interaction of all groups in the quadratic term (AE: *&gamma;*~15~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[22,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[22,4]`, *t* = `r pretty_fixed_effects_rhythm[22,5]`, *p* = `r pretty_fixed_effects_rhythm[22,6]`; AM: *&gamma;*~25~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[23,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[23,4]`, *t* = `r pretty_fixed_effects_rhythm[23,5]`, *p* = `r pretty_fixed_effects_rhythm[23,6]`: IE: *&gamma;*~35~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[24,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[24,4]`, *t* = `r pretty_fixed_effects_rhythm[24,5]`, *p* = `r pretty_fixed_effects_rhythm[24,6]`; IM: *&gamma;*~06~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[25,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[25,4]`, *t* = `r pretty_fixed_effects_rhythm[25,5]`, *p* = `r pretty_fixed_effects_rhythm[25,6]`), signaling that the curve was more bowed for all L2 groups as compared to that of the SS, pointing they started to anticipate later.
+
+Contrary to the pitch model, there is an effect of rhythm in its interaction with stress in the linear term (*&gamma;*~16~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[26,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[26,4]`, *t* = `r pretty_fixed_effects_rhythm[26,5]`, *p* = `r pretty_fixed_effects_rhythm[26,6]`). 
+These results demonstrate that the steepness of the increase of gaze fixations on the target in each tense differed across individuals with varying rhythm synchronization abilities.
+As we can see in Figure X, this variability is different across L1s and proficiency.
+There is also an interaction in the linear term of lexical stress x AE (*&gamma;*~01~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[33,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[33,4]`, *t* = `r pretty_fixed_effects_rhythm[33,5]`, *p* = `r pretty_fixed_effects_rhythm[33,6]`) and lexical stress x IE (*&gamma;*~21~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[35,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[35,4]`, *t* = `r pretty_fixed_effects_rhythm[35,5]`, *p* = `r pretty_fixed_effects_rhythm[35,6]`).
+These two interactions indicate that the main effect on the linear term of pitch x lexical stress was probably driven by the L1 English speakers.
+In the L1 English groups, both advanced and intermediate, individuals who synchronized better tend to have a steeper slope in the preterit tense and a flatter one in the present tense.
+In the case of IE, there was also an interaction of stress x rhythm in the quadratic term (*&gamma;*~22~&nbsp;=&nbsp;`r pretty_fixed_effects_rhythm[39,3]`, SE =&nbsp;`r pretty_fixed_effects_rhythm[39,4]`, *t* = `r pretty_fixed_effects_rhythm[39,5]`, *p* = `r pretty_fixed_effects_rhythm[39,6]`).
+This interaction points that IE who waited longer to tap in rhythm synchronization identify preterit earlier, and those who waited shorter anticipate present earlier.
+
+Pairwise comparisons reveal that the influence of rhythmic abilities is larger than that of pitch abilities.
+Within L1s, there is an interaction of stress x rhythm in the linear term in L1 English learners (*&gamma;*~48~&nbsp;=&nbsp;`r pretty_pairwise_table_en_rhythm[5,3]`, SE =&nbsp;`r pretty_pairwise_table_en_rhythm[5,4]`, *t* = `r pretty_pairwise_table_en_rhythm[5,5]`, *p* = `r pretty_pairwise_table_en_rhythm[5,6]`). 
+This estimate signals that the slope for IE is flatter than the slope of AE, meaning that IE increase their fixations slower than AE and that rhythmic abilities play a greater role in the intermediate group, such that better synchronization abilities contribute to better anticipation abilities in the preterit tense, but to slower anticipation in the present tense.
+Although AE follows a similar pattern, variability is less.
+In the L1 Mandarin Chinese group, however, rhythm plays no role.
+In this L1, there is only a main effect of group at the intercept (*&gamma;*~08~&nbsp;=&nbsp;`r pretty_pairwise_table_ma_rhythm[1,3]`, SE =&nbsp;`r pretty_pairwise_table_ma_rhythm[1,4]`, *t* = `r pretty_pairwise_table_ma_rhythm[1,5]`, *p* = `r pretty_pairwise_table_ma_rhythm[1,6]`), which translates into IM anticipating less overall than AM.
+When comparing L1s, the only effect at an advanced proficiency was of group in linear term (*&gamma;*~18~&nbsp;=&nbsp;`r pretty_pairwise_table_adv_rhythm[2,3]`, SE =&nbsp;`r pretty_pairwise_table_adv_rhythm[2,4]`, *t* = `r pretty_pairwise_table_adv_rhythm[2,5]`, *p* = `r pretty_pairwise_table_adv_rhythm[2,6]`).
+This value can be explained through AM increasing their fixations on the targets more gently as compared to AE.
+Lastly, the effects of rhythm at intermediate stages were significant in several ways.
+To start with, there was an effect on the intercept (*&gamma;*~08~&nbsp;=&nbsp;`r pretty_pairwise_table_int_rhythm[1,3]`, SE =&nbsp;`r pretty_pairwise_table_int_rhythm[1,4]`, *t* = `r pretty_pairwise_table_int_rhythm[1,5]`, *p* = `r pretty_pairwise_table_int_rhythm[1,6]`), which replicates the trend so far that IM anticipated less than IM.
+There was also an effect of rhythm x stress in all time terms (linear: *&gamma;*~48~&nbsp;=&nbsp;`r pretty_pairwise_table_int_rhythm[5,3]`, SE =&nbsp;`r pretty_pairwise_table_int_rhythm[5,4]`, *t* = `r pretty_pairwise_table_int_rhythm[5,5]`, *p* = `r pretty_pairwise_table_int_rhythm[5,6]`; quadratic; *&gamma;*~09~&nbsp;=&nbsp;`r pretty_pairwise_table_int_rhythm[6,3]`, SE =&nbsp;`r pretty_pairwise_table_int_rhythm[6,4]`, *t* = `r pretty_pairwise_table_int_rhythm[6,5]`, *p* = `r pretty_pairwise_table_int_rhythm[6,6]`; cubic: *&gamma;*~19~&nbsp;=&nbsp;`r pretty_pairwise_table_int_rhythm[7,3]`, SE =&nbsp;`r pretty_pairwise_table_int_rhythm[7,4]`, *t* = `r pretty_pairwise_table_int_rhythm[7,5]`, *p* = `r pretty_pairwise_table_int_rhythm[7,6]`). The effect in all time terms suggests that the slope for IE was steeper than for IM, especially in the present for individuals who waited shorter to tap in the rhythmic task and in the preterit for individuals who waited longer.
+Figure X reflects these tendencies and the more homogeneity in IM than in IE in terms of effects of rhythmic abilities.
+
+Finally, the probabilities for the model suggest that the influence of rhythmic abilities on speech anticipation was low, as suggested by the reduced probability variability.
+That the longer it takes AE, IE and IM to synchronize to a rhythm before anticipation of the beat turns into reaction, the lower the probability of anticipation in the present tense but the longer in the preterit tense. In comparison, the longer AM waits, the higher the probability of anticipation in the present tense but the lower in the preterit tense.
+
+To sum up, pitch anticipation abilities only affected anticipation of suffixes based on lexical stress in L2 speakers of the same L1 across proficiency, although the effect was different depending on the tense. The influence of rhythmic anticipation abilities on speech anticipation is evident across proficiency and L1s, although the influence varied depending on the group analyzed.

@@ -1,5 +1,134 @@
 # 1. Introduction
-When we learn a new language, we need to create new associations.
+Multiple studies have shown that listeners make predictions during speech [e.g., @altmann1999incremental; @sagarra2018suprasegmental].
+Traditionally, linguistic prediction has been researched on its own, not heeding its possible association with the larger cognitive repertoire a speaker possesses.
+Recently, some scholars have called our attention to the need to consider the broader cognitive context in which linguistic prediction takes place [@ellis2019essentials; @ryskin2020domain].
+In this broader cognitive context in which prediction takes place, the acquisition and use of predictive mechanisms may be embedded in two ways.
+First, as an independent mechanisms unlikely to relate to other cognitive domains.
+Second, as a skill that may be transferred to other domains or that may be influenced by similar skills in other domains.
+The first view is compatible with domain-specific cognitive models.
+The second one with domain-general cognitive models.
+
+The goal of this paper is to study transfer of anticipatory skills from the visuospatial domain to speech, to acquire and process associations of lexical stress-verb tense suffix for speech, and to study the mediation of verbal and visuospatial processing speed in language prediction.
+<!--This mapping is difficult to acquire, and even proficient L2 speakers have issues in using it for easier processing [@sagarra2018suprasegmental], and -->We chose a phonomorphological association to test language prediction to make sure that linguistic prediction not only took place in an auditory modality, thus differing from the other domain tested, but also that it relied on auditory information as a cue, therefore requiring a deeper processing of the linguistic information.
+The relationship between speech and the visuospatial domain will provide insight into transfer of domain-specific predictive skills.
+The inclusion of processing speed seeks to explore the effect of domain-general mechanisms on domain-specific predictive skills.
+Thus, this paper will inform models of cognition and learning about how processing mechanisms can be shared by cognitive domains in different modalities (visual vs. auditory). 
+
+# 2. Background
+## 2.1. Language prediction
+According to the predictive brain hypothesis [@clark2013whatever; @helmholtz1962movements; @rosen2012anticipatory], prediction is essential for processing information because it alleviates the cognitive load and makes up for information lost or lack thereof due to noise or ambiguity.
+During prediction, the brain combines perceptual information with previous acquired knowledge about the world to infer what is going to happen [@clark2013whatever].
+This inference is used to predict both what we are going to see [e.g., driving: @morando2016drivers; sports: @nakamoto2012experts] and what we are going to hear [e.g., music: @liberto2020cortical; language: @altmann1999incremental].
+In language, prediction has been extensively researched, showing that speakers are able to generate predictions in their L1 [e.g., @altmann1999incremental; @gruter2016l2] and possibly in their L2 [@dussias2013gender; @sagarra2018suprasegmental].
+
+Research on prediction in language has traditionally been confined to language itself, with little research on how it connects to other cognitive domains.
+Exceptionally, a handful of studies have explored the connection between linguistic prediction and verbal working memory (vWM), revealing mixed findings.
+@otten2009does explored the influence of WM on Dutch speakers' ability to predict nouns based on congruent or incongruent determiners.
+ERP data revealed that vWM did not affect participants' ability to anticipate words, but it influenced how incongruent information was processed.
+@huettig2016individual further explored the role of vWM and verbal processing speed (vPS) in Dutch speakers' anticipation of nouns based on the gender of those nouns.
+Eye-tracking data showed that enhanced vWM and vPS positively affected anticipation.
+Given that the major difference between both studies was the method of data collection, one could argue that WM may have more behavioral effects rather than cognitive ones.
+However, a posterior eye-tracking study on anticipation of verb suffixes in Spanish based on lexical stress revealed no vWM effects for either monolingual or late L2 Spanish speakers [@sagarra2018suprasegmental].
+Lastly, @lozanounderreview conducted a study with a similar setup to @sagarra2018suprasegmental's that also included interpreters, and found that vWM facilitated prediction in monolinguals and interpreters when the cognitive load was heavy, but when the cognitive load was light, vWM facilitated prediction in non-interpreters.
+The inconsistent findings on vWM suggest that domain-general capacities may mediate anticipation rather than determine it.
+Following this hypothesis, language prediction abilities may be mostly specific to the language domain, but they may rely on other abilities that are general to cognition at large in certain situations.
+Given the differing results obtained for different populations regarding linguistic prediction, it is possible that the situations in which domain-general or other cognitive capacities affect linguistic prediction vary across populations depending on factors such as the language they are speaking (i.e., L1 vs. L2) or their proficiency in the language.
+
+The idea that language prediction may be at least partially underlied by non-linguistic cognitive abilities is compatible with cognition models that prioritize domain-general learning mechanisms, positing that different brain domains are connected to each other, such that the acquisition of a skill in one of them may influence learning of unrelated skills.
+This influence, or transfer, takes place because and to the extent that the skills depend on domains that share common features [@thorndike1901influence] and cognitive elements [@anderson1990cognitive], in the form of perceptual and conceptual information [@singley1989transfer].
+In the case of vWM, it being a domain-general skill, the ability may adapt to specific domains according to the individual's needs.
+
+In contrast to domain-general models, domain-specific learning mechanisms models argue that brain domains are independent and unrelated to each other.
+In these models, the more developed a skill is, the more domain-specific the features will be, reducing the likelihood of skill transfer from one domain to another [@ericsson1994expert; @gobet2015understanding].
+Consequently, improvement of skills in a brain domain will have little to no influence in other domains.
+Following these models, skill transfer from other specific domains is unlikely. However, previous research has shown that music and language share some prediction mechanisms [e.g., syntax: @jentschke2009musical; rhythm: @magne2016speech].
+
+In sum, the current literature on language prediction does not allow to understand its cognitive mechanisms. 
+In terms of domain-general mechanisms, all studies have focused on vWM with only one including vPS.
+Additionally, studies comparing directly domain-specific prediction abilities are scant, and they have focused on auditory domains.
+Here, we contrast language prediction in speech against a radically different domain: visuospatial anticipation.
+
+## 2.2. Language and visuospatial processing
+We understand visuospatial abilities as the ability to process, work with and remember information in space perceived visually.
+Humans can predict visuospatial events in general situations [e.g., @bennett2005timing] as well as specific [e.g., driving: @morando2016drivers], and improve over practice [@nakamoto2012experts], just like speakers learning an L2 [e.g., @fernandezarroyounderreview].
+Visuospatial abilities are important for language in a myriad of ways, such as in space representation and in spatial concepts processing during reading.
+Visuospatial abilities are also important at the domain-general level.
+
+In terms of space presentation, language interacts with the visuospatial domain to create and update our representation of space and the way we refer to it.
+Languages encode space in egocentric or in geocentric terms [@levinson1997language], affecting our spatial reasoning [@levinson2002returning].
+Depending on whether a language allows a speaker to create phrases like "to the left of the tree" or "north of the tree," a speaker will conceptualize space differently.
+This organization of space in a language results in linguistic and non-linguistic spatial representations relying on a common axis-structure, at least in English [@crawford2000linguistic; @huttenlocher1991categories].
+Speakers use these representations to gauge space and distance in relation to themselves, other speakers and other referents to use spatial deixis and to make other spatial references.
+In addition to space cognition being influenced by the language we speak, speaking several languages that code space differently affect categorical perception of space, which makes bilingual speakers' space categories more flexible across languages than monolingual speakers' space categories are [@holmes2017revisiting].
+
+In turn, studies on reading abilities and spatial concept processing suggest that the linguistic and visuospatial domains may be closely interconnected in information processing.
+In typical populations, reading studies in children demonstrate that visuospatial skills are a reliable indicator of reading abilities in the L1 at the initial stages of reading development [@helland2016neurocognitive], and reading skills are a predictor of visuospatial abilities in the next literacy level [@lin2016bidirectional].
+Studies on reading in adults indicate that visuospatial interference in language is larger in deep languages, that is, languages where a letter or string of letters may correspond to more than one sound, like in English, than it is in shallow languages, like Italian or Spanish [@estes2018comprehensive]
+
+Atypical populations have also provided evidence of an association between visuospatial and linguistic abilities in visuospatial processing. 
+The populations that have been researched in this regard are individuals with Williams Syndrome, with autism, with dyslexia, and blind individuals.
+Individuals with Williams Syndrome have issues comprehending visuospatial language and locating objects, especially in the horizontal axis [@landau2005parallels; @phillips2004comprehension].
+Individuals with autism show a smaller repertoire of spatial terms in comparison to non-autistic controls [@bochynska2020spatial].
+A large body of literature has produced controversial results about developmental dyslexia, where children with dyslexia have better [e.g., @swanson1984semantic; karolyi2004dyslexia], worse [e.g., @benton1984dyslexia; @winner2001dyslexia] or similar visuospatial abilities as control age-matched children [e.g., @siegel1989development; @sinatra1988styles; @winner2001dyslexia].
+A meta-analysis of the findings about dyslexia reveals that dyslexic population samples yield lower means of performance in visuospatial tasks, although within-group variability is higher than in control groups [@chamberlain2018meta].
+As they grow up, individuals with dyslexia tend to perform similarly to typical individuals in many visuospatial tasks [@karolyi2004dyslexia].
+Finally, research on blind individuals has also shown that traditionally visual brain regions are recruited during verbal tasks such as Braille reading [e.g., @kupers2007rtms; @uhl1991functionality], verb generation in response to nouns [e.g., @amedi2003early; @burton2002adaptive] and sentence comprehension [e.g., @bedny2011language; @roder2000event], although only when the individual was already blind as a child [@bedny2012sensitive].
+
+Lastly, studies testing language and domain-general cognitive abilities, including visuospatial working memory (sWM), have also insinuated an association between the linguistic and visuospatial domains. 
+For instance, bilinguals with an alphabetic system like English and a logosyllabic system like Chinese have enhanced sWM in contrast to bilinguals of two alphabetic systems, like English and Spanish [@ma2016working]. 
+Furthermore, visual and auditory memory maintenance and manipulation capacities interact with bilingual experience especially at an L2 intermediate level, while at advanced levels the interaction goes back to a more monolingual-like state, in which the influence may not always be discernible [@yang2017bilinguals].     
+
+In summary, there is enough evidence to believe that transfer of abilities from the visuospatial domain to language is possible.
+Especially studies on atypical populations suggest that some language issues originate from visuospatial perception and processing problems that affect reading and spatial concepts in language.
+Concerning humans at large, our linguistic systems also vary depending on the spatial representation in our culture. Similarly, working memory in different forms may affect our ability to acquire and process a new language.
+
+# 3. This study
+Much of the research so far on linguistic prediction has been conducted on language alone or, exceptionally, on the influence of vWM mostly.
+Only one study included vPS.
+Regarding the association between prediction in language with other specialized domains, there are some studies with music, but results there are not definitive and no other domains have been tested.
+The lack of studies on other domain-general capacities and on the relationship with other domains prevents us from understanding the cognitive underpinnings of linguistic prediction, consequently leaving unclear how the other domains are related to language not only in comprehension, but in information processing in general, and in prediction in particular.
+
+To investigate further this issue, we examined prediction abilities in language, both in a native and a non-native language, and vision/space. 
+We also examined the mediation of domain-general abilities in this cross-domain association.
+Specifically, we asked whether visuospatial anticipation abilities would transfer for L1 and L2 anticipation based on lexical stress-verb tense suffix associations, and if there was transfer, whether it was mediated by vPS and visuospatial processing speed (sPS). 
+We analyzed transfer at different levels of proficiency (from intermediate to advance) to account for the way transfer of linguistic skills across languages may vary along with linguistic command [@bel2016transfer; @hopp2017processing].
+Moreover, anticipation abilities in speech using stress-suffix associations improve over time [@fernandezunderreview], with beginners not predicting reliably [@sagarra2018suprasegmental].
+We measured vPS rather than scores because speakers achieve different scores depending on their L1 [], and we chose and sPS rather than sWM to keep measures consistent.
+To measure speech prediction, we collected data from English and Mandarin learners of L2 Spanish at different levels of proficiency and from an L1 Spanish group using eye-tracking.
+Eye-tracking has been widely used as a tool to collect data about processing and language anticipation [e.g., @altmann1999incremental; @kamide2003time; @sagarra2018suprasegmental].
+The two stress-suffix associations tested were paroxytone (present tense) and oxytone (preterite tense) in Spanish.
+To measure visuospatial prediction, we implemented a task in which stimuli moved across the screen, and participants guessed the timing of the trajectory.
+To measure vPS and sPS, we used the operation span task and the Corsi-block tapping test, respectively.
+In the operation span task, participants needed to remember words while being distracted by mathematical additions and subtractions.
+In the Corsi test, participants needed to remember sequences of flashing squares.
+
+Our hypotheses are as follows.
+Previous studies revealed that L1 Spanish speakers, Mandarin and English advanced learners of Spanish and intermediate English speakers can generate predictions for tense using lexical stress in CVC syllables, especially when immersed in the L2 [@fernandezarroyo], we therefore therefore hypothesized they would anticipate in this study too.  
+In the L1 Spanish speakers, we expected vPS to be associated with linguistic prediction, in line with @huettig2016individual's findings in Dutch. 
+Since sPS is still a domain-general resource, we predicted it may also be associated with linguistic prediction, but more weakly.
+We hypothesized this association may be stronger at intermediate levels of proficiency, as previous research suggest that L2 speakers at intermediate stages are more susceptible to the influence of executive control abilities [@yang2017bilinguals].
+We finally expected no relationship between visuospatial anticipation and speech anticipation, as they are too far apart for the mechanisms to be transferred. 
+Our reasoning was that the two modalities, auditory (speech) and visual, are too different, and thus, the "potentially transferable" skills would be too specific to each domain [@ericsson1994expert; @gobet2015understanding].
+
+With respect to the L2 speakers, we expected vPS to affect them.
+Although there are no studies on vPS effects on prediction in L2 speakers, we have no reason to think they would be immune to vPS effects, as their probabilistic associations used during prediction are probably more unstable than in monolinguals.
+Since linguistic knowledge in the L2 is not as broad, L2 speakers may need to resort to extra cognitive resources, making them show evidence of recruiting sPS abilities to counteract the cognitive load of prediction.
+Lastly, we predicted no association between speech and visuospatial prediction for the same reasons as in monolingual speakers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+|--------------------------------
+<!--When we learn a new language, we need to create new associations.
 For instance, we need to learn that a new way to call the concept that the word "house" /haʊs/ in English represents would be /'ka.sa/ (*casa*) in Spanish.
 Associations are created at multiple levels.
 In some languages, we need to learn that if a noun is plural, the determiner coming before should also be plural.
@@ -7,41 +136,10 @@ Hence, if in languages like Spanish a listener hears *los* ("the~masc sg"), they
 These associations facilitate language processing, because the hearer anticipates the outcome (masculine plural suffixes in the noun) based on available information [masculine plural determiner; e.g., @federmeier2007thinking; @wicha2003potato].
 The listener, therefore, does not need to pay close attention to all information coming in and can make up for the information that is lost due to external reasons, such as noise.
 
-There are two types of models that account for how learners create associations.
-One type is domain-general learning.
-Another type is domain-specific learning.
-These two types of models make opposite predictions as to how associations are created and how abilities in other cognitive domains influence acquisition of skills during learning.
-The goal of this paper is to study transfer of anticipatory skills from the visuospatial domain to speech, to acquire and process associations of lexical stress-verb tense suffix for speech.
-This mapping is difficult to acquire, and even proficient L2 speakers have issues in using it for easier processing [@sagarra2018suprasegmental], and the relationship between speech and the visuospatial domain has not been extensively researched outside of populations with dyslexia.
-In addition, this paper seeks to explore how domain-general mechanisms mediate transfer of domain-specific skills.
-Thus, this paper will inform models of cognition and learning about how processing mechanisms in typical individuals can be shared by cognitive domains in different modalities (visual vs auditory). 
+For the purpose of understanding better the cognitive basis of language prediction and its relationship to other cognitive domains, we compared language prediction with prediction in a distal domain, visuospatial prediction.
 
-# 2. Background
-## 2.1. Linguistic anticipation
-Language anticipation is essential for language processing [e.g., @federmeier2007thinking; @wicha2003potato].
-Ability to process sounds, words, grammatical structures correctly results in better comprehension.
-While monolingual speakers generate predictions constantly [e.g., @huettig2016prediction; @soderstrom2017stem], it requires time to acquire an L2 and develop the ability to generate predictions in that L2 [e.g., @lew2010real; @sagarra2018suprasegmental].
-The lack of or inability to create associations that enable prediction has been suggested as a possible cause for the difficulties L2 speakers have in comprehending language or not being sensitive to incongruencies _[@citation]_.
-This suggestion has more typically been applied to morphological and morphosyntactic processing _[@citation]_.
-In the particular case where morphological outcomes are cued phonologically, for example where a lexically stressed syllable cues present tense (*FIRma* 's/he signs' in Spanish), L2 proficiency and verbal working memory [@sagarra2018suprasegmental], practice anticipating [@lozano2019slowly], immersion and similarity between the L1 and the L2 [@PRIMEREXP], and auditory innate abilities [@SEGUNDOEXP] have been tested as factors conditioning the use of the associations for predictions.
-From these factors, only auditory innate abilities and working memory represent individual differences, while the other factors are external and imposed by experience and/or the environment.
-Auditory innate abilities, especially rhythmic, contribute to a speaker's ability to generate phonological-suffix association that they can use for prediction during processing.
-Even monolingual speakers appeared to be affected by their innate rhythmic abilities.
-In contrast, the effect of pitch processing abilities only play some role at intermediate L2 stages, and verbal working memory played not role whatsoever.
-In order to further tease apart the influence of individual differences in language processing, we explored transfer of two non-linguistic processing mechanisms.
-Specifically, we tested the influence of visuospatial working memory as a domain-general mechanism and of visuospatial prediction abilities as a domain-specific mechanism.
-To make sure we tested transfer of innate abilities, we recruited participants who had not developed special visuospatial skills through, for instance, playing sports professionally.
-
-## 2.2. Transfer
-Two types of models have been proposed with mechanisms that account for acquisition and learning of a (second) language. 
-Models that prioritize domain-general learning mechanisms posit that different brain domains are connected to each other, such that the acquisition of a skill in one of them may influence learning of unrelated skills.
-This influence, or transfer, takes place because and to the extent that the skills depend on domains that share common features [@thorndike1901influence] and cognitive elements [@anderson1990cognitive], in the form of perceptual and conceptual information [@singley1989transfer].
-In learning settings, transfer that occurs between two closely related domains is called near-transfer, like between calculus and arithmetic; when transfer occurs between distant domains, it is far-transfer, like between math and geography [@mestre2006transfer].
-In models in which domain-specific learning mechanisms are more relevant, brain domains are independent and unrelated to each other.
-The more developed a skill is, the more domain-specific the features will be, reducing the likelihood of transfer [@ericsson1994expert; @gobet2015understanding].
-In consequence, improvement of skills in a brain domain will have little to no influence in other domains.
-While domain-general and domain-specific learning models focus on different mechanisms, learning of a language is likely to be determined by both types of mechanisms.
-The question is, where the transition lies.
+Were our predictions borne out, they would corroborate that far-transfer between domains is unlikely, especially when they are related to different modalities or perception mechanisms.
+These findings would thus support a domain-specific learning mechanism where highly specific skills pertain to the domain in which they developed, or at least to domains that are fed through the same perceptual channels.
 
 Most research has traditionally focus on language-specific mechanisms.
 However, some scholars have recently started to highlight the need for a more holistic view of language in research [@ellis2019essentials; @ryskin2020domain].
@@ -59,53 +157,4 @@ Crucially, individual differences manifest in auditory processing of speech [@zh
 Individual differences condition the strength of the connection between auditory and speech motor cortices [@assaneo2020speaking] and a speaker’s ability to perceive lexical stress in an L2 [@dupoux2008persistent].
 One source of individual differences may be that some people are innately more gifted in a domain, for example sounds, while others in a different one, for instance visuospatial organization.
 If there is transfer of domain-specific mechanisms, speakers may be aided or hindered by better or worse innate abilities in other domains that may affect language, even if they have not had a chance to develop higher skills through expertise in the source domains.
-
-## 2.3. Language and the visuospatial domain
-The influence of innate cognitive abilities in specific domains other than language on second language acquisition has not been a primary research of focus.
-And yet, language interacts with other domains on a regular basis.
-One of these domains is the visuospatial domain.
-Language interacts with the visuospatial domain to create and update our representation of space and the way we refer to it.
-Languages can talk about space in egocentric or in geocentric terms [@levinson1997language], affecting our spatial reasoning [@levinson2002returning].
-Depending on whether a language allows a speaker to create phrases like "to the left of the tree" or "north of the tree," a speaker will conceptualize space differently.
-This organization of space in a language results in linguistic and non-linguistic spatial representations relying on a common axis-structure, at least in English [@crawford2000linguistic; @huttenlocher1991categories].
-Speakers use these representations to gauge space and distance in relation to themselves, other speakers and other referents to use spatial deixis and to make other spatial references.
-In addition to space cognition being influenced by the language we speak, speaking several languages that code space differently affect categorial perception of space, which makes bilinguals speakers' space categories more flexible across languages than monolingual speakers' are [@holmes2017revisiting].
-
-Studies on reading abilities and on atypical populations suggest that these two domains may be closely interconnected in processing of language and of visuospatial information.
-Studies on reading in children demonstrate that visuospatial skills are a reliable indicator of reading abilities in the L1 at the initial stages of reading development [@helland2016neurocognitive], and reading skills are a predictor of visuospatial abilities in the next literacy level [@lin2016bidirectional].
-Studies on reading in adults indicate that visuospatial interference in language is larger in deep languages, that is, languages where a letter or string of letters may correspond to more than one sound, like in English, than it is in shallow languages, like Italian or Spanish [@estes2018comprehensive]
-
-Atypical populations that have been researched in regard to the language-vision/space association are populations with Williams Syndrome, with autism, with dyslexia, and blind individuals.
-Individuals with Williams Syndrome have issues comprehending visuospatial language and locating objects, especially in the horizontal axis [@landau2005parallels; @phillips2004comprehension].
-Individuals with autism show a smaller repertoire of spatial terms in comparison to non-autistic controls [@bochynska2020spatial].
-A large body of literature has produced controversial results about developmental dyslexia, where children with dyslexia have better [e.g., @swanson1984semantic; karolyi2004dyslexia], worse [e.g., @benton1984dyslexia; @winner2001dyslexia] and similar visuospatial abilities as control age-matched children [e.g., @siegel1989development; @sinatra1988styles; @winner2001dyslexia].
-A meta-analysis of the findings about dyslexia reveals that dyslexic population samples yield lower means of performance in visuospatial tasks, although within-group variability is higher than in control groups [@chamberlain2018meta].
-As they grow up, individuals with dyslexia tend to perform similarly to typical individuals in many visuospatial tasks [@karolyi2004dyslexia].
-Finally, research on blind individuals has also shown that traditionally visual brain regions are recruited during verbal tasks such as Braille reading [e.g., @kupers2007rtms; @uhl1991functionality], verb generation in response to nouns [e.g., @amedi2003early; @burton2002adaptive] and sentence comprehension [e.g., @bedny2011language; @roder2000event], although only when the individual was already blind as a child [@bedny2012sensitive].
-
-In sum, there is enough evidence to believe that far-transfer of abilities from the visuospatial domain to language is possible.
-Much of the research so far on the association between the two domains has been done with static tasks or with tasks that do not measure processing, but offline outcomes.
-In this study, we adopted another approach.
-We aimed to examine transfer from the visuospatial domain to language in real time processing of speech in the L1 and the L2, and if and how domain-general mechanisms regulate the transfer.
-Specifically, we asked whether visuospatial anticipation abilities would transfer for L1 and L2 anticipation based on lexical stress-verb tense suffix associations at intermediate and advanced levels of proficiency, and if there was transfer, whether it was mediated by verbal and visuospatial WM memory.
-We analyzed transfer at different levels of proficiency because transfer of linguistic skills across languages may vary along with command [@bel2016transfer; PRIMER EXP; @hopp2017processing], and anticipation abilities in speech using stress-suffix associations also improve over time [@sagarra2018suprasegmental; PRIMER EXP].
-Hence it is possible, that transfer of anticipation skills also varies depending on the proficiency of the speaker.
-
-To measure visuospatial prediction abilities, we implemented a task in which stimuli moved, and participants guessed the timing of the trajectory.
-To measure real time processing of speech, we collected data from English and Mandarin learners of L2 Spanish at different levels of proficiency and from an L1 Spanish group using eye-tracking.
-Eye-tracking has been widely used as a tool to collect data about processing and language anticipation [e.g., @altmann1999incremental; @kamide2003time; @sagarra2018suprasegmental].
-The tenses to be anticipated were the present and preterit tenses in Spanish.
-To measure verbal and visuospatial WM, we used the operation span task and the Corsi-block tapping test, respectively.
-In the operation span task, participants need to remember words while being distracted by mathematical additions and subtractions.
-In the Corsi test, participants need to remember sequences of flashing squares.
-
-Previous studies revealed that L1 Spanish speakers, Mandarin and English advanced learners of Spanish and intermediate English speakers can generate predictions for tense using lexical stress in CVC syllables, especially when immersed in the L2 [PRIMER EXP], these groups were therefore hypothesized to have no issues in this study either.  
-In the L1 Spanish speakers, no relationship was expected between visuospatial anticipation and speech anticipation. 
-Our reasoning was that the two modalities, auditory (speech) and visual, are too different for there to be any transfer, and thus the "potentially transferable" skills would be too specific to each domain [@ericsson1994expert; @gobet2015understanding].
-Verbal WM was not expected to be associated either [@sagarra2018suprasegmental; @PRIMER EXP], due to L1 speakers' practice in generating the predictions overriding WM differences.   
-Visuospatial WM was, for the same reason, not predicted to have any influence.
-No association between anticipation in the visuospatial domain and the speech domain was hypothesized in L2 speakers either, for the same reasons as in monolingual speakers.
-Therefore, it would not matter what the L1 or the L2 is, or the proficiency in the L2: increased abilities to anticipate movements in space through vision would not be associated with speech in any way. 
-Following prevous findings about the relationship between verbal WM and anticipation abilities, verbal WM was not predicted to be associated with speech anticipation performance in L2 groups [@sagarra2018suprasegmental; @PRIMER EXP].
-Were our predictions borne out, they would corroborate that far-transfer between domains is unlikely, especially when they are related to different modalities or perception mechanisms.
-These findings would thus support a domain-specific learning mechanism where highly specific skills pertain to the domain in which they developed, or at least to domains that are fed through the same perceptual channels.
+-->

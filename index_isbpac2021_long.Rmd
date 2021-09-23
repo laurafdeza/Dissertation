@@ -1,0 +1,288 @@
+---
+title: "Sensitivity to regularities in auditory perception of lexical stress, rhythm, and tone during anticipation"
+subtitle: "Rutgers University"
+author: "Laura Fernandez Arroyo, Nuria Sagarra, Cristina Lozano Argüelles"
+date: "3 June 2021"
+output: 
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["hygge", "rutgers-fonts", "rutgers"]
+    nature:
+      beforeInit: "macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: center
+
+# .center[Prediction]
+
+
+```{r knitr, include=TRUE, echo=FALSE, warning=FALSE}
+library(knitr)
+include_graphics("./avoid.gif")
+```
+
+???
+
+  Animals
+  Plants
+
+---
+
+.center[
+```{r knitr1, include=TRUE, echo=FALSE, warning=FALSE}
+include_graphics("./cake.jpg")
+```
+
+The boy will eat / the cake.</br>
+The boy will move / the cake.
+<font size="-1">(Altmann & Kamide, 1999)</font>
+]
+---
+
+# Linguistic prediction
+
+## Core component
+<font size="-1">(Fitz & Chang, 2019; Kuperberg & Jaeger, 2016; Rabovsky et al., 2018)</font>
+
+## Optimal component
+<font size="-1">(Huettig & Mani, 2016; Pickering & Gambi, 2018)</font>
+
+---
+
+# Between-speaker variability
+<font size="-1">(e.g., Kaan, 2014; Wlotko et al., 2012)</font>
+                
+--
+
+L2 speakers vs. L1 speakers: </br>
+- less <font size="-1">(Perdomo & Kaan, 2020)</font>
+- later <font size="-1">Lozano-Argüelles et al., 2020</font>
+- never <font size="-1">(e.g., Hopp, 2015)</font>
+
+---
+
+# Linguistic prediction and cognition
+
+Transfer:
+
+## Domain-general abilities <font size="-1">(e.g., Anderson, 1990; Singley & Anderson, 1989)</font>
+
+## Domain-specific abilities <font size="-1">(e.g., Ericsson & Charness, 1994; Gobet, 2015)</font>
+
+---
+
+# Previous research
+</br>
+
+.pull-left[
+.content-box-green[
+
+Musical training
+</br>
+</br>
+Syntax
+
+]]
+
+--
+
+.pull-right[
+.content-box-red[
+
+General auditory abilities
+</br>
+</br>
+Morphophonology
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lexical stress-verb tense suffix
+
+]]
+
+--
+
+</br>
+.center[Verbal working memory]
+
+---
+
+# Our study
+
+- 30 Spanish monolinguals, 64 Mandarin Chinese speakers and 65 English speakers (L2 Spanish)
+
+--
+
+- Sociolinguistic background questionnaire
+- Proficiency test
+- Tasks:
+  - Visual world paradigm
+  - Melody anticipation task
+  - Rhythmic synchronization task (Pagliarini, 2016)
+  - Operation Span task (Unsworth et al., 2005)
+  
+---
+
+# Visual world paradigm
+
+.center[
+```{r, include=TRUE, echo=FALSE}
+include_graphics("./vwp.png", dpi = 100) # the larger the number, the smaller the image
+```
+]
+???
+Close tracking of time
+
+---
+
+# Melody anticipation task
+
+.center[
+```{r, include=TRUE, echo=FALSE}
+include_graphics("./tone_task.png", dpi = 130)
+```
+]
+???
+
+Based on tone discrimination tasks
+
+---
+
+# Rhythm synchronization task
+
+.center[
+```{r, include=TRUE, echo=FALSE}
+include_graphics("./rhythm_task.png", dpi = 108)
+```
+]
+
+???
+
+Imperative tone task
+
+---
+
+# Verbal working memory
+
+.center[
+```{r, include=TRUE, echo=FALSE}
+include_graphics("./ospan.png", dpi = 108)
+```
+]
+---
+
+# Results
+
+English speakers
+.center[
+```{r, include=TRUE, echo=FALSE, out.width="90%"}
+include_graphics("./figs/music/gca/wm/gca_en.png", dpi = 150)
+```
+]
+
+---
+
+# Results
+
+Mandarin Chinese speakers
+.center[
+```{r, include=TRUE, echo=FALSE, out.width="90%"}
+include_graphics("./figs/music/gca/wm/gca_rhythm_ma.png", dpi = 108)
+```
+]
+
+---
+
+# Results
+
+Mandarin Chinese speakers
+.center[
+```{r, include=TRUE, echo=FALSE, out.width="90%"}
+include_graphics("./figs/music/gca/wm/gca_pitch_ma1.png", dpi = 108)
+```
+]
+
+---
+
+# Results
+
+Spanish speakers
+.center[
+```{r, include=TRUE, echo=FALSE, out.width="90%"}
+include_graphics("./figs/music/gca/wm/gca_rhythm_mon.png", dpi = 108)
+```
+]
+
+---
+
+# Results
+
+Spanish speakers
+.center[
+```{r, include=TRUE, echo=FALSE, out.width="90%"}
+include_graphics("./figs/music/gca/wm/gca_pitch_mon.png", dpi = 108)
+```
+]
+
+---
+
+# Summary
+
+## English
+- More proficiency > more prediction
+
+---
+
+# Summary
+
+## English
+- More proficiency > more prediction
+
+## Mandarin Chinese
+- More proficiency > more prediction
+- Rhythm: better synchronization > faster prediction
+- Pitch: better pitch processing > more prediction when +WM/-prof or -WM/+prof
+
+---
+
+# Summary
+
+## English
+- More proficiency > more prediction
+
+## Mandarin Chinese
+- More proficiency > more prediction
+- Rhythm: better synchronization > faster prediction
+- Pitch: better pitch processing > more prediction when +WM/-prof or -WM/+prof
+
+## Spanish 
+- Pitch: Better pitch processing > more prediction</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Better pitch processing > more but later prediction in average and &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+WM
+
+---
+
+# Discussion
+
+- Improvement over proficiency: prediction as an optimal component
+
+
+
+- Spanish and Chinese speakers influenced by pitch (and rhythm) abilities because of L1 experience
+
+  - domain-general mechanisms activated in some conditions
+  - domain-general and domain-specific abilities account for individual differences
+  
+---
+
+# Conclusion
+
+</br>
+</br>
+.center[
+Linguistic prediction is likely underpinned by domain-general mechanisms.
+]
+
+---
+class: title-slide-section-red, center, middle
+
+# Thank you!

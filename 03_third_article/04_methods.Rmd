@@ -1,219 +1,163 @@
 # 4. Methods 
 ## 4.1. Participants
-Participants proceeded from five different pools: 30 monolingual speakers of Spanish (SS, females = 20), 33 L1 English intermediate L2 Spanish learners (IE, females = 24), 32 L1 English advanced L2 Spanish learners (AE, females = 24), 32 L1 Mandarin intermediate L2 Spanish learners (IM, females = 26), and 32 L1 Mandarin advanced L2 Spanish learners (AM, females = 26). <!-- 'Proceeded from' is probably not the best choice of phrasal verb here. I reorganized the descriptions as a suggestion for how I would write it. -->
-All participants grew up in monolingual regions of their respective countries in monolingual households, but were living in Spain at the time of data collection. 
-All were aged 18-45 (SS: mean = 26.2, _SD_ = 8.82; IE: mean = 26.1, _SD_ = 4.21; AE: mean = 27.5, _SD_ = 4.83; IM: mean = 24.5, _SD_ = 3.95; AM: mean = 24.8, _SD_ = 4.37). 
-Participants were all right-handed.
-All had completed at least high school, and none had received bilingual education. Participants had normal or corrected-to-normal hearing and vision and no motor disabilities. 
+The participants were 29 monolingual speakers of Spanish (SS, females = 19), 61 L1 English-L2 Spanish speakers (females = 44), and 63 L1 Mandarin Chinese-L2 Spanish speakers (females = 22). 
+Data from one monolingual participant was removed because of task malfunction.
+All participants were between 18-45 years of age, right-handed, had corrected-to-normal vision, and high school education or above. 
+All participants grew up in monolingual L1 communities and were living in Spain at the time of data collection. 
+The L1 Spanish speakers were native to Madrid, Spain.
+They had learned some English in school but did not speak it fluently.
+They had not lived in non-Spanish or non-monolingual Spanish communities.
+The English and Chinese speakers were late learners of Spanish.
+Their proficiency ranged from intermediate to highly advanced.
+They were comparable in L2 proficiency *t*(121.54) = -0.143, *p* = 0.887, L2 use *t*(118.47) = -1.962, *p* = 0.052, and months living in Spain *t*(116.47) = -0.377, *p* = 0.707, as shown by two one-sided tests of equivalence (see Table 1 for demographic information).
 
-The monolingual speakers were native to a Peninsular variety of Spanish and did not speak any other language fluently. 
-The English natives came from English-speaking countries. 
-They spoke no other languages apart from English and Spanish. 
-IE had spent between 3 months and 6 years in Spain, AE between 6 months and 14 years.
-The Mandarin speakers came from Mandarin-speaking regions in China, except for one participant who originated in Taiwan.
-Some of the Chinese speakers also spoke English, but at a maximum of intermediate proficiency and had never lived in an English-speaking country. 
-IM had resided in Spain between 6 months to 11 years, and AM for 2 months 16 years. 
 
-The L2 speakers were matched for proficiency (advanced groups: *t*(61.69) = -0.0971, *p* = 0.923; intermediate groups: *t*(62.85) = -1.006, *p* = 0.318). <!-- a null finding on a t-test does not show that they are matched for proficiency -->
-They were all late learners of Spanish (start learning Spanish in years IE: mean = 17.5, _SD_ = 6.35; AE: mean = 15.1, _SD_ = 4.35; IM: mean = 19.9, _SD_ = 4.01; AM: mean = 17.9, _SD_ = 2.83). 
-On average, all L2 groups used Spanish less than 50% of the time on a normal week (self-reported; in percentages, IE: mean = 28.2, _SD_ = 17.3; AE: mean = 38.6, _SD_ = 16.2; IM: mean = 36.7, _SD_ = 20.7; AM: mean = 46.6, _SD_ = 21.8). 
+TABLE 1
+
+
 
 ## 4.2. Materials
-Participants completed two screening tasks, two anticipation tasks and two WM tasks.
+Participants completed five tasks.
 
-### 4.2.1. Screening tasks
+### 4.2.1. Spanish proficiency test (only L2 speakers).
+An 56-question adapted version of the *Diploma de Español como Lengua Extranjera* ('Certificate of Spanish as a Foreign Language', by Instituto Cervantes) was administered via Qualtrics to assess Spanish grammar and vocabulary knowledge [@sagarra2010role].
 
-A proficiency test categorized participants as intermediate or advanced learners.
-The proficiency test was a shortened version [@sagarra2010role] of the _Diploma de Español como Lengua Extranjera_ ('Certificate of Spanish as a Foreign Language', by Instituto Cervantes). 
-The test consisted of 56 questions: 16 on grammar, 10 on vocabulary, and 20 on reading comprehension.
-Participants whose scores ranged from 25 to 39 were assigned to the intermediate groups, and participants whose scores were located at or above 40 were assigned to the advanced groups. <!-- Describe how these cutoffs were established --> 
+### 4.2.2. Background questionnaire.
+This questionnaire gathered information about participants' age, handedness, languages spoken currently and while growing up, age of acquisition, time spent living abroad, Spanish use patterns, driving skills, sports played, for how long and expertise.
 
-Participants also completed a language background questionnaire.
-The background questionnaire contained questions related to social, such as age, level of studies, sports played and driving skills, and linguistic factors, such as language use percentages and other languages spoken. <!-- related to social what? --> 
+### 4.2.3. Eye-tracking prediction task.
+A visual-world paradigm with two options was used to measure participants' abilities to use the first syllable's stress in disyllabic verbs to predict the verbs' suffixes before hearing them.
+The eye-tracker was an EyeLink 1000 Plus desktop mount from SR Research (sampling rate: 1k Hz; spatial resolution of .32o horizontal and .25o vertical; averaged calibration error: .25o-.5o). 
+The task was programmed and delivered with SR Research’s Experiment Builder software; data was extracted with SR Research’s Data Viewer software. 
+Tracking was monocular (right eye) and followed cyclopean extraction mode. 
+We set a velocity threshold of 50 °/sec to isolate fixations. 
+Shorter eye movements taking place during fixations (e.g., tremors, drifts, and microsaccades) were considered part of the fixation because numerous studies show that they often mean little in higher-level analyses (e.g., _Ditchburn, 1980_). 
+We used a BenQ XL2420TE display monitor at a resolution of 1920 x 1080 pixels, and Sol Republic 1601-32 headphones. 
 
-### 4.2.2.  Anticipation task
-#### 4.2.2.1. Linguistic anticipation task
-An eye-tracking visual-world paradigm task assessed the ability to form stress-suffix predictive associations in speech.
-Participants read two verbs on a computer screen (*salta* 's/he jumps,' *saltó* 's/he jumped') and heard a sentence containing one of the two verbs (*El ladrón saltó la valla* 'the thief jumped over the fence') in Spanish. 
-They had to select the verb they had heard as fast as possible by pressing the right- or left-shift key.
-When they made their selection, a green rectangle appeared around the selected verb. 
-There were 4 practice sentences, 16 experimental sentences, and 80 fillers. 
+There were 100 sentences: 4 practice sentences, 16 experimental sentences, and 80 fillers. 
+The practice sentences appeared in the same order for all participants. 
+The filler and experimental sentences were distributed into 8 blocks following a Latin square design. 
+Each block contained 2 experimental sentences, one per condition, and 6 filler sentences. 
+Sentences were randomized between blocks and pseudo-randomized within blocks to avoid two experimental sentences of the same condition appearing consecutively. 
+All sentences were recorded using a Fostex DC-R302 digital recorder and a Shure SM10A head-mounted microphone in a Whisper room 6084 E sound booth at a sampling rate of 44.1 kHz and 16-bit quantization. 
+A Castilian Spanish female speaker unaware of the purpose of the study recorded all the sentences three times in three different pseudo-randomized orders, and the clearest pair of the three repetitions was chosen. 
+She was instructed to use a standard intonation, and a consistent rate that resulted in sentences of 4.37 (SD = 0.68) syllables per second and 4.17 (SD = 1.14) seconds per sentence.
+The intensity of the sentences was normalized to ~75dB and 100 ms of leading and trailing silence were added using Praat _(Boersma & Weenink, 2021)_.
 
-Eye movements were recorded through an EyeLink 1000 Plus desktop mount eye-tracker from SR Research (sampling rate: 1k Hz; spatial resolution was less than .05o; averaged calibration error: .25-.5o) while participants listened to the sentences.
-The monitor used to show the target verbs was a BenQ XL2420TE with 1920 x 1080 resolution.
+All sentences were grammatical. 
+Experimental sentences were 5 words long and followed a SVO word order.
+Subjects were animate nouns, and objects were inanimate nouns. 
+Both were 2-4 syllables long. 
+Experimental verbs were disyllabic third-person singular regular transitive -ar verbs with a CVC-CV syllabic structure. 
+Each experimental sentence had two conditions: present (paroxytone) and preterite (oxytone; e.g., *El ladrón salta/saltó la valla* ‘the thief jumps/jumped over the fence’). 
+The visual stimuli consisted of a present and a preterite verb displayed side by side on the screen. 
+Present verbs appeared on the left in half of the trials and on the right in the other half. 
+Images of words rather than objects were used because it is difficult to illustrate present and past actions, it is uncertain what word participants truly activate when they see an object, and phonological competitor effects are stronger with words than pictures (Huettig & McQueen, 2007; Ito, Dunn, & Pickerin, 2017). 
+Filler sentences contained anaphoras, gender agreement and idiomatic expressions and were between 5 and 14 words long. 
+The written words for the filler sentences consisted of inanimate nouns for the anaphora fillers, descriptive adjectives for the gender agreement fillers, and ending nouns for the idiomatic fillers.
 
-_Visual stimuli_
-The words that appeared on the screen were presented as images created with PhotoScape X version 3.0.3., set with Helvetica font and the size 300. <!-- Is this font monospaced? --> 
-The size of each image was set at 1920 x 1080 pixels. <!-- So the image filled up the entire screen? --> 
-The background was white and the color of the letters black.
-The position of the target words on each side of the screen was counterbalanced.    
+#### 4.2.4. Visuospatial anticipation task
+An adapted version of the ZBA task [*Zeit- und Bewegungsantizipation* 'Time and Movement Anticipation,' Schuhfried Wiener Testsystem; @vienna2013time] was employed to measure visual-spatial predictive abilities.
+The task was created and administered in PsychoPy v3.2. [@peirce2019psychopy2] using the same monitor as above.
 
-The experimental words were all verbs.
-There were 16 pairs of verbs.
-Each verb consisted of the same verb conjugated in the present and preterit tenses. <!-- This is rather repetitive --> 
-The critical items were regular, bisyllabic verbs with a CVC initial syllable.
-All belonged to the -ar conjugation and were conjugated in the 3rd person present and preterit tense. 
-Spanish regular verbs ending in -ar have 2 cues to tense: initial syllable stress and word ending morphology. 
-Stressed initial syllables indicate that the tense is present (*salta* ‘s/he jumps’), and unstressed initial syllables indicate that the tense is past (preterit, _saltó_ ‘s/he jumped’). <!-- I think in this sentence and the previous one it makes more sense to refer to penultimate stress (rather than initial syllable stress) as a generalization for Spanish. We know this will always be the first syllable becuase you have already said the items are bisyllabic. --> 
-The verb suffix indicates tense, person and aspect. 
-
-There were three types of filler words. 
-The first type were nouns in anaphora ambiguities (*papel* 'sheet of paper' vs. _plano_ 'map'). 
-The second type were adjectives for gender agreement (*nuevo* 'new~masc~' vs. _nueva_ 'new~fem~'). 
-The third type was a variety of nouns and adjectives that completed idiomatic expressions. 
-
-_Auditory stimuli_
-Each verb pair was embedded in the same sentence where the only difference between tense conditions was the conjugated verb.
-Since each of the 16 verbs could be conjugated in the present or preterit tense, there were 32 sentences total.
-The sentences were distributed into blocks by means of a Latin square design.
-There were 8 blocks. 
-Each block contained only two experimental sentences: one sentence of each condition, and 6 filler sentences, two of each type.
-The blocks appeared in a randomized order.
-Within and across the blocks, the sentences were pseudo-randomized to avoid two experimental sentences of the same condition appearing one after the other. 
-
-The experimental sentences (*El ladrón saltó la valla* 'The thief jumped over the fence') had all identical syntactic structure and length: 5 words.
-The verb was only preceded by an NP (the subject) to avoid possible biases towards the present or the preterit verb. 
-The object following the verb was also a NP.
-A given participant was only exposed to one of the two conditions for a given verb pair (e.g., for sentence number 6, participant Y was only exposed to condition 1, and for sentence 7 to condition 2).
-In total, each participant was exposed to 16 experimental sentences (half with present verbs and half with preterit verbs).
-
-There were three types of filler sentences: anaphora ambiguity (*Mientras el secretario interrumpe al arquitecto, está guardando un papel en el armario* 'While the clerk interrupts the architect, he is putting a sheet of paper away in the cabinet'), gender agreement of adjectives based on determiner and noun (*Dice que su colegio nuevo cuesta mucho dinero* 'He says that his new school is very costly'), and idiomatic expressions (*La niña no cambia por nada del mundo su muñeca* 'The little girl does not change her doll for anything in the world').   
-There were four practice sentences, one of each type of sentence.     
-
-#### 4.2.2.2. Visuospatial anticipation task
-An adapted version of the ZBA task [*Zeit- und Bewegungsantizipation* 'Time and Movement Anticipation,' Schuhfried Wiener Testsystem; @vienna2013time] was used to measure visual-spatial predictive associations.
-A car on the screen moved from left to right or right to left at three different speeds: low (3.342 cm/s), medium (5.160 cm/s), and fast (7.087 cm/s).
+In this task, a car on the screen moved from left to right or right to left at three different speeds: low (3.342 cm/s), medium (5.160 cm/s), and fast (7.087 cm/s).
 The car then disappeared behind a mountain. 
-The participants had to calculate according to the size of the mountain and the speed of the car when the car should reappear from the other side of the mountain, marked with a checkered flag.
-When they thought the car should reappear, participants were to press a key.
+The participants had to gauge when the car should reappear from the other side of the mountain, marked with a checkered flag, based on the size of the mountain and the speed of the car.
+When they thought the car should reappear, participants pressed the spacebar.
 The trial ended automatically at key press, and the following trial started.
 
-There were 8 trials for each speed and direction, therefore 48 experimental trials. 
-There were four additional trials serving as practice. 
-The speed in those trials was set at either 4 cm/s or 6 cm/s. 
-The car would move in an opposite direction in each of the two trials for each speed.
-The task was administered in PsychoPy v3.2. <!-- cite --> 
-
-### 4.2.3. Working memory tasks
-
-#### 4.2.3.1. Verbal WM task
-
-An adapted version of Unsworth et al.’s (2005) Operation Span task (henceforth, OSpan) was used to assess verbal WM span.
-This task generates independent measures of storage and processing speed.
-In a single trial, participants heard a word followed by a simple mathematical problem that could be either true or false (e.g., 2 + 2 = 4).
-For the mathematical problems, they had to decide as fast as possible whether what they heard was true or false by pressing the left- or right-shift key.
-When they made their selection, their choice on the screen turned blue.
-This process would repeat a certain number of times until a set was complete.
-At the end of each set, participants were prompted to write down the individual words they had heard before each problem in the same order they had heard them.
-The whole task was administered in the participant's L1.  
-
-There were two practice trials of 3 words and mathematical problems, and three experimental sets of three, four, five and six words and mathematical problems. 
-The words and mathematical problems that participants heard in the sets appeared in a fixed order across participants. 
-The words TRUE and FALSE that participants needed to select in response to the mathematical problems appeared counterbalanced on each side across participants. 
-No feedback was ever provided.
-The task was administered in PsychoPy v3.2. <!-- Cite --> 
+There were four practice trials and 48 experimental trials.
+The speed in the practice trials was set at either 4 cm/s or 6 cm/s, and the car moved in an opposite direction in each of the two trials for each speed.
+In the experimental trials, there were 8 trials for each speed and direction. 
+Trials were pseudo-randomized so that no two trials with the exact same condition (same speed and same direction) appeared in a row.
 
 ### 4.2.3.2. Visuospatial WM task
 An adapted version of [@milner1971interhemispheric]'s Corsi-blocks tapping test served to assess visuospatial WM.
+The task was again created and administered in PsychoPy v3.2. [@peirce2019psychopy2] using the same monitor as in the previous tasks.
+
 In each trial, participants saw a grid of 4 x 4 empty squares on a white background. 
-Some of the squares would flash red for 1 s. and then turn white again one by one. 
+Some of the squares would flash red for 1 s and then turn white again creating a sequence of flashes. 
 Participants had to recreate the sequence of flashed squares.
 There were no time constraints.
-There were two practice sequences, and 21 sequences split into sets of three.
-The first set started with sequences of 3 squares.
+The following trial started once the participant clicked the same number of squares as those contained in the sequence.
+
+There were two practice sequences, and 21 experimental sequences split into sets of three.
+The first experimental set started with sequences of 3 squares.
 Then, a new set of three sequences one square longer started.
 The longer trials had sequences of 9 squares. 
-The sequences were random. 
-No feedback was provided.
-The task was administered in PsychoPy v3.2.
+The sequences were random.
+
 
 ## 4.3. Procedure
-Data collection took place in a single session of about 1 hour and 30 minutes. 
-All interaction between researcher and participants happened in Spanish.
-Participants completed the tasks in this order: Spanish proficiency test (only L2 learners; 15-20 minutes), language background questionnaire (10 minutes), linguistic anticipation task (25 minutes), visuospatial anticipation task (10 minutes), Corsi-blocks task (10 minutes), and OSpan (15 minutes).
-First, participants listened to an overview of the tasks and signed the consent form.
-Participants provided oral responses for the language background questionnaire. 
-They completed the remaining tasks on a computer, using a 24" computer monitor and Sol Republic 1601-32 headphones.
-In all tasks, the instructions were given in both oral and written form. 
-The oral instructions were in Spanish; the written instructions were in the participant's L1.
+Data collection took place in a single session of about 1 hour and 30 minutes.
+The experiment was conducted in Spanish, although written instructions were provided in the participants' L1.
+Participants completed the tasks in this order: Spanish proficiency test, background questionnaire, eye-tracking prediction task, visuospatial anticipation task, and Corsi-blocks task.
 
-_Linguistic anticipation task_. For the visual-world paradigm, participants rested their head on a chin rest, and completed an 11-point grid calibration task.
-They could ask questions after the practice trials. 
-Both the practice and the experimental trials followed the same order.
-See Figure 1 for an example of an experimental trial.
-First, a fixation sign appeared in the middle of the screen for 250 ms. 
-This allowed the researcher to recalibrate manually when necessary. 
-Then, two words appeared on the screen side to side. 
-Once the words had been on the screen for 1000 ms, the sentence started playing.
-A green rectangle appeared on the screen around the word participants had selected.
-The sentence did not stop when participants selected the word they heard. 
-Response recording was set up to be registered only when the press happened after the start of the verb in the sentence; previous presses were not recorded.
-The setting therefore forced participants to press again if they pressed to soon. 
+### 4.3.1. Eye-tracking prediction task. 
+Participants were randomly assigned to one of two versions of the task.
+Each version contained only one of the two conditions for a verb (e.g., if *salta* “s/he jumps” (present/paroxytone) appeared in version 1, then version 2 contained *saltó* “s/he jumped” (preterite/oxytone)).
+Both versions had the same practice trials, and the same number of filler and experimental trials.
+
+For the task, participants rested their head on a chin rest, completed a 9-point grid calibration task, and received task instructions. 
+Then, participants completed the practice trials and asked questions. 
+Next, they completed the experimental trials. 
+For each trial, participants saw a drift correction sign, a + fixation sign for 250ms, two verbs side by side for 1,000 ms, listened to the sentence, and chose the verb on the screen they heard as soon as possible by pressing the left- or right-shift key. 
+Upon pressing, a rectangle appeared around the selected verb. 
 No feedback was provided. 
+Response recording was set up to be registered only when the key press happened at or after the onset of the verb. 
+Key presses did not stop the sound file. 
+After the sentence, there was a 500 ms blank screen, and the next trial began. 
+Figure 1 illustrates a sample trial.
 
-```{r knitr, include=TRUE, echo=FALSE, fig.cap = 'Sample trial of the visual-world paradigm'}
-knitr::include_graphics('./figs/vwp.png', dpi = 108)
+```{r knitr, include=TRUE, echo=FALSE, fig.cap = 'Sample trial of the eye-tracking prediction task'}
+knitr::include_graphics('../00_intro/figs/vwp.png', dpi = 108)
 ```
 
-_Visuospatial anticipation task_. In the first two practice trials, participants saw the car's position as feedback upon pressing the space bar, to learn if they had calculated the reappearance moment correctly; in the last two practice trials, they did not receive any feedback, just like in the experimental trials. 
-In the experimental trials, the trial would automatically finish upon the space bar press. 
+### 4.3.2. Visuospatial anticipation task. 
+Participants first received the instructions for the task, completed the two practice trials and asked questions about the procedure.
+In the practice trials, participants saw the car's position upon pressing the spacebar as feedback in the first two trials, to learn if they had timed the key press correctly with the speed of the car.
+In the last two practice trials, they did not receive any feedback or saw the car upon pressing the spacebar, imitating the procedure in the experimental trials. 
+In the experimental trials, the trial would automatically finish upon the spacebar press. 
 There was a fixation cross for 250 ms between trials. 
-Figure 4 shows a trial of the task.
+Figure 2 shows a trial of the task.
 
 ```{r, include=TRUE, echo=FALSE, fig.cap = 'Sample trial of the visuospatial anticipation task'}
-knitr::include_graphics('./figs/car_task.png', dpi = 108)
+knitr::include_graphics('../00_intro/figs/car.png', dpi = 108)
 ```
 
-_Visuospatial WM task_. The Corsi-blocks task consisted of recreation of flashing square sequences previously seen. <!-- I think you need a gerund here -->
-In this task participants completed 2 practice sets, and then the experimental section began. 
-Once they had clicked the same number of squares as in the original sequence, a fixation cross appeared for 500 ms in the center of the screen, and then the next sequence started (see Figure 5 for a sample trial). 
+### 4.3.3. Visuospatial WM task.
+Participants first received instructions, completed two practice sets, and asked questions.
+In each trial, both practice and experimental, participants saw flashing squares and recreated the sequences of flashing squares by left-clicking on them with the mouse.
+Once they had clicked the same number of squares as in the original sequence, a fixation cross appeared for 500 ms in the center of the screen, and the next trial with a new sequence started.
+The task automatically moved to the next set of three sequences one-square longer upon completion of a level (see Figure 3 for a sample trial). 
+No feedback was provided throughout the task.
 
 ```{r, include=TRUE, echo=FALSE, fig.cap = 'Sample trial of the Corsi-blocks tapping task'}
-knitr::include_graphics('./figs/corsi.png', dpi = 108)
+knitr::include_graphics('../00_intro/figs/corsi.png', dpi = 108)
 ```
 
-_Verbal WM task_. The OSpan task was divided into practice and experimental trials. 
-For each trial, participants first heard a word in their L1 and then heard a simple equation, like 2+2=5, also in their L1. 
-During the mathematical problems, participants saw the words TRUE or FALSE on each side of the screen, and they had to press the corresponding key (left-shift key for the word on the left, right-shift key for the word on the right) depending on whether the equation was correct or not. 
-After each equation, they saw a fixation point for 500 ms and another pair of word-equation was presented. <!-- this sounds odd --> 
-This process was repeated until the word RECALL or a linguistic equivalent in the L1 of the participant was shown on the screen, at which moment participants had to write on paper the words they had heard in the order they were presented. 
-Chinese speakers were allowed to write their answers in pinyin.
-If homophones were written, they were considered correct (e.g., Adam for atom).
-Figure 6 shows a sample trial.
-
-```{r, include=TRUE, echo=FALSE, fig.cap = 'Sample trial of the OSpan'}
-knitr::include_graphics('./figs/ospan.png', dpi = 108)
-```
 
 ## 4.4. Data analysis
-Statistical analyses were conducted on R [@team2013r].
-Given that speakers of different languages have different average spans, verbal WM variance was used as homogeneity measure (*K^2^*(2) = 6.376e-15, p = 1). 
-Verbal WM was calculated as the z-score of number of sets that participants got completely right (all words in correct order).
+Statistical analyses were conducted on R [@team2013r] with the packages *lme4* [@bates2014fitting].
+The gaze fixation data were downsampled to 50 ms bins and incorrect responses were filtered out (0.42% of data).
+The data were centered 200 ms after the onset of the last syllable to account for saccade planning and launching, as is standard procedure in auditory eye-tracking studies [e.g., @fischer1992saccadic; @saslow1967effects].
 
-Once we made sure groups were comparable, we calculated Corsi scores and visuospatial anticipation measures.
-The Corsi score was compounded by z-score conversion of the number of sequences recreated exactly. <!-- I'm not sure I understand this. Did you multiply them? --> 
-In the visuospatial anticipationtask, key presses were stored taken as referent 0 the ms in which the car was meant to reappear from behind the mountain. <!-- I htink somehting is missing from this sentence --> 
-Key press timings could thus be negative if they happened before, or positive if they happened afterwards.
+Growth curve analyses [GCA, @mirman2016growth] with mixed-effects were used to analyze the time window around the verb encompassing the departure of looks from chance levels.
+The time window spanned from 400 ms before to 200 ms after the center of our data. 
+These GCA analyses resulted in 9 different models—three for each L1 population.
+One of these models was for visuospatial anticipation abilities, a second one for verbal processing speed, and a third one for visuospatial processing speed.
+The L1 populations, visuospatial measures and verbal processing speed were separated to avoid overfitting and to avoid making the results uninterpretable.
+
+Main effects and interactions were assessed by means of nested model comparisons.
+We tested linear, quadratic and cubic orthogonal polynomial time terms to model the time course in the GCA.
+The outcome data, proportion of fixations on the target at the onset of the last syllable on the verb from the eye-tracking prediction task, was modified using the empirical logic transformation, as it is binary data [fixations on the target or the distractor; @barr2008analyzing].
+
+The three GCA for the monolinguals included lexical stress, the time terms and visuospatial prediction abilities, visuospatial processing speed or verbal processing speed as fixed effects, and participant and item as random intercepts, and lexical stress as random slope.
+The GCA for the L2 speakers were modeled with lexical stress, the time terms, L2 proficiency and visuospatial prediction abilities or verbal or visuospatial processing speed as fixed effects, and participant and item as random intercepts, and lexical stress as random slope.
+Lexical stress was categorical and contrast-coded.
+The continuous variable L2 proficiency was standardized.
+Visuospatial prediction abilities values were obtained by calculating the time difference (timing) between participants' key presses and the ms when the car should reappear, and then we estimated a measure of visuospatial anticipation for each participant via the random effects of a separate model estimating key-press time as a function of speed and direction.
+That is, individual divergences from the model estimate are taken as an assessment of visualspatial anticipation for subsequent models.
+These values could therefore be negative if participants tended to press too soon, or positive if pariticipants tended to wait too long.
 Trials where the participant took too long to respond and the car should have 'left' the screen were discarded.
-Visuospatial anticipation was calculated as the random effects in a model that estimated key-press time as a function of speed and direction. <!-- I would explain this the other way around. Something like: A measure of visuospatial anticipation for each participant was estimate via the random effects of a separate model estimating key-press time as a function of speed and direction. That is, individual divergences from the model estimate are taken as an assessment of visualspatial anticipation for subsequent models. -->
-
-Then we prepared the linguistic anticipation data.
-Participants' key presses were considered accurate if they pressed the key corresponding to the verb in the sentence. 
-Only the sentences with accurate responses were included in the statistical analyses. 
-In the statistical analyses, proportion and count of fixations on the verbs over time in the sentence were analyzed. 
-From the eye-tracking data, we analyzed fixations on the target and on the distractor [@barr2008analyzing].
-These data were downsampled to 50 ms bin and converted to continuous values via the empirical logit transformation. <!-- Why did you do this? --> 
-The moment of interest was the offset of the first syllable of the verb, henceforth target syllable, right after the cue appears but the outcome is not available yet.
-We filtered the time window to be from 200 ms before and 600 ms after target syllable offset.
-The gaze-fixation data was shifted 200 ms to account for the time it takes to plan and launch a saccade [e.g., @fischer1992saccadic; @saslow1967effects].
-
-After cleaning all the data, a growth curve analysis [GCA, @mirman2016growth] was fit using the package _lme4_ [@bates2014fitting].
-GCA was implemented to observe effects over time, as linguistic information becomes available.
-Group, lexical stress condition (sum-coded present and preterit), visuospatial WM, and visuospatial anticipation were fixed effects.
-The time terms included were linear, quadratic and cubic orthogonal polynomials.
-Logit fixations were the outcome.
-By-subject and by-item random intercepts and slopes were included to account for the different familiarity of each subject with each of the verbs in both tenses. <!-- this doesnt explain the slopes --> 
-Main effects and interactions were tested by means of nested model comparisons.
-
-SS and present tense were the baseline. <!-- ABove you said you sum coded. You need to clarify this --> 
-Pairwise comparisons using the package _multcomp_ [@hothorn2016package] contrasted the data between the L2 groups in terms of L1 and in terms of proficiency. <!-- This needs to be explained more clearly --> 
+Verbal and visuospatial processing speed values were obtained by measuring the time participants needed in correct trials, and then applying a linear regression to these values where they were the outcome and length of the trial (in terms of words/squares to remember) as predictors, and calculating the random effects for each participant. 

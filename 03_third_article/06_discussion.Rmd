@@ -1,51 +1,87 @@
 # 6. Discussion
-We set out to examine transfer effects from the visuospatial domain to language in terms of anticipation skills.
-Monolingual Spanish speakers and Mandarin and English learners of Spanish completed a linguistic and a visuospatial linguistic task and a visuospatial WM task.
-The results show that visuospatial WM influences anticipation abilities by tense, and it also interacts with visuospatial anticipation abilities in determining linguistic anticipation abilities.
-These results suggest that executive control skills may be transferring to domain-specific tasks in both the visuospatial and linguistic domains.
+We set out to examine prediction transfer effects from the visuospatial domain to language and mediation of verbal and visuospatial processing speed.
+Monolingual Spanish speakers and Mandarin and English learners of Spanish completed linguistic and visuospatial linguistic tasks and verbal and visuospatial working memory tasks that also measured processing speed.
+The results show that 1) both vPS and sPS as well as visuospatial prediction abilities affect language prediction in monolinguals, 2) vPS and visuospatial prediction affect language prediction in English speakers of Spanish, and 3) only sPS affects language prediction in Mandarin speakers of Spanish.
+These results suggest that language prediction is interconnected with domain-general and domain-specific mechanisms typically secondary in the language domain.
 
-The model indicates that all speakers except for IM were anticipating.
-We can therefore proceed to discuss how visuospatial skills may be affecting anticipation in SS, both advanced groups and IE.
-Differences in visuospatial skills did not manifest across L1s.
-The lack of interaction of visuospatial skills with any group suggests that whichever interaction there may be takes place with the language capacity in general, regardless of the specific L1 or L2 of the speaker.
+## L1 speakers
+We hypothesized that vPS and sPS would influence linguistic prediction, but visuospatial prediction would not.
+Our results on vPS and sPS confirm our predictions, but the ones on visuospatial prediction do not.
+Monolinguals with faster vPS predicted paroxytones more slowly but earlier than monolinguals with slower vPS. 
+Faster vPS may facilitate earlier increase of fixations on paroxytones because of the advantage provided by the more lively processing, but the lack of confirmatory information is causing the slowed down prediction.
+Slower vPS, in contrast, may facilitate earlier prediction of oxytones because they are a less common stress pattern in Spanish than paroxytones [@morales2014acento], but the slower processing speed has not provided enough information to discard all wrong alternatives, making prediction of oxytones slow down in comparison to paroxytones.
 
-The effect of visuospatial WM in the cubic term and the interaction in stress in the quadratic term suggest that visuospatial WM mediates linguistic anticipation.
-The mediation is particularly strong in the preterit tense, where variability dependent on visuospatial WM was higher.
-The relationship found in the preterit tense is a positive one, where higher visuospatial WM score is associated with earlier and more certain prediction.
-In the present tense, however, individuals with higher working memory started anticipating later, although they were also more certain once they started predicting.
-This difference may stem from an uncertainty as to whether stress is being used as a lexical contrast or with an intonational or pragmatic use.
-If this hypothesis were true, a stressed syllable may cause uncertainty because it might be signalling, for instance, that the word containing is emphasized for pragmatic purposes.
-A listener would compare the stress heard with the associations of stress in their mind, and more information about this stress is needed to disambiguate and to discard unapplicable associations.
+These results add up to @huettig2016individual, showing that measures other than working memory may also influence prediction.
+Our findings partially corroborate @huettig2016individual's in that vPS positively influences linguistic prediction.
+Our findings expand previous ones by suggesting the the association between vPS and linguistic prediction is not straight-forward and other factors such as how common the structure to be anticipated is also play a role.
 
-Visuospatial WM interacted with visuospatial anticipation skills in the cubic term.
-The patterns for the relationship between visuospatial anticipation and linguistic anticipation were not as clear cut.
-The lack of a pattern suggests that anticipation abilities in each domain may not have been connected to each other, but they might be due to visuospatial WM.
-In this case, transfer would not happen between specific domains, but between the general domain onto specific ones.
+Faster sPS was associated with faster prediction in the paroxytone condition, while slower sPS was associated with faster prediction in the oxytone condition.
+The causes of this double association may be different for each side of the association.
+Individuals with faster sPS may recruit it as the last push to help choose the paroxytone target, given the large amount of competitors.
+In the oxytone condition, recruiting sPS may not be necessary as that condition may be "too easy."
+Individuals with slower sPS may recruit it only in the oxytone condition because the paroxytone one is too complex.
 
-There was an interaction proficiency, stress, and visuospatial WM and anticipation skills in the linear term.
-In all groups, higher visuospatial WM was associated with earlier prediction of the preterit tense.
-If our hypothesis that there was only transfer from domain-general to domain-specific mechanism is true, the interaction with visuospatial anticipation is just a consequence of the transfer to other domains, not necessarily a result of an interaction between the two specific domains.
-Again, this hypothesis is supported by the lack of a clear direction in the association between visuospatial and linguistic prediction.
+Lastly, those individuals who tended to anticipate the car's reappearance too early predicted paroxytones faster, while those who tended to wait longer predicted oxytones faster.
 
-The reasoning that speakers were transferring domain-general mechanisms to domain-specific tasks but not skills across specific domains support domain-specific learning models but does not support domain-general learning mechanisms.
-In domain-specific learning models, brain domains are independent and unrelated to each other.
-Each domain can develop skills that become increasingly specific, reducing the possibility that transfer takes place [@ericsson1994expert; @gobet2015understanding].
-The lack of an effect of visuospatial anticipation skills along with the lack of a pattern in the relationship when visuospatial WM is included between anticipation skills further demonstrates that the effect obeys an association simply through the general mechanisms, but not direct associations between specific domains.
 
-In domain-general models, transfer takes place because the domain-specific domains depend on common features [@thorndike1901influence] or because they share perceptual and conceptual information [@singley1989transfer].
-Visuospatial anticipation and speech anticipation do not share any of those.
-A possible venue where language and vision/space may be more related is in reading, as both types of information would be perceived visually. 
-Future investigations may want to exploit that venue.
 
-In conclusion, the results in this study confirm that transfer is only possible when the specific domains share perceptual and conceptual information [@singley1989transfer] or, maybe, when they rely on the same physiological structures.
-These results go against previous findings in atypical populations indicating the existence of a relationship between language and visuospatial abilities [@chamberlain2018meta].
-The association found in previous studies may be due to differences in domain-general mechanisms that underlie domain-specific tasks, or to processing deficits [@laing2007comprehension] that would extend to other semantic fields as well as the visuospatial one.
+
+EXPLAIN
+
+
+The different effects of our predictors on linguistic prediction shed light into individual differences in monolinguals.
+Previous research had failed to show differences in prediction based on stress pattern [e.g., @fernandezarroyo; @sagarra2018suprasegmental].
+Although overall there was no difference in prediction across stress patterns here either, the relationship between vPS, sPS and visuospatial prediction with linguistic prediction indicate that there may be hidden differences that are only revealed when more subtly recruited cognitive capacities are examined.
+
+Our findings of the influence of sPS and visuospatial prediction abilities on linguistic prediction also suggest that, at least in an L1, linguistic prediction abilities are not cognitively isolated, but rather, are part of a larger network that can be recruited depending on the abilities of the speaker and the cognitive load of the message.
+These findings support domain-general approaches to language prediction arguing that skills from other domains may be transferred to unrelated or nearly unrelated domains, as long as the skills depend on similar perceptual or conceptual information [@singley1989transfer], which would be prediction in our case.
+Our findings thus further support those scholar advocating for the adoption of a more holistic approach in language research [e.g., @ellis2019essentials; @ryskin2020domain], for whom the investigation of language learning, and by extension processing, should include the usages, the contents, the participants, and the contexts of the speakers [@ellis2019essentials]
+
+## L2 speakers
+We had hypothesized vPS and sPS would influence their linguistic prediction abilities, but visuospatial prediction abilities would not.
+In the English speakers, vPS did exert some influence and so did visuopatial prediction abilities, but sPS did not.
+Proficiency and stress pattern also determined linguistic prediction.
+
+As proficiency increased, predicted became faster, probably as a result of more stable associations between stress patterns and tense suffixes.
+However, the finding that oxytones were predicted earlier than paroxytones suggest that oxytones were easier to start anticipating.
+This difference across stress patterns may also stem from the probability of each happening.
+As paroxytones are more typical [@morales2014acento], the number of possible competitors to the target is larger, delaying target activation.
+These findings on proficiency and stress pattern align with previous research similarly showing that proficiency positively contributes to prediction and that oxytones are easier to anticipate than paroxytones in L2 speakers [e.g., @fernandezarroyo].
+
+The effect of vPS was that as it became faster, prediction also turned quicker.
+This association makes sense as, the faster a speaker is able to process linguistic information, the earlier the new information makes sense in the current context, affording the speaker to have enough information to choose the target faster.
+
+As for visuospatial prediction, it interacted with proficiency and stress pattern.
+In lower proficiency participants, those who anticipated the car's reappearance too early predicted paroxytones faster and oxytones more slowly, in comparison to those who tended to wait too long.
+As proficiency increased, the relationship reversed.
+When proficiency is not too high, speakers who predict visuospatial events too early may predict paroxytones faster because they are relying on the most typical, and therefore reliable, stress pattern.
+Those who are more conservative and predict the car's reappearance later may predict oxytones faster because they know they have fewer competitors, and are therefore more self-confident in their word selection.
+At high levels of proficiency, the situation may reverse due to overdoing it.
+That is, speakers who predict visuospatial events too early may have learned to rely on the fewer number of competitors, and those who predict too late may have learned that paroxytones are more typical, and therefore are able to use the paroxytone structure faster, but in both cases, both groups may not have been able to reach a balance between both conditions.
+Our results do not allow us to ascertain whether this balance is attainable or not through anticipatory experience (i.e., in interpreters) or immersion experience, or whether, on the contrary, the balance is never achieved in late L2 speakers, more in line with the critical period hypothesis.
+
+In the Mandarin Chinese speakers, only sPS affected language prediction.
+In contrast to the English speakers, only proficiency additionally determined prediction.
+Specifically, as proficiency increased, so did their chance at prediction, but not the timing or the speed.
+In terms of sPS, those with faster sPS actually predicted language more slowly.
+Since bilinguals with a logosyllabic writing system benefit more from enhanced visuospatial working memory than alphabetic bilinguals [@ma2016working], sPS may also affect populations used to logosyllabic writing systems more strongly.
+Consequently, given that Mandarin Chinese may require sPS more often than Spanish or English in reading due to the nature of their writing system, this population may recruit sPS more readily, even when it is not necessary, making its relationship with language prediction more visible.
+However, their automatic recruitment of sPS when it was not needed may have hindered prediction, as they may have been expecting to receive more information that never came, as visuospatial information is not as common in Spanish.
+
+These findings extend those on reading [e.g., @lin2016bidirectional], visuospatial representation [@holmes2017revisiting] and processing [e.g., @landau2005parallels], by adding another overlap between the visuospatial and linguistic domains, namely, prediction.
+This overlap and the influence of domain-general capacities indicate once more that language is subject to other cognitive abilities, and that skills acquired in language are potentially transferable to other domains and vice versa [@anderson1990cognitive; @thorndike1901influence].
+Future research should therefore adopt a more comprehensive perspective that considers language as part of something bigger, rather than as an isolated cognitive domain.
+The different effects of each predictor in our three populations further suggests that the transfer is not straight-forward nonetheless.
+Factors such as nature of the linguistic system (L1 vs. L2) or the L1 may condition how prediction skills are transferred or affected by general cognitive abilities.
+
+Future studies should explore what factors affect skill transfer in prediction.
+Similarly, future studies should investigate whether the strength of the association across domains varies depending on the origin domain and what factors condition the strength of the association, such as expertise or modality.
+This future research will help fine-tune our knowledge about linguistic prediction.
+
+<!--Although our results support more strongly domain-general models, we cannot completely discard domain-specific models, since finding that domains in a similar modality to that in which language is receving the prediction skill (e.g., auditory > auditory) affect prediction more strongly than effects from domains in a different modality (e.g., auditory > visual) may suggest that the more similar the domains the more likely the transfer, partially supporting domain-specific models.-->
 
 # 7. Conclusion
-In this study we asked whether there would be transfer from the visuospatial domain to speech to facilitate prediction of suffixes associated to lexical stress cues in L1 and L2 English and Mandarin speakers of Spanish.
-The results demonstrate that the possibility of direct transfer is dim.
-Instead, transfer from domain-general abilities is plausible.
-Visuospatial WM was associated with linguistic prediction abilities in monolinguals, advanced speakers, and in English intermediate speakers.
-These results support domain-specific learning models in terms of unlikelihood of transfer of domain-specific skills.
-The results do support, nonetheless, transfer of domain-general mechanisms that may underpin processing performance in various specific domains.
-These results highlight the need to enhance domain-general skills to facilitate language processing.
+In this study we asked whether there would be transfer from the visuospatial domain to speech to facilitate prediction of suffixes associated to lexical stress cues in L1 and L2 English and Mandarin speakers of Spanish, and whether verbal and visuospatial processing speed would mediate linguistic prediction.
+The results demonstrate that linguistic prediction is connected with domain-general and domain-specific abilities, even across modalities, as long as there is some commonality in the skill serving as connection.
+The connection presents different characteristics in different linguistic populations, although all showed evidence of associations of language with the visuospatial domain.
+Our findings support domain-general cognitive approaches to language.

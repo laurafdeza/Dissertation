@@ -144,7 +144,7 @@ figs_path <- here("figs", "stress", "gca")
 # Proficiency
 prof_sum <- fits_all_l2_dele %>%
   mutate(Proficiency = as.factor(DELE_z),
-         Stress = if_else(condition_sum == 1, "Present", "Past"),
+         Stress = if_else(condition_sum == 1, "Present", "Preterite"),
          Stress = fct_relevel(Stress, 'Present'),
          L1 = if_else(l1_sum == 1, "Mandarin Chinese", "English"),
          L1 = fct_relevel(L1, "English")) %>%
@@ -166,7 +166,7 @@ prof_sum <- fits_all_l2_dele %>%
 
 prof_sum_cond <- fits_all_l2_dele %>%
   mutate(Proficiency = as.factor(DELE_z),
-         Stress = if_else(condition_sum == 1, "Present", "Past"),
+         Stress = if_else(condition_sum == 1, "Present", "Preterite"),
          Stress = fct_relevel(Stress, 'Present'),
          L1 = if_else(l1_sum == 1, "Mandarin Chinese", "English"),
          L1 = fct_relevel(L1, "English")) %>%
@@ -179,7 +179,7 @@ prof_sum_cond <- fits_all_l2_dele %>%
   geom_line(size = 0.35) +
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
                      labels = c("-200", "0", "200", "400", "600")) +
-  scale_color_brewer(palette = "Set1", name = "Condition") +
+  scale_color_brewer(palette = "Set1", name = "L1") +
   scale_linetype_manual(values=c("solid", "dashed", 'dotted')) +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +
@@ -212,7 +212,7 @@ use_sum <- fits_all_l2_use %>%
 
 use_sum_cond <- fits_all_l2_use %>%
   mutate(`L2 use` = as.factor(use_z),
-         Stress = if_else(condition_sum == 1, "Present", "Past"),
+         Stress = if_else(condition_sum == 1, "Present", "Preterite"),
          Stress = fct_relevel(Stress, 'Present'),
          L1 = if_else(l1_sum == 1, "Mandarin Chinese", "English"),
          L1 = fct_relevel(L1, "English")) %>%
@@ -225,7 +225,7 @@ use_sum_cond <- fits_all_l2_use %>%
   geom_line(size = 0.35) +
   scale_x_continuous(breaks = c(-4, 0, 4, 8, 12),
                      labels = c("-200", "0", "200", "400", "600")) +
-  scale_color_brewer(palette = "Set1", name = "Condition") +
+  scale_color_brewer(palette = "Set1", name = "L1") +
   scale_linetype_manual(values=c("solid", "dashed", 'dotted')) +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target") +

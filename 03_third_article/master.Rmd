@@ -1,7 +1,7 @@
 ---
 title             : |
-  There is no association between visuospatial and speech anticipation abilities in L1 and L2 speakers of Spanish
-shorttitle        : "Visuospatial and speech anticipation abilities"
+  Title
+shorttitle        : "Short title"
 
 author: 
   - name          : "Laura Fernández Arroyo"

@@ -53,15 +53,27 @@ Phonomorphological associationns
   *Language experience?*
   - Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font>
   *Increased use?*
+  
+---
+
+# Previous research
+</br>
+
+Phonomorphological associationns
+  - Starting at intermediate level of proficiency <font size="-1">(Sagarra & Casillas, 2018; Schremm et al., 2016)</font>
+  *Language experience?*
+  - Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font>
+  *Increased use?*
+  - L1 transfer? <font size="-1">(Gosselke Berthelsen et al., 2018)</font>
 
 ---
 # Our study
 
-## Does language use affect L2 stress-tense prediction?
+## Does L1 transfer affect Spanish English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
+
+## Does L2 use affect Spanish English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
 
 --
-
-L2 use:
 - more use = faster prediction <font size="-1">(Fernández Arroyo et al., under review)</font>
 
 ---
@@ -70,12 +82,12 @@ L2 use:
 
 Participants:
 - 30 Spanish monolinguals
-- 65 English speakers (L2 Spanish)
+- 65 English speakers (L2 Spanish intermediate or above)
+- 64 Mandarin Chinese speakers (L2 Spanish intermediate or above)
 
 Materials:
-- Sociolinguistic background questionnaire
-- Proficiency test
-- Visual world paradigm
+- Language history questionnaire
+- Visual world paradigm (eye-tracking)
   
 ---
 
@@ -95,22 +107,24 @@ Close tracking of time
 
 Participants:
 - 30 Spanish monolinguals
-- 65 English speakers (L2 Spanish) 
+- 65 English speakers (L2 Spanish intermediate or above)
+- 64 Mandarin Chinese speakers (L2 Spanish intermediate or above)
 
 Materials:
-- Sociolinguistic background questionnaire
-- Proficiency test
-- Visual world paradigm
+- Language history questionnaire
+- Visual world paradigm (eye-tracking)
 
 Analysis:
 - Growth Curve Analysis <font size="-1">(Mirman, 2014)</font>
 
 ```{r eval=FALSE}
-eLog ~ 1 + (ot1 + ot2 + ot3) + 
+eLog ~ 1 + (ot1 + ot2 + ot3) + l1_sum + ot:l1_sum +
     condition_sum + ot1:condition_sum + ot2:condition_sum + 
-    use_z + ot1:use_z + ot2:use_z +     
-    (1 + condition_sum + (ot1 + ot2 + ot3) | participant) +
-    (1 + ot1 + ot2 | target)
+    use_z + ot1:use_z + ot2:use_z + l1_sum:condition_sum:use_z +
+    ot1:l1_sum:condition_sum:use_z + ot2:l1_sum:condition_sum:use_z +
+    ot3:l1_sum:condition_sum:use_z +
+    (1 + condition_sum + ot1 + ot2 + ot3 | participant) +
+    (1 + ot1 + ot2 + ot3 | target)
 ```
   
 ---
@@ -146,6 +160,12 @@ include_graphics("./figs/use_prof/gca_verb/en_gca_use_verb.png", dpi = 150)
 ```
 ]
 
+???
+A Growth Curve Analysis revealed that: (1) all groups predicted the suffix at the onset of the
+second syllable, before hearing it, but that the monolinguals predicted more than the L2 learners;
+(2) the English learners predicted more and faster than the Chinese learners; and (3) all the
+learners predicted faster the more L2 use they reported, but particularly the Chinese with present
+verbs (see Figure 1).
 ---
 
 # Results
@@ -159,89 +179,36 @@ include_graphics("./figs/use_prof/gca_verb/en_gca_all_verb.png", dpi = 150)
 
 ---
 
-# Summary and Discussion
+# Discussion
 
-Does language use affect L2 phonomorphological prediction? </br>
-How do L2 use effects differ from L2 proficiency effects?
+## Does L1 transfer affect Spanish English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
 
---
-
-.pull-left[
-.content-box-red[
-*L2 proficiency*</br>
-Faster prediction
-
-]
-]
-
---
-
-.pull-right[
-.content-box-green[
-*L2 use*</br>
-Later prediction
-
-]
-]
-
---
-
-.center[
-.content-box-yellow[
-*Interaction*</br>
-Paroxytones (CANta):
-- over proficiency only when use is extensive: earlier prediction
-
-Oxytones (canTÓ):
-- over proficiency when use is reduced: earlier prediction
-- over proficiency when use is extensive: more prediction
-- over use when proficiency is high: later but faster prediction
-
-]
-]
+## Does L2 use affect Spanish English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
 
 ---
 
-# Summary and Discussion
+# Discussion
 
-- Proficiency contributes positively because it gives speakers familiarity with the standard and a restricted set of options.
-
-- Increased L2 use provides more options, delaying and slowing down processing.
-
-- Increased L2 use gives more certainty, helping to reach higher probability of prediction.
-
-- L2 use and L2 proficiency are not exchangeable L2 experience measures.
-
-- L2 use and anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font> also have different effects.
-
-- Stronger interactions in oxytone verbs because less typical.
-
-???
-- L2 proficiency may counteract (detrimental) L2 use effects.
+- Adult L2 learners of different L1 can use prosodic cues to predict word endings
+- Having an L1 with a more similar stress and verb suffix system and higher L2 use facilitate L2 morphophonological prediction
 
 --
 
-</br>
-</br>
-
-.center[
-      *Why do we see these L2 use effects rather than more L1-like performance?*
-      ]
+- Amount of L2 use exerts higher influence with in L1-L2 pairs that differ more from each other, suggesting that L2 use may be used to
+counteract L1 transfer deficits
 
 ---
 
-# Conclusion
-
-</br>
-</br>
-.center[
-We should carefully consider what language experience measures we should include and could be more informative, rather than just focusing on L2 proficiency. 
-]
+# Discussioin
+These findings support L2 models claiming that language experience with the L1 and the L2 shape L2 processing.
 
 ---
 class: title-slide-section-red, center, middle
 
 # Thank you!
-
-laura.fdeza@rutgers.edu
+</br>
+</br>
+</br>
+</br>
+.pull-left[laura.fdeza@rutgers.edu]
 

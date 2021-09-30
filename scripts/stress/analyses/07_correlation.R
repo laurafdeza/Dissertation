@@ -98,13 +98,15 @@ ggsave(paste0(figs_path, "/correlation_all.png"), corr_all, width = 180,
 
 # Plot correlation by group
 corr_plot <- ggplot(l2_data) +
-  aes(x = DELE_z, y = use_z, color = l1, shape = l1) +
-  geom_point() + #colour = "#0c4c8a"
+  aes(x = DELE_z, y = use_z, shape = l1, color = l1) +
+  geom_point(size = 2) + #colour = "#0c4c8a"
   xlab("L2 proficiency") + ylab("L2 use") +
   #geom_smooth(size = .5) + # remove for loess method 
-  geom_smooth(method=lm) + # for linear
+  geom_smooth(method=lm, size = .7) + # for linear
   scale_color_discrete(name = "L1", labels = c("English", "Mandarin Chinese")) +
-  guides(shape = FALSE) +
+  scale_shape_discrete(name = "L1", labels = c("English", "Mandarin Chinese")) +
+  # guides(shape = FALSE) +
+  # guides(shape = guide_legend(override.aes = list(size = 5))) +
   theme_gray(base_size = 12,
              base_family = "Times") +
   theme(legend.position = "bottom",
@@ -112,7 +114,7 @@ corr_plot <- ggplot(l2_data) +
   # theme_minimal()
 
 figs_path <- here("figs", "stress", "gca")
-ggsave(paste0(figs_path, "/correlation.png"), corr_plot, width = 180,
+ggsave(paste0(figs_path, "/correlation_byl1.png"), corr_plot, width = 180,
        height = 120, units = "mm", dpi = 600)
 
 # a correlation test is used to test whether the correlation (denoted ρ) 
@@ -190,6 +192,11 @@ ggplot(ma_data) +
   theme_minimal()
 
 report(cor.test(ma_data$DELE_z, ma_data$use_z, method = "spearman", exact=FALSE))
+
+
+
+
+
 
 
 # ---------------------------------------------------------------------------------

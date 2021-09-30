@@ -142,23 +142,36 @@ write_csv(stress50, here("data", "clean", "stress_50ms_final_onsetc3updated.csv"
 
 # # stress50 <- read_csv(here("data", "clean", "stress_50ms_final_onsetc3updated.csv"))
 
-stress50$cond <- factor(stress50$cond, levels = c("1", "2"), 
-                        labels = c("Paroxytone (present)", "Oxytone (preterite)"))
+# stress50$cond <- factor(stress50$cond, levels = c("1", "2"), 
+#                         labels = c("Paroxytone (present)", "Oxytone (preterite)"))
 
 stress50 <- stress50 %>% mutate(l1 = fct_relevel(l1, 'es'))
 
 # Test plot
-stress50 %>%
-  filter(time_zero > -10 & time_zero < 10) %>%
-  ggplot(., aes(x = time_zero, y = target_prop, color = l1)) +
-  facet_grid(. ~ cond) +
+timecourse <- stress50 %>%
+  filter(time_zero > -9 & time_zero < 9) %>%
+  ggplot(., aes(x = time_zero, y = target_prop, color = l1, fill = l1)) +
   geom_vline(xintercept = 4, lty = 3) +
-  geom_hline(yintercept = 0.5, color = "white", size = 3) +
+  geom_hline(yintercept = 0.5, lty = 3) +
   stat_summary(fun.y = mean, geom = "line") +
-  ggtitle("Time course per verbal tense") +
-  xlab("Time in 50 ms bins (0 = marker time before accounting for 200 ms processing)") +
-  ylab("Proportion of fixations on target") +
+  stat_summary(fun.data = mean_cl_boot, geom = 'pointrange', size = 0.5,
+                                stroke = 0.5, pch = 21, show.legend = FALSE) +
   scale_color_discrete(name="L1",
                      breaks = c('es', 'en', 'ma'),
-                     labels = c('Spanish', "English", 'Chinese'))
+                     labels = c('Spanish', "English", 'Chinese')) +
+  scale_x_continuous(breaks = c(-8, -6, -4, -2, 0, 2, 4, 6, 8),
+                     labels = c("-400", "-300", "-200", "-100", "0", "100", "200", "300", "400")) +
+  # ggtitle("Time course per verbal tense") +
+  # xlab("Time in 50 ms bins (0 = marker time before accounting for 200 ms processing)") +
+  labs(x = "Time relative to final syllable onset (ms)",
+       y = "Proportion of fixations on target",
+       caption = "Mean +/- 95% CI") +
+  # annotate("text", x = 3.65, y = 0.53, label = '200ms',
+  #                       angle = 90, size = 3, hjust = 0) +
+  theme_grey(base_size = 10, base_family = "Times") +
+  theme(legend.position = 'bottom')
+
+
+ggsave("./figs/stress/gca/LL_changes/timecourse.png", timecourse, width = 180,
+       height = 120, units = "mm", dpi = 600)
 

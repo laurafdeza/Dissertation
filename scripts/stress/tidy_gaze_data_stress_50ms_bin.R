@@ -26,6 +26,46 @@ unique(stress_50$AVERAGE_IA_0_SAMPLE_COUNT)  # elsewhere
 sum( ( stress_50$ACCURACY == 0 ) / length( stress_50$ACCURACY ) )
 # 0.004198754
 
+
+# Calculate item length -------------------------------------------------------
+
+itemlength <- stress_50 %>%
+  select(., id, t01, t04, t05, t06) %>%
+  distinct()
+
+itemlength$item_dur <- itemlength$t06 - itemlength$t01
+
+mean(itemlength$item_dur)
+# 424 ms
+sd(itemlength$item_dur)
+# 42.21756
+
+itemlength$syll1_dur <- itemlength$t04 - itemlength$t01
+
+mean(itemlength$syll1_dur)
+# 308.375 ms
+sd(itemlength$syll1_dur)
+# 52.02527
+
+
+itemlength$syll2_dur <- itemlength$t06 - itemlength$t04
+
+mean(itemlength$syll2_dur)
+# 115.625 ms
+sd(itemlength$syll2_dur)
+# 32.74018
+
+
+itemlength$C3_dur <- itemlength$t05 - itemlength$t04
+
+mean(itemlength$C3_dur)
+# 34.53125
+sd(itemlength$C3_dur)
+# 31.17172
+
+
+
+
 # Tidy data -------------------------------------------------------------------
 
 # Read data
@@ -131,23 +171,57 @@ write_csv(stress50, here("data", "clean", "stress_50ms_final.csv"))
 
 # -----------------------------------------------------------------------------
 
-# # stress50 <- read_csv(here("data", "clean", "stress_50ms_final.csv"))
+stress50 <- read_csv(here("data", "clean", "stress_50ms_final.csv"))
 
-stress50$cond <- factor(stress50$cond, levels = c("1", "2"), 
-                        labels = c("Present", "Past"))
+# stress50$cond <- factor(stress50$cond, levels = c("1", "2"),
+#                         labels = c("Paroxytone/Present", "Oxytone/Preterite"))
+# 
+# # Test plot
+# stress50 %>%
+#   filter(time_zero > -10) %>%
+#   ggplot(., aes(x = time_zero, y = target_prop, color = group)) +
+#   facet_grid(. ~ cond) +
+#   geom_vline(xintercept = 4, lty = 3) +
+#   geom_hline(yintercept = 0.5, color = "white", size = 3) +
+#   stat_summary(fun.y = mean, geom = "line") +
+#   ggtitle("Time course per verbal tense") +
+#   xlab("Time in 50 ms bins (0 = marker time before accounting for 200 ms processing)") +
+#   ylab("Proportion of fixations on target") +
+#   scale_color_discrete(name="Group",
+#                      breaks = c("aes", 'ams', 'ies', 'ims', 'mon'),
+#                      labels = c("Adv EN", 'Adv MA', "Int EN", 'Int MA', 'ES Sp'))
 
-# Test plot
-stress50 %>%
-  filter(time_zero > -10) %>%
-  ggplot(., aes(x = time_zero, y = target_prop, color = group)) +
-  facet_grid(. ~ cond) +
-  geom_vline(xintercept = 4, lty = 3) +
-  geom_hline(yintercept = 0.5, color = "white", size = 3) +
-  stat_summary(fun.y = mean, geom = "line") +
-  ggtitle("Time course per verbal tense") +
-  xlab("Time in 50 ms bins (0 = marker time before accounting for 200 ms processing)") +
-  ylab("Proportion of fixations on target") +
-  scale_color_discrete(name="Group",
-                     breaks = c("aes", 'ams', 'ies', 'ims', 'mon'),
-                     labels = c("Adv EN", 'Adv MA', "Int EN", 'Int MA', 'ES Sp'))
+
+
+# ------------------------------------------------------------------------------
+
+# # Convert dele score to 100 and calculate descriptives in pc
+# 
+# dele100 <- separate(dem,
+#                       col = participant,
+#                       into = c("letters", "number"),
+#                       sep = 3,
+#                       remove = FALSE)
+# 
+# dele100 <- dele100 %>%
+#   separate(., col = letters,
+#            into = c("prof", "l1"),
+#            sep = 1,
+#            remove = TRUE) %>%
+#   filter(., l1 != 'on') %>%
+#   select(., l1, DELE) 
+# 
+# dele100$l1 <- str_replace(dele100$l1, "es", "en")
+# dele100$l1 <- str_replace(dele100$l1, "ms", "ma")
+# 
+# dele100$delepc <- (dele100$DELE * 100) / 56
+# dele100$delepc <- as.numeric(dele100$delepc)
+# 
+# dele100 %>%
+#   group_by(., l1) %>%
+#   summarise(., mean(dele100$delepc),
+#             sd(dele100$delepc),
+#             n())
+# 
+# sd(dele100$delepc)
 

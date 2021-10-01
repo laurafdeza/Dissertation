@@ -41,8 +41,8 @@ figs_path <- here("figs", "stress", "gca")
 stress50$cond <- as.factor(as.character(stress50$cond))
 
 condition_names <- c(
-  `1` = 'Present',
-  `2` = 'Preterite'
+  `1` = 'Paroxytone/Present',
+  `2` = 'Oxytone/Preterite'
 )
 
 

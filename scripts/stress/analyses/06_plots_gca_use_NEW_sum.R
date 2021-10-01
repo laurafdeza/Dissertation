@@ -144,8 +144,8 @@ figs_path <- here("figs", "stress", "gca")
 # Proficiency
 prof_sum <- fits_all_l2_dele %>%
   mutate(Proficiency = as.factor(DELE_z),
-         Stress = if_else(condition_sum == 1, "Present", "Preterite"),
-         Stress = fct_relevel(Stress, 'Present'),
+         Stress = if_else(condition_sum == 1, "Paroxytone/Present", "Oxytone/Preterite"),
+         Stress = fct_relevel(Stress, 'Paroxytone/Present'),
          L1 = if_else(l1_sum == 1, "Mandarin Chinese", "English"),
          L1 = fct_relevel(L1, "English")) %>%
   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
@@ -190,8 +190,8 @@ prof_sum_cond <- fits_all_l2_dele %>%
 # L2 use
 use_sum <- fits_all_l2_use %>%
   mutate(`L2 use` = as.factor(use_z),
-         Stress = if_else(condition_sum == 1, "Present", "Past"),
-         Stress = fct_relevel(Stress, 'Present'),
+         Stress = if_else(condition_sum == 1, "Paroxytone/Present", "Oxytone/Preterite"),
+         Stress = fct_relevel(Stress, 'Paroxytone/Present'),
          L1 = if_else(l1_sum == 1, "Mandarin Chinese", "English"),
          L1 = fct_relevel(L1, "English")) %>%
   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,

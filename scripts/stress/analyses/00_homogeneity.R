@@ -198,4 +198,8 @@ t.test(mo_ES_country ~ l1, data = dem_all %>% filter(l1 != "es" & participant !=
 # t = -0.38728, df = 116.44, p-value = 0.6993
 
 
-
+# Convert dele descs to pc
+38.97*100/56 # 69.58929
+39.17*100/56 # 69.94643
+8.08*100/56 # 14.42857
+7.56*100/56 # 13.5

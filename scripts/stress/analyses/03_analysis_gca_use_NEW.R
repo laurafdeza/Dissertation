@@ -87,7 +87,7 @@ list2env(model_preds, globalenv())
 
 stress_gc_subset <- stress50 %>%
   # select(., -WM_set) %>%
-  filter(., time_zero >= -4 & time_zero <= 6) %>%
+  filter(., time_zero >= -4 & time_zero <= 12) %>%
   mutate(., l1 = fct_relevel(l1, "es", "en", "ma"),
             condition_sum = if_else(cond == "1", 1, -1)) %>%       # 1 = present, 2 = past
   poly_add_columns(., time_zero, degree = 3, prefix = "ot")

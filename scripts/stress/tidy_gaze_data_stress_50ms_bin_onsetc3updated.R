@@ -33,6 +33,40 @@ stress_50$t04[stress_50$id == "S15_C2"] <- 939
 stress_50$t04[stress_50$id == "S16_C1"] <- 879
 
 
+itemlength <- stress_50 %>%
+  select(., id, t01, t04, t05, t06) %>%
+  distinct()
+
+itemlength$item_dur <- itemlength$t06 - itemlength$t01
+
+mean(itemlength$item_dur)
+# 424 ms
+sd(itemlength$item_dur)
+# 42.21756 ms
+
+itemlength$syll1_dur <- itemlength$t04 - itemlength$t01
+
+mean(itemlength$syll1_dur)
+# 302.9688 ms
+sd(itemlength$syll1_dur)
+# 50.56423 ms
+
+
+itemlength$syll2_dur <- itemlength$t06 - itemlength$t04
+
+mean(itemlength$syll2_dur)
+# 121.0312 ms
+sd(itemlength$syll2_dur)
+# 34.66381 ms
+
+
+itemlength$C3_dur <- itemlength$t05 - itemlength$t04
+
+mean(itemlength$C3_dur)
+# 39.9375
+sd(itemlength$C3_dur)
+# 32.92997
+
 
 
 # Tidy data -------------------------------------------------------------------

@@ -1,5 +1,5 @@
 ---
-title: "L2 Use Facilitates Stress-Tense Suffix Associations in L2 Spanish"
+title: "Greater L2 Use Facilitates Stress-Tense Suffix Associations in L2 Spanish"
 subtitle: "HLS2021"
 author: "Laura Fernandez Arroyo, Nuria Sagarra, Cristina Lozano Argüelles</br>Rutgers University, John Jay College"
 date: "October 8, 2021"
@@ -25,56 +25,104 @@ The boy will eat / the cake.
 ]
 ---
 
+# Phonomorphological anticipation
+
+## Central Swedish
+
+Low tone + singular: _fisken_ 'fish<sub>[SG]</sub>'     
+High tone + plural: _fiskar_ 'fish<sub>[PL]</sub>' <font size="-1">     
+(Roll et al., 2010)</font>
+
+## Spanish
+First syllable stressed + present: _canta_ 's/he sings'     
+First syllable unstressed + preterite: _cantó_ 's/he sang' <font size="-1">     
+(Sagarra & Casillas, 2018)</font>
+
+???
+Not learned in class so picked up through experience
+
+---
+
 # Previous research
 </br>
 
-Phonomorphological associationns
+Phonomorphological associations
   - Starting at intermediate level of proficiency <font size="-1">(Sagarra & Casillas, 2018; Schremm et al., 2016)</font>
   </br>
+  </br>
   - Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font>
+  </br>
+  </br>
+  - L1 cross-linguistic influence  <font size="-1">(Gosselke et al., 2018)</font>
+
 
 ---
 
 # Previous research
 </br>
 
-Phonomorphological associationns
-  - Starting at intermediate level of proficiency <font size="-1">(Sagarra & Casillas, 2018; Schremm et al., 2016)</font>
+Phonomorphological associations
+  - Starting at intermediate level of proficiency <font size="-1">(Sagarra & Casillas, 2018; Schremm et al., 2016)</font> </br>
   *Language experience?*
   - Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font>
+  </br>
+  </br>
+  - L1 cross-linguistic influence  <font size="-1">(Gosselke et al., 2018)</font>
 
 ---
 
 # Previous research
 </br>
 
-Phonomorphological associationns
-  - Starting at intermediate level of proficiency <font size="-1">(Sagarra & Casillas, 2018; Schremm et al., 2016)</font>
+Phonomorphological associations
+  - Starting at intermediate level of proficiency <font size="-1">(Sagarra & Casillas, 2018; Schremm et al., 2016)</font></br>
   *Language experience?*
-  - Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font>
+  - Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font></br>
   *Increased use?*
+  - L1 cross-linguistic influence <font size="-1">(Gosselke et al., 2018)</font>
+
+---
+
+# Previous research
+</br>
+
+Phonomorphological associations
+  - Starting at intermediate level of proficiency <font size="-1">(Sagarra & Casillas, 2018; Schremm et al., 2016)</font></br>
+  *Language experience?* 
+  - Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font></br>
+  *Increased use?*
+  - L1 cross-linguistic influence <font size="-1">(Gosselke et al., 2018)</font></br>
+  *Different degrees of similarity?*
+
+---
+
+# Lexical stress-suffix associations
+
+- Spanish, English and Chinese have stress
+</br>
+</br>
+  - Contrastive in Spanish and English; confounded with tones in Chinese
   
 ---
 
-# Previous research
-</br>
+# Lexical stress-suffix associations
 
-Phonomorphological associationns
-  - Starting at intermediate level of proficiency <font size="-1">(Sagarra & Casillas, 2018; Schremm et al., 2016)</font>
-  *Language experience?*
-  - Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font>
-  *Increased use?*
-  - L1 transfer? <font size="-1">(Gosselke Berthelsen et al., 2018)</font>
+- Spanish, English and Chinese have stress
+  - Contrastive in Spanish and English; confounded with tones in Chinese
+  
+- Inflectional morphology in Spanish and English; particles and classifiers in Chinese
+  - Spanish richer than English
 
 ---
 # Our study
 
-## Does L1 transfer affect Spanish English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
+## Does L1 transfer affect English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
 
-## Does L2 use affect Spanish English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
+## Does L2 use affect English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
 
 --
-- more use = faster prediction <font size="-1">(Fernández Arroyo et al., under review)</font>
+- English faster and more likely to predict than Chinese speakers because of similarity
+- More use will contribute to faster and likelier prediction
 
 ---
 
@@ -86,6 +134,7 @@ Participants:
 - 64 Mandarin Chinese speakers (L2 Spanish intermediate or above)
 
 Materials:
+- Proficiency test
 - Language history questionnaire
 - Visual world paradigm (eye-tracking)
   
@@ -111,6 +160,7 @@ Participants:
 - 64 Mandarin Chinese speakers (L2 Spanish intermediate or above)
 
 Materials:
+- Proficiency test
 - Language history questionnaire
 - Visual world paradigm (eye-tracking)
 
@@ -133,8 +183,8 @@ eLog ~ 1 + (ot1 + ot2 + ot3) + l1_sum + ot:l1_sum +
 
 Time course
 .center[
-```{r, include=TRUE, echo=FALSE, out.width="80%"}
-include_graphics("./figs/use_prof/gca_verb/timecourse_l1_stressnames.png", dpi = 150)
+```{r, include=TRUE, echo=FALSE, out.width="110%"}
+include_graphics("./figs/stress/gca/stress_l1.png", dpi = 150)
 ```
 ]
 
@@ -153,62 +203,84 @@ include_graphics("./figs/stress/gca/stress_mon.png", dpi = 108)
 
 # Results
 
-L2 use
 .center[
-```{r, include=TRUE, echo=FALSE, out.width="100%"}
-include_graphics("./figs/use_prof/gca_verb/en_gca_use_verb.png", dpi = 150)
+```{r, include=TRUE, echo=FALSE, out.width="90%"}
+include_graphics("./figs/stress/gca/use_l1.png", dpi = 150)
 ```
 ]
 
 ???
-A Growth Curve Analysis revealed that: (1) all groups predicted the suffix at the onset of the
-second syllable, before hearing it, but that the monolinguals predicted more than the L2 learners;
-(2) the English learners predicted more and faster than the Chinese learners; and (3) all the
-learners predicted faster the more L2 use they reported, but particularly the Chinese with present
-verbs (see Figure 1).
----
+L2 use x ot1: Greater L2 use yielded a steeper rise, indicating that both learner groups predicted faster with greater the L2 use. 
 
-# Results
+Interaction between L1, stress, and L2 use in the cubic term, indicating that, in Mandarin learners, greater L2 use yielded a steeper and more closed curve in paroxytones. In other words, greater L2 use made English learners predict oxytones later but faster, and greater L2 use made Mandarin predict paroxytones later but faster.
 
-Interaction
-.center[
-```{r, include=TRUE, echo=FALSE, out.width="100%"}
-include_graphics("./figs/use_prof/gca_verb/en_gca_all_verb.png", dpi = 150)
-```
-]
+
 
 ---
 
 # Discussion
 
-## Does L1 transfer affect Spanish English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
+## Does L1 transfer affect English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
 
-## Does L2 use affect Spanish English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
+## Does L2 use affect English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
+
+- English faster and more likely to predict than Chinese speakers because of similarity
+- More use will contribute to faster and likelier prediction
 
 ---
 
 # Discussion
 
-- Adult L2 learners of different L1 can use prosodic cues to predict word endings
-- Having an L1 with a more similar stress and verb suffix system and higher L2 use facilitate L2 morphophonological prediction
+- L1 cross-linguistic influence interacts with other factors
 
---
+---
 
-- Amount of L2 use exerts higher influence with in L1-L2 pairs that differ more from each other, suggesting that L2 use may be used to
-counteract L1 transfer deficits
+# Discussion
+
+- L1 cross-linguistic influence interacts with other factors
+  - Farther away > less blocking vs. black and white <font size="-1">(Gosselke et al., 2018)</font></br>
+  - Present tense influenced for:
+      1. Stress pattern not as typical <font size="-1">(Li, 1982)</font>
+      2. Tone 4 (falling) most typical <font size="-1">(Duanmu, 2011)</font>
+
+---
+
+# Discussion
+
+- L1 cross-linguistic influence interacts with other factors
+  - Farther away > less blocking vs. black and white <font size="-1">(Gosselke et al., 2018)</font></br>
+  - Present tense influenced for:
+      1. Stress pattern not as typical <font size="-1">(Li, 1982)</font>
+      2. Tone 4 (falling) most typical <font size="-1">(Duanmu, 2011)</font>
+  </br> 
+    </br> 
+      </br> 
+- Language experience in general facilitates speed of phonomorphological prediction
+
+---
+
+# Discussion
+
+- L1 cross-linguistic influence interacts with other factors
+  - Farther away > less blocking vs. black and white <font size="-1">(Gosselke et al., 2018)</font></br>
+  - Present tense influenced for:
+      1. Stress pattern not as typical <font size="-1">(Li, 1982)</font>
+      2. Tone 4 (falling) most typical <font size="-1">(Duanmu, 2011)</font>
+  </br> 
+    </br> 
+      </br> 
+- Language experience in general facilitates speed of phonomorphological prediction
+  - Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font> vs. L2 use
 
 ---
 
 # Discussioin
-These findings support L2 models claiming that language experience with the L1 and the L2 shape L2 processing.
+These findings support L2 usage-based models:
+  - we need more nuanced analyses of language experience in L2 prediction.
 
 ---
 class: title-slide-section-red, center, middle
 
 # Thank you!
-</br>
-</br>
-</br>
-</br>
-.pull-left[laura.fdeza@rutgers.edu]
+<font size="-2">laura.fdeza@rutgers.edu</font>
 

@@ -32,6 +32,18 @@ stress_50$t04[stress_50$id == "S15_C1"] <- 1144
 stress_50$t04[stress_50$id == "S15_C2"] <- 939
 stress_50$t04[stress_50$id == "S16_C1"] <- 879
 
+stress_50$t05[stress_50$id == "S01_C1"] <- 1084
+stress_50$t05[stress_50$id == "S02_C2"] <- 1004
+stress_50$t05[stress_50$id == "S05_C2"] <- 844
+stress_50$t05[stress_50$id == "S07_C1"] <- 1281
+stress_50$t05[stress_50$id == "S07_C2"] <- 1118
+stress_50$t05[stress_50$id == "S09_C1"] <- 1071
+stress_50$t05[stress_50$id == "S11_C2"] <- 1107
+stress_50$t05[stress_50$id == "S14_C1"] <- 1202
+stress_50$t05[stress_50$id == "S15_C1"] <- 1209
+stress_50$t05[stress_50$id == "S16_C1"] <- 902
+stress_50$t05[stress_50$id == "S16_C2"] <- 905
+
 
 itemlength <- stress_50 %>%
   select(., id, t01, t04, t05, t06) %>%
@@ -62,11 +74,15 @@ sd(itemlength$syll2_dur)
 
 itemlength$C3_dur <- itemlength$t05 - itemlength$t04
 
+min(itemlength$C3_dur)
+# 9
+
 mean(itemlength$C3_dur)
 # 39.9375
 sd(itemlength$C3_dur)
 # 32.92997
 
+itemlength[itemlength$C3_dur == 9, ]
 
 
 # Tidy data -------------------------------------------------------------------

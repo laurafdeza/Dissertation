@@ -56,6 +56,11 @@ mean(itemlength$item_dur)
 sd(itemlength$item_dur)
 # 42.21756 ms
 
+dur <- lm(item_dur ~ 1, itemlength)
+confint(dur)
+#                 2.5 %   97.5 %
+#   (Intercept) 408.7789 439.2211
+
 itemlength$syll1_dur <- itemlength$t04 - itemlength$t01
 
 mean(itemlength$syll1_dur)
@@ -64,12 +69,23 @@ sd(itemlength$syll1_dur)
 # 50.56423 ms
 
 
+dur <- lm(syll1_dur ~ 1, itemlength)
+confint(dur)
+#                 2.5 %   97.5 %
+#   (Intercept) 284.7384 321.1991
+
+
 itemlength$syll2_dur <- itemlength$t06 - itemlength$t04
 
 mean(itemlength$syll2_dur)
 # 121.0312 ms
 sd(itemlength$syll2_dur)
 # 34.66381 ms
+
+dur <- lm(syll2_dur ~ 1, itemlength)
+confint(dur)
+#                  2.5 %   97.5 %
+#   (Intercept) 108.5336 133.5289
 
 
 itemlength$C3_dur <- itemlength$t05 - itemlength$t04

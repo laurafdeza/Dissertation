@@ -36,11 +36,12 @@ stress50 <- read_csv(here("data", "clean", "stress_50ms_final_onsetc3updated.csv
 gca_mods_path  <- here("mods", "stress", "gca", "LL_changes")
 
 # Load models as lists
-load(paste0(gca_mods_path, "/gca_mon_mods.Rdata"))
-load(paste0(gca_mods_path, "/gca_l2_l1ot2.Rdata")) #gca_l2_mods only dele parameter significant
-#load(paste0(gca_mods_path, "/nested_model_l2.Rdata"))
-load(paste0(gca_mods_path, "/model_preds.Rdata")) #mon
-load(paste0(gca_mods_path, "/model_preds_l1ot2.Rdata")) #L2
+load(paste0(gca_mods_path, "/gca_mon_mods_4equal.Rdata"))
+load(paste0(gca_mods_path, "/gca_l2_dele_4equal.Rdata")) 
+load(paste0(gca_mods_path, "/gca_l2_use_4equal.Rdata"))
+load(paste0(gca_mods_path, "/model_preds.Rdata")) #mon    
+
+
 
 # # Store objects in global env
 # list2env(gca_mon_mods, globalenv())
@@ -86,7 +87,7 @@ load(paste0(gca_mods_path, "/model_preds_l1ot2.Rdata")) #L2
 
 # stress_50 <- na.omit(stress50)
 
-stress_gc_subset %>%
+stress50 %>%
   filter(time_zero > -5 & time_zero < 5) %>%
   ggplot(., aes(x = time_zero, y = target_prop, color = l1, fill = l1)) +
   geom_vline(xintercept = 4, lty = 3) +
@@ -428,7 +429,7 @@ save(gca_l2_dele_4equal,
 
 
 
-
+}
 
 ### USE
 
@@ -654,11 +655,11 @@ save(gca_l2_use_4equal,
 
 # Create design dataframe for predictions
 new_dat_mon <- mon_data %>%
-  dplyr::select(time_zero, ot1:ot2) %>% 
+  dplyr::select(time_zero, ot1:ot2, condition_sum) %>% 
   distinct
   
 # Get model predictions and SE
-fits_all_mon <- predictSE(gca_mon_mods$gca_mod_mon_base, new_dat_mon) %>%  
+fits_all_mon <- predictSE(gca_mod_mon_final, new_dat_mon) %>%  
   as_tibble %>%
   bind_cols(new_dat_mon) %>%
   rename(se = se.fit) %>%
@@ -666,7 +667,7 @@ fits_all_mon <- predictSE(gca_mon_mods$gca_mod_mon_base, new_dat_mon) %>%
 
 
 # Filter preds at first syllable offset
-target_offset_preds_mon <- filter(fits_all_mon, time_zero == 4) %>%
+target_onset_preds_mon <- filter(fits_all_mon, time_zero == 4) %>%
   select(elog = fit, elog_lb = ymin, elog_ub = ymax) %>%
   mutate(prob = plogis(elog),
          prob_lb = plogis(elog_lb),
@@ -676,67 +677,77 @@ target_offset_preds_mon <- filter(fits_all_mon, time_zero == 4) %>%
 # -----------------------------------------------------------------------------
 
 
-new_l2_dat <- l2_data %>%
-  dplyr::select(l1_sum, time_zero, ot1:ot2) %>%
+new_dele_dat <- l2_data %>%
+  dplyr::select(l1_sum, condition_sum, time_zero, ot1:ot2) %>%
   distinct %>%
   # mutate(l1_sum = as.character(l1_sum)) %>% 
-  expand_grid(., tibble(DELE_z = c(-1, 0, 1))) %>%
-  expand_grid(., tibble(use_z = c(-1, 0, 1)))
+  expand_grid(., tibble(DELE_z = c(-1, 0, 1))) 
 
-fits_all_l2 <- predictSE(gca_l2_mod_final, new_l2_dat) %>%
+fits_all_dele <- predictSE(gca_l2_dele_final, new_dele_dat) %>%
   as_tibble %>%
-  bind_cols(new_l2_dat) %>%
+  bind_cols(new_dele_dat) %>%
   rename(se = se.fit) %>%
   mutate(ymin = fit - se, ymax = fit + se)
 
 
 # Filter preds at first syllable offset
-target_offset_preds_l2 <- filter(fits_all_l2, time_zero == 4) %>% #
-  select(l1 = l1_sum, DELE = DELE_z, `L2 use` = use_z,
+target_onset_preds_dele <- filter(fits_all_dele, time_zero == 4) %>% #
+  select(`L1 experience` = l1_sum, `L2 proficiency` = DELE_z, `Stress pattern` = condition_sum,
          elog = fit, elog_lb = ymin, elog_ub = ymax) %>%
   mutate(prob = plogis(elog),
          prob_lb = plogis(elog_lb),
          prob_ub = plogis(elog_ub))
- 
-
-
-model_preds <- mget(c("fits_all_mon", 
-                      # "fits_all_l2", 
-  "target_offset_preds_mon" 
-  # "target_offset_preds_l2"
-  ))
-
-save(model_preds,
-     file = here("mods", "stress", "gca", "LL_changes",
-                 "model_preds.Rdata"))
 
 
 
-fits_all_l2_ints <- predictSE(gca_l2_mod_full, new_l2_dat) %>%
+
+
+new_use_dat <- l2_data %>%
+  dplyr::select(l1_sum, condition_sum, time_zero, ot1:ot3) %>%
+  distinct %>%
+  # mutate(l1_sum = as.character(l1_sum)) %>% 
+  expand_grid(., tibble(use_z = c(-1, 0, 1))) 
+
+fits_all_use <- predictSE(gca_l2_use_final, new_use_dat) %>%
   as_tibble %>%
-  bind_cols(new_l2_dat) %>%
+  bind_cols(new_use_dat) %>%
   rename(se = se.fit) %>%
   mutate(ymin = fit - se, ymax = fit + se)
 
-target_onset_preds_l2_ints <- filter(fits_all_l2_ints, time_zero == 4) %>% #
-  select(L1 = l1_sum, DELE = DELE_z, `L2 use` = use_z,
+
+# Filter preds at first syllable offset
+target_onset_preds_use <- filter(fits_all_use, time_zero == 4) %>% #
+  select(`L1 experience` = l1_sum, `L2 use` = use_z, `Stress pattern` = condition_sum,
          elog = fit, elog_lb = ymin, elog_ub = ymax) %>%
   mutate(prob = plogis(elog),
          prob_lb = plogis(elog_lb),
          prob_ub = plogis(elog_ub))
 
-model_preds <- mget(c("fits_all_l2_ints", 
-                      "target_onset_preds_l2_ints"))
+ 
 
-save(model_preds,
+
+model_preds_4equal <- mget(c("fits_all_mon", "fits_all_dele", "fits_all_use",
+  "target_onset_preds_mon", "target_onset_preds_dele", "target_onset_preds_use"))
+
+save(model_preds_4equal,
      file = here("mods", "stress", "gca", "LL_changes",
-                 "model_preds_ints.Rdata"))
+                 "model_preds_4equal.Rdata"))
+
+
+
+
 
 
 
 
 
 # -------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
 gca_l2_base <- mod_ot5
 #lmer(eLog ~ 1 + (ot1 + ot2) +         
 #       (1 + ot1 + ot2 | participant) +

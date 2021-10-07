@@ -195,7 +195,7 @@ include_graphics("./figs/stress/gca/stress_l1.png", dpi = 150)
 Spanish speakers
 .center[
 ```{r, include=TRUE, echo=FALSE, out.width="80%"}
-include_graphics("./figs/stress/gca/stress_mon.png", dpi = 108)
+include_graphics("./figs/stress/gca/LL_changes/mon_plot_4equal.png", dpi = 108)
 ```
 ]
 
@@ -205,16 +205,16 @@ include_graphics("./figs/stress/gca/stress_mon.png", dpi = 108)
 
 .center[
 ```{r, include=TRUE, echo=FALSE, out.width="90%"}
-include_graphics("./figs/stress/gca/use_l1.png", dpi = 150)
+include_graphics("./figs/stress/gca/LL_changes/use_plot_4equal.png", dpi = 150)
 ```
 ]
 
 ???
-L2 use x ot1: Greater L2 use yielded a steeper rise, indicating that both learner groups predicted faster with greater the L2 use. 
+Oxytones predicted more
 
-Interaction between L1, stress, and L2 use in the cubic term, indicating that, in Mandarin learners, greater L2 use yielded a steeper and more closed curve in paroxytones. In other words, greater L2 use made English learners predict oxytones later but faster, and greater L2 use made Mandarin predict paroxytones later but faster.
+Use x time1 = more use faster prediction
 
-
+stress x use x time1 = paroxytones predicted faster
 
 ---
 
@@ -224,59 +224,67 @@ Interaction between L1, stress, and L2 use in the cubic term, indicating that, i
 
 ## Does L2 use affect English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
 
-- English faster and more likely to predict than Chinese speakers because of similarity
-- More use will contribute to faster and likelier prediction
+- English faster and more likely to predict than Chinese speakers because of similarity > No effect
+- More use will contribute to faster and likelier prediction > Faster
+  - Interaction with stress pattern/suffix
 
 ---
 
 # Discussion
 
-- L1 cross-linguistic influence interacts with other factors
+- No L1 cross-linguistic influence 
+  - Proficiency levels, language experience <font size="-1">(Gosselke et al., 2018)</font></br>
+  
+  
 
 ---
 
 # Discussion
 
-- L1 cross-linguistic influence interacts with other factors
-  - Farther away > less blocking vs. black and white <font size="-1">(Gosselke et al., 2018)</font></br>
-  - Present tense influenced for:
-      1. Stress pattern not as typical <font size="-1">(Li, 1982)</font>
-      2. Tone 4 (falling) most typical <font size="-1">(Duanmu, 2011)</font>
-
----
-
-# Discussion
-
-- L1 cross-linguistic influence interacts with other factors
-  - Farther away > less blocking vs. black and white <font size="-1">(Gosselke et al., 2018)</font></br>
-  - Present tense influenced for:
-      1. Stress pattern not as typical <font size="-1">(Li, 1982)</font>
-      2. Tone 4 (falling) most typical <font size="-1">(Duanmu, 2011)</font>
+- No L1 cross-linguistic influence 
+  - Proficiency levels, language experience <font size="-1">(Gosselke et al., 2018)</font></br>
   </br> 
     </br> 
       </br> 
-- Language experience in general facilitates speed of phonomorphological prediction
+- L2 use contributed to faster prediction rate
+  - Language experience in general facilitates speed of phonomorphological prediction <font size="-1">(Proficiency: Sagarra & Casillas, 2018; anticipatory experience: Lozano-Argüelles et al., 2020)</font>.
+  - Interplay with other language experience factors?
 
 ---
 
 # Discussion
 
-- L1 cross-linguistic influence interacts with other factors
-  - Farther away > less blocking vs. black and white <font size="-1">(Gosselke et al., 2018)</font></br>
-  - Present tense influenced for:
-      1. Stress pattern not as typical <font size="-1">(Li, 1982)</font>
-      2. Tone 4 (falling) most typical <font size="-1">(Duanmu, 2011)</font>
+- No L1 cross-linguistic influence 
+  - Proficiency levels, language experience <font size="-1">(Gosselke et al., 2018)</font></br>
   </br> 
     </br> 
       </br> 
-- Language experience in general facilitates speed of phonomorphological prediction
-  - Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font> vs. L2 use
+- L2 use helpful
+  - Language experience in general facilitates speed of phonomorphological prediction <font size="-1">(Proficiency: Sagarra & Casillas, 2018; anticipatory experience: Lozano-Argüelles et al., 2020)</font>.
+  - Still later than monolinguals <font size="-1">(e.g., Perdomo & Kaan, 2019)</font>
+  - Interplay with other language experience factors?
+  </br> 
+    </br> 
+      </br> 
+- Oxytones predicted more but paroxytones faster (the more the use)
+  - In general, less frequent option easier <font size="-1">(oxytones, Morales Font, 2013)</font>
+  - Once suffix activated, faster rate because of more certainty.
+  
+---
+
+# Discussion
+
+Findings support L2 usage-based models:
+  - anguage experience in L2 processing and prediction
+  - characteristics of input in terms of frequency, validity, reliability
 
 ---
 
-# Discussioin
-These findings support L2 usage-based models:
-  - we need more nuanced analyses of language experience in L2 prediction.
+# Conclusion
+
+- L1 cross-linguistic influence may depend on proficiency
+- L2 use helps only in rate of prediction
+- Frequency of phonomorphological association matters
 
 ---
 class: title-slide-section-red, center, middle

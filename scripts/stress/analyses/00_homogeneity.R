@@ -119,6 +119,33 @@ TOSTtwo(m1 = 38.97, sd1 = 8.05, n1 = 61, # EN
 # The null hypothesis test was non-significant, t(121.54) = -0.143, p = 0.887, given an alpha of 0.05.
 
 
+dele_model <- lm(DELE ~ 1, dem_all %>%
+                   filter(l1 == "en" & participant != 'ies04' & participant != 'ies17' & 
+                            participant != 'aes32' & participant != 'ies28'))
+confint(dele_model, level = 0.95)
+#                  2.5 %  97.5 %
+#   (Intercept) 36.90663 41.0278
+
+
+dele_model <- lm(DELE ~ 1, dem_all %>%
+                   filter(l1 == "ma"))
+confint(dele_model, level = 0.95)
+#                  2.5 %   97.5 %
+#   (Intercept) 37.28228 41.06147
+
+
+# Convert dele descs to pc
+
+38.96721*100/56 # 69.5843
+8.045635*100/56 # 14.36721
+36.90663*100/65 # 56.77943
+41.0278*100/56 # 73.26393
+
+39.17188*100/56 # 69.94979
+7.564652*100/56 # 13.50831
+37.28228*100/56 # 66.5755
+41.06147*100/56 # 73.32405
+
 # L2 use equivalence test
 TOSTtwo(m1 = 34.84, sd1 = 16.91, n1 = 61, # EN
         m2 = 41.64, sd2 = 21.66, n2 = 64, # MA
@@ -129,6 +156,23 @@ TOSTtwo(m1 = 34.84, sd1 = 16.91, n1 = 61, # EN
 # The equivalence test was non-significant, t(118.47) = -0.280, p = 0.610, given equivalence bounds of -5.829 and 5.829 (on a raw scale) and an alpha of 0.05.
 # 
 # The null hypothesis test was non-significant, t(118.47) = -1.962, p = 0.0522, given an alpha of 0.05.
+
+
+use_model <- lm(percent_l2_week ~ 1, dem_all %>%
+                   filter(l1 == "en" & participant != 'ies04' & participant != 'ies17' & 
+                            participant != 'aes32' & participant != 'ies28'))
+confint(use_model, level = 0.95)
+#                  2.5 %  97.5 %
+#   (Intercept) 30.50629 39.16584
+
+
+use_model <- lm(percent_l2_week ~ 1, dem_all %>%
+                   filter(l1 == "ma"))
+confint(use_model, level = 0.95)
+#                  2.5 %   97.5 %
+#   (Intercept) 36.23049 47.05076
+
+
 
 dem_all %>%
   filter(l1 != "es" & participant != 'ies04' & participant != 'ies17' & 
@@ -159,6 +203,101 @@ dem_all %>%
 #   l1    mean_AoA sd_AoA mean_fluent sd_fluent mean_abroad sd_abroad    n
 # 1 en        16.0   5.41        22.0      4.22        38.1      34.0   61
 # 2 ma        18.9   3.59        21.2      3.91        40.8      45.5   64
+
+
+### Calculate CI for the means
+
+## AoA_L2
+
+# EN
+en_only <- filter(dem_all, l1 == "en" & participant != 'ies04' & participant != 'ies17' & 
+               participant != 'aes32' & participant != 'ies28')
+
+AoA_se <- sd(en_only$AoA_L2)/sqrt(length(en_only$AoA_L2))
+
+t.score = qt(p = 0.05/2, df = length(en_only$AoA_L2) - 1, lower.tail = F)
+
+margin.error = t.score * AoA_se
+
+lower.bound <- mean(en_only$AoA_L2) - margin.error
+#14.64807
+upper.bound <- mean(en_only$AoA_L2) + margin.error
+#17.4175
+
+# MaCH
+ma_only <- filter(dem_all, l1 == "ma")
+
+AoA_se <- sd(ma_only$AoA_L2)/sqrt(lmagth(ma_only$AoA_L2))
+
+t.score = qt(p = 0.05/2, df = lmagth(ma_only$AoA_L2) - 1, lower.tail = F)
+
+margin.error = t.score * AoA_se
+
+lower.bound <- mean(ma_only$AoA_L2) - margin.error
+#17.49028
+upper.bound <- mean(ma_only$AoA_L2) + margin.error
+#20.25972
+
+
+
+
+# L2 fluency
+
+L2fluency_se <- sd(en_only$age_fluent_L2)/sqrt(length(en_only$age_fluent_L2))
+
+t.score = qt(p = 0.05/2, df = length(en_only$age_fluent_L2) - 1, lower.tail = F)
+
+margin.error = t.score * L2fluency_se
+
+lower.bound <- mean(en_only$age_fluent_L2) - margin.error
+#20.90156
+upper.bound <- mean(en_only$age_fluent_L2) + margin.error
+#23.06565
+
+
+
+L2flumacy_se <- sd(ma_only$age_fluent_L2)/sqrt(length(ma_only$age_fluent_L2))
+
+t.score = qt(p = 0.05/2, df = length(ma_only$age_fluent_L2) - 1, lower.tail = F)
+
+margin.error = t.score * L2flumacy_se
+
+lower.bound <- mean(ma_only$age_fluent_L2) - margin.error
+#20.22582
+upper.bound <- mean(ma_only$age_fluent_L2) + margin.error
+#22.18043
+
+
+
+
+# Months abroad
+
+moES_se <- sd(en_only$mo_ES_country)/sqrt(length(en_only$mo_ES_country))
+
+t.score = qt(p = 0.05/2, df = length(en_only$mo_ES_country) - 1, lower.tail = F)
+
+margin.error = t.score * moES_se
+
+lower.bound <- mean(en_only$mo_ES_country) - margin.error
+#29.3622
+# round(mean(en_only$mo_ES_country) - margin.error, 2)
+upper.bound <- mean(en_only$mo_ES_country) + margin.error
+#46.75256
+
+
+
+moES_se <- sd(ma_only$mo_ES_country)/sqrt(length(ma_only$mo_ES_country))
+
+t.score = qt(p = 0.05/2, df = length(ma_only$mo_ES_country) - 1, lower.tail = F)
+
+margin.error = t.score * moES_se
+
+lower.bound <- mean(ma_only$mo_ES_country) - margin.error
+#29.4727
+upper.bound <- mean(ma_only$mo_ES_country) + margin.error
+#52.18355
+
+
 
 
 
@@ -198,8 +337,3 @@ t.test(mo_ES_country ~ l1, data = dem_all %>% filter(l1 != "es" & participant !=
 # t = -0.38728, df = 116.44, p-value = 0.6993
 
 
-# Convert dele descs to pc
-38.97*100/56 # 69.58929
-39.17*100/56 # 69.94643
-8.08*100/56 # 14.42857
-7.56*100/56 # 13.5

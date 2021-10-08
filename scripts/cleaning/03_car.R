@@ -24,16 +24,17 @@ d <- density(car$mean_dev_sc)
 plot(d, main="Density of visuospatial prediction\ntime deviations from ms 0,\nwhen car should reappear")
 
 # eliminate outliers
-Q <- quantile(car$mean_dev_sc, probs=c(.25, .75), na.rm = FALSE)
+mean(car$mean_dev_sc)
+sd(car$mean_dev_sc)
 
-plot(density((Q)))
+sd2 <- sd(car$mean_dev_sc) * 2
 
-iqr <- IQR(car$mean_dev_sc)
+sd2below <- mean(car$mean_dev_sc) - sd2
+sd2above <- mean(car$mean_dev_sc) + sd2
 
 car <- car %>%
-  filter(., car$mean_dev_sc > (Q[1] - 1.5*iqr) & 
-           car$mean_dev_sc < (Q[2]+1.5*iqr)) %>%
-  filter(., mean_dev_sc < 0.4) %>%
+  filter(., car$mean_dev_sc > sd2below & 
+           car$mean_dev_sc < sd2above) %>%
   mutate(direction_sum = ifelse(direction == 'right', -1, 1),
          speed = fct_relevel(speed, "slow", "medium", "fast"))
 
@@ -45,36 +46,36 @@ car %>%
   summarize(., mean = mean(mean_dev_sc),
             sd = sd(mean_dev_sc))
 #   direction speed     mean    sd
-# 1 left      fast    0.0686 0.181
-# 2 left      medium  0.0459 0.184
-# 3 left      slow   -0.0190 0.271
-# 4 right     fast    0.0395 0.166
-# 5 right     medium  0.0517 0.188
-# 6 right     slow   -0.0357 0.242
+# 1 left      fast    0.0662 0.313
+# 2 left      medium 0.0887 0.218
+# 3 left      fast   0.0720 0.184
+# 4 right     slow   0.0460 0.271
+# 5 right     medium 0.0878 0.219
+# 6 right     fast   0.0520 0.178
 
 car %>%
   group_by(., direction) %>%
   summarize(., mean = mean(mean_dev_sc),
             sd = sd(mean_dev_sc))
 #   direction   mean    sd
-# 1 left      0.0302 0.221
-# 2 right     0.0159 0.207
+# 1 left      0.0751 0.250
+# 2 right     0.0616 0.230
 
 car %>%
   group_by(., speed) %>%
   summarize(., mean = mean(mean_dev_sc),
             sd = sd(mean_dev_sc))
 #   speed     mean    sd
-# 1 fast    0.0546 0.174
-# 2 medium  0.0488 0.185
-# 3 slow   -0.0275 0.257
+# 1 fast    0.0563 0.293
+# 2 medium  0.0882 0.218
+# 3 fast    0.0622 0.181
 
 
 car %>%
   summarize(., mean = mean(mean_dev_sc),
             sd = sd(mean_dev_sc))
 #     mean    sd
-# 1 0.0231 0.214
+# 1 0.0685 0.240
 
 
 car_glm <-  lmer(mean_dev_sc ~ speed + direction_sum + (1 | subject_id),
@@ -88,36 +89,36 @@ car_fast <- update(car_glm)
 
 summary(car_glm)
 #                  Estimate Std. Error t value
-# (Intercept)     -0.010219   0.016781  -0.609
-# speedmedium      0.104417   0.013419   7.781
-# speedfast        0.097063   0.013755   7.056
-# direction_sum    0.011337   0.005533   2.049
+# (Intercept)     0.065524   0.018797   3.486
+# speedmedium     0.072036   0.013881   5.190
+# speedfast       0.042031   0.014412   2.916
+# direction_sum   0.014678   0.005782   2.539
 
 confint(car_glm)
 #                       2.5 %     97.5 %
-# .sig01         0.1461431327 0.19244006
-# .sigma         0.1260163329 0.14303929
-# (Intercept)   -0.0430682299 0.02284137
-# speedmedium    0.0780435825 0.13068439
-# speedfast      0.0701092996 0.12397897
-# direction_sum  0.0004937954 0.02216338
+# .sig01         0.176648484 0.22938161
+# .sigma         0.138002613 0.15581943
+# (Intercept)    0.028682794 0.10248720
+# speedmedium    0.044730178 0.09921844
+# speedfast      0.013723234 0.07024148
+# direction_sum  0.003339145 0.02599405
 
 
 summary(car_fast)
 #                  Estimate Std. Error t value
-# (Intercept)      0.086844   0.017214   5.045
-# speedmedium      0.007355   0.013985   0.526
-# speedslow       -0.097063   0.013755  -7.056
-# direction_sum    0.011337   0.005533   2.049
+# (Intercept)      0.107555   0.019616   5.483
+# speedmedium    0.030005   0.014766   2.032
+# speedslow     -0.042031   0.014412  -2.916
+# direction_sum  0.014678   0.005782   2.539
 
 confint(car_fast)
 #                       2.5 %      97.5 %
-# .sig01         0.1461431327  0.19244006
-# .sigma         0.1260163329  0.14303929
-# (Intercept)    0.0531608229  0.12079936
-# speedmedium   -0.0200762461  0.03471913
-# speedslow     -0.1239789705 -0.07010930
-# direction_sum  0.0004937954  0.02216338
+# .sig01         0.176648484  0.22938161
+# .sigma         0.138002613  0.15581943
+# (Intercept)    0.069165350  0.14625742
+# speedmedium    0.001080125  0.05890611
+# speedslow     -0.070241477 -0.01372323
+# direction_sum  0.003339145  0.02599405
 
 
 
@@ -134,10 +135,10 @@ pretty_fixed_effects %>%
 
 # Parameter              Estimate      SE            _t_      _p_
 # ----------------  -------------  ------  -------------  -------
-# Intercept          &minus;0.010   0.017   &minus;0.609     .543
-# speedmedium               0.104   0.013          7.781   < .001
-# speedfast                 0.097   0.014          7.056   < .001
-# direction_sum             0.011   0.006          2.049     .040
+# Intercept          0.066   0.019   3.486   < .001
+# speedmedium         0.072   0.014   5.190   < .001
+# speedfast           0.042   0.014   2.916     .004
+# direction_sum       0.015   0.006   2.539     .011
 
 
 pretty_fixed_effects <- car_fast %>%  
@@ -152,10 +153,10 @@ pretty_fixed_effects %>%
   knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
 # Parameter              Estimate      SE            _t_      _p_
 # ----------------  -------------  ------  -------------  -------
-# Intercept                 0.087   0.017          5.045   < .001
-# speedmedium               0.007   0.014          0.526     .599
-# speedslow          &minus;0.097   0.014   &minus;7.056   < .001
-# direction_sum             0.011   0.006          2.049     .040
+# Intercept                 0.108   0.020          5.483   < .001
+# speedmedium             0.030   0.015          2.032     .042
+# speedslow        &minus;0.042   0.014   &minus;2.916     .004
+# direction_sum           0.015   0.006          2.539     .011
 
 
 
@@ -175,5 +176,5 @@ car_sel$participant <- str_replace(car_sel$participant, "am", "ams")
 car_sel$participant <- str_replace(car_sel$participant, "im", "ims")
 car_sel$participant <- str_replace(car_sel$participant, "mo", "mon")
 
-write.csv(car_sel,'./data/clean/vision_scores_nooutliers-400.csv', row.names = F)
+write.csv(car_sel,'./data/clean/vision_scores_nooutliers.csv', row.names = F)
 

@@ -1,0 +1,318 @@
+---
+title             : "Results"
+shorttitle        : "Title"
+
+author: 
+  - name          : "Laura Fernandez Arroyo"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "Postal address"
+    email         : "my@email.com"
+  - name          : "Nuria Sagarra"
+    affiliation   : "1"
+  - name          : "Cristina Lozano Argüelles"
+    affiliation   : "2"
+
+affiliation:
+  - id            : "1"
+    institution   : "Rutgers University"
+  - id            : "2"
+    institution   : "John Jay College of Criminal Justice"
+
+
+
+keywords          : ""
+wordcount         : ""
+
+
+floatsintext      : yes
+figurelist        : yes
+tablelist         : yes
+footnotelist      : yes
+linenumbers       : yes
+mask              : yes
+draft             : yes
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_word
+---
+
+```{r setup, include = FALSE, warning=FALSE}
+library("papaja")
+library("officer")
+library("flextable")
+```
+
+```{r analysis-preferences}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+
+```{r, 'source-scripts-models'}
+#source(here::here("scripts", "02_load_data.R"))
+source(here::here("scripts", "01_helpers.R"))
+
+# Get path to saved models
+gca_mods_path  <- here("mods", "vision", "gca", "cont_speed_verb")
+
+# Load models as lists
+load(paste0(gca_mods_path, "/mon_mods_allequal400.Rdata"))
+load(paste0(gca_mods_path, "/model_predsalleq400.Rdata"))
+
+
+```
+
+# Results
+
+Model formulas and summaries can be found in Appendix 2. 
+Figure 4 shows the time course of participants' fixations on the targets during our time window.
+Participants started to direct their gaze to the target above chance before the offset of the first syllable.
+
+```{r, 'plot-corsi-preds', echo=FALSE, fig.cap="4. Time course of fixations on the target verb."}
+knitr::include_graphics(
+  here("figs", "vision", "gca", "cont_speed_verb", "timecourse_mon_alleq400.png")
+)
+```
+
+Only the models with processing yielded main effects and interactions.
+The models where visuospatial prediction abilities were a predictor were therefore not included here.
+
+```{r, 'write-up-prep-ospanrt', warning=F, eval=T}
+# Prepare table to support easy in-line printing of equations
+# params <- pretty_fixed_effects %>% 
+#  rename(B = Estimate)
+
+params <- mon_mods_allequal400$gca_mon_ospan_int_2 %>% 
+  tidy_lme4() %>% 
+  rename(B = Estimate)
+
+params$subscript <- 
+  c(paste0(0:2, 0), paste0(0, 1),
+          paste0(1:2, 1))
+
+params <- tibble::column_to_rownames(params, 'subscript')
+
+params$subscript <- 
+  c(paste0(0:2, 0), paste0(0, 1),
+          paste0(1:2, 1))
+
+# Shortcut for inline reporting from the above table
+report_row <- function(row_name) report_fixef_row(params, row_name)
+
+# # Pre-calculate intercept as proportion
+# b0 <- params$B[params$subscript == "00"] %>% as.numeric
+# b0_prop <- b0 %>% inv_logit %>% round(2) %>% remove_leading_zero
+
+```
+
+```{r, table-ospanrt-params, warning=F}
+
+# Get full mod and make it pretty for the table
+pretty_fixed_effects <- mon_mods_allequal400$gca_mon_ospan_int_2 %>%  
+  tidy_lme4() %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) 
+
+# Include gammas (Gij) after each parameter name
+subs <- c(paste0(0:2, 0), paste0(0, 1),
+          paste0(1:2, 1))
+var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+pretty_fixed_effects$Parameter %<>% paste(., var_labels)
+
+pretty_fixed_effects %>% 
+  select(-effect) %>%
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+
+```
+
+```{r, 'plot-ospan-preds-mon', echo=FALSE, fig.cap="4. Growth curve estimates of target fixations as a function of verbal processing speed for L1 Spanish speakers according to stress pattern during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the first syllable of the verb."}
+knitr::include_graphics(
+  here("figs", "vision", "gca", "cont_speed_verb", "mon_ospanrt.png")
+)
+```
+
+```{r, props-ospanrt, eval=T, echo=F, include=TRUE}
+
+border_1 <- fp_border(width = 1.5)
+border_2 <- fp_border(width = 0.75)
+
+model_predsalleq400$preds_mon_ospanrt %>% 
+  mutate(stress = if_else(stress == -1, "paroxytone", "oxytone")) %>% 
+  arrange(desc(stress), ospan_rt) %>% 
+  mutate(stress = blank_same_as_last(as.character(stress))) %>%
+  select(`Lexical stress` = stress, #`Visual prediction timing` = car_dev,
+         `Verbal processing speed` = ospan_rt,
+         Probability = prob, `Lower bound` = prob_lb, 
+         `Upper bound` = prob_ub) %>% 
+  flextable() %>% 
+  padding(padding = 0, part = "all") %>% 
+  width(., j = c(1, 2, 3, 4, 5), width = c(1.1, 1.5, 1.1, 1.2, 1.2)) %>% 
+  font(., fontname = "Times", part = "all") %>%
+  colformat_num(., j = c(3, 4, 5), digits = 2) %>%
+  fontsize(., size = 11) %>% 
+  border_remove(.) %>%  
+  border(., part = "header", 
+            border.top = border_1,
+            border.bottom = border_2) %>% 
+  hline_bottom(., part = "body", border = border_1)
+```
+
+*Table 1.* Model estimates for probability of target fixations ±SE in monolinguals 
+at 200 ms after the last syllable onset (verbal processing speed GCA).
+
+
+```{r, 'write-up-prep-corsirt', warning=F, eval=T}
+# Prepare table to support easy in-line printing of equations
+# params <- pretty_fixed_effects %>% 
+#  rename(B = Estimate)
+
+params <- mon_mods_allequal400$gca_mon_corsirt_int_2 %>% 
+  tidy_lme4() %>% 
+  rename(B = Estimate)
+
+params$subscript <- 
+  c(paste0(0:2, 0), paste0(0, 1),
+          paste0(1:2, 1))
+
+params <- tibble::column_to_rownames(params, 'subscript')
+
+params$subscript <- 
+  c(paste0(0:2, 0), paste0(0, 1),
+          paste0(1:2, 1))
+
+# Shortcut for inline reporting from the above table
+report_row <- function(row_name) report_fixef_row(params, row_name)
+
+# # Pre-calculate intercept as proportion
+# b0 <- params$B[params$subscript == "00"] %>% as.numeric
+# b0_prop <- b0 %>% inv_logit %>% round(2) %>% remove_leading_zero
+
+```
+
+```{r, table-corsirt-params, warning=F}
+
+# Get full mod and make it pretty for the table
+pretty_fixed_effects <- mon_mods_allequal400$gca_mon_corsirt_int_2 %>%  
+  tidy_lme4() %>% 
+  mutate(p = format_pval(p), 
+         Parameter = fix_param_names(Parameter)) %>% 
+  mutate_each(funs(format_fixef_num), Estimate:t) %>% 
+  rename(`_t_` = t, `_p_` = p) 
+
+# Include gammas (Gij) after each parameter name
+subs <- c(paste0(0:2, 0), paste0(0, 1),
+          paste0(1:2, 1))
+var_labels <- parenthesize(paste0(emphasize("&gamma;"), "~", subs, "~"))
+pretty_fixed_effects$Parameter %<>% paste(., var_labels)
+
+pretty_fixed_effects %>% 
+  select(-effect) %>%
+  knitr::kable(format = "pandoc", align = str_tokenize("lrrrr")) 
+
+
+```
+
+
+```{r, 'plot-ospan-preds-mon', echo=FALSE, fig.cap="4. Growth curve estimates of target fixations as a function of verbal processing speed for L1 Spanish speakers according to stress pattern during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.12, 0.50, 0.88, and 0.98. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the first syllable of the verb."}
+knitr::include_graphics(
+  here("figs", "vision", "gca", "cont_speed_verb", "mon_corsirt.png")
+)
+```
+
+
+```{r, props-corsirt, eval=T, echo=F, include=TRUE}
+
+border_1 <- fp_border(width = 1.5)
+border_2 <- fp_border(width = 0.75)
+
+model_predsalleq400$preds_mon_corsirt %>% 
+  mutate(stress = if_else(stress == -1, "paroxytone", "oxytone")) %>% 
+  arrange(desc(stress), corsi_rt) %>% 
+  mutate(stress = blank_same_as_last(as.character(stress))) %>%
+  select(`Lexical stress` = stress, #`Visual prediction timing` = car_dev,
+         `Visuospatial processing speed` = corsi_rt,
+         Probability = prob, `Lower bound` = prob_lb, 
+         `Upper bound` = prob_ub) %>% 
+  flextable() %>% 
+  padding(padding = 0, part = "all") %>% 
+  width(., j = c(1, 2, 3, 4, 5), width = c(1.1, 2, 1.1, 1.3, 1.3)) %>% 
+  font(., fontname = "Times", part = "all") %>%
+  fontsize(., size = 11) %>%
+  colformat_num(., j = c(3, 4, 5), digits = 2) %>%
+  border_remove(.) %>%  
+  border(., part = "header", 
+            border.top = border_1,
+            border.bottom = border_2) %>% 
+  hline_bottom(., part = "body", border = border_1)
+```
+
+*Table 2.* Model estimates for probability of target fixations ±SE in monolinguals 
+at 200 ms after the last syllable onset (visuospatial processing speed GCA).
+
+
+
+
+
+
+
+
+The linear (`r report_row(2)`), quadratic (`r report_row(3)`) and cubic (`r report_row(4)`)  (proportion:&nbsp;`r b0_prop`) 
+ (&chi;^2^(1)&nbsp;=&nbsp;5.02, *p* = 0.025) 
+
+
+
+
+
+# Tables 
+
+## Random effects
+
+```{r, 'ranef-table-ospanrt', results = "asis"}
+ranef_table <- mon_mods_allequal400$gca_mon_ospan_int_2 %>% 
+  tidy_ranef_summary %>% 
+  # Format the numbers
+  mutate_each(funs(format_fixef_num), vcov, sdcor) %>%
+  mutate_each(funs(format_cor), -var1, -grp, -vcov, -sdcor) %>%
+  sort_ranef_grps %>%
+  # Format variable names and group names
+  mutate(var1 = fix_param_names(var1) %>% blank_nas,
+         grp =  blank_same_as_last(grp) %>% fix_param_names) %>% 
+  rename(Group = grp, Parameter = var1, Variance = vcov, SD = sdcor)
+
+# Correlation columns need names with characters so that pandoc can align them
+names(ranef_table)[5:8] <- 
+  c("Correlations", "&nbsp;", " &nbsp;", "  &nbsp;")
+
+ranef_table %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("llrrrrrr"))
+```
+
+Appendix 7: Growth curve model random effects (mon + vPred)
+
+
+```{r, 'ranef-table-corsirt', results = "asis"}
+ranef_table <- mon_mods_allequal400$gca_mon_corsirt_int_2 %>% 
+  tidy_ranef_summary %>% 
+  # Format the numbers
+  mutate_each(funs(format_fixef_num), vcov, sdcor) %>%
+  mutate_each(funs(format_cor), -var1, -grp, -vcov, -sdcor) %>%
+  sort_ranef_grps %>%
+  # Format variable names and group names
+  mutate(var1 = fix_param_names(var1) %>% blank_nas,
+         grp =  blank_same_as_last(grp) %>% fix_param_names) %>% 
+  rename(Group = grp, Parameter = var1, Variance = vcov, SD = sdcor)
+
+# Correlation columns need names with characters so that pandoc can align them
+names(ranef_table)[5:8] <- 
+  c("Correlations", "&nbsp;", " &nbsp;", "  &nbsp;")
+
+ranef_table %>% 
+  knitr::kable(format = "pandoc", align = str_tokenize("llrrrrrr"))
+```
+
+Appendix 9: Growth curve model random effects (en + vPred)

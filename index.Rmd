@@ -234,7 +234,7 @@ stress x use x time1 = paroxytones predicted faster
 
 - No L1 cross-linguistic influence 
   - Proficiency levels, language experience <font size="-1">(Gosselke et al., 2018)</font></br>
-  
+  - Languages need to differ more?
   
 
 ---
@@ -243,12 +243,15 @@ stress x use x time1 = paroxytones predicted faster
 
 - No L1 cross-linguistic influence 
   - Proficiency levels, language experience <font size="-1">(Gosselke et al., 2018)</font></br>
+  - Languages need to differ more?
   </br> 
     </br> 
       </br> 
 - L2 use contributed to faster prediction rate
-  - Language experience in general facilitates speed of phonomorphological prediction <font size="-1">(Proficiency: Sagarra & Casillas, 2018; anticipatory experience: Lozano-Argüelles et al., 2020)</font>.
-  - Interplay with other language experience factors?
+  - Language experience in general facilitates speed of phonomorphological prediction <font size="-1">(Proficiency: Sagarra & Casillas, 2018; anticipatory experience: Lozano-Argüelles et al., 2020)</font>
+  - Interplay with other factors
+    - proficiency?
+  - Still later than monolinguals <font size="-1">(e.g., Perdomo & Kaan, 2019)</font>
 
 ---
 
@@ -256,26 +259,28 @@ stress x use x time1 = paroxytones predicted faster
 
 - No L1 cross-linguistic influence 
   - Proficiency levels, language experience <font size="-1">(Gosselke et al., 2018)</font></br>
+  - Languages need to differ more?
   </br> 
     </br> 
       </br> 
 - L2 use helpful
-  - Language experience in general facilitates speed of phonomorphological prediction <font size="-1">(Proficiency: Sagarra & Casillas, 2018; anticipatory experience: Lozano-Argüelles et al., 2020)</font>.
+  - Language experience in general facilitates speed of phonomorphological prediction <font size="-1">(Proficiency: Sagarra & Casillas, 2018; anticipatory experience: Lozano-Argüelles et al., 2020)</font>
+  - Interplay with other factors
+    - proficiency?
   - Still later than monolinguals <font size="-1">(e.g., Perdomo & Kaan, 2019)</font>
-  - Interplay with other language experience factors?
   </br> 
     </br> 
       </br> 
 - Oxytones predicted more but paroxytones faster (the more the use)
   - In general, less frequent option easier <font size="-1">(oxytones, Morales Font, 2013)</font>
-  - Once suffix activated, faster rate because of more certainty.
+  - Once suffix activated, faster rate because of more certainty
   
 ---
 
 # Discussion
 
 Findings support L2 usage-based models:
-  - anguage experience in L2 processing and prediction
+  - language experience in L2 processing and prediction
   - characteristics of input in terms of frequency, validity, reliability
 
 ---

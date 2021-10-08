@@ -131,7 +131,6 @@ base_plot <- model_preds_psequal$fits_mon_ospan %>%
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target",
        lty = 'Visuospatial processing speed') +
-  ggtitle('Stress pattern') +
   theme_grey(base_size = 10, base_family = "Times") + 
   theme(
     legend.position = 'bottom',

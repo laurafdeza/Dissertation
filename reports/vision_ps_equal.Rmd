@@ -68,7 +68,7 @@ load(paste0(gca_mods_path, "/model_preds_psequal.Rdata"))
 <!-- I know this should be one sentence per line, it's just copy-pasted from Word -->
 Statistical analyses were conducted on R (Team & others, 2013) with the package lme4 (Bates, Mächler, Bolker, & Walker, 2014). The gaze fixation data were downsampled to 50 ms bins and incorrect responses were filtered out (0.42% of data). The data were centered 200 ms after the onset of the last syllable to account for saccade planning and launching, as is standard procedure in auditory eye-tracking studies (e.g., Fischer, 1992; Saslow, 1967).
 
-In the visuospatial prediction data, trials that timed out before the participant pressed the key were discarded (~25%). Those trials whose timing exceeded two standard deviations from the mean were also removed, imitating Broeker et al. (2020). The clead data was analyzed using a generalized linear mixed model. The timing of the key press was used as outcome. The predictors were speed of the trial and direction of the car (contrast-coded). Since speed had three levels, pairwise comparisons were run. The model also contained by-subject random intercepts. The random effects not explained by the model were used as measure of visuospatial prediction ability for later analyses.
+In the visuospatial prediction data, trials that timed out before the participant pressed the key were discarded (~25%). Those trials whose timing exceeded two standard deviations from the mean were also removed, imitating Broeker et al. (2020). The clean data was analyzed using a generalized linear mixed model. The timing of the key press was used as outcome. The predictors were speed of the trial and direction of the car (contrast-coded). Since speed had three levels, pairwise comparisons were run. The model also contained by-subject random intercepts. The random effects not explained by the model were used as measure of visuospatial prediction ability for later analyses.
 
 Verbal and visuospatial processing speed were calculated from only correct trials. For verbal processing speed, we recorded the time it took participants to answer the mathematical problems. This time was used as the outcome of a generalized linear mixed effect model with length of the set (number of mathematical operations and words to remember) as predictor and by-subject random intercepts. For visuospatial processing speed, we recorded the time participants needed to recreate the sequences. Again, these data were run as outcome of a generalized linear mixed model with sequence length (number of squares to recall) as predictor and by-subject random intercepts. The random variances not explained by the models were used as respective measures of processing speed.
 Negative values indicated shorter reaction times, and thus faster processing speed.
@@ -102,6 +102,7 @@ knitr::include_graphics(
 # Prepare table to support easy in-line printing of equations
 # params <- pretty_fixed_effects %>% 
 #  rename(B = Estimate)
+car::vif(mon_mods_psequal$gca_mon_ospan_i_2)
 
 params <- mon_mods_psequal$gca_mon_ospan_i_2 %>% 
   tidy_lme4() %>% 
@@ -187,15 +188,18 @@ pretty_fixed_effects %>%
 
 ```
 
+
+<!-- In this plot I do not understand why there are lines for the ribbon -->
 ```{r, 'plot-ospan-preds-mon', echo=FALSE, fig.cap="4. Growth curve estimates of target fixations as a function of verbal processing speed for L1 Spanish speakers according to stress pattern during the analysis window. Symbols and lines represent model estimates, and the transparent ribbons represents ±SE. Empirical logit values on y-axis correspond to proportions of 0.50, 0.73. 0.88, and 0.95. The horizontal dotted line represents the 50% probability of fixating on the target. The vertical dotted line indicates 200 ms after the offset of the first syllable of the verb."}
 knitr::include_graphics(
   here("figs", "vision", "gca", "cont_speed_verb", "mon_gca_psequal.png")
 )
 ```
 
-
-
-
+A generalized linear mixed model run on the visuospatial prediction data revealed that the parameters for direction and speed were both significant.
+Participants pressed closer to the supposed reappearance ms in trials in which the car moved from left to right, in comparison to trials from right to left (<em>&nbsp;beta;</em>&nbsp;=&nbsp;0.01, SE = 0.01, *t* = 2.54, *p* = 0.011).
+In slow conditions participants were more accurate than in medium (<em>&nbsp;beta;</em>&nbsp;=&nbsp;0.07, SE = 0.01, *t* = 5.19, *p*< 0.001) and fast speed conditions (<em>&nbsp;beta;</em>&nbsp;=&nbsp;0.04, SE = 0.01, *t* = 2.92, *p* = 0.004)
+There was also a difference between the medium and fast speed conditions (<em>&nbsp;beta;</em>&nbsp;=&nbsp;0.03, SE = 0.02, *t* = 2.03, *p* = 0.042).
 
 # Tables 
 

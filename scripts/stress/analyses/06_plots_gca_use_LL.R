@@ -30,7 +30,7 @@ list2env(gca_mon_mods, globalenv())
 list2env(gca_l2_mods, globalenv())
 list2env(model_preds, globalenv())
 list2env(gca_l2_mods_ints, globalenv())
-list2env(model_preds_ints, globalenv())
+list2env(model_preds_l1ot2, globalenv())
 
 # Set path for saving figs
 figs_path <- here("figs", "stress", "gca", "LL_changes")

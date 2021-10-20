@@ -80,6 +80,20 @@ rsq::rsq(gca_l2_dele_4equal$gca_l2_dele_final)
 #$random
 #[1] 0.1031415
 
+rsq::rsq(gca_l2_dele_4equal$gca_l2_dele_final, adj = TRUE)
+# $model
+# [1] 0.1529164
+# 
+# $fixed
+# [1] 0.04974044
+# 
+# $random
+# [1] 0.103176
+
+performance::r2_nakagawa(gca_l2_dele_4equal$gca_l2_dele_final, by_group = FALSE, tolerance = 1e-05)
+# Marginal R2: 0.056
+
+confint(gca_l2_dele_4equal$gca_l2_dele_final)
 
 rsq::rsq(gca_l2_use_4equal$gca_l2_use_final)
 #$model
@@ -90,6 +104,10 @@ rsq::rsq(gca_l2_use_4equal$gca_l2_use_final)
 
 #$random
 #[1] 0.07198825
+
+performance::r2_nakagawa(gca_l2_use_4equal$gca_l2_use_final, by_group = FALSE, tolerance = 1e-05)
+# Marginal R2: 0.108
+
 ```
 
 GCA model summaries are in Appendices 2 (monolinguals) and 3 (learners).

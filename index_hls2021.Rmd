@@ -1,0 +1,293 @@
+---
+title: "Greater L2 Use Facilitates Stress-Tense Suffix Associations in L2 Spanish"
+subtitle: "HLS2021"
+author: "Laura Fernandez Arroyo, Nuria Sagarra, Cristina Lozano Argüelles</br>Rutgers University, John Jay College"
+date: "October 8, 2021"
+output: 
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["hygge", "rutgers-fonts", "rutgers"]
+    nature:
+      beforeInit: "macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+.center[
+```{r knitr, include=TRUE, echo=FALSE, warning=FALSE}
+library(knitr)
+include_graphics("./cake.jpg")
+```
+
+The boy will eat / the cake.
+<font size="-1">(Altmann & Kamide, 1999)</font>
+]
+---
+
+# Phonomorphological anticipation
+
+## Central Swedish
+
+Low tone + singular: _fisken_ 'fish<sub>[SG]</sub>'     
+High tone + plural: _fiskar_ 'fish<sub>[PL]</sub>' <font size="-1">     
+(Roll et al., 2010)</font>
+
+## Spanish
+First syllable stressed + present: _canta_ 's/he sings'     
+First syllable unstressed + preterite: _cantó_ 's/he sang' <font size="-1">     
+(Sagarra & Casillas, 2018)</font>
+
+???
+Not learned in class so picked up through experience
+
+---
+
+# Previous research
+</br>
+
+Phonomorphological associations
+  - Starting at intermediate level of proficiency <font size="-1">(Sagarra & Casillas, 2018; Schremm et al., 2016)</font>
+  </br>
+  </br>
+  - Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font>
+  </br>
+  </br>
+  - L1 cross-linguistic influence  <font size="-1">(Gosselke et al., 2018)</font>
+
+
+---
+
+# Previous research
+</br>
+
+Phonomorphological associations
+  - Starting at intermediate level of proficiency <font size="-1">(Sagarra & Casillas, 2018; Schremm et al., 2016)</font> </br>
+  *Language experience?*
+  - Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font>
+  </br>
+  </br>
+  - L1 cross-linguistic influence  <font size="-1">(Gosselke et al., 2018)</font>
+
+---
+
+# Previous research
+</br>
+
+Phonomorphological associations
+  - Starting at intermediate level of proficiency <font size="-1">(Sagarra & Casillas, 2018; Schremm et al., 2016)</font></br>
+  *Language experience?*
+  - Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font></br>
+  *Increased use?*
+  - L1 cross-linguistic influence <font size="-1">(Gosselke et al., 2018)</font>
+
+---
+
+# Previous research
+</br>
+
+Phonomorphological associations
+  - Starting at intermediate level of proficiency <font size="-1">(Sagarra & Casillas, 2018; Schremm et al., 2016)</font></br>
+  *Language experience?* 
+  - Anticipatory experience <font size="-1">(Lozano-Argüelles et al., 2020)</font></br>
+  *Increased use?*
+  - L1 cross-linguistic influence <font size="-1">(Gosselke et al., 2018)</font></br>
+  *Different degrees of similarity?*
+
+---
+
+# Lexical stress-suffix associations
+
+- Spanish, English and Chinese have stress
+</br>
+</br>
+  - Contrastive in Spanish and English; confounded with tones in Chinese
+  
+---
+
+# Lexical stress-suffix associations
+
+- Spanish, English and Chinese have stress
+  - Contrastive in Spanish and English; confounded with tones in Chinese
+  
+- Inflectional morphology in Spanish and English; particles and classifiers in Chinese
+  - Spanish richer than English
+
+---
+# Our study
+
+## Does L1 transfer affect English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
+
+## Does L2 use affect English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
+
+--
+- They will predict
+- English faster and more likely to predict than Chinese speakers because of similarity
+- More use will contribute to faster and likelier prediction
+
+---
+
+# Our study
+
+Participants:
+- 30 Spanish monolinguals
+- 65 English speakers (L2 Spanish intermediate or above)
+- 64 Mandarin Chinese speakers (L2 Spanish intermediate or above)
+
+Materials:
+- Proficiency test
+- Language history questionnaire
+- Visual world paradigm (eye-tracking)
+  
+---
+
+# Visual world paradigm
+
+.center[
+```{r, include=TRUE, echo=FALSE}
+include_graphics("./00_intro/figs/vwp.png", dpi = 100) # the larger the number, the smaller the image
+```
+]
+???
+Close tracking of time
+
+---
+
+# Our study
+
+Participants:
+- 30 Spanish monolinguals
+- 65 English speakers (L2 Spanish intermediate or above)
+- 64 Mandarin Chinese speakers (L2 Spanish intermediate or above)
+
+Materials:
+- Proficiency test
+- Language history questionnaire
+- Visual world paradigm (eye-tracking)
+
+Analysis:
+- Growth Curve Analysis <font size="-1">(Mirman, 2014)</font>
+
+```{r eval=FALSE}
+eLog ~ 1 + (ot1 + ot2 + ot3) + l1_sum + ot:l1_sum +
+    condition_sum + ot1:condition_sum + ot2:condition_sum + 
+    use_z + ot1:use_z + ot2:use_z + l1_sum:condition_sum:use_z +
+    ot1:l1_sum:condition_sum:use_z + ot2:l1_sum:condition_sum:use_z +
+    ot3:l1_sum:condition_sum:use_z +
+    (1 + condition_sum + ot1 + ot2 + ot3 | participant) +
+    (1 + ot1 + ot2 + ot3 | target)
+```
+  
+---
+
+# Results
+
+Time course
+.center[
+```{r, include=TRUE, echo=FALSE, out.width="110%"}
+include_graphics("./figs/stress/gca/stress_l1.png", dpi = 150)
+```
+]
+
+---
+
+# Results
+
+Spanish speakers
+.center[
+```{r, include=TRUE, echo=FALSE, out.width="80%"}
+include_graphics("./figs/stress/gca/LL_changes/mon_plot_4equal.png", dpi = 108)
+```
+]
+
+---
+
+# Results
+
+.center[
+```{r, include=TRUE, echo=FALSE, out.width="90%"}
+include_graphics("./figs/stress/gca/LL_changes/use_plot_4equal.png", dpi = 150)
+```
+]
+
+???
+Oxytones predicted more
+
+Use x time1 = more use faster prediction
+
+stress x use x time1 = paroxytones predicted faster
+
+---
+
+# Discussion
+
+## Does L1 transfer affect English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
+
+## Does L2 use affect English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish? If so, how?
+
+- They will predict
+- English faster and more likely to predict than Chinese speakers because of similarity > No effect
+- More use will contribute to faster and likelier prediction > Faster
+  - Interaction with stress pattern/suffix
+
+---
+
+# Discussion
+
+- No L1 cross-linguistic influence 
+  - Proficiency levels, language experience <font size="-1">(Gosselke et al., 2018)</font></br>
+  - Languages need to differ more?
+  
+
+---
+
+# Discussion
+
+- No L1 cross-linguistic influence 
+  - Proficiency levels, language experience <font size="-1">(Gosselke et al., 2018)</font></br>
+  - Languages need to differ more?
+  </br> 
+    </br> 
+      </br> 
+- L2 use contributed to faster prediction rate
+  - Language experience in general facilitates speed of phonomorphological prediction <font size="-1">(Proficiency: Sagarra & Casillas, 2018; anticipatory experience: Lozano-Argüelles et al., 2020)</font>
+  - Interplay with other factors
+    - proficiency?
+  - Still later than monolinguals <font size="-1">(e.g., Perdomo & Kaan, 2019)</font>
+
+---
+
+# Discussion
+
+- No L1 cross-linguistic influence 
+  - Proficiency levels, language experience <font size="-1">(Gosselke et al., 2018)</font></br>
+  - Languages need to differ more?
+  </br> 
+    </br> 
+      </br> 
+- L2 use contributed to faster prediction rate
+  - Language experience in general facilitates speed of phonomorphological prediction <font size="-1">(Proficiency: Sagarra & Casillas, 2018; anticipatory experience: Lozano-Argüelles et al., 2020)</font>
+  - Interplay with other factors
+    - proficiency?
+  - Still later than monolinguals <font size="-1">(e.g., Perdomo & Kaan, 2019)</font>
+  </br> 
+    </br> 
+      </br> 
+- Oxytones predicted more but paroxytones faster (the more the use)
+  - In general, less frequent option easier <font size="-1">(oxytones, Morales Font, 2013)</font>
+  - Once suffix activated, faster rate because of more certainty
+
+---
+
+# Conclusion
+
+- L1 cross-linguistic influence may depend on proficiency
+- L2 use helps in rate of prediction
+- Frequency of phonomorphological association matters
+
+---
+class: title-slide-section-red, center, middle
+
+# Thank you!
+<font size="-2">laura.fdeza@rutgers.edu</font>
+

@@ -166,7 +166,6 @@ dem <- dem %>%
   
 dem$participant <- tolower(dem$participant)
 dem$DELE <- as.numeric(dem$DELE)
-
   
 # Add verbal wm score to eyetracking data frame
 stress_50 <- merge(x = stress_50, y = dem, by = "participant", all.x=TRUE)
@@ -184,17 +183,16 @@ stress_50$l1 <- str_replace(stress_50$l1, "es", "en")
 stress_50$l1 <- str_replace(stress_50$l1, "ms", "ma")
 stress_50$l1 <- str_replace(stress_50$l1, "on", "es")
 
+# stress_50 %>%
+#   filter(., l1 != "es") %>%
+#   group_by(., l1) %>%
+#   summarize(range(percent_l2_week))
 
-stress_50$DELE[is.na(stress_50$DELE) & stress_50$l1 == 'es'] <- 56
-stress_50$percent_l2_week[is.na(stress_50$percent_l2_week) & stress_50$l1 == 'es'] <- 0
+# stress_50$DELE[is.na(stress_50$DELE) & stress_50$l1 == 'es'] <- 56
+# stress_50$percent_l2_week[is.na(stress_50$percent_l2_week) & stress_50$l1 == 'es'] <- 0
 
 stress50 <- stress_50 %>%
   # mutate(DELE = DELE + runif(n(), min = -0.15, max = 0.15) * (n() > 1)) %>%
-  mutate(., #ospan = (WM_set - mean(WM_set))/sd(WM_set),
-         use_z = (percent_l2_week - mean(percent_l2_week))/sd(percent_l2_week),
-    DELE_z = (DELE - mean(DELE))/sd(DELE)
-  ) %>%
-  
   # filter participants to make ES use and proficiency homogeneous
   
   filter(participant != 'ies04' & participant != 'ies17' & 

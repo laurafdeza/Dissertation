@@ -1,0 +1,218 @@
+---
+title: "The influence of verbal working memory on phonomorphological prediction"
+subtitle: "Issues and Trends in SLA, Touro College"
+author: "Laura Fernandez Arroyo"
+date: "November 1, 2021"
+output: 
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["hygge", "rutgers-fonts", "rutgers"]
+    nature:
+      beforeInit: "macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+.center[
+```{r knitr, include=TRUE, echo=FALSE, warning=FALSE}
+library(knitr)
+include_graphics("./cake.jpg")
+```
+
+The boy will eat / the cake.
+<font size="-1">(Altmann & Kamide, 1999)</font>
+]
+---
+
+# Phonomorphological anticipation
+
+## Central Swedish
+
+Low tone + singular: _fisken_ 'fish<sub>[SG]</sub>'     
+High tone + plural: _fiskar_ 'fish<sub>[PL]</sub>' <font size="-1">     
+(Roll et al., 2010)</font>
+
+## Spanish
+First syllable stressed + present: _canta_ 's/he sings'     
+First syllable unstressed + preterite: _cantó_ 's/he sang' <font size="-1">     
+(Sagarra & Casillas, 2018)</font>
+
+???
+Not learned in class so picked up through experience
+
+---
+
+# Previous research
+</br>
+
+Phonomorphological associations
+  - Starting at intermediate level of proficiency <font size="-1">(Sagarra & Casillas, 2018; Schremm et al., 2016)</font>
+  </br>
+  </br>
+  - L1 cross-linguistic influence  <font size="-1">(Gosselke et al., 2018)</font>
+  - Verbal WM?
+    - Effects: monolingual (Huettig & Janse, 2016), monolingual and L2 speakers (Lozano-Argüelles et al., under review)
+    - No effects: monolingual (Otten & Van Berkum, 2009), monolingual and L2 speakers (Sagarra & Casillas, 2018)
+    
+
+---
+
+# Lexical stress-suffix associations
+
+- Spanish, English and Chinese have stress
+</br>
+</br>
+  - Contrastive in Spanish and English; confounded with tones in Chinese
+  
+---
+
+# Lexical stress-suffix associations
+
+- Spanish, English and Chinese have stress
+  - Contrastive in Spanish and English; confounded with tones in Chinese
+  
+- Inflectional morphology in Spanish and English; particles and classifiers in Chinese
+  - Spanish richer than English
+
+---
+# The study
+
+## Does verbal WM affect Spanish speakers' ability to make stress-tense suffix predictions?
+### If so, how?
+
+## Does the L1 affect verbal WM effects in English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish?
+### If so, how?
+### Does L2 proficiency mediate those effects?
+
+---
+
+# The study
+
+Participants:
+- 30 Spanish monolinguals
+- 65 English speakers (L2 Spanish intermediate or above)
+- 64 Mandarin Chinese speakers (L2 Spanish intermediate or above)
+
+Materials:
+- Proficiency test
+- Language history questionnaire
+- Visual world paradigm (eye-tracking)
+
+Analysis:
+- Growth Curve Analysis <font size="-1">(Mirman, 2014)</font>
+  
+---
+
+# Visual world paradigm
+
+.center[
+```{r, include=TRUE, echo=FALSE}
+include_graphics("./00_intro/figs/vwp.png", dpi = 100) # the larger the number, the smaller the image
+```
+]
+???
+Close tracking of time
+  
+---
+
+# Results
+
+Time course
+.center[
+```{r, include=TRUE, echo=FALSE, out.width="110%"}
+include_graphics(here("figs", "vision", "gca", 'cont_speed_verb', "timecourse_michele.png"), dpi = 150)
+```
+]
+
+---
+
+# Results
+
+Spanish speakers
+.center[
+```{r, include=TRUE, echo=FALSE, out.width="80%"}
+include_graphics(here("figs", "vision", "gca", 'cont_speed_verb', "mon_michele.png"), dpi = 108)
+```
+]
+
+??? 
+
+High WM helps in predicting paroxytones faster/oxytones slower 
+---
+
+# Results
+
+English speakers
+.center[
+```{r, include=TRUE, echo=FALSE, out.width="90%"}
+include_graphics(here("figs", "vision", "gca", 'cont_speed_verb', "en_michele.png"), dpi = 150)
+```
+]
+
+???
+Oxytones faster > more
+High proficiency faster, especially in oxytones
+Verbal WM effects at lower or higher prof:
+  - high wm predicts par slower and ox faster than low wm
+  - high wm predicts par faster and ox slower than low wm
+
+---
+
+# Discussion
+
+## Does verbal WM affect Spanish speakers' ability to make stress-tense suffix predictions?
+### If so, how?
+--
+Yes. Effects vary by tense.
+
+---
+
+# Discussion
+
+## Does verbal WM affect Spanish speakers' ability to make stress-tense suffix predictions?
+### If so, how?
+Yes. Effects vary by tense
+
+## Does the L1 affect verbal WM effects in English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish?
+### If so, how?
+### Does L2 proficiency mediate those effects?
+--
+L1s affect verbal WM prediction mediation in L2, and so does proficiency. Effects vary also by tense
+
+---
+
+# Discussion
+
+L1:
+- Effects in EN but not in MaCH: more similar languages are more susceptible to verbal WM effects
+
+-- 
+Proficiency:
+- At low proficiency, high WM benefits condition with fewer competitors.
+- At high proficiency, more frequent condition is benefited by high WM.
+
+--
+
+Other studies:
+- WM does affect L2 phonomorphological processing (Lozano-Argüelles et al., under review)
+- Different associations may be affected differently (vs. Sagarra & Casillas, 2018)
+
+Models:
+- Usage-based models
+- Working memory models
+
+---
+
+# Conclusion
+
+WM effects are mediated by other factors:
+- the more similar the languages the stronger the effects;
+- proficiency involves also frequency and reliability of associations; and
+- association involved in processing
+
+---
+class: title-slide-section-red, center, middle
+
+# Thank you!
+

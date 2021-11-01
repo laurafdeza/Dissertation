@@ -127,7 +127,7 @@ b0_prop <- b0 %>% inv_logit %>% round(2) %>% remove_leading_zero
 ```
 
 For full model formulas and summaries see Appendices 2 and 3.
-The log odds of participants fixating on the target at 200 ms after the objective onset of the last syllable in the verb estimated by the processing speeds model is `r report_row(0)` (proportion = `r print(b0_prop)`).
+The log odds of participants fixating on the target at 200 ms after the objective onset of the last syllable in the verb estimated by the processing speeds model is `r report_row(1)` (proportion = `r print(b0_prop)`).
 The exact probabilities for each condition can be found in Table 1.
 
 ```{r, props-ospanrt, eval=T, echo=F, include=TRUE}
@@ -166,7 +166,7 @@ We kept the linear (`r report_row(2)`) and quadratic (`r report_row(3)`) polynom
 There was a main effect of visuospatial processing speed on the linear term (<em>&nbsp;chi^2^;</em>&nbsp;(1) =&nbsp;7.27, *p* = 0.007), indicating that those participants with longer reaction times predicted more slowly, represented by the flatter dotted lines in Figure 4 (`r report_row(5)`).
 An interaction between visuospatial processing speed and stress on the quadratic time term (<em>&nbsp;chi^2^;</em>&nbsp;(1) =&nbsp;5.63, *p* = 0.018), revealed that the visuospatial processing speed effects were stronger in the paroxytone/present tense condition (`r report_row(8)`).
 There was a triple interaction between stress and verbal and visuospatial processing speeds on the linear term (<em>&nbsp;chi^2^;</em>&nbsp;(1) =&nbsp;6.17, *p* = 0.013).
-This interaction further informs us that when participants had faster verbal processing speed but slower visuospatial one, they were more slowy in verbal prediction rate in paroxytones, but oxytones were negatively affected mostly when both processing speeds were slow (`r report_row(10)`) (see Figure 4).
+This interaction further informs us that when participants had faster verbal processing speed (shorter reaction times), participants with slower visuospatial processing speed predicted paroxytones more slowly than participants with faster visuospatial processing speed; in contrast, only when participants had slower verbal processing speed, they predicted oxytones more slowly the slower their visuospatial processing speed (`r report_row(10)`) (see Figure 4).
 
 
 ```{r, table-ospanrt-params, warning=F}

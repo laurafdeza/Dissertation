@@ -122,7 +122,7 @@ base_plot <- model_preds_zero0$fits_mon_verbalps %>%
   scale_linetype_manual(values=c("solid", "dashed", 'dotted')) +
   labs(x = "Time (ms) relative to target syllable offset",
        y = "Empirical logit of looks to target",
-       lty = 'Visuospatial processing speed') +
+       lty = 'Visuospatial reaction time') + #visuospatial processing speed
   theme_grey(base_size = 10, base_family = "Times") + 
   theme(
     legend.position = 'bottom',
@@ -130,11 +130,11 @@ base_plot <- model_preds_zero0$fits_mon_verbalps %>%
     plot.margin = margin(t = 5, l = 5, r = 24))
 
 mon_gca_ospan_zero0 <- grid.arrange(base_plot,     
-                               bottom = textGrob('Verbal processing speed', rot = 270,
-                                                 x = 0.98, y = 2.5, gp = gpar(fontsize = 9,
+                               bottom = textGrob('Verbal reaction time', rot = 270, # verbal processing speed
+                                                 x = 0.98, y = 2.85, gp = gpar(fontsize = 9,
                                                                               fontfamily = 'Times')))
 
-ggsave(paste0(figs_path, "/mon_gca_ospan_zero0.png"), mon_gca_ospan_zero0, width = 180,
+ggsave(paste0(figs_path, "/mon_gca_ospan_zero0_rt.png"), mon_gca_ospan_zero0, width = 180,
        height = 120, units = "mm", dpi = 600)
 
 

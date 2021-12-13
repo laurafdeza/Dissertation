@@ -25,10 +25,9 @@ stress50 <- read_csv(here("data", "clean", "stress_50ms_final_onsetc3updated.csv
 gca_mods_path  <- here("mods", "vision", "gca", "cont_speed_verb")
 
 # Load models as lists
-load(paste0(gca_mods_path, "/mon_mods_zero0.Rdata")) # gca_mon_ospan_int_1, gca_mon_corsirt_int_2
-load(paste0(gca_mods_path, "/mon_mods_zerosc.Rdata")) # gca_mon_wm_in_1, gca_mon_carsc_1
+load(paste0(gca_mods_path, "/mon_mods_onlypred.Rdata")) # gca_mon_ospan_int_1, gca_mon_corsirt_int_2
 
-load(paste0(gca_mods_path, "/model_preds_zero0.Rdata"))
+load(paste0(gca_mods_path, "/model_preds_onlypred.Rdata"))
 # load(paste0(gca_mods_path, "/nested_model_comparisons.Rdata"))
 
 # Store objects in global env
@@ -158,170 +157,43 @@ mon_stress_anova <-
 # gca_mon_stress_2    9 14367 14420 -7174.5    14349 0.0239  1     0.8772
 
 
-# add visuospatial proc speed effect to intercept, linear slope, quadratic, and cubic time terms
-gca_mon_corsirt_0 <- update(gca_mon_base,    . ~ . + corsi_rt)
-gca_mon_corsirt_1 <- update(gca_mon_corsirt_0, . ~ . + ot1:corsi_rt)
-gca_mon_corsirt_2 <- update(gca_mon_corsirt_1, . ~ . + ot2:corsi_rt)
-
-mon_corsirt_anova <-
-  anova(gca_mon_base, gca_mon_corsirt_0, gca_mon_corsirt_1,
-        gca_mon_corsirt_2)
-#                   npar   AIC   BIC logLik deviance   Chisq Df Pr(>Chisq)
-# gca_mon_base         6 14363 14398 -7175.3    14351                        
-# gca_mon_corsirt_0    7 14361 14402 -7173.7    14347 3.1700  1   0.075001 . 
-# gca_mon_corsirt_1    8 14356 14403 -7170.1    14340 7.2690  1   0.007016 **
-# gca_mon_corsirt_2    9 14358 14411 -7170.1    14340 0.0001  1   0.993485 
-
-# add 2-way int to intercept, linear slope, quadratic, and cubic time terms
-gca_mon_corsirt_int_0 <- update(gca_mon_corsirt_1, . ~ . + stress_sum:corsi_rt)
-gca_mon_corsirt_int_1 <- update(gca_mon_corsirt_int_0,   . ~ . + ot1:stress_sum:corsi_rt)
-gca_mon_corsirt_int_2 <- update(gca_mon_corsirt_int_1,   . ~ . + ot2:stress_sum:corsi_rt)
-
-mon_corsirt_int_anova <-
-  anova(gca_mon_corsirt_1, gca_mon_corsirt_int_0, gca_mon_corsirt_int_1,
-        gca_mon_corsirt_int_2)
-#                       npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)  
-# gca_mon_corsirt_1        8 14356 14403 -7170.1    14340                       
-# gca_mon_corsirt_int_0    9 14358 14411 -7170.1    14340 0.0051  1    0.94296  
-# gca_mon_corsirt_int_1   10 14360 14419 -7170.0    14340 0.1683  1    0.68159  
-# gca_mon_corsirt_int_2   11 14356 14421 -7167.2    14334 5.6317  1    0.01764 *
-
-
-# BRANCH #1
-# add verbal proc time effect to intercept, linear slope, quadratic, and cubic time terms
-gca_mon_ospan_0 <- update(gca_mon_corsirt_int_2,    . ~ . + ospan_rt)
-gca_mon_ospan_1 <- update(gca_mon_ospan_0, . ~ . + ot1:ospan_rt)
-gca_mon_ospan_2 <- update(gca_mon_ospan_1, . ~ . + ot2:ospan_rt)
-
-mon_ospan_anova <-
-  anova(gca_mon_corsirt_int_2, gca_mon_ospan_0, gca_mon_ospan_1,
-        gca_mon_ospan_2)
-#                       npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)
-# gca_mon_corsirt_int_2   11 14356 14421 -7167.2    14334                     
-# gca_mon_ospan_0         12 14358 14429 -7167.1    14334 0.0599  1     0.8067
-# gca_mon_ospan_1         13 14360 14436 -7167.1    14334 0.0099  1     0.9207
-# gca_mon_ospan_2         14 14361 14443 -7166.7    14333 0.8953  1     0.3441
-
-gca_mon_ospan_i_0 <- update(gca_mon_corsirt_int_2, . ~ . + stress_sum:ospan_rt)
-gca_mon_ospan_i_1 <- update(gca_mon_ospan_i_0,   . ~ . + ot1:stress_sum:ospan_rt)
-gca_mon_ospan_i_2 <- update(gca_mon_ospan_i_1,   . ~ . + ot2:stress_sum:ospan_rt)
-
-mon_ospan_i_anova <-
-  anova(gca_mon_corsirt_int_2, gca_mon_ospan_i_0, gca_mon_ospan_i_1,
-        gca_mon_ospan_i_2)
-#                       npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)  
-# gca_mon_corsirt_int_2   11 14356 14421 -7167.2    14334                     
-# gca_mon_ospan_i_0       12 14358 14428 -7166.8    14334 0.6873  1     0.4071
-# gca_mon_ospan_i_1       13 14360 14436 -7166.8    14334 0.1236  1     0.7251
-# gca_mon_ospan_i_2       14 14361 14443 -7166.4    14333 0.8124  1     0.3674
-
-
-gca_mon_ospan_in_0 <- update(gca_mon_corsirt_int_2,    . ~ . + ospan_rt:corsi_rt)
-gca_mon_ospan_in_1 <- update(gca_mon_ospan_in_0,   . ~ . + ot1:ospan_rt:corsi_rt)
-gca_mon_ospan_in_2 <- update(gca_mon_ospan_in_1,   . ~ . + ot2:ospan_rt:corsi_rt)
-
-mon_ospan_in_anova <-
-  anova(gca_mon_corsirt_int_2, gca_mon_ospan_in_0, gca_mon_ospan_in_1,
-        gca_mon_ospan_in_2)
-#                       npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)  
-# gca_mon_corsirt_int_2   11 14356 14421 -7167.2    14334                     
-# gca_mon_ospan_in_0      12 14357 14428 -7166.6    14333 1.2151  1     0.2703
-# gca_mon_ospan_in_1      13 14359 14435 -7166.5    14333 0.0414  1     0.8388
-# gca_mon_ospan_in_2      14 14361 14443 -7166.5    14333 0.0013  1     0.9715
-
-
-# add 3-way int to intercept, linear slope, quadratic, and cubic time terms
-gca_mon_ospan_int_0 <- update(gca_mon_corsirt_int_2, . ~ . + stress_sum:ospan_rt:corsi_rt)
-gca_mon_ospan_int_1 <- update(gca_mon_ospan_int_0,   . ~ . + ot1:stress_sum:ospan_rt:corsi_rt)
-gca_mon_ospan_int_2 <- update(gca_mon_ospan_int_1,   . ~ . + ot2:stress_sum:ospan_rt:corsi_rt)
-
-mon_ospan_int_anova <-
-  anova(gca_mon_corsirt_int_2, gca_mon_ospan_int_0, gca_mon_ospan_int_1,
-        gca_mon_ospan_int_2)
-#                       npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)   
-# gca_mon_corsirt_int_2   11 14356 14421 -7167.2    14334                       
-# gca_mon_ospan_int_0     12 14357 14428 -7166.7    14333 0.9706  1    0.32452  
-# gca_mon_ospan_int_1     13 14353 14429 -7163.6    14327 6.1710  1    0.01299 *
-# gca_mon_ospan_int_2     14 14355 14437 -7163.5    14327 0.1336  1    0.71470  
-
-
-# BRANCH #2
 # add visuospatial anticipation effect to intercept, linear slope, quadratic, and cubic time terms
-gca_mon_car_0 <- update(gca_mon_corsirt_int_2,    . ~ . + car_dev)
+gca_mon_car_0 <- update(gca_mon_base,    . ~ . + car_dev)
 gca_mon_car_1 <- update(gca_mon_car_0, . ~ . + ot1:car_dev)
 gca_mon_car_2 <- update(gca_mon_car_1, . ~ . + ot2:car_dev)
 
 mon_car_anova <-
-  anova(gca_mon_corsirt_int_2, gca_mon_car_0, gca_mon_car_1,
+  anova(gca_mon_base, gca_mon_car_0, gca_mon_car_1,
         gca_mon_car_2)
-#                       npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)
-# gca_mon_corsirt_int_2   11 14356 14421 -7167.2    14334                     
-# gca_mon_car_0           12 14358 14429 -7167.2    14334 0.0122  1     0.9121
-# gca_mon_car_1           13 14360 14436 -7166.8    14334 0.8418  1     0.3589
-# gca_mon_car_2           14 14361 14443 -7166.7    14333 0.1282  1     0.7203
+#               npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)
+# gca_mon_base     6 14363 14398 -7175.3    14351                       
+# gca_mon_car_0    7 14364 14404 -7174.8    14350 1.0896  1    0.29656  
+# gca_mon_car_1    8 14361 14408 -7172.5    14345 4.5690  1    0.03256 *
+# gca_mon_car_2    9 14363 14415 -7172.3    14345 0.2672  1    0.60524  
 
 # add 2-way int to intercept, linear slope, quadratic, and cubic time terms
-gca_mon_car_i_0 <- update(gca_mon_corsirt_int_2,    . ~ . + car_dev:stress_sum)
-gca_mon_car_i_1 <- update(gca_mon_car_i_0, . ~ . + ot1:car_dev:stress_sum)
-gca_mon_car_i_2 <- update(gca_mon_car_i_1, . ~ . + ot2:car_dev:stress_sum)
-
-mon_car_i_anova <-
-  anova(gca_mon_corsirt_int_2, gca_mon_car_i_0, gca_mon_car_i_1,
-        gca_mon_car_i_2)
-#                       npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)  
-# gca_mon_corsirt_int_2   11 14356 14421 -7167.2    14334                     
-# gca_mon_car_i_0         12 14358 14429 -7167.1    14334 0.0563  1     0.8125
-# gca_mon_car_i_1         13 14360 14436 -7167.1    14334 0.0885  1     0.7661
-# gca_mon_car_i_2         14 14360 14442 -7166.0    14332 2.1292  1     0.1445
-
-
-gca_mon_car_in_0 <- update(gca_mon_corsirt_int_2,     . ~ . + car_dev:corsi_rt)
-gca_mon_car_in_1 <- update(gca_mon_car_in_0, . ~ . + ot1:car_dev:corsi_rt)
-gca_mon_car_in_2 <- update(gca_mon_car_in_1, . ~ . + ot2:car_dev:corsi_rt)
-
-mon_car_in_anova <-
-  anova(gca_mon_corsirt_int_2, gca_mon_car_in_0, gca_mon_car_in_1,
-        gca_mon_car_in_2)
-#                       npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)
-# gca_mon_corsirt_int_2   11 14356 14421 -7167.2    14334                     
-# gca_mon_car_in_0        12 14358 14428 -7166.9    14334 0.6199  1     0.4311
-# gca_mon_car_in_1        13 14360 14436 -7166.9    14334 0.0000  1     0.9977
-# gca_mon_car_in_2        14 14361 14443 -7166.5    14333 0.6478  1     0.4209
-
-
-gca_mon_car_int_0 <- update(gca_mon_corsirt_int_2, . ~ . + stress_sum:car_dev:corsi_rt)
-gca_mon_car_int_1 <- update(gca_mon_car_int_0,   . ~ . + ot1:stress_sum:car_dev:corsi_rt)
-gca_mon_car_int_2 <- update(gca_mon_car_int_1,   . ~ . + ot2:stress_sum:car_dev:corsi_rt)
+gca_mon_car_int_0 <- update(gca_mon_car_1,    . ~ . + car_dev:stress_sum)
+gca_mon_car_int_1 <- update(gca_mon_car_int_0, . ~ . + ot1:car_dev:stress_sum)
+gca_mon_car_int_2 <- update(gca_mon_car_int_1, . ~ . + ot2:car_dev:stress_sum)
 
 mon_car_int_anova <-
-  anova(gca_mon_corsirt_int_2, gca_mon_car_int_0, gca_mon_car_int_1,
+  anova(gca_mon_car_1, gca_mon_car_int_0, gca_mon_car_int_1,
         gca_mon_car_int_2)
-#                   npar   AIC   BIC  logLik deviance   Chisq Df Pr(>Chisq)  
-# gca_mon_corsirt_int_2   11 14356 14421 -7167.2    14334                     
-# gca_mon_car_int_0       12 14358 14428 -7166.8    14334 0.8329  1     0.3614
-# gca_mon_car_int_1       13 14357 14434 -7165.7    14331 2.2024  1     0.1378
-# gca_mon_car_int_2       14 14359 14441 -7165.6    14331 0.0878  1     0.7670
+#                   npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)  
+# gca_mon_car_1        8 14361 14408 -7172.5    14345                     
+# gca_mon_car_int_0    9 14363 14416 -7172.5    14345 0.0002  1     0.9898
+# gca_mon_car_int_1   10 14365 14424 -7172.4    14345 0.0588  1     0.8084
+# gca_mon_car_int_2   11 14367 14431 -7172.4    14345 0.0665  1     0.7965
 
 
-car::vif(gca_mon_ospan_int_1)
-# ot1                              ot2 
-# 1.514590                         1.023027 
-# corsi_rt                     ot1:corsi_rt 
-# 1.012092                         1.512796 
-# corsi_rt:stress_sum          ot1:corsi_rt:stress_sum 
-# 1.656944                         1.697146 
-# ot2:corsi_rt:stress_sum     corsi_rt:stress_sum:ospan_rt 
-# 1.009234                         1.687543 
-# ot1:corsi_rt:stress_sum:ospan_rt 
-# 1.711421 
 
-car::vif(gca_mon_corsirt_int_2)
-# ot1                     ot2                     corsi_rt 
-# 1.513490                1.016008                1.007265 
-# ot1:corsi_rt     corsi_rt:stress_sum ot1:corsi_rt:stress_sum 
-# 1.497057                1.006504                1.011745 
-# ot2:corsi_rt:stress_sum 
-# 1.008594 
+car::vif(gca_mon_car_1)
+# ot1          ot2         car_dev      ot1:car_dev 
+# 1.024691    1.013401    1.003478    1.014514 
+
+
+
+
 
 }
 
@@ -332,27 +204,78 @@ car::vif(gca_mon_corsirt_int_2)
 mod_type <- "gca_mon"
 mod_spec <- c("_base", 
               "_stress_0", "_stress_1", "_stress_2", 
-              "_corsirt_0", "_corsirt_1", "_corsirt_2", 
-              "_corsirt_int_0", "_corsirt_int_1", "_corsirt_int_2", 
-              "_ospan_0", "_ospan_1", "_ospan_2", 
-              "_ospan_i_0", "_ospan_i_1", "_ospan_i_2", 
-              "_ospan_in_0", "_ospan_in_1", "_ospan_in_2", 
-              "_ospan_int_0", "_ospan_int_1", "_ospan_int_2", 
-              "_car_0", "_car_1", "_car_2", 
-              "_car_i_0", "_car_i_1", "_car_i_2",
-              "_car_in_0", "_car_in_1", "_car_in_2",
+              "_car_0", "_car_1", "_car_2",
               "_car_int_0", "_car_int_1", "_car_int_2"
               )
 
 # Store ind models in list
-mon_mods_zero0 <- mget(c(paste0(mod_type, mod_spec)
+mon_mods_onlypred <- mget(c(paste0(mod_type, mod_spec)
 ))
 
-save(mon_mods_zero0,
+save(mon_mods_onlypred,
      file = here("mods", "vision", "gca", "cont_speed_verb",
-                 "mon_mods_zero0.Rdata"))
+                 "mon_mods_onlypred.Rdata"))
 
   
+#########    CORRELATION
+library(nortest)
+library("report") 
+
+# ASSUMPTION 1. Normality
+ggplot(mon_vision, aes(x=eLog)) + 
+  geom_density()
+# if error for graphics, run dev.off() and then run code again
+
+ggplot(mon_vision, aes(x=car_dev)) + 
+  geom_density()
+
+
+ad.test(mon_vision$eLog) # Anderson-Darling normality test for large samples
+# A = 430.26, p-value < 2.2e-16
+
+ad.test(mon_vision$car_dev) # neither normal > Spearman
+# A = 133.58, p-value < 2.2e-16
+
+
+# Spearman correlation between 2 variables
+cor(mon_vision$eLog, mon_vision$car_dev, method = "spearman")
+# 0.04358656
+
+corr_all <- ggplot(mon_vision) +
+  aes(x = eLog, y = car_dev) +
+  geom_point(size = .8) + #colour = "#0c4c8a"
+  xlab("Language predictioin") + ylab("Visuospatial predictioin") +
+  geom_smooth(method=lm) + # for linear
+  theme_gray(base_size = 12,
+             base_family = "Times") +
+  theme(legend.position = "bottom",
+        legend.box = "vertical")
+
+figs_path <- here("figs", "vision", "gca", "cont_speed_verb")
+ggsave(paste0(figs_path, "/correlation_prediction.png"), corr_all, width = 180,
+       height = 120, units = "mm", dpi = 600)
+
+
+test <- cor.test(mon_vision$eLog, mon_vision$car_dev, method = "spearman", exact=FALSE)
+test
+# S = 2775871427, p-value = 0.02648
+# alternative hypothesis: true rho is not equal to 0
+# sample estimates:
+#   rho 
+# 0.04358656 
+report(test)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # add visuospatial proc speed effect to intercept, linear slope, quadratic, and cubic time terms

@@ -119,6 +119,42 @@ agg %>%
 # 1 en      16.0   5.41          16.0        5.41
 # 2 ma      18.9   3.59          18.9        3.59
 
+  agg %>%
+    filter(., l1 == 'en', AoA_L2 < 14) %>%
+    # group_by(., l1, AoA_L2) %>%
+    tally()
+# n = 25
+  
+  agg %>%
+    filter(., l1 == 'en' & AoA_L2 >= 14 & AoA_L2 < 18) %>%
+    # group_by(., l1, AoA_L2) %>%
+    tally()
+  # n = 15
+  
+  agg %>%
+    filter(., l1 == 'en' & AoA_L2 >= 18) %>%
+    # group_by(., l1, AoA_L2) %>%
+    tally()
+  # n = 21
+
+  
+  agg %>%
+    filter(., l1 == 'ma', AoA_L2 < 14) %>%
+    # group_by(., l1, AoA_L2) %>%
+    tally()
+  # n = 4
+  
+  agg %>%
+    filter(., l1 == 'ma' & AoA_L2 >= 14 & AoA_L2 < 18) %>%
+    # group_by(., l1, AoA_L2) %>%
+    tally()
+  # n = 9
+  
+  agg %>%
+    filter(., l1 == 'ma' & AoA_L2 >= 18) %>%
+    # group_by(., l1, AoA_L2) %>%
+    tally()
+  # n = 51
 
 # L2 use per week in %
 agg %>%

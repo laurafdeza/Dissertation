@@ -14,6 +14,10 @@ output:
       countIncrementalSlides: false
 ---
 
+```{r here, include=FALSE, echo=FALSE, warning=FALSE}
+library(here)
+```
+
 .center[
 ```{r knitr, include=TRUE, echo=FALSE, warning=FALSE}
 library(knitr)
@@ -35,7 +39,7 @@ High tone + plural: _fiskar_ 'fish<sub>[PL]</sub>' <font size="-1">
 
 ## Spanish
 First syllable stressed + present: _canta_ 's/he sings'     
-First syllable unstressed + preterite: _cantó_ 's/he sang' <font size="-1">     
+First syllable unstressed + preterit: _cantó_ 's/he sang' <font size="-1">     
 (Sagarra & Casillas, 2018)</font>
 
 ???
@@ -51,9 +55,11 @@ Phonomorphological associations
   </br>
   </br>
   - L1 cross-linguistic influence  <font size="-1">(Gosselke et al., 2018)</font>
+  </br>
+  </br>
   - Verbal WM?
-    - Effects: monolingual (Huettig & Janse, 2016), monolingual and L2 speakers (Lozano-Argüelles et al., under review)
-    - No effects: monolingual (Otten & Van Berkum, 2009), monolingual and L2 speakers (Sagarra & Casillas, 2018)
+    - Effects: monolingual <font size="-1">(Huettig & Janse, 2016)</font>, monolingual and L2 speakers <font size="-1">(Lozano-Argüelles et al., under review)</font>
+    - No effects: monolingual <font size="-1">(Otten & Van Berkum, 2009)</font>, monolingual and L2 speakers <font size="-1">(Sagarra & Casillas, 2018)</font>
     
 
 ---
@@ -98,6 +104,7 @@ Materials:
 - Proficiency test
 - Language history questionnaire
 - Visual world paradigm (eye-tracking)
+- Operation Span task
 
 Analysis:
 - Growth Curve Analysis <font size="-1">(Mirman, 2014)</font>
@@ -116,12 +123,22 @@ Close tracking of time
   
 ---
 
+# Operation Span task (OSpan)
+
+.center[
+```{r, include=TRUE, echo=FALSE}
+include_graphics("./00_intro/figs/ospan.png", dpi = 100) # the larger the number, the smaller the image
+```
+]
+
+---
+
 # Results
 
-Time course
+Timecourse
 .center[
-```{r, include=TRUE, echo=FALSE, out.width="110%"}
-include_graphics(here("figs", "vision", "gca", 'cont_speed_verb', "timecourse_michele.png"), dpi = 150)
+```{r, include=TRUE, echo=FALSE, out.width="80%"}
+include_graphics("./figs/vision/gca/cont_speed_verb/timecourse_michele.png", dpi = 150)
 ```
 ]
 
@@ -131,31 +148,29 @@ include_graphics(here("figs", "vision", "gca", 'cont_speed_verb', "timecourse_mi
 
 Spanish speakers
 .center[
-```{r, include=TRUE, echo=FALSE, out.width="80%"}
-include_graphics(here("figs", "vision", "gca", 'cont_speed_verb', "mon_michele.png"), dpi = 108)
+```{r, include=TRUE, echo=FALSE, out.width="90%"}
+include_graphics("./figs/vision/gca/cont_speed_verb/mon_michele.png", dpi = 108)
 ```
 ]
 
-??? 
-
-High WM helps in predicting paroxytones faster/oxytones slower 
+<!-- High WM helps in predicting paroxytones faster/oxytones slower -->
 ---
 
 # Results
 
-English speakers
+English speakers (no effects in Chinese)
 .center[
-```{r, include=TRUE, echo=FALSE, out.width="90%"}
-include_graphics(here("figs", "vision", "gca", 'cont_speed_verb', "en_michele.png"), dpi = 150)
+```{r, include=TRUE, echo=FALSE}
+include_graphics("./figs/vision/gca/cont_speed_verb/en_michele.png", dpi = 150)
 ```
 ]
 
-???
+<!--
 Oxytones faster > more
 High proficiency faster, especially in oxytones
 Verbal WM effects at lower or higher prof:
-  - high wm predicts par slower and ox faster than low wm
-  - high wm predicts par faster and ox slower than low wm
+  - low prof: high wm predicts par slower and ox faster than low wm
+  - high prof: high wm predicts par faster and ox slower than low wm-->
 
 ---
 
@@ -163,6 +178,7 @@ Verbal WM effects at lower or higher prof:
 
 ## Does verbal WM affect Spanish speakers' ability to make stress-tense suffix predictions?
 ### If so, how?
+</br>
 --
 Yes. Effects vary by tense.
 
@@ -170,15 +186,13 @@ Yes. Effects vary by tense.
 
 # Discussion
 
-## Does verbal WM affect Spanish speakers' ability to make stress-tense suffix predictions?
-### If so, how?
-Yes. Effects vary by tense
-
 ## Does the L1 affect verbal WM effects in English and Mandarin Chinese speakers' ability to make stress-tense suffix predictions in L2 Spanish?
 ### If so, how?
-### Does L2 proficiency mediate those effects?
+### Does L2 proficiency mediate those effects? 
+</br>
 --
-L1s affect verbal WM prediction mediation in L2, and so does proficiency. Effects vary also by tense
+
+Yes. L1s and L2 proficiency modulate the influence of verbal WM in phonomorphological prediction. Effects vary also by tense.
 
 ---
 
@@ -187,7 +201,14 @@ L1s affect verbal WM prediction mediation in L2, and so does proficiency. Effect
 L1:
 - Effects in EN but not in MaCH: more similar languages are more susceptible to verbal WM effects
 
--- 
+---
+
+# Discussion
+
+L1:
+- Effects in EN but not in MaCH: more similar languages are more susceptible to verbal WM effects
+</br>
+
 Proficiency:
 - At low proficiency, high WM benefits condition with fewer competitors.
 - At high proficiency, more frequent condition is benefited by high WM.
@@ -195,8 +216,8 @@ Proficiency:
 --
 
 Other studies:
-- WM does affect L2 phonomorphological processing (Lozano-Argüelles et al., under review)
-- Different associations may be affected differently (vs. Sagarra & Casillas, 2018)
+- WM does affect L2 phonomorphological processing <font size="-1">(Huettig & Janse, 2016; Lozano-Argüelles et al., under review)</font>
+- Different associations may be affected differently <font size="-1">(vs. Otten & Van Berkum, 2009; Sagarra & Casillas, 2018)</font>
 
 Models:
 - Usage-based models

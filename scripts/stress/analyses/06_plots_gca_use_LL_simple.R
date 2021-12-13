@@ -51,7 +51,7 @@ dele_plot <- model_preds_simple$fits_all_dele %>%
          L1 = fct_relevel(L1, "English")) %>%
   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
                 lty = `Spanish proficiency`, fill = Stress, color = Stress)) +
-  facet_grid(. ~ L1) +
+  #facet_grid(. ~ L1) +
   geom_hline(yintercept = 0, size = .5, color = "grey40", linetype = 'dotted') +
   geom_vline(xintercept = 4, size = .5, color = "grey40", linetype = 'dotted') +
   geom_ribbon(alpha = 0.2, color = NA, show.legend = F) +

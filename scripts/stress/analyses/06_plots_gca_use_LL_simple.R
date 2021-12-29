@@ -161,6 +161,39 @@ exp_plot <- grid.arrange(base_plot,
 ggsave(paste0(figs_path, "/exp_plot_simple.png"), exp_plot, width = 180,
        height = 120, units = "mm", dpi = 600)
 
+# increase font and make y axis longer
+
+base_plot <- model_preds_simple$fits_all_exp %>%
+  mutate(`Spanish use` = as.factor(use_z),
+         `Spanish proficiency` = as.factor(DELE_z),
+         L1 = if_else(l1_sum == 1, "Mandarin Chinese", "English"),
+         L1 = fct_relevel(L1, "English")) %>%
+  ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
+                lty = `Spanish use`)) +
+  facet_grid(`Spanish proficiency` ~ L1) +
+  geom_hline(yintercept = 0, size = .5, color = "grey40", linetype = 'dotted') +
+  geom_vline(xintercept = 4, size = .5, color = "grey40", linetype = 'dotted') +
+  geom_ribbon(alpha = 0.2, color = NA, show.legend = F) +
+  geom_line(size = 0.35) +
+  scale_x_continuous(breaks = c(-4, -2, 0, 2, 4),
+                     labels = c("-200", "-100", "0", "100", "200")) +
+  # scale_color_brewer(palette = "Set1", name = "Condition") +
+  scale_linetype_manual(values=c("solid", "dashed", 'dotted')) +
+  labs(x = "Time (ms) relative to final syllable onset",
+       y = "Empirical logit of looks to target") +
+  theme_grey(base_size = 12, base_family = "Times") + legend_adj_2 +
+  theme(legend.position = 'bottom', #c(0.1, 0.9) 
+        legend.title = element_text(size = 11),
+        legend.text = element_text(size = 11),
+        plot.margin = margin(5.5, 20, 5.5, 5.5, "points"))
+
+exp_plot <- grid.arrange(base_plot,     
+                         bottom = textGrob('Spanish proficiency', rot = 270,
+                                           x = 0.98, y = 3.4, gp = gpar(fontsize = 11,
+                                                                        fontfamily = 'Times')))
+
+ggsave(paste0(figs_path, "/exp_plot_simple_ylong.png"), exp_plot, width = 180,
+       height = 180, units = "mm", dpi = 600)
 
 # Monolingual Spanish speakers
 

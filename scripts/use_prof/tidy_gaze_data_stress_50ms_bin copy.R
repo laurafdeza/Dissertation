@@ -125,7 +125,7 @@ write_csv(stress_50, here("data", "clean", "stress_50ms_allparticipants.csv"))
 stress50 <- read_csv(here("data", "clean", "stress_50ms_allparticipants.csv"))
 
 stress50$cond <- factor(stress50$cond, levels = c("1", "2"), 
-                        labels = c("Paroxytone", "Oxytone"))
+                        labels = c("Paroxytone/Present", "Oxytone/Preterit"))
 
 # Test plot
 stress50 %>%
@@ -153,21 +153,24 @@ stress50 %>%
   ylab("Proportion of fixations on target") +
   scale_color_discrete(name="Condition")
 
+stress50$l1_letters <- factor(stress50$l1, levels = c("en", "es"), 
+                        labels = c("English speakers", "Spanish speakers"))
 
-# only EN
+
 timecourse_en <- stress50 %>%
-  filter(time_zero > -8 & time_zero < 12 & l1 == 'en') %>%
+  filter(time_zero > -10 & time_zero < 10 & l1_letters != 'ma') %>%
   ggplot(., aes(x = time_zero, y = target_prop, fill = cond, color = cond)) +
+  facet_grid(l1_letters ~ .) +
   geom_vline(xintercept = 4, lty = 3) +
   geom_hline(yintercept = 0.5, lty = 3) +
   stat_summary(fun.y = mean, geom = "line") +
   stat_summary(fun.data = mean_cl_boot, geom = 'pointrange', size = 0.5,
                stroke = 0.5, pch = 21) +
   xlab("Time relative to offset of verbs' initial syllable (ms)") +
-  ylab("Proportion of fixations\non the target") +
+  ylab("Proportion of fixations on the target") +
   labs(caption = "Mean +/- 95% CI") +
-  scale_x_continuous(breaks = c(-8, -4, 0, 4, 8, 12),
-                     labels = c("-400", "-200", "0", '200', "400", "600")) +
+  scale_x_continuous(breaks = c(-8, -6, -4, -2, 0, 2, 4, 6, 8),
+                     labels = c("-400", "-300", "-200", "-100", "0", "100", '200', "300", "400")) +
   scale_color_discrete(name="Stress condition") +
   scale_fill_discrete(name = 'Stress condition') +
   theme_grey(base_size = 10, base_family = "Times") +
@@ -176,7 +179,7 @@ timecourse_en <- stress50 %>%
 ggsave('timecourse_en.png',
        plot = timecourse_en, dpi = 600, device = "png",
        path = here("figs", "use_prof"),
-       height = 2.5, width = 4.5, units = 'in')
+       height = 4, width = 4.5, units = 'in')
 
 
 

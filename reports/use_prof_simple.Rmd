@@ -114,12 +114,9 @@ pretty_fixed_effects %>%
 
 ```
 
-We conducted a GCA on SS and took them as reference when discussing our findings.
-Figure 4 shows the GCA model fit for SS.
-The GCA intercept for SS was positive and significant, indicating this group was anticipating at suffix onset.
-The probability of SS fixating on the target was 0.953 (LB = 0.942; UB = 0.962) averaging across stress conditions, which indicates they were fixating on the target verb above chance at suffix onset.
-There were main effects on the linear (`r report_row('2')`) and quadratic (`r report_row('3')`) polynomial time terms.
-Since they improved the model, we kept them.
+
+The probability of SS fixating on the target was 0.90 (LB = 0.88; UB = 0.91) averaging across stress conditions, which indicates they were fixating on the target verb above chance at suffix onset.
+There were only main effects on the linear (`r report_row('2')`) and quadratic (`r report_row('3')`) polynomial time terms.
 
 
 ```{r, table-mon-probs, eval=T, echo=F, include = F}

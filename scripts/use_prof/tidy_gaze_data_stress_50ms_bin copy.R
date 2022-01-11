@@ -23,6 +23,54 @@ unique(stress_50$AVERAGE_IA_2_SAMPLE_COUNT)  # looking at distractor
 unique(stress_50$AVERAGE_IA_0_SAMPLE_COUNT)  # elsewhere
 
 
+# How much data we lose by selecting only accurate trials overall
+sum( ( stress_50$ACCURACY == 0 ) / length( stress_50$ACCURACY ) ) * 100
+# 0.4198754
+
+# by stress pattern/tense
+pret <- filter(stress_50, cond == 2)
+sum( ( pret$ACCURACY == 0 ) / length( pret$ACCURACY ) ) * 100
+# 0.06796873
+
+pres <- filter(stress_50, cond == 1)
+sum( ( pres$ACCURACY == 0 ) / length( pres$ACCURACY ) ) * 100
+# 0.7685756
+
+# by stress pattern/tense and by speaker type
+acc_desc <- separate(stress_50, col = RECORDING_SESSION_LABEL,
+         into = c("group", "group_member"),
+         sep = 3,
+         remove = FALSE)
+
+pretmon <- filter(acc_desc, cond == 2 & group == 'mon')
+sum( ( pretmon$ACCURACY == 0 ) / length( pretmon$ACCURACY ) ) * 100
+# 0.3603604
+
+presmon <- filter(acc_desc, cond == 1 & group == 'mon')
+sum( ( presmon$ACCURACY == 0 ) / length( presmon$ACCURACY ) ) * 100
+# 0
+
+pretl2 <- filter(acc_desc, cond == 2 & group == 'aes' | group == 'ies')
+sum( ( pretl2$ACCURACY == 0 ) / length( pretl2$ACCURACY ) ) * 100
+# 0.7661968
+
+presl2 <- filter(acc_desc, cond == 1 & group == 'aes' | group == 'ies')
+sum( ( presl2$ACCURACY == 0 ) / length( presl2$ACCURACY ) ) * 100
+# 0.7638508
+
+# by speaker type
+mon <- filter(acc_desc, group == 'mon')
+sum( ( mon$ACCURACY == 0 ) / length( mon$ACCURACY ) ) * 100
+# 0.1793154
+
+l2 <- filter(acc_desc, group == 'aes' | group == 'ies')
+sum( ( l2$ACCURACY == 0 ) / length( l2$ACCURACY ) ) * 100
+# 0.5767546
+
+
+
+
+
 # Tidy data -------------------------------------------------------------------
 
 # Read data
@@ -180,6 +228,32 @@ ggsave('timecourse_en.png',
        plot = timecourse_en, dpi = 600, device = "png",
        path = here("figs", "use_prof"),
        height = 4, width = 4.5, units = 'in')
+
+
+timecourse_simple <- stress50 %>%
+  filter(time_zero > -10 & time_zero < 10 & l1_letters != 'ma') %>%
+  mutate(., l1_letters = fct_relevel(l1_letters, "Spanish speakers")) %>%
+  ggplot(., aes(x = time_zero, y = target_prop)) +
+  facet_grid(l1_letters ~ cond) +
+  geom_vline(xintercept = 4, lty = 3) +
+  geom_hline(yintercept = 0.5, lty = 3) +
+  stat_summary(fun.y = mean, geom = "line") +
+  stat_summary(fun.data = mean_cl_boot, geom = 'pointrange', size = 0.5,
+               stroke = 0.5, pch = 21) +
+  xlab("Time relative to offset of verbs' initial syllable (ms)") +
+  ylab("Proportion of fixations on the target") +
+  labs(caption = "Mean +/- 95% CI") +
+  scale_x_continuous(breaks = c(-8, -6, -4, -2, 0, 2, 4, 6, 8),
+                     labels = c("-400", "-300", "-200", "-100", "0", "100", '200', "300", "400")) +
+  #scale_color_discrete(name="Stress condition") +
+  #scale_fill_discrete(name = 'Stress condition') +
+  theme_grey(base_size = 10, base_family = "Times") #+
+  #theme(legend.position = 'bottom')
+  
+ggsave('timecourse_simple.png',
+       plot = timecourse_simple, dpi = 600, device = "png",
+       path = here("figs", "use_prof"),
+       height = 3, width = 4.5, units = 'in')
 
 
 

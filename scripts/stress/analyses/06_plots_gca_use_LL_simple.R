@@ -138,6 +138,8 @@ base_plot <- model_preds_simple$fits_all_exp %>%
          L1 = fct_relevel(L1, "English")) %>%
   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin,
                 lty = `Spanish use`)) +
+  # geom_rect(aes(fill = L1), xmin = -Inf, xmax = Inf,
+            # ymin = -Inf, ymax = Inf, alpha = 0.3) +
   facet_grid(`Spanish proficiency` ~ L1) +
   geom_hline(yintercept = 0, size = .5, color = "grey40", linetype = 'dotted') +
   geom_vline(xintercept = 4, size = .5, color = "grey40", linetype = 'dotted') +
@@ -146,12 +148,15 @@ base_plot <- model_preds_simple$fits_all_exp %>%
   scale_x_continuous(breaks = c(-4, -2, 0, 2, 4),
                      labels = c("-200", "-100", "0", "100", "200")) +
   # scale_color_brewer(palette = "Set1", name = "Condition") +
-  scale_linetype_manual(values=c("solid", "dashed", 'dotted')) +
+  # scale_fill_manual(values=alpha(c("brown2", "steelblue3"), .3)) +
+  # scale_linetype_manual(values=c("solid", "dashed", 'dotted')) +
   labs(x = "Time (ms) relative to final syllable onset",
        y = "Empirical logit of looks to target") +
   theme_grey(base_size = 10, base_family = "Times") + legend_adj_2 +
   theme(legend.position = 'bottom', #c(0.1, 0.9) 
         plot.margin = margin(5.5, 20, 5.5, 5.5, "points"))
+
+
 
 exp_plot <- grid.arrange(base_plot,     
                                bottom = textGrob('Spanish proficiency', rot = 270,

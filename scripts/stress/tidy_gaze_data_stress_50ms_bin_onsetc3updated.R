@@ -100,6 +100,43 @@ sd(itemlength$C3_dur)
 
 itemlength[itemlength$C3_dur == 9, ]
 
+  # by condition
+  condlength <- stress_50 %>%
+    select(., id, t01, t04, t05, t06, cond) %>%
+    distinct()
+
+  condlength$item_dur <- condlength$t06 - condlength$t01
+
+  condlength %>%
+    group_by(cond) %>%
+    summarize(mean_l = mean(item_dur), 
+              sd_l = sd(item_dur))
+  # cond mean_l  sd_l
+  # 1     1   422.  43.3
+  # 2     2   426.  42.4
+
+  condlength$syll1_dur <- condlength$t04 - condlength$t01
+  
+  condlength %>%
+    group_by(cond) %>%
+    summarize(mean_l = mean(syll1_dur), 
+              sd_l = sd(syll1_dur))
+  #    cond mean_l  sd_l
+  # 1     1   318.  48.7
+  # 2     2   288.  49.4
+
+  condlength$syll2_dur <- condlength$t06 - condlength$t04
+  
+  condlength %>%
+    group_by(cond) %>%
+    summarize(mean_l = mean(syll2_dur), 
+              sd_l = sd(syll2_dur))
+  #    cond mean_l  sd_l
+  # 1     1   104.  26.7
+  # 2     2   138.  33.8
+
+
+
 
 # Tidy data -------------------------------------------------------------------
 

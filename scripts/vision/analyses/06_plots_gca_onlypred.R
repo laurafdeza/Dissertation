@@ -22,7 +22,7 @@ gca_mods_path  <- here("mods", "vision", "gca", "cont_speed_verb")
 # Load models as lists
 load(paste0(gca_mods_path, "/mon_mods_onlypred.Rdata")) 
 
-load(paste0(gca_mods_path, "/model_preds_zero0.Rdata"))
+load(paste0(gca_mods_path, "/model_preds_onlypred.Rdata"))
 
 
 # Set path for saving figures
@@ -111,7 +111,7 @@ base_plot <- model_preds_onlypred$fits_mon_car %>%
          Stress = fct_relevel(Stress, 'Paroxytone/present')) %>%
   ggplot(., aes(x = time_zero, y = fit, ymax = ymax, ymin = ymin, 
                 lty = `Visuospatial prediction`)) +
-  facet_grid(. ~ Stress) +
+  # facet_grid(. ~ Stress) +
   geom_hline(yintercept = 0, size = .5, color = "grey40", linetype = 'dotted') +
   geom_vline(xintercept = 4, size = .5, color = "grey40", linetype = 'dotted') +
   geom_ribbon(alpha = 0.1, show.legend = F) +

@@ -256,11 +256,11 @@ upper.bound <- mean(en_only$age_fluent_L2) + margin.error
 
 
 
-L2flumacy_se <- sd(ma_only$age_fluent_L2)/sqrt(length(ma_only$age_fluent_L2))
+L2fluency_se <- sd(ma_only$age_fluent_L2)/sqrt(length(ma_only$age_fluent_L2))
 
 t.score = qt(p = 0.05/2, df = length(ma_only$age_fluent_L2) - 1, lower.tail = F)
 
-margin.error = t.score * L2flumacy_se
+margin.error = t.score * L2fluency_se
 
 lower.bound <- mean(ma_only$age_fluent_L2) - margin.error
 #20.22582
@@ -336,4 +336,28 @@ t.test(mo_ES_country ~ l1, data = dem_all %>% filter(l1 != "es" & participant !=
                                                 participant != 'aes32' & participant != 'ies28'), var.equal = FALSE)
 # t = -0.38728, df = 116.44, p-value = 0.6993
 
+
+
+
+
+
+### Calculate range
+
+## AoA_L2
+dem_all %>%
+  filter(., l1 %in% c("ma", "en") & participant != 'ies04' & participant != 'ies17' & 
+           participant != 'aes32' & participant != 'ies28') %>%
+  group_by(., l1) %>%
+  summarise(range_perc_week_Spa = range(percent_l2_week),
+            range_DELE = range(DELE),
+            range_AoA = range(AoA_L2),
+            range_age_fluent = range(age_fluent_L2),
+            range_mo_ES_country = range(mo_ES_country)) %>%
+  knitr::kable()
+# |l1 | range_perc_week_Spa| range_DELE| range_AoA|range_age_fluent | range_mo_ES_country|
+# |:--|-------------------:|----------:|---------:|:----------------|-------------------:|
+# |en |                  10|         25|         4|14               |                 2.5|
+# |en |                  90|         55|        30|34               |               168.0|
+# |ma |                  10|         25|        11|13               |                 1.0|
+# |ma |                  90|         52|        35|36               |               228.0|
 
